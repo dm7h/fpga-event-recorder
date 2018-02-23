@@ -1,0 +1,25 @@
+Aufgabenbeschreibung
+
+1. Download und Installieren Sie die Software wie in der Hilfedatei angegeben.
+2. Entpacken Sie die Latexvorlage
+3. Ändern Sie den Namen der Datei thesis.tex auf Gruppe_XX_Bericht_02_Latex.tex, wobei xx ihrer Gruppennummer entspricht.
+4. Starten Sie das TexNic Center und öffnen Sie die Datei 
+5. Erstellen Sie das PDF wie in der Anleitung gezeigt. (2x hintereinander - Ist beim ersten Mal notwendig 
+	um die Inhaltsangabe zu erstellen.)
+6. Passen Sie das Deckblatt "deckblatt.tex" an, so dass es weitestgehend mit der Vorlage übereinstimmt.
+Anmerkung: Erstellen Sie das PDF auch nach kleinen Änderungen neu, um Fehler sofort zu erkennen. Anfänger haben i.d.R.
+Schwierigkeiten Fehler zu finden und zu beheben.
+7. Fügen Sie Ihre Namen, Gruppennummer, Projektnummer, Projekttitel, Abgabedatum an die entsprechenden Stellen im Deckblatt ein.
+8. Erstellen Sie für jedes Kapitel eine eigene Datei kapitelname.tex und fügen Sie sie in das Projekt ein. Die Beispielkapitel können Ihnen dabei als Vorlage dienen.
+
+
+Bei Problemen und für erste Tutorials sind folgende Links gute Anlaufstellen:
+
+Einführung und Basisbefehle (Empfehlung)
+http://latex.mschroeder.net/index.php
+
+Ein weiteres gutes Tutorial:
+http://www.kubieziel.de/computer/latex-tutorial.html
+
+Latex – Einführung auf YouTube (Empfehlung)
+http://www.youtube.com/user/LaTeXTutorial/videos
