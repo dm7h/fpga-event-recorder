@@ -1,0 +1,63 @@
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[24] on net gpio_pin_q_1[24] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[25] on net gpio_pin_q_1[25] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[26] on net gpio_pin_q_1[26] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[27] on net gpio_pin_q_1[27] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[28] on net gpio_pin_q_1[28] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[29] on net gpio_pin_q_1[29] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[30] on net gpio_pin_q_1[30] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[31] on net gpio_pin_q_1[31] has its enable tied to GND (module gpio_core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[24] on net gpio_pin_q[24] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[25] on net gpio_pin_q[25] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[26] on net gpio_pin_q[26] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[27] on net gpio_pin_q[27] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[28] on net gpio_pin_q[28] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[29] on net gpio_pin_q[29] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[30] on net gpio_pin_q[30] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[31] on net gpio_pin_q[31] has its enable tied to GND (module core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":89:22:89:28|Tristate driver ftdi_ro on net ftdi_ro has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":87:22:87:28|Tristate driver ftdi_wo on net ftdi_wo has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_1 on net xtra_a[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_2 on net xtra_a[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_3 on net xtra_a[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_4 on net xtra_a[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_5 on net xtra_a[0] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":61:22:61:30|Tristate driver sram_lb_l on net sram_lb_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":60:22:60:30|Tristate driver sram_ub_l on net sram_ub_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":59:22:59:30|Tristate driver sram_ce_l on net sram_ce_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_1 on net rsvd[5] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_2 on net rsvd[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_3 on net rsvd[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_4 on net rsvd[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_5 on net rsvd[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_6 on net rsvd[0] has its enable tied to GND (module top) 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":326:0:326:5|Sequential instance u_core.u_sump2.trigger_in_meta reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Sequential instance u_core.u_gpio_core.lb_003c_reg_tri_enable reduced to a combinational gate by constant propagation 
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|Removing sequential instance u_core.lb_wr_p1,  because it is equivalent to instance lb_wr_p1
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|Removing sequential instance u_core.lb_rd_p1,  because it is equivalent to instance lb_rd_p1
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[16] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[17] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[18] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[19] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[20] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[21] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[22] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[23] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[24] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[25] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[26] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[27] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[28] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[29] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[30] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[31] reduced to a combinational gate by constant propagation
+@W: FX107 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|No read/write conflict check. Possible simulation mismatch!
+@W: FX107 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|No read/write conflict check. Possible simulation mismatch!
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[31],  because it is equivalent to instance u_core.u_sump2.b_do_p1[30]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[30],  because it is equivalent to instance u_core.u_sump2.b_do_p1[29]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[29],  because it is equivalent to instance u_core.u_sump2.b_do_p1[28]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[28],  because it is equivalent to instance u_core.u_sump2.b_do_p1[27]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[27],  because it is equivalent to instance u_core.u_sump2.b_do_p1[26]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[26],  because it is equivalent to instance u_core.u_sump2.b_do_p1[25]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[25],  because it is equivalent to instance u_core.u_sump2.b_do_p1[24]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[24],  because it is equivalent to instance u_core.u_sump2.b_do_p1[23]
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do_p1[16] reduced to a combinational gate by constant propagation

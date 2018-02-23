@@ -1,0 +1,355 @@
+/* ****************************************************************************
+-- Source file: top.v                
+-- Date:        November 22, 2016
+-- Author:      khubbard
+-- Description: Top Level Verilog RTL for Lattice iCE40HX8K-CT256 icoBoard
+-- Language:    Verilog-2001 and VHDL-1993
+-- Simulation:  Mentor-Modelsim 
+-- Synthesis:   Lattice     
+-- License:     This project is licensed with the CERN Open Hardware Licence
+--              v1.2.  You may redistribute and modify this project under the
+--              terms of the CERN OHL v.1.2. (http://ohwr.org/cernohl).
+--              This project is distributed WITHOUT ANY EXPRESS OR IMPLIED
+--              WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY
+--              AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN OHL
+--              v.1.2 for applicable Conditions.
+-- 
+--  Top View : Lattice IceZero board atop Pi Model3
+--        -----------------------------------------  
+--       | ----------------------------------      |
+--       ||              -------             |  -----
+--       || P1          | ICE40 |         P2 | | USB |
+--       ||             | HX4K  |            |  -----     
+--       ||      P4      -------      P3     |  ----- 
+--       |  ---------------------------------  | USB |
+--       |                                      ----- 
+--       |                                      -----
+--       |                                     |Ether|
+--       |                                     |     |
+--       |                                      -----
+--       |                                         |
+--        ----------------------------------------- 
+--
+--  Side View : Looking into Female PMOD Connector
+--          ----------------------------  
+--         | 3V GND D[7] D[5] D[3] D[1] |  
+--         | 3V GND D[6] D[4] D[2] D[0] |   
+--      -----------------------------------
+--     |           iCEzero FR4             | 
+--
+-- Revision History:
+-- Ver#  When      Who      What
+-- ----  --------  -------- ---------------------------------------------------
+-- 0.1   11.22.16  khubbard Creation
+-- ***************************************************************************/
+`default_nettype none // Strictly enforce all nets to be declared
+
+module top
+(
+  input  wire         clk_100m,
+  input  wire         j0_l,
+  input  wire         j1_l,
+  output wire         ok_led,  
+  output wire [5:0]   rsvd,
+
+  output reg  [17:0]  sram_a,
+  inout  wire [15:0]  sram_d,
+  output reg          sram_we_l,
+  output reg          sram_oe_l,
+  output wire         sram_ce_l,
+  output wire         sram_ub_l,
+  output wire         sram_lb_l,
+
+  output wire [3:0]   p4_d,
+  output wire [3:0]   p3_d,
+  output wire [7:0]   p2_d,
+  output wire [7:0]   p1_d,
+  input  wire [1:0]   cbsel,
+//input  wire         cfg_done,
+//input  wire         cfg_rst_l,
+
+  input  wire         cfg_so,  
+  input  wire         cfg_si,
+  input  wire         cfg_sck,
+  input  wire         cfg_ss,
+
+  input  wire [1:0]   pi_id,
+  input  wire [1:0]   pi_spi_ce,
+  input  wire         pi_spi_sck,
+  input  wire         pi_spi_miso,
+  input  wire         pi_spi_mosi,
+  input  wire [2:0]   pi_gpio,
+  input  wire         pi_uart_ro,
+  input  wire         pi_uart_wi,
+  input  wire         pi_i2c_scl,
+  input  wire         pi_i2c_sda,
+
+  output wire [4:0]   xtra_a,
+  output wire         ftdi_wo,
+  input  wire         ftdi_wi,
+  output wire         ftdi_ro,
+  input  wire         ftdi_ri
+);// module top
+
+  wire          clk_100m_tree;
+//wire          clk_100m_loc;
+//wire          pll_100m_lock;
+  reg  [31:0]   test_cnt;
+  reg  [31:0]   test_b_cnt;
+  reg  [31:0]   test_c_cnt;
+  reg  [31:0]   test_b_cnt_q;
+  reg  [31:0]   test_c_cnt_q;
+  reg  [31:0]   test_cnt_q;
+  reg  [31:0]   addr_cnt;
+  reg  [15:0]   sram_fpga_dout;
+  wire [15:0]   sram_fpga_din;
+  reg  [63:0]   test_a;
+  reg  [63:0]   test_b;
+  reg  [63:0]   test_c;
+  reg  [63:0]   test_d;
+  reg  [63:0]   test_e;
+  reg  [63:0]   test_f;
+  reg  [63:0]   test_g;
+  reg  [63:0]   test_h;
+  reg  [63:0]   test_i;
+  reg  [63:0]   test_j;
+  reg  [63:0]   test_k;
+  reg  [63:0]   test_l;
+  reg  [63:0]   test_m;
+  reg  [63:0]   test_n;
+  reg  [63:0]   test_o;
+  reg  [63:0]   test_p;
+  reg  [63:0]   test_q;
+  reg  [63:0]   test_r;
+  reg  [63:0]   test_s;
+  reg  [63:0]   test_t;
+  reg  [63:0]   test_u;
+  reg  [63:0]   test_v;
+  reg  [63:0]   test_w;
+  reg  [63:0]   test_x;
+  reg  [63:0]   test_y;
+  reg  [63:0]   test_z;
+  reg  [63:0]   test_aa;
+  reg  [63:0]   test_ab;
+  reg  [63:0]   test_ac;
+  reg  [63:0]   test_ad;
+  reg  [63:0]   test_ae;
+  reg  [63:0]   test_af;
+  reg  [63:0]   test_ag;
+  reg  [63:0]   test_ah;
+  reg  [63:0]   test_ai;
+  reg  [63:0]   test_aj;
+  reg  [63:0]   test_ak;
+  reg  [63:0]   test_al;
+  reg  [63:0]   test_am;
+  reg  [63:0]   test_an;
+  reg  [63:0]   test_ao;
+  reg  [63:0]   test_ap;
+  reg  [63:0]   test_aq;
+  reg  [63:0]   test_ar;
+  reg  [63:0]   test_as;
+  reg  [63:0]   test_at;
+  reg  [63:0]   test_au;
+  reg  [63:0]   test_av;
+  reg  [63:0]   test_aw;
+  reg  [63:0]   test_ax;
+  reg  [63:0]   test_ay;
+  reg  [63:0]   test_az;
+  reg  [63:0]   test_final;
+  reg           sram_fpga_oe_l;
+
+  assign ok_led         =  test_cnt_q[26];
+  assign rsvd[5:0]      =  test_cnt_q[5:0];
+
+//assign sram_a[7:0]    = { cbsel[1:0], j0_l,j1_l, 
+//                          cfg_so,cfg_si,cfg_sck,cfg_ss};
+
+  assign xtra_a[4:0]    =  test_cnt_q[4:0];
+  assign p4_d[3:0]      =  test_cnt_q[3:0];
+  assign p3_d[3:0]      =  test_cnt_q[3:0];
+  assign p2_d[7:0]      =  test_cnt_q[7:0];
+  assign p1_d[7:0]      =  test_cnt_q[7:0];
+
+//assign pi_id[1:0]     =  test_cnt_q[1:0];
+//assign pi_spi_ce[1:0] =  test_cnt_q[1:0];
+//assign pi_spi_sck     =  test_cnt_q[0];
+//assign pi_spi_miso    =  test_cnt_q[0];
+//assign pi_spi_mosi    =  test_cnt_q[0];
+//assign pi_gpio[2:0]   =  test_cnt_q[2:0];
+
+//assign pi_uart_ro     =  test_cnt_q[0];
+//assign pi_uart_wi     =  test_cnt_q[1];
+//assign pi_i2c_scl     =  test_cnt_q[2];
+//assign pi_i2c_sda     =  test_cnt_q[3];
+  assign ftdi_wo        =  test_cnt_q[4];
+//assign ftdi_wi        =  test_cnt_q[5];
+  assign ftdi_ro        =  test_cnt_q[6];
+//assign ftdi_ri        =  test_cnt_q[7];
+
+
+//-----------------------------------------------------------------------------
+// Exercise the SRAM to draw current. This alternates read and write cycles
+//-----------------------------------------------------------------------------
+always @ ( posedge clk_100m_tree ) begin : proc_sram
+ begin
+   test_b_cnt_q   <= test_b_cnt[31:0];
+   test_c_cnt_q   <= test_c_cnt[31:0];
+   addr_cnt       <= addr_cnt[31:0] + 1;
+   sram_a[17:0]   <=  addr_cnt[19:2];
+   sram_fpga_dout <= test_final[63:48];// This will be 1 clock later
+   if ( addr_cnt[1:0] == 2'd0 ) begin
+     sram_oe_l          <= 1;
+     sram_we_l          <= 1;
+     sram_oe_l          <= 1;
+     sram_fpga_oe_l     <= 0;// This will follow 1 clock later
+   end else if ( addr_cnt[1:0] == 2'd1 ) begin
+     sram_oe_l          <= 1;
+     sram_we_l          <= 0;
+     sram_fpga_oe_l     <= 1;// This will follow 1 clock later
+   end else if ( addr_cnt[1:0] == 2'd2 ) begin
+     sram_oe_l          <= 0;
+   end else begin
+     sram_oe_l          <= 1;
+   end
+
+   if ( test_c_cnt_q == 32'd0 ) begin 
+     sram_fpga_dout[15:0] <= 16'HAAAA;
+   end
+
+   test_a <= test_cnt + 32'd3;
+   test_b <= test_a   + 32'd5;
+   test_c <= test_b   + 32'd7;
+   test_d <= test_c   + 32'd9;
+   test_e <= test_d   + 32'd11;
+   test_f <= test_e   + 32'd13;
+   test_g <= test_f   + 32'd15;
+   test_h <= test_g   + 32'd17;
+   test_i <= test_h   + 32'd19;
+   test_j <= test_i   + 32'd21;
+   test_k <= test_j   + 32'd23;
+   test_l <= test_k   + 32'd23;
+   test_m <= test_l   + 32'd23;
+   test_n <= test_m   + 32'd23;
+   test_o <= test_n   + 32'd23;
+   test_p <= test_o   + 32'd23;
+   test_q <= test_p   + 32'd23;
+   test_r <= test_q   + 32'd23;
+   test_s <= test_r   + 32'd23;
+   test_t <= test_s   + 32'd23;
+   test_u <= test_t   + 32'd23;
+   test_v <= test_u   + 32'd23;
+   test_w <= test_v   + 32'd23;
+   test_x <= test_w   + 32'd23;
+   test_y <= test_x   + 32'd23;
+   test_z <= test_y   + 32'd23;
+   test_aa <= test_z   + 32'd23;
+   test_ab <= test_aa  + 32'd23;
+   test_ac <= test_ab  + 32'd23;
+   test_ad <= test_ac  + 32'd23;
+   test_ae <= test_ad  + 32'd23;
+   test_af <= test_ae  + 32'd23;
+   test_ag <= test_af  + 32'd23;
+   test_ah <= test_ag  + 32'd23;
+   test_ai <= test_ah  + 32'd23;
+   test_aj <= test_ai  + 32'd23;
+   test_ak <= test_aj  + 32'd23;
+   test_al <= test_ak  + 32'd23;
+   test_am <= test_al  + 32'd23;
+   test_an <= test_am  + 32'd23;
+   test_ao <= test_an  + 32'd23;
+   test_ap <= test_ao  + 32'd23;
+   test_aq <= test_ap  + 32'd23;
+   test_ar <= test_aq  + 32'd23;
+   test_as <= test_ar  + 32'd23;
+   test_at <= test_as  + 32'd23;
+   test_au <= test_at  + 32'd23;
+   test_av <= test_au  + 32'd23;
+   test_aw <= test_av  + 32'd23;
+   test_ax <= test_aw  + 32'd23;
+   test_ay <= test_ax  + 32'd23;
+   test_az <= test_ay  + 32'd23;
+
+   test_final <= test_aq   + 32'd25;
+
+ end
+end // proc_sram
+
+  assign sram_ce_l =  0;
+  assign sram_ub_l =  0;
+  assign sram_lb_l =  0;
+
+
+//-----------------------------------------------------------------------------
+// IOB : SRAM has Bidirectional data
+//-----------------------------------------------------------------------------
+genvar i0;
+generate
+for ( i0=0; i0<=15; i0=i0+1 ) begin: gen_i0
+buf_io_sdr u0_buf_io_sdr
+(
+  .CLK ( clk_100m_tree      ),
+  .IO  ( sram_d[i0]         ),
+  .T   ( sram_fpga_oe_l     ),
+  .I   ( sram_fpga_dout[i0] ),
+  .O   ( sram_fpga_din[i0]  )
+ );
+end
+endgenerate
+
+
+//-----------------------------------------------------------------------------
+// Test Counter. Only flashes LEDs now. Was used for GPIO HW tests.
+//-----------------------------------------------------------------------------
+always @ ( posedge clk_100m_tree ) begin : proc_div
+ begin
+   test_cnt   <= test_cnt[31:0] + 1;
+   test_b_cnt <= test_b_cnt[31:0] - 32'd3;
+   test_c_cnt <= test_c_cnt[31:0] + 32'd5;
+   test_cnt_q <= test_cnt[31:0];
+ end
+end // proc_div
+
+
+//-----------------------------------------------------------------------------
+// IOB : PMODs are Bidirectional configurable, so instantiate Lattice Bidis
+//-----------------------------------------------------------------------------
+//genvar i0;
+//generate
+//for ( i0=0; i0<=7; i0=i0+1 ) begin: gen_i0
+//buf_io u0_buf_io
+//(
+//  .CLK ( 1'b0             ),
+//  .IO  ( pmod_p1_d[i0]    ),
+//  .T   ( 1'b0             ),
+//  .I   ( test_cnt[i0+24]  ),
+//  .O   (                  )
+// );
+//end
+//endgenerate
+
+
+//-----------------------------------------------------------------------------
+// PLL generated by Lattice GUI to multiply 25 MHz to 100 MHz
+// PLL's RESET port is active low. How messed up of a signal name is that?
+//-----------------------------------------------------------------------------
+//top_pll u_top_pll
+//(
+//  .REFERENCECLK ( clk_25m       ),
+//  .PLLOUTCORE   (               ),
+//  .PLLOUTGLOBAL ( clk_100m_tree ),
+//  .LOCK         ( pll_100m_lock ),
+//  .RESET        ( 1'b1          )
+//);
+
+
+//-----------------------------------------------------------------------------
+// Global Clock Tree Buffer
+//-----------------------------------------------------------------------------
+SB_GB u0_sb_gb
+(
+  .USER_SIGNAL_TO_GLOBAL_BUFFER ( clk_100m      ),
+  .GLOBAL_BUFFER_OUTPUT         ( clk_100m_tree )
+);
+
+
+endmodule // top.v

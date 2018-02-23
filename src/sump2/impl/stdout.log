@@ -1,0 +1,67 @@
+Running in Lattice mode
+
+sourcing C:\lscc\iCEcube2.2015.04\synpbase\lib\message_override.tcl
+
+
+Starting:    C:\lscc\iCEcube2.2015.04\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\iCEcube2.2015.04\synpbase
+Hostname:    DESKTOP-8BPHC57
+Date:        Mon Feb 06 17:35:47 2017
+Version:     J-2015.03L
+
+Arguments:   -product synplify_pro -batch impl_syn.prj
+ProductType: synplify_pro
+
+
+
+
+
+log file: "\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.srr"
+Running: impl_Implmnt in foreground
+
+Running impl_syn|impl_Implmnt
+
+Running: compile (Compile) on impl_syn|impl_Implmnt
+
+Running: compile_flow (Compile Process) on impl_syn|impl_Implmnt
+
+Running: compiler (Compile Input) on impl_syn|impl_Implmnt
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.srs
+
+compiler Completed
+Return Code: 0
+Run Time:0h:00m:15s
+
+Running: multi_srs_gen (Multi-srs Generator) on impl_syn|impl_Implmnt
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_s.srs
+
+multi_srs_gen Completed
+Return Code: 0
+Run Time:0h:00m:01s
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_mult.srs to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.srs
+Complete: Compile Process on impl_syn|impl_Implmnt
+
+Running: premap (Pre-mapping) on impl_syn|impl_Implmnt
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.sap to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_s.sap
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.fse to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_s.fse
+
+premap Completed with warnings
+Return Code: 1
+Run Time:0h:00m:03s
+Complete: Compile on impl_syn|impl_Implmnt
+
+Running: map (Map) on impl_syn|impl_Implmnt
+
+Running: fpga_mapper (Map & Optimize) on impl_syn|impl_Implmnt
+Copied \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_m.srm to \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.srm
+
+fpga_mapper Completed with warnings
+Return Code: 1
+Run Time:0h:00m:15s
+Complete: Map on impl_syn|impl_Implmnt
+Complete: Logic Synthesis on impl_syn|impl_Implmnt
+
+exit status=0
+
+exit status=0
+

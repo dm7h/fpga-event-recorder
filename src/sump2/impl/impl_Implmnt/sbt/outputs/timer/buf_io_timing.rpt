@@ -1,0 +1,343 @@
+# ******************************************************************************
+
+# iCEcube Static Timer
+
+# Version:            2015.04.27409
+
+# Build Date:         May 27 2015 15:59:34
+
+# File Generated:     Dec 17 2016 11:35:38
+
+# Purpose:            Timing Report with critical paths info
+
+# Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+# ******************************************************************************
+
+Device: iCE40HX8K
+Derating factors (Best:Typical:Worst) :-  ( 0.563724 : 0.623363 : 0.701346 )
+Derating factor used to generate this timing report:  Worst
+Based on the following operating conditions 
+Junction Temperature(degree Celsius): 85
+Core Voltage(V): 1.14
+Process Corner:  Worst
+NOTE:
+Please check both worst-case and best-case scenarios for "Setup Times" 
+and "Hold Times" checks
+ #####################################################################
+                    Table of Contents
+ =====================================================================
+	1::Clock Frequency Summary
+	2::Clock Relationship Summary
+	3::Datasheet Report
+		3.1::Setup Times
+		3.2::Clock to Out
+		3.3::Pad to Pad
+		3.4::Hold Times
+		3.5::Minimum Clock to Out
+		3.6::Minimum Pad To Pad
+	4::Path Details for Clock Frequency Summary
+	5::Path Details for Clock Relationship Summary
+	6::Path Details for DataSheet
+		6.1::Setup Times Path Details
+		6.2::Clock to Out Path Details
+		6.3::PI to PO Path Details
+			6.3.1::Path details for port: IO:out
+			6.3.2::Path details for port: O
+		6.4::Hold Times Path Details
+		6.5::Minimum Clock to Out Path Details
+		6.6::Minimum Pad To Pad Path Details
+			6.6.1::Path details for port: IO:out
+			6.6.2::Path details for port: O
+ =====================================================================
+                    End of Table of Contents
+ #####################################################################
+
+ #####################################################################
+                    1::Clock Frequency Summary
+ =====================================================================
+Number of clocks: 1
+Clock: buf_io|CLK  | N/A  | Target: 1.00 MHz  | 
+
+ =====================================================================
+                    End of Clock Frequency Summary
+ #####################################################################
+
+
+ #####################################################################
+                    2::Clock Relationship Summary
+ =====================================================================
+
+Launch Clock  Capture Clock  Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
+
+ =====================================================================
+                    End of Clock Relationship Summary
+ #####################################################################
+
+
+ #####################################################################
+                    3::Datasheet Report
+
+All values are in Picoseconds
+ =====================================================================
+
+                        3.1::Setup Times
+                        ----------------
+
+Data Port  Clock Port  Setup Times  Clock Reference:Phase  
+---------  ----------  -----------  ---------------------  
+
+
+                       3.2::Clock to Out
+                       -----------------
+
+Data Port  Clock Port  Clock to Out  Clock Reference:Phase  
+---------  ----------  ------------  ---------------------  
+
+
+                         3.3::Pad to Pad
+                         ---------------
+
+Port Name (Input)  Port Name (Output)  Pad to Pad  
+-----------------  ------------------  ----------  
+I                  IO:out              6737        
+T                  IO:out              5398        
+IO:in              O                   6737        
+
+
+                         3.4::Hold Times
+                         ---------------
+
+Data Port  Clock Port  Hold Times  Clock Reference:Phase  
+---------  ----------  ----------  ---------------------  
+
+
+               3.5::Minimum Clock to Out
+               -------------------------
+
+Data Port  Clock Port  Minimum Clock to Out  Clock Reference:Phase  
+---------  ----------  --------------------  ---------------------  
+
+
+                 3.6::Minimum Pad To Pad
+                 -----------------------
+
+Port Name (Input)  Port Name (Output)  Minimum Pad To Pad  
+-----------------  ------------------  ------------------  
+T                  IO:out              4907                
+I                  IO:out              6198                
+IO:in              O                   6198                
+
+ =====================================================================
+                    End of Datasheet Report
+ #####################################################################
+ #####################################################################
+                    4::Path Details for Clock Frequency Summary
+
+ =====================================================================
+                    End of Path Details for Clock Frequency Summary
+ #####################################################################
+
+
+ #####################################################################
+                    5::Path Details for Clock Relationship Summary
+ =====================================================================
+
+
+ =====================================================================
+                    End of Path Details for Clock Relationship Summary
+ #####################################################################
+
+
+ #####################################################################
+                    6::Path Details for DataSheet
+ =====================================================================
+
+
+6.3::PI to PO Path Details              
+--------------------------------------------------
+
+6.3.1::Path details for port: IO:out    
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : IO:out
+Input Port       : I
+Pad to Pad Delay : 6737
+
+Pad to Pad Path
+pin name                      model name              delay  cummulative delay  edge  Fanout  
+----------------------------  ----------------------  -----  -----------------  ----  ------  
+I                             buf_io                  0      0                  RISE  1       
+I_ibuf_iopad/PACKAGEPIN:in    IO_PAD                  0      0                  RISE  1       
+I_ibuf_iopad/DOUT             IO_PAD                  590    590                RISE  1       
+I_ibuf_preio/PADIN            PRE_IO_PIN_TYPE_000001  0      590                RISE  1       
+I_ibuf_preio/DIN0             PRE_IO_PIN_TYPE_000001  617    1207               RISE  1       
+I__13/I                       Odrv4                   0      1207               RISE  1       
+I__13/O                       Odrv4                   351    1558               RISE  1       
+I__14/I                       LocalMux                0      1558               RISE  1       
+I__14/O                       LocalMux                330    1887               RISE  1       
+I__15/I                       IoInMux                 0      1887               RISE  1       
+I__15/O                       IoInMux                 259    2147               RISE  1       
+u_SB_IO_preio/DOUT0           PRE_IO_PIN_TYPE_101001  0      2147               RISE  1       
+u_SB_IO_preio/PADOUT          PRE_IO_PIN_TYPE_101001  2237   4384               FALL  1       
+u_SB_IO_iopad/DIN             IO_PAD                  0      4384               FALL  1       
+u_SB_IO_iopad/PACKAGEPIN:out  IO_PAD                  2353   6737               FALL  1       
+IO:out                        buf_io                  0      6737               FALL  1       
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : IO:out
+Input Port       : T
+Pad to Pad Delay : 5398
+
+Pad to Pad Path
+pin name                      model name                 delay  cummulative delay  edge  Fanout  
+----------------------------  -------------------------  -----  -----------------  ----  ------  
+T                             buf_io                     0      0                  RISE  1       
+T_ibuf_iopad/PACKAGEPIN:in    IO_PAD                     0      0                  RISE  1       
+T_ibuf_iopad/DOUT             IO_PAD                     590    590                RISE  1       
+T_ibuf_preio/PADIN            PRE_IO_PIN_TYPE_000001     0      590                RISE  1       
+T_ibuf_preio/DIN0             PRE_IO_PIN_TYPE_000001     617    1207               RISE  1       
+I__11/I                       LocalMux                   0      1207               RISE  1       
+I__11/O                       LocalMux                   330    1537               RISE  1       
+I__12/I                       InMux                      0      1537               RISE  1       
+I__12/O                       InMux                      259    1796               RISE  1       
+u_SB_IO_RNO_LC_1_4_0/in0      LogicCell40_SEQ_MODE_0000  0      1796               RISE  1       
+u_SB_IO_RNO_LC_1_4_0/lcout    LogicCell40_SEQ_MODE_0000  449    2245               RISE  1       
+I__9/I                        LocalMux                   0      2245               RISE  1       
+I__9/O                        LocalMux                   330    2575               RISE  1       
+I__10/I                       IoInMux                    0      2575               RISE  1       
+I__10/O                       IoInMux                    259    2834               RISE  1       
+u_SB_IO_preio/OUTPUTENABLE    PRE_IO_PIN_TYPE_101001     0      2834               RISE  1       
+u_SB_IO_preio/PADOEN          PRE_IO_PIN_TYPE_101001     210    3045               FALL  1       
+u_SB_IO_iopad/OE              IO_PAD                     0      3045               FALL  1       
+u_SB_IO_iopad/PACKAGEPIN:out  IO_PAD                     2353   5398               FALL  1       
+IO:out                        buf_io                     0      5398               FALL  1       
+
+6.3.2::Path details for port: O         
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : O
+Input Port       : IO:in
+Pad to Pad Delay : 6737
+
+Pad to Pad Path
+pin name                     model name              delay  cummulative delay  edge  Fanout  
+---------------------------  ----------------------  -----  -----------------  ----  ------  
+IO:in                        buf_io                  0      0                  RISE  1       
+u_SB_IO_iopad/PACKAGEPIN:in  IO_PAD                  0      0                  RISE  1       
+u_SB_IO_iopad/DOUT           IO_PAD                  590    590                RISE  1       
+u_SB_IO_preio/PADIN          PRE_IO_PIN_TYPE_101001  0      590                RISE  1       
+u_SB_IO_preio/DIN0           PRE_IO_PIN_TYPE_101001  617    1207               RISE  1       
+I__16/I                      Odrv4                   0      1207               RISE  1       
+I__16/O                      Odrv4                   351    1558               RISE  1       
+I__17/I                      LocalMux                0      1558               RISE  1       
+I__17/O                      LocalMux                330    1887               RISE  1       
+I__18/I                      IoInMux                 0      1887               RISE  1       
+I__18/O                      IoInMux                 259    2147               RISE  1       
+O_obuf_preio/DOUT0           PRE_IO_PIN_TYPE_011001  0      2147               RISE  1       
+O_obuf_preio/PADOUT          PRE_IO_PIN_TYPE_011001  2237   4384               FALL  1       
+O_obuf_iopad/DIN             IO_PAD                  0      4384               FALL  1       
+O_obuf_iopad/PACKAGEPIN:out  IO_PAD                  2353   6737               FALL  1       
+O                            buf_io                  0      6737               FALL  1       
+
+6.6::Min PI to PO Path Details          
+--------------------------------------------------
+
+6.6.1::Path details for port: IO:out    
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : IO:out
+Input Port       : T
+Pad to Pad Delay : 4907
+
+Pad to Pad Path
+pin name                      model name                 delay  cummulative delay  edge  Fanout  
+----------------------------  -------------------------  -----  -----------------  ----  ------  
+T                             buf_io                     0      0                  FALL  1       
+T_ibuf_iopad/PACKAGEPIN:in    IO_PAD                     0      0                  FALL  1       
+T_ibuf_iopad/DOUT             IO_PAD                     540    540                FALL  1       
+T_ibuf_preio/PADIN            PRE_IO_PIN_TYPE_000001     0      540                FALL  1       
+T_ibuf_preio/DIN0             PRE_IO_PIN_TYPE_000001     463    1003               FALL  1       
+I__11/I                       LocalMux                   0      1003               FALL  1       
+I__11/O                       LocalMux                   309    1311               FALL  1       
+I__12/I                       InMux                      0      1311               FALL  1       
+I__12/O                       InMux                      217    1529               FALL  1       
+u_SB_IO_RNO_LC_1_4_0/in0      LogicCell40_SEQ_MODE_0000  0      1529               FALL  1       
+u_SB_IO_RNO_LC_1_4_0/lcout    LogicCell40_SEQ_MODE_0000  386    1915               FALL  1       
+I__9/I                        LocalMux                   0      1915               FALL  1       
+I__9/O                        LocalMux                   309    2223               FALL  1       
+I__10/I                       IoInMux                    0      2223               FALL  1       
+I__10/O                       IoInMux                    217    2441               FALL  1       
+u_SB_IO_preio/OUTPUTENABLE    PRE_IO_PIN_TYPE_101001     0      2441               FALL  1       
+u_SB_IO_preio/PADOEN          PRE_IO_PIN_TYPE_101001     175    2616               RISE  1       
+u_SB_IO_iopad/OE              IO_PAD                     0      2616               RISE  1       
+u_SB_IO_iopad/PACKAGEPIN:out  IO_PAD                     2292   4907               RISE  1       
+IO:out                        buf_io                     0      4907               RISE  1       
+
+++++ Path 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : IO:out
+Input Port       : I
+Pad to Pad Delay : 6198
+
+Pad to Pad Path
+pin name                      model name              delay  cummulative delay  edge  Fanout  
+----------------------------  ----------------------  -----  -----------------  ----  ------  
+I                             buf_io                  0      0                  FALL  1       
+I_ibuf_iopad/PACKAGEPIN:in    IO_PAD                  0      0                  FALL  1       
+I_ibuf_iopad/DOUT             IO_PAD                  540    540                FALL  1       
+I_ibuf_preio/PADIN            PRE_IO_PIN_TYPE_000001  0      540                FALL  1       
+I_ibuf_preio/DIN0             PRE_IO_PIN_TYPE_000001  463    1003               FALL  1       
+I__13/I                       Odrv4                   0      1003               FALL  1       
+I__13/O                       Odrv4                   372    1375               FALL  1       
+I__14/I                       LocalMux                0      1375               FALL  1       
+I__14/O                       LocalMux                309    1683               FALL  1       
+I__15/I                       IoInMux                 0      1683               FALL  1       
+I__15/O                       IoInMux                 217    1901               FALL  1       
+u_SB_IO_preio/DOUT0           PRE_IO_PIN_TYPE_101001  0      1901               FALL  1       
+u_SB_IO_preio/PADOUT          PRE_IO_PIN_TYPE_101001  2006   3906               RISE  1       
+u_SB_IO_iopad/DIN             IO_PAD                  0      3906               RISE  1       
+u_SB_IO_iopad/PACKAGEPIN:out  IO_PAD                  2292   6198               RISE  1       
+IO:out                        buf_io                  0      6198               RISE  1       
+
+6.6.2::Path details for port: O         
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : O
+Input Port       : IO:in
+Pad to Pad Delay : 6198
+
+Pad to Pad Path
+pin name                     model name              delay  cummulative delay  edge  Fanout  
+---------------------------  ----------------------  -----  -----------------  ----  ------  
+IO:in                        buf_io                  0      0                  FALL  1       
+u_SB_IO_iopad/PACKAGEPIN:in  IO_PAD                  0      0                  FALL  1       
+u_SB_IO_iopad/DOUT           IO_PAD                  540    540                FALL  1       
+u_SB_IO_preio/PADIN          PRE_IO_PIN_TYPE_101001  0      540                FALL  1       
+u_SB_IO_preio/DIN0           PRE_IO_PIN_TYPE_101001  463    1003               FALL  1       
+I__16/I                      Odrv4                   0      1003               FALL  1       
+I__16/O                      Odrv4                   372    1375               FALL  1       
+I__17/I                      LocalMux                0      1375               FALL  1       
+I__17/O                      LocalMux                309    1683               FALL  1       
+I__18/I                      IoInMux                 0      1683               FALL  1       
+I__18/O                      IoInMux                 217    1901               FALL  1       
+O_obuf_preio/DOUT0           PRE_IO_PIN_TYPE_011001  0      1901               FALL  1       
+O_obuf_preio/PADOUT          PRE_IO_PIN_TYPE_011001  2006   3906               RISE  1       
+O_obuf_iopad/DIN             IO_PAD                  0      3906               RISE  1       
+O_obuf_iopad/PACKAGEPIN:out  IO_PAD                  2292   6198               RISE  1       
+O                            buf_io                  0      6198               RISE  1       
+
+
+ =====================================================================
+                    End of Path Details for Datasheet
+ #####################################################################
+

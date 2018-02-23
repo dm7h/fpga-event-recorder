@@ -1,0 +1,39 @@
+@N|Running in 64-bit mode
+@N|Running in 64-bit mode
+@N: CG364 :"C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v":574:7:574:11|Synthesizing module SB_GB
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\time_stamp.v":1:7:1:16|Synthesizing module time_stamp
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":25:7:25:15|Synthesizing module gpio_core
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\iob_bidi.v":7:7:7:14|Synthesizing module iob_bidi
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pin.v":25:7:25:14|Synthesizing module gpio_pin
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":25:7:25:14|Synthesizing module gpio_pwm
+@N: CG179 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":142:25:142:31|Removing redundant assignment
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_003c_reg_tri_enable.
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":87:7:87:11|Synthesizing module sump2
+@N: CL134 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|Found RAM rle_ram_array, depth=1024, width=64
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":25:7:25:10|Synthesizing module core
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":33:7:33:17|Synthesizing module mesa_pi_spi
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v":81:7:81:17|Synthesizing module mesa_decode
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":59:7:59:13|Synthesizing module mesa2lb
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2ctrl.v":42:7:42:15|Synthesizing module mesa2ctrl
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_core.v":30:7:30:15|Synthesizing module mesa_core
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":47:7:47:9|Synthesizing module top
+@N: CL135 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":136:0:136:5|Found seqShift rx_byte_stop_p3, depth=3, width=1
+@N: CL201 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":297:0:297:5|Trying to extract state machine for register lb_rd_fsm
+@N: CL135 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|Found seqShift a_di_p2, depth=3, width=64
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N: CL177 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Sharing sequential element lb_rd_d_tri_enable.
+@N|Running in 64-bit mode
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":47:7:47:9|Selected library: work cell: top view verilog as top level
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":47:7:47:9|Selected library: work cell: top view verilog as top level
+

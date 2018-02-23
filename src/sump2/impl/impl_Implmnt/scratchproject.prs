@@ -1,0 +1,75 @@
+#--  Synopsys, Inc.
+#--  Version J-2015.03L
+#--  Project file \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\scratchproject.prs
+
+#project files
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/top.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/mesa_pi_spi.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/mesa_core.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/mesa_decode.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/mesa2lb.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/mesa2ctrl.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/spi_prom.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/spi_byte2bit.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/time_stamp.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/core.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/gpio_core.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/gpio_pin.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/sump2.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/iob_bidi.v"
+add_file -verilog "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/source/gpio_pwm.v"
+add_file -constraint "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/constraint/top.sdc"
+
+
+
+#implementation: "impl_Implmnt"
+impl -add \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std v2001
+set_option -project_relative_includes 1
+set_option -include_path {//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/impl/}
+
+#device options
+set_option -technology SBTiCE40
+set_option -part iCE40HX4K
+set_option -package TQ144
+set_option -speed_grade ""
+set_option -part_companion ""
+
+#compilation/mapping options
+
+# mapper_options
+set_option -frequency auto
+set_option -write_verilog 0
+set_option -write_vhdl 0
+set_option -srs_instrumentation 1
+
+# Lattice iCE40
+set_option -maxfan 10000
+set_option -rw_check_on_ram 0
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -retiming 0
+set_option -update_models_cp 0
+set_option -fix_gated_and_generated_clocks 1
+set_option -run_prop_extract 1
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "//BLACKMESA/khubbard/blackmesa/lattice/ice_zero/sump2/impl/impl_Implmnt/impl.edf"
+impl -active "impl_Implmnt"

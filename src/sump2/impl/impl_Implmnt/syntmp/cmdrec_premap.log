@@ -1,0 +1,14 @@
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\m_generic.exe  -prodtype  synplify_pro   -encrypt  -pro  -rundir  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt   -part iCE40HX4K  -package TQ144    -maxfan 10000 -RWCheckOnRam 0 -pipe -fixgatedclocks 1 -fixgeneratedclocks 1 -summaryfile \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\report\impl_premap.xml  -oedif  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.edf  -conchk_prepass  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl_cck_prepass.rpt   -autoconstraint  -freq 1.000   -tcl  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\constraint\top.sdc  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_mult.srs  -flow prepass  -gcc_prepass  -osrd  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_prem.srd  -qsap  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.sap  -devicelib  C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v  -ologparam  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\syntmp\impl.plg  -osyn  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_prem.srd  -prjdir  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\  -prjname  impl_syn  -log  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_premap.srr 
+rc:1 success:1
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.edf|o|0|0
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl_cck_prepass.rpt|o|0|0
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\constraint\top.sdc|i|1486431285|211
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_mult.srs|i|1486431357|10830
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_prem.srd|o|1486431360|116388
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.sap|o|1486431360|100777
+C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v|i|1480789678|222921
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\syntmp\impl.plg|o|1486431359|0
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_prem.srd|o|1486431360|116388
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_premap.srr|o|1486431360|10489
+C:\lscc\iCEcube2.2015.04\synpbase\bin\m_generic.exe|i|1480789668|15487488
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\m_generic.exe|i|1480789672|26648064

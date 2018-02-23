@@ -1,0 +1,304 @@
+# ******************************************************************************
+
+# iCEcube Static Timer
+
+# Version:            2015.04.27409
+
+# Build Date:         May 27 2015 15:59:34
+
+# File Generated:     Nov 20 2016 12:56:20
+
+# Purpose:            Timing Report with critical paths info
+
+# Copyright (C) 2006-2010 by Lattice Semiconductor Corp. All rights reserved.
+
+# ******************************************************************************
+
+Device: iCE40HX8K
+Derating factors (Best:Typical:Worst) :-  ( 0.563724 : 0.623363 : 0.701346 )
+Derating factor used to generate this timing report:  Worst
+Based on the following operating conditions 
+Junction Temperature(degree Celsius): 85
+Core Voltage(V): 1.14
+Process Corner:  Worst
+NOTE:
+Please check both worst-case and best-case scenarios for "Setup Times" 
+and "Hold Times" checks
+Maximum Operating Frequency is: N/A
+
+
+ #####################################################################
+                    3::Datasheet Report
+
+All values are in Picoseconds
+ =====================================================================
+
+                        3.1::Setup Times
+                        ----------------
+
+Data Port  Clock Port  Setup Times  Clock Reference:Phase  
+---------  ----------  -----------  ---------------------  
+
+
+                       3.2::Clock to Out
+                       -----------------
+
+Data Port  Clock Port  Clock to Out  Clock Reference:Phase  
+---------  ----------  ------------  ---------------------  
+
+
+                         3.3::Pad to Pad
+                         ---------------
+
+Port Name (Input)  Port Name (Output)  Pad to Pad  
+-----------------  ------------------  ----------  
+REFERENCECLK       PLLOUTCORE          12559       
+REFERENCECLK       PLLOUTGLOBAL        13106       
+
+
+                         3.4::Hold Times
+                         ---------------
+
+Data Port  Clock Port  Hold Times  Clock Reference:Phase  
+---------  ----------  ----------  ---------------------  
+
+
+               3.5::Minimum Clock to Out
+               -------------------------
+
+Data Port  Clock Port  Minimum Clock to Out  Clock Reference:Phase  
+---------  ----------  --------------------  ---------------------  
+
+
+                 3.6::Minimum Pad To Pad
+                 -----------------------
+
+Port Name (Input)  Port Name (Output)  Minimum Pad To Pad  
+-----------------  ------------------  ------------------  
+REFERENCECLK       PLLOUTCORE          12054               
+REFERENCECLK       PLLOUTGLOBAL        12103               
+
+ =====================================================================
+                    End of Datasheet Report
+ #####################################################################
+
+ #####################################################################
+                    6::Path Details for DataSheet
+ =====================================================================
+
+
+6.3::PI to PO Path Details              
+--------------------------------------------------
+
+6.3.1::Path details for port: PLLOUTCORE
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTCORE
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 12559
+
+Pad to Pad Path
+pin name                               model name                          delay  cummulative delay  edge  Fanout  
+-------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                           top_pll                             0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                              0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                              590    590                RISE  1       
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001              0      590                RISE  1       
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001              617    1207               RISE  1       
+I__30/I                                Odrv12                              0      1207               RISE  1       
+I__30/O                                Odrv12                              491    1698               RISE  1       
+I__31/I                                Sp12to4                             0      1698               RISE  1       
+I__31/O                                Sp12to4                             428    2126               RISE  1       
+I__32/I                                Span4Mux_v                          0      2126               RISE  1       
+I__32/O                                Span4Mux_v                          351    2477               RISE  1       
+I__33/I                                Span4Mux_s1_v                       0      2477               RISE  1       
+I__33/O                                Span4Mux_s1_v                       203    2680               RISE  1       
+I__34/I                                LocalMux                            0      2680               RISE  1       
+I__34/O                                LocalMux                            330    3010               RISE  1       
+I__35/I                                IoInMux                             0      3010               RISE  1       
+I__35/O                                IoInMux                             259    3269               RISE  1       
+top_pll_inst/REFERENCECLK              SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3269               RISE  1       
+top_pll_inst/PLLOUTCORE                SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  2623   5892               RISE  1       
+I__23/I                                Odrv4                               0      5892               RISE  1       
+I__23/O                                Odrv4                               351    6243               RISE  1       
+I__24/I                                Span4Mux_h                          0      6243               RISE  1       
+I__24/O                                Span4Mux_h                          302    6544               RISE  1       
+I__25/I                                Span4Mux_h                          0      6544               RISE  1       
+I__25/O                                Span4Mux_h                          302    6846               RISE  1       
+I__26/I                                Span4Mux_h                          0      6846               RISE  1       
+I__26/O                                Span4Mux_h                          302    7148               RISE  1       
+I__27/I                                Span4Mux_s3_h                       0      7148               RISE  1       
+I__27/O                                Span4Mux_s3_h                       231    7379               RISE  1       
+I__28/I                                LocalMux                            0      7379               RISE  1       
+I__28/O                                LocalMux                            330    7709               RISE  1       
+I__29/I                                IoInMux                             0      7709               RISE  1       
+I__29/O                                IoInMux                             259    7968               RISE  1       
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001              0      7968               RISE  1       
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001              2237   10205              FALL  1       
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                              0      10205              FALL  1       
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                              2353   12559              FALL  1       
+PLLOUTCORE                             top_pll                             0      12559              FALL  1       
+
+6.3.2::Path details for port: PLLOUTGLOBAL
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTGLOBAL
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 13106
+
+Pad to Pad Path
+pin name                                             model name                          delay  cummulative delay  edge  Fanout  
+---------------------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                                         top_pll                             0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                IO_PAD                              0      0                  RISE  1       
+REFERENCECLK_ibuf_iopad/DOUT                         IO_PAD                              590    590                RISE  1       
+REFERENCECLK_ibuf_preio/PADIN                        PRE_IO_PIN_TYPE_000001              0      590                RISE  1       
+REFERENCECLK_ibuf_preio/DIN0                         PRE_IO_PIN_TYPE_000001              617    1207               RISE  1       
+I__30/I                                              Odrv12                              0      1207               RISE  1       
+I__30/O                                              Odrv12                              491    1698               RISE  1       
+I__31/I                                              Sp12to4                             0      1698               RISE  1       
+I__31/O                                              Sp12to4                             428    2126               RISE  1       
+I__32/I                                              Span4Mux_v                          0      2126               RISE  1       
+I__32/O                                              Span4Mux_v                          351    2477               RISE  1       
+I__33/I                                              Span4Mux_s1_v                       0      2477               RISE  1       
+I__33/O                                              Span4Mux_s1_v                       203    2680               RISE  1       
+I__34/I                                              LocalMux                            0      2680               RISE  1       
+I__34/O                                              LocalMux                            330    3010               RISE  1       
+I__35/I                                              IoInMux                             0      3010               RISE  1       
+I__35/O                                              IoInMux                             259    3269               RISE  1       
+top_pll_inst/REFERENCECLK                            SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3269               RISE  1       
+top_pll_inst/PLLOUTGLOBAL                            SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  3016   6285               RISE  1       
+I__13/I                                              GlobalMux                           0      6285               RISE  1       
+I__13/O                                              GlobalMux                           154    6439               RISE  1       
+I__14/I                                              Glb2LocalMux                        0      6439               RISE  1       
+I__14/O                                              Glb2LocalMux                        449    6888               RISE  1       
+I__15/I                                              LocalMux                            0      6888               RISE  1       
+I__15/O                                              LocalMux                            330    7218               RISE  1       
+I__16/I                                              InMux                               0      7218               RISE  1       
+I__16/O                                              InMux                               259    7477               RISE  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_1_5_0/in0    LogicCell40_SEQ_MODE_0000           0      7477               RISE  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_1_5_0/lcout  LogicCell40_SEQ_MODE_0000           449    7926               RISE  1       
+I__11/I                                              LocalMux                            0      7926               RISE  1       
+I__11/O                                              LocalMux                            330    8256               RISE  1       
+I__12/I                                              IoInMux                             0      8256               RISE  1       
+I__12/O                                              IoInMux                             259    8515               RISE  1       
+PLLOUTGLOBAL_obuf_preio/DOUT0                        PRE_IO_PIN_TYPE_011001              0      8515               RISE  1       
+PLLOUTGLOBAL_obuf_preio/PADOUT                       PRE_IO_PIN_TYPE_011001              2237   10752              FALL  1       
+PLLOUTGLOBAL_obuf_iopad/DIN                          IO_PAD                              0      10752              FALL  1       
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out               IO_PAD                              2353   13106              FALL  1       
+PLLOUTGLOBAL                                         top_pll                             0      13106              FALL  1       
+
+6.6::Min PI to PO Path Details          
+--------------------------------------------------
+
+6.6.1::Path details for port: PLLOUTCORE
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTCORE
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 12054
+
+Pad to Pad Path
+pin name                               model name                          delay  cummulative delay  edge  Fanout  
+-------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                           top_pll                             0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in  IO_PAD                              0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/DOUT           IO_PAD                              540    540                FALL  1       
+REFERENCECLK_ibuf_preio/PADIN          PRE_IO_PIN_TYPE_000001              0      540                FALL  1       
+REFERENCECLK_ibuf_preio/DIN0           PRE_IO_PIN_TYPE_000001              463    1003               FALL  1       
+I__30/I                                Odrv12                              0      1003               FALL  1       
+I__30/O                                Odrv12                              540    1543               FALL  1       
+I__31/I                                Sp12to4                             0      1543               FALL  1       
+I__31/O                                Sp12to4                             449    1992               FALL  1       
+I__32/I                                Span4Mux_v                          0      1992               FALL  1       
+I__32/O                                Span4Mux_v                          372    2363               FALL  1       
+I__33/I                                Span4Mux_s1_v                       0      2363               FALL  1       
+I__33/O                                Span4Mux_s1_v                       196    2560               FALL  1       
+I__34/I                                LocalMux                            0      2560               FALL  1       
+I__34/O                                LocalMux                            309    2868               FALL  1       
+I__35/I                                IoInMux                             0      2868               FALL  1       
+I__35/O                                IoInMux                             217    3086               FALL  1       
+top_pll_inst/REFERENCECLK              SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3086               FALL  1       
+top_pll_inst/PLLOUTCORE                SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  2595   5681               FALL  1       
+I__23/I                                Odrv4                               0      5681               FALL  1       
+I__23/O                                Odrv4                               372    6053               FALL  1       
+I__24/I                                Span4Mux_h                          0      6053               FALL  1       
+I__24/O                                Span4Mux_h                          316    6368               FALL  1       
+I__25/I                                Span4Mux_h                          0      6368               FALL  1       
+I__25/O                                Span4Mux_h                          316    6684               FALL  1       
+I__26/I                                Span4Mux_h                          0      6684               FALL  1       
+I__26/O                                Span4Mux_h                          316    6999               FALL  1       
+I__27/I                                Span4Mux_s3_h                       0      6999               FALL  1       
+I__27/O                                Span4Mux_s3_h                       231    7231               FALL  1       
+I__28/I                                LocalMux                            0      7231               FALL  1       
+I__28/O                                LocalMux                            309    7539               FALL  1       
+I__29/I                                IoInMux                             0      7539               FALL  1       
+I__29/O                                IoInMux                             217    7757               FALL  1       
+PLLOUTCORE_obuf_preio/DOUT0            PRE_IO_PIN_TYPE_011001              0      7757               FALL  1       
+PLLOUTCORE_obuf_preio/PADOUT           PRE_IO_PIN_TYPE_011001              2006   9763               RISE  1       
+PLLOUTCORE_obuf_iopad/DIN              IO_PAD                              0      9763               RISE  1       
+PLLOUTCORE_obuf_iopad/PACKAGEPIN:out   IO_PAD                              2292   12054              RISE  1       
+PLLOUTCORE                             top_pll                             0      12054              RISE  1       
+
+6.6.2::Path details for port: PLLOUTGLOBAL
+--------------------------------------------------
+
+++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Output Port      : PLLOUTGLOBAL
+Input Port       : REFERENCECLK
+Pad to Pad Delay : 12103
+
+Pad to Pad Path
+pin name                                             model name                          delay  cummulative delay  edge  Fanout  
+---------------------------------------------------  ----------------------------------  -----  -----------------  ----  ------  
+REFERENCECLK                                         top_pll                             0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/PACKAGEPIN:in                IO_PAD                              0      0                  FALL  1       
+REFERENCECLK_ibuf_iopad/DOUT                         IO_PAD                              540    540                FALL  1       
+REFERENCECLK_ibuf_preio/PADIN                        PRE_IO_PIN_TYPE_000001              0      540                FALL  1       
+REFERENCECLK_ibuf_preio/DIN0                         PRE_IO_PIN_TYPE_000001              463    1003               FALL  1       
+I__30/I                                              Odrv12                              0      1003               FALL  1       
+I__30/O                                              Odrv12                              540    1543               FALL  1       
+I__31/I                                              Sp12to4                             0      1543               FALL  1       
+I__31/O                                              Sp12to4                             449    1992               FALL  1       
+I__32/I                                              Span4Mux_v                          0      1992               FALL  1       
+I__32/O                                              Span4Mux_v                          372    2363               FALL  1       
+I__33/I                                              Span4Mux_s1_v                       0      2363               FALL  1       
+I__33/O                                              Span4Mux_s1_v                       196    2560               FALL  1       
+I__34/I                                              LocalMux                            0      2560               FALL  1       
+I__34/O                                              LocalMux                            309    2868               FALL  1       
+I__35/I                                              IoInMux                             0      2868               FALL  1       
+I__35/O                                              IoInMux                             217    3086               FALL  1       
+top_pll_inst/REFERENCECLK                            SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  0      3086               FALL  1       
+top_pll_inst/PLLOUTGLOBAL                            SB_PLL40_CORE_FEEDBACK_PATH_SIMPLE  2847   5933               FALL  1       
+I__13/I                                              GlobalMux                           0      5933               FALL  1       
+I__13/O                                              GlobalMux                           77     6010               FALL  1       
+I__14/I                                              Glb2LocalMux                        0      6010               FALL  1       
+I__14/O                                              Glb2LocalMux                        358    6368               FALL  1       
+I__15/I                                              LocalMux                            0      6368               FALL  1       
+I__15/O                                              LocalMux                            309    6677               FALL  1       
+I__16/I                                              InMux                               0      6677               FALL  1       
+I__16/O                                              InMux                               217    6894               FALL  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_1_5_0/in0    LogicCell40_SEQ_MODE_0000           0      6894               FALL  1       
+GB_BUFFER_PLLOUTGLOBAL_c_THRU_LUT4_0_LC_1_5_0/lcout  LogicCell40_SEQ_MODE_0000           386    7280               FALL  1       
+I__11/I                                              LocalMux                            0      7280               FALL  1       
+I__11/O                                              LocalMux                            309    7589               FALL  1       
+I__12/I                                              IoInMux                             0      7589               FALL  1       
+I__12/O                                              IoInMux                             217    7806               FALL  1       
+PLLOUTGLOBAL_obuf_preio/DOUT0                        PRE_IO_PIN_TYPE_011001              0      7806               FALL  1       
+PLLOUTGLOBAL_obuf_preio/PADOUT                       PRE_IO_PIN_TYPE_011001              2006   9812               RISE  1       
+PLLOUTGLOBAL_obuf_iopad/DIN                          IO_PAD                              0      9812               RISE  1       
+PLLOUTGLOBAL_obuf_iopad/PACKAGEPIN:out               IO_PAD                              2292   12103              RISE  1       
+PLLOUTGLOBAL                                         top_pll                             0      12103              RISE  1       
+
+
+ =====================================================================
+                    End of Path Details for Datasheet
+ #####################################################################
+

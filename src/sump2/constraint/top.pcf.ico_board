@@ -1,0 +1,128 @@
+# ##############################################################################
+# iCEcube PCF
+# Version:            2012.09SP1.22498
+# File Generated:     November 23, 2016   
+# Family & Device:    iCE40HX8K
+# Package:            BG256
+# ##############################################################################
+# set_io male_r[0]    25 -io_std SB_LVCMOS -pullup yes
+
+set_io clk_100m      R9   # 25 MHz MEMS Clock   
+set_io led1          C8   # Green
+set_io led2          F7   # Green
+set_io led3          K9   # Red
+set_io sw0           K11  # Pushbutton to VCC : Illegal placement. by Pi GPIO
+set_io sw1           P13  # Pushbutton to VCC
+
+# PMOD P1 2x6 0.100"
+set_io gpio_pin[0]   B8   # IO203
+set_io gpio_pin[1]   D8   # IO200
+set_io gpio_pin[2]   A9   # IO194 
+set_io gpio_pin[3]   B9   # IO199
+set_io gpio_pin[4]   A10  # IO186
+set_io gpio_pin[5]   B10  # IO183
+set_io gpio_pin[6]   A11  # IO187
+set_io gpio_pin[7]   B11  # IO184
+
+# PMOD P2 2x6 0.100"
+set_io gpio_pin[8]   B7   # IO207
+set_io gpio_pin[9]   A5   # IO213
+set_io gpio_pin[10]  B6   # IO208 
+set_io gpio_pin[11]  A2   # IO218
+set_io gpio_pin[12]  B3   # IO223
+set_io gpio_pin[13]  C3   # IO227
+set_io gpio_pin[14]  B5   # IO214
+set_io gpio_pin[15]  B4   # IO216
+
+# PMOD P3 2x6 0.100"
+set_io gpio_pin[16]  N9   # IO78 
+set_io gpio_pin[17]  L9   # IO74 
+set_io gpio_pin[18]  P9   # IO83  
+set_io gpio_pin[19]  G5   # IO5A 
+set_io gpio_pin[20]  M8   # IO68 
+set_io gpio_pin[21]  L7   # IO21A
+set_io gpio_pin[22]  N7   # IO66 
+set_io gpio_pin[23]  N6   # IO52 
+
+# PMOD P4 2x6 0.100"
+set_io gpio_pin[24]  R14  # IO109 
+set_io gpio_pin[25]  T15  # IO91 
+set_io gpio_pin[26]  T13  # IO94  
+set_io gpio_pin[27]  T14  # IO92 
+set_io gpio_pin[28]  T10  # IO88 
+set_io gpio_pin[29]  T11  # IO89 
+set_io gpio_pin[30]  T9   # IO79 
+set_io gpio_pin[31]  R10  # IO84 
+
+####################################
+# PMOD P1 2x6 0.100"
+#set_io pmod_p1_d[0]  B8   # IO203
+#set_io pmod_p1_d[1]  D8   # IO200
+#set_io pmod_p1_d[2]  A9   # IO194 
+#set_io pmod_p1_d[3]  B9   # IO199
+#set_io pmod_p1_d[4]  A10  # IO186
+#set_io pmod_p1_d[5]  B10  # IO183
+#set_io pmod_p1_d[6]  A11  # IO187
+#set_io pmod_p1_d[7]  B11  # IO184
+
+# PMOD P2 2x6 0.100"
+#set_io pmod_p2_d[0]  B7   # IO207
+#set_io pmod_p2_d[1]  A5   # IO213
+#set_io pmod_p2_d[2]  B6   # IO208 
+#set_io pmod_p2_d[3]  A2   # IO218
+#set_io pmod_p2_d[4]  B3   # IO223
+#set_io pmod_p2_d[5]  C3   # IO227
+#set_io pmod_p2_d[6]  B5   # IO214
+#set_io pmod_p2_d[7]  B4   # IO216
+
+# PMOD P3 2x6 0.100"
+#set_io pmod_p3_d[0]  N9   # IO78 
+#set_io pmod_p3_d[1]  L9   # IO74 
+#set_io pmod_p3_d[2]  P9   # IO83  
+#set_io pmod_p3_d[3]  G5   # IO5A 
+#set_io pmod_p3_d[4]  M8   # IO68 
+#set_io pmod_p3_d[5]  L7   # IO21A
+#set_io pmod_p3_d[6]  N7   # IO66 
+#set_io pmod_p3_d[7]  N6   # IO52 
+
+# PMOD P4 2x6 0.100"
+#set_io pmod_p4_d[0]  R14  # IO109 
+#set_io pmod_p4_d[1]  T15  # IO91 
+#set_io pmod_p4_d[2]  T13  # IO94  
+#set_io pmod_p4_d[3]  T14  # IO92 
+#set_io pmod_p4_d[4]  T10  # IO88 
+#set_io pmod_p4_d[5]  T11  # IO89 
+#set_io pmod_p4_d[6]  T9   # IO79 
+#set_io pmod_p4_d[7]  R10  # IO84 
+####################################
+
+# RaspberryPi 2x20 Connector
+# Note: spi_ce0_l goes to Mach FPGA
+set_io rpi_spi_mosi    A6
+set_io rpi_spi_miso    A7
+set_io rpi_spi_clk     H11 
+set_io rpi_spi_ce1_l   D4  
+
+set_io rpi_gpio[0]     D9  # IO193
+set_io rpi_gpio[1]     D5  # IO219
+set_io rpi_gpio[2]     D6  # IO212
+set_io rpi_gpio[3]     D7  # IO210
+set_io rpi_gpio[4]     C9  # IO191
+set_io rpi_gpio[5]     C10 # IO185
+set_io rpi_gpio[6]     C6  # IO209
+set_io rpi_gpio[7]     C7  # IO206
+# set_io rpi_gpio[8]   K11 # IO103  Also used by sw0
+
+# MACH Configuration stuff. iCE doesn't have access
+#set_io rpi_uart_txd    12
+#set_io rpi_uart_rxd    11
+#set_io rpi_ice_clk     29
+#set_io rpi_ice_cs      30
+#set_io rpi_ice_mosi    32
+#set_io rpi_ice_miso    1
+#set_io id_sd         
+#set_io id_sc         
+#set_io load_from_flash 9
+#set_io ice_reset       10
+#set_io spi_select      8
+####################################

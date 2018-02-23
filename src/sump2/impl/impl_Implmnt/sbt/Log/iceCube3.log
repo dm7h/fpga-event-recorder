@@ -1,0 +1,1205 @@
+1:36:30 PM
+"C:\lscc\iCEcube2.2015.04\sbt_backend\bin\win32\opt\synpwrap\synpwrap.exe" -prj "impl_syn.prj" -log "impl_Implmnt/impl.srr"
+starting Synthesisrunning SynthesisCopyright (C) 1992-2014 Lattice Semiconductor Corporation. All rights reserved.
+
+==contents of impl_Implmnt/impl.srr
+#Build: Synplify Pro J-2015.03L, Build 030R, Apr 20 2015
+#install: C:\lscc\iCEcube2.2015.04\synpbase
+#OS: Windows 8 6.2
+#Hostname: DESKTOP-8BPHC57
+
+#Implementation: impl_Implmnt
+
+Synopsys HDL Compiler, version comp201503p1, Build 058R, built Apr 20 2015
+@N|Running in 64-bit mode
+Copyright (C) 1994-2015 Synopsys, Inc. This software and the associated documentation are proprietary to Synopsys, Inc. This software may only be used in accordance with the terms and conditions of a written license agreement with Synopsys, Inc.  All other use, reproduction, or distribution of this software is strictly prohibited.
+
+Synopsys Verilog Compiler, version comp201503p1, Build 058R, built Apr 20 2015
+@N|Running in 64-bit mode
+Copyright (C) 1994-2015 Synopsys, Inc. This software and the associated documentation are proprietary to Synopsys, Inc. This software may only be used in accordance with the terms and conditions of a written license agreement with Synopsys, Inc.  All other use, reproduction, or distribution of this software is strictly prohibited.
+
+@I::"C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v"
+@I::"C:\lscc\iCEcube2.2015.04\synpbase\lib\vlog\hypermods.v"
+@I::"C:\lscc\iCEcube2.2015.04\synpbase\lib\vlog\umr_capim.v"
+@I::"C:\lscc\iCEcube2.2015.04\synpbase\lib\vlog\scemi_objects.v"
+@I::"C:\lscc\iCEcube2.2015.04\synpbase\lib\vlog\scemi_pipes.svh"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\buf_io.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\spi_prom.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\spi_byte2bit.v"
+@I::"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\time_stamp.v"
+Verilog syntax check successful!
+Options changed - recompiling
+Selecting top level module top
+@N: CG364 :"C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v":574:7:574:11|Synthesizing module SB_GB
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":26:7:26:17|Synthesizing module mesa_pi_spi
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":105:0:105:5|Pruning register rd_d_jk 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Pruning register mosi_not_f 
+
+@W: CL265 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Pruning bit 3 of nib_sr[3:0] -- not in use ...
+
+@A: CL291 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Register miso_sr with asynchronous load is being synthesized in compatability mode. A synthesis/simulation mismatch is possible.
+@A: CL282 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Feedback mux created for signal nib_sr[2:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@A: CL282 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Feedback mux created for signal mosi_nib_d[3:0] -- possible set/reset assignment for signal missing. Specifying a reset value will improve timing and area.
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":74:7:74:17|Synthesizing module mesa_decode
+
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":91:16:91:26|No assignment to lbracket_jk
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":92:16:92:26|No assignment to passthru_jk
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":93:16:93:26|No assignment to broadcst_jk
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":94:16:94:25|No assignment to payload_jk
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":95:16:95:25|No assignment to process_jk
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Pruning register loc_slot[7:0] 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Pruning register loc_subslot[3:0] 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Pruning register loc_command[3:0] 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Pruning register loc_payload[7:0] 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":155:0:155:5|Pruning register packet_jk_p1 
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":59:7:59:13|Synthesizing module mesa2lb
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Pruning register rx_byte_rdy_p3 
+
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[6] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[7] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[8] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[9] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[10] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[11] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[12] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[13] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[14] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[15] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[16] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[17] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[18] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[19] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[20] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[21] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[22] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[23] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[24] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[25] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[26] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[27] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[28] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[29] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[30] is always 0, optimizing ...
+@W: CL189 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Register bit addr_len[31] is always 0, optimizing ...
+@W: CL279 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Pruning register bits 31 to 6 of addr_len[31:0] 
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":42:7:42:15|Synthesizing module mesa2ctrl
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Pruning register rx_byte_rdy_p3 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Pruning register rx_byte_stop_p1 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Pruning register rx_byte_stop_p2 
+
+@W: CL169 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Pruning register rx_byte_stop_p3 
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\time_stamp.v":1:7:1:16|Synthesizing module time_stamp
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":23:7:23:15|Synthesizing module mesa_core
+
+	spi_prom_en=1'b0
+   Generated name = mesa_core_0
+
+@W: CG133 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":63:22:63:34|No assignment to power_off_req
+@W: CL168 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":258:11:258:22|Pruning instance u_time_stamp -- not in use ...
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":45:7:45:9|Synthesizing module top
+
+@N: CG364 :"C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v":497:7:497:11|Synthesizing module SB_IO
+
+@N: CG364 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\buf_io.v":7:7:7:12|Synthesizing module buf_io
+
+@W: CG781 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\buf_io.v":44:21:44:21|Undriven input CLOCK_ENABLE on instance u_SB_IO, tying to 0
+@W: CG781 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\buf_io.v":49:21:49:21|Undriven input D_OUT_1 on instance u_SB_IO, tying to 0
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":72:16:72:27|No assignment to wire mesa_wo_busy
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":73:16:73:30|No assignment to wire mesa_ro_byte_en
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":74:16:74:29|No assignment to wire mesa_ro_byte_d
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":75:16:75:27|No assignment to wire mesa_ro_busy
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":76:16:76:27|No assignment to wire mesa_ro_done
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":77:16:77:26|No assignment to wire mesa_ro_loc
+
+@W: CG360 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":82:16:82:32|No assignment to wire mesa_core_ro_busy
+
+@W: CL156 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":82:16:82:32|*Input mesa_core_ro_busy to expression [instance] has undriven bits that are tied to 0 -- simulation mismatch possible.
+@A: CL153 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":63:22:63:34|*Unassigned bits of power_off_req are referenced and tied to 0 -- simulation mismatch possible.
+@W: CL159 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":40:22:40:29|Input spi_miso is unused
+@W: CL159 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":47:22:47:33|Input rx_byte_stop is unused
+@N: CL135 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Found seqShift rx_byte_stop_p3, depth=3, width=1
+@N: CL201 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Trying to extract state machine for register lb_rd_fsm
+Extracted state machine for register lb_rd_fsm
+State machine has 5 reachable states with original encodings of:
+   0000
+   1000
+   1100
+   1110
+   1111
+
+At c_ver Exit (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 79MB peak: 120MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:42 2016
+
+###########################################################]
+Synopsys Netlist Linker, version comp201503p1, Build 058R, built Apr 20 2015
+@N|Running in 64-bit mode
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":45:7:45:9|Selected library: work cell: top view verilog as top level
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":45:7:45:9|Selected library: work cell: top view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 68MB peak: 69MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:42 2016
+
+###########################################################]
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:02s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:42 2016
+
+###########################################################]
+Synopsys Netlist Linker, version comp201503p1, Build 058R, built Apr 20 2015
+@N|Running in 64-bit mode
+File C:\lscc\iCEcube2.2015.04\synpbase\bin64\syn_nfilter.exe changed - recompiling
+File X:\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\synwork\impl_comp.srs changed - recompiling
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":45:7:45:9|Selected library: work cell: top view verilog as top level
+@N: NF107 :"\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":45:7:45:9|Selected library: work cell: top view verilog as top level
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 68MB peak: 69MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:43 2016
+
+###########################################################]
+Pre-mapping Report
+
+Synopsys Lattice Technology Pre-mapping, Version maplat, Build 1178R, Built Apr 22 2015 10:50:52
+Copyright (C) 1994-2015, Synopsys, Inc. This software and the associated documentation are proprietary to Synopsys, Inc. This software may only be used in accordance with the terms and conditions of a written license agreement with Synopsys, Inc.  All other use, reproduction, or distribution of this software is strictly prohibited.
+Product Version J-2015.03L
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+Reading constraint file: \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\constraint\top.sdc
+@L: \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\impl_scck.rpt 
+Printing clock  summary report in "\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\impl_scck.rpt" file 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled 
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 103MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 103MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 101MB peak: 103MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 102MB peak: 104MB)
+
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.prom_addr[31:0],  because it is equivalent to instance u_mesa_core.u_mesa2lb.lb_addr[31:0]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.prom_wr_d[31:0],  because it is equivalent to instance u_mesa_core.u_mesa2lb.lb_wr_d[31:0]
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance prom_wr of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance tx_byte_d[7:0] of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa_core_0(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance tx_byte_rdy of view:PrimLib.dff(prim) in hierarchy view:work.mesa_core_0(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance tx_done of view:PrimLib.dff(prim) in hierarchy view:work.mesa_core_0(verilog) because there are no references to its outputs 
+@N: BN115 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":243:10:243:20|Removing instance u_mesa2ctrl of view:work.mesa2ctrl(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[31:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_out[7:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Removing sequential instance subslot_ctrl[8:0] of view:PrimLib.dff(prim) in hierarchy view:work.mesa2ctrl(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance rd_byte_d[7:0] of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance tx_done of view:PrimLib.dff(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Removing sequential instance rx_byte_rdy_p2 of view:PrimLib.dff(prim) in hierarchy view:work.mesa2ctrl(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2ctrl.v":70:0:70:5|Removing sequential instance rx_byte_rdy_p1 of view:PrimLib.dff(prim) in hierarchy view:work.mesa2ctrl(verilog) because there are no references to its outputs 
+
+ICG Latch Removal Summary:
+Number of ICG latches removed:	0
+Number of ICG latches not removed:	0
+syn_allowed_resources : blockrams=32  set on top level netlist top
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 134MB)
+
+
+
+@S |Clock Summary
+*****************
+
+Start             Requested     Requested     Clock        Clock           
+Clock             Frequency     Period        Type         Group           
+---------------------------------------------------------------------------
+System            1.0 MHz       1000.000      system       system_clkgroup 
+clk_100m          100.0 MHz     10.000        declared     default_clkgroup
+clk_100m_tree     100.0 MHz     10.000        declared     default_clkgroup
+===========================================================================
+
+@W: MT531 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Found signal identified as System clock which controls 8 sequential elements including u_mesa_pi_spi.miso_sr[7].  Using this clock, which has no specified timing constraint, can prevent conversion of gated or generated clocks and can adversely impact design performance. 
+
+Finished Pre Mapping Phase.
+@N: BN225 |Writing default property annotation file \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\impl.sap.
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 70MB peak: 134MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:45 2016
+
+###########################################################]
+Map & Optimize Report
+
+Synopsys Lattice Technology Mapper, Version maplat, Build 1178R, Built Apr 22 2015 10:50:52
+Copyright (C) 1994-2015, Synopsys, Inc. This software and the associated documentation are proprietary to Synopsys, Inc. This software may only be used in accordance with the terms and conditions of a written license agreement with Synopsys, Inc.  All other use, reproduction, or distribution of this software is strictly prohibited.
+Product Version J-2015.03L
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled 
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 101MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 101MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 130MB peak: 133MB)
+
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":105:0:105:5|Sequential instance u_mesa_pi_spi.cs_l_meta reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Sequential instance u_mesa_pi_spi.rdy_loc reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[0] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[1] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[2] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[3] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[4] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[5] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[6] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":149:0:149:5|Sequential instance u_mesa_pi_spi.miso_sr[7] reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Sequential instance u_mesa_core.u_mesa_decode.rx_in_rdy_p1 reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":155:0:155:5|Sequential instance u_mesa_core.u_mesa_decode.byte_rdy reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Sequential instance u_mesa_core.u_mesa2lb.rx_byte_rdy_p1 reduced to a combinational gate by constant propagation 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":105:0:105:5|Removing sequential instance rd_d_sr[31:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":105:0:105:5|Removing sequential instance rd_cnt[3:0] of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance lb_prom_jk of view:PrimLib.sdffre(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance header_jk of view:PrimLib.sdffre(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance wr_jk of view:PrimLib.sdffre(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance rx_byte_stop_p3 of view:PrimLib.seqshift(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_user_jk,  because it is equivalent to instance u_mesa_core.u_mesa2lb.rpt_jk
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT204 |Auto Constrain mode is disabled because clocks are defined in the SDC file
+
+            clk_100m
+            clk_100m_tree
+
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance payload_cnt[7:0] of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing sequential instance byte_pingpong of view:PrimLib.sdffre(prim) in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance addr_cnt[31:2] of view:PrimLib.dff(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance lb_rd_sr[31:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_stage[2:0] of view:PrimLib.sdffpatre(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance byte_cnt[1:0] of view:PrimLib.sdffr(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 130MB peak: 133MB)
+
+@N:"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":139:0:139:5|Found counter in view:work.top(verilog) inst test_cnt[31:0]
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Sequential instance u_mesa_pi_spi.bit_cnt[0] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Sequential instance u_mesa_pi_spi.bit_cnt[1] reduced to a combinational gate by constant propagation
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance mosi_nib_d[0] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance mosi_nib_d[1] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance mosi_nib_d[2] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance mosi_nib_d[3] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance nib_sr[0] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance nib_sr[1] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_pi_spi.v":81:0:81:5|Removing sequential instance nib_sr[2] in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[3],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[2]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[2],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[1]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[1],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[0]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[7],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[6]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[6],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[5]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing instance u_mesa_core.u_mesa_decode.byte_sr[5],  because it is equivalent to instance u_mesa_core.u_mesa_decode.byte_sr[4]
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[0] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[1] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[2] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[3] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[4] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[5] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[6] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance byte_loc[7] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":155:0:155:5|Removing sequential instance packet_jk in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":189:0:189:5|Removing sequential instance loc_start in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing sequential instance byte_sr[0] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_decode.v":128:0:128:5|Removing sequential instance byte_sr[4] in hierarchy view:work.mesa_decode(verilog) because there are no references to its outputs 
+Encoding state machine lb_rd_fsm[4:0] (view:work.mesa2lb(verilog))
+original code -> new code
+   0000 -> 00001
+   1000 -> 00010
+   1100 -> 00100
+   1110 -> 01000
+   1111 -> 10000
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing instance u_mesa_core.u_mesa2lb.lb_wr_d[16],  because it is equivalent to instance u_mesa_core.u_mesa2lb.dword_sr[24]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing instance u_mesa_core.u_mesa2lb.lb_wr_d[17],  because it is equivalent to instance u_mesa_core.u_mesa2lb.dword_sr[25]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing instance u_mesa_core.u_mesa2lb.lb_wr_d[18],  because it is equivalent to instance u_mesa_core.u_mesa2lb.dword_sr[26]
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance rpt_jk in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[24] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[25] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[26] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[27] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[28] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[29] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[30] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_wr_d[31] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[0] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[1] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[2] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[3] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[4] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[5] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[6] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[7] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[8] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[9] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[10] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[11] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[12] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[13] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[14] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[15] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[16] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[17] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[18] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[19] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[20] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[21] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[22] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[23] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[24] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[25] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[26] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[27] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[28] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[29] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[30] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance dword_sr[31] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":139:0:139:5|Removing sequential instance lb_rd_d[0] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":139:0:139:5|Removing sequential instance test_reg[0] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\top.v":139:0:139:5|Removing sequential instance lb_rd_rdy in hierarchy view:work.top(verilog) because there are no references to its outputs 
+
+Finished factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 133MB)
+
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance u_mesa_core.tx_busy_sr[3] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance u_mesa_core.tx_busy_sr[2] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance u_mesa_core.tx_busy_sr[1] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa_core.v":141:0:141:5|Removing sequential instance u_mesa_core.tx_busy_sr[0] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":136:0:136:5|Removing sequential instance u_mesa_core.u_mesa2lb.rd_jk in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.rd_busy in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.reading in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_loc in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.rd_done_p1 in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.rd_byte_rdy in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_fsm[4] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_fsm[3] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_fsm[2] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_fsm[1] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":297:0:297:5|Removing sequential instance u_mesa_core.u_mesa2lb.lb_rd_fsm[0] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[5] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[4] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[3] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[2] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[1] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_len[0] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.rd_done in hierarchy view:work.top(verilog) because there are no references to its outputs 
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:00s		     4.29ns		  35 /        32
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+1 non-gated/non-generated clock tree(s) driving 32 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+================================= Non-Gated/Non-Generated Clocks ==================================
+Clock Tree ID     Driving Element        Drive Element Type              Fanout     Sample Instance
+---------------------------------------------------------------------------------------------------
+@K:CKID0001       clk_100m_tree_keep     clock definition on keepbuf     32         test_cnt[0]    
+===================================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 110MB peak: 133MB)
+
+Writing Analyst data base \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\synwork\impl_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 131MB peak: 133MB)
+
+Writing EDIF Netlist and constraint files
+@N: BW103 |Synopsys Constraint File time units using default value of 1ns 
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+J-2015.03L
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:00s; Memory used current: 132MB peak: 133MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 133MB)
+
+Found clock clk_100m_tree with period 10.00ns 
+Found clock clk_100m with period 10.00ns 
+
+
+@S |##### START OF TIMING REPORT #####[
+# Timing Report written on Sat Dec 03 13:36:48 2016
+#
+
+
+Top view:               top
+Requested Frequency:    100.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\constraint\top.sdc
+                       
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary 
+*******************
+
+
+Worst slack in design: 1.849
+
+                   Requested     Estimated     Requested     Estimated               Clock        Clock           
+Starting Clock     Frequency     Frequency     Period        Period        Slack     Type         Group           
+------------------------------------------------------------------------------------------------------------------
+clk_100m           100.0 MHz     NA            10.000        NA            NA        declared     default_clkgroup
+clk_100m_tree      100.0 MHz     122.7 MHz     10.000        8.151         1.849     declared     default_clkgroup
+==================================================================================================================
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                        |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+--------------------------------------------------------------------------------------------------------------------
+Starting       Ending         |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+--------------------------------------------------------------------------------------------------------------------
+clk_100m_tree  clk_100m_tree  |  10.000      1.849  |  No paths    -      |  No paths    -      |  No paths    -    
+====================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: clk_100m_tree
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                Starting                                             Arrival          
+Instance        Reference         Type       Pin     Net             Time        Slack
+                Clock                                                                 
+--------------------------------------------------------------------------------------
+test_cnt[0]     clk_100m_tree     SB_DFF     Q       test_cnt[0]     0.540       1.849
+test_cnt[1]     clk_100m_tree     SB_DFF     Q       test_cnt[1]     0.540       1.989
+test_cnt[2]     clk_100m_tree     SB_DFF     Q       test_cnt[2]     0.540       2.129
+test_cnt[3]     clk_100m_tree     SB_DFF     Q       test_cnt[3]     0.540       2.269
+test_cnt[4]     clk_100m_tree     SB_DFF     Q       test_cnt[4]     0.540       2.410
+test_cnt[5]     clk_100m_tree     SB_DFF     Q       test_cnt[5]     0.540       2.550
+test_cnt[6]     clk_100m_tree     SB_DFF     Q       test_cnt[6]     0.540       2.690
+test_cnt[7]     clk_100m_tree     SB_DFF     Q       test_cnt[7]     0.540       2.830
+test_cnt[8]     clk_100m_tree     SB_DFF     Q       test_cnt[8]     0.540       2.970
+test_cnt[9]     clk_100m_tree     SB_DFF     Q       test_cnt[9]     0.540       3.111
+======================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                 Starting                                                Required          
+Instance         Reference         Type       Pin     Net                Time         Slack
+                 Clock                                                                     
+-------------------------------------------------------------------------------------------
+test_cnt[31]     clk_100m_tree     SB_DFF     D       test_cnt_s[31]     9.895        1.849
+test_cnt[30]     clk_100m_tree     SB_DFF     D       test_cnt_s[30]     9.895        1.989
+test_cnt[29]     clk_100m_tree     SB_DFF     D       test_cnt_s[29]     9.895        2.129
+test_cnt[28]     clk_100m_tree     SB_DFF     D       test_cnt_s[28]     9.895        2.269
+test_cnt[27]     clk_100m_tree     SB_DFF     D       test_cnt_s[27]     9.895        2.410
+test_cnt[26]     clk_100m_tree     SB_DFF     D       test_cnt_s[26]     9.895        2.550
+test_cnt[25]     clk_100m_tree     SB_DFF     D       test_cnt_s[25]     9.895        2.690
+test_cnt[24]     clk_100m_tree     SB_DFF     D       test_cnt_s[24]     9.895        2.830
+test_cnt[23]     clk_100m_tree     SB_DFF     D       test_cnt_s[23]     9.895        2.970
+test_cnt[22]     clk_100m_tree     SB_DFF     D       test_cnt_s[22]     9.895        3.111
+===========================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      8.046
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     1.849
+
+    Number of logic level(s):                32
+    Starting point:                          test_cnt[0] / Q
+    Ending point:                            test_cnt[31] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                      Pin      Pin               Arrival     No. of    
+Name                   Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------
+test_cnt[0]            SB_DFF       Q        Out     0.540     0.540       -         
+test_cnt[0]            Net          -        -       0.834     -           3         
+test_cnt_cry_c[0]      SB_CARRY     I0       In      -         1.374       -         
+test_cnt_cry_c[0]      SB_CARRY     CO       Out     0.258     1.632       -         
+test_cnt_cry[0]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[1]      SB_CARRY     CI       In      -         1.646       -         
+test_cnt_cry_c[1]      SB_CARRY     CO       Out     0.126     1.772       -         
+test_cnt_cry[1]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[2]      SB_CARRY     CI       In      -         1.786       -         
+test_cnt_cry_c[2]      SB_CARRY     CO       Out     0.126     1.912       -         
+test_cnt_cry[2]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[3]      SB_CARRY     CI       In      -         1.926       -         
+test_cnt_cry_c[3]      SB_CARRY     CO       Out     0.126     2.052       -         
+test_cnt_cry[3]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[4]      SB_CARRY     CI       In      -         2.066       -         
+test_cnt_cry_c[4]      SB_CARRY     CO       Out     0.126     2.192       -         
+test_cnt_cry[4]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[5]      SB_CARRY     CI       In      -         2.206       -         
+test_cnt_cry_c[5]      SB_CARRY     CO       Out     0.126     2.333       -         
+test_cnt_cry[5]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[6]      SB_CARRY     CI       In      -         2.346       -         
+test_cnt_cry_c[6]      SB_CARRY     CO       Out     0.126     2.473       -         
+test_cnt_cry[6]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[7]      SB_CARRY     CI       In      -         2.487       -         
+test_cnt_cry_c[7]      SB_CARRY     CO       Out     0.126     2.613       -         
+test_cnt_cry[7]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[8]      SB_CARRY     CI       In      -         2.627       -         
+test_cnt_cry_c[8]      SB_CARRY     CO       Out     0.126     2.753       -         
+test_cnt_cry[8]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[9]      SB_CARRY     CI       In      -         2.767       -         
+test_cnt_cry_c[9]      SB_CARRY     CO       Out     0.126     2.893       -         
+test_cnt_cry[9]        Net          -        -       0.014     -           2         
+test_cnt_cry_c[10]     SB_CARRY     CI       In      -         2.907       -         
+test_cnt_cry_c[10]     SB_CARRY     CO       Out     0.126     3.034       -         
+test_cnt_cry[10]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[11]     SB_CARRY     CI       In      -         3.047       -         
+test_cnt_cry_c[11]     SB_CARRY     CO       Out     0.126     3.174       -         
+test_cnt_cry[11]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[12]     SB_CARRY     CI       In      -         3.188       -         
+test_cnt_cry_c[12]     SB_CARRY     CO       Out     0.126     3.314       -         
+test_cnt_cry[12]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[13]     SB_CARRY     CI       In      -         3.328       -         
+test_cnt_cry_c[13]     SB_CARRY     CO       Out     0.126     3.454       -         
+test_cnt_cry[13]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[14]     SB_CARRY     CI       In      -         3.468       -         
+test_cnt_cry_c[14]     SB_CARRY     CO       Out     0.126     3.594       -         
+test_cnt_cry[14]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[15]     SB_CARRY     CI       In      -         3.608       -         
+test_cnt_cry_c[15]     SB_CARRY     CO       Out     0.126     3.735       -         
+test_cnt_cry[15]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[16]     SB_CARRY     CI       In      -         3.748       -         
+test_cnt_cry_c[16]     SB_CARRY     CO       Out     0.126     3.875       -         
+test_cnt_cry[16]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[17]     SB_CARRY     CI       In      -         3.889       -         
+test_cnt_cry_c[17]     SB_CARRY     CO       Out     0.126     4.015       -         
+test_cnt_cry[17]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[18]     SB_CARRY     CI       In      -         4.029       -         
+test_cnt_cry_c[18]     SB_CARRY     CO       Out     0.126     4.155       -         
+test_cnt_cry[18]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[19]     SB_CARRY     CI       In      -         4.169       -         
+test_cnt_cry_c[19]     SB_CARRY     CO       Out     0.126     4.295       -         
+test_cnt_cry[19]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[20]     SB_CARRY     CI       In      -         4.309       -         
+test_cnt_cry_c[20]     SB_CARRY     CO       Out     0.126     4.436       -         
+test_cnt_cry[20]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[21]     SB_CARRY     CI       In      -         4.449       -         
+test_cnt_cry_c[21]     SB_CARRY     CO       Out     0.126     4.576       -         
+test_cnt_cry[21]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[22]     SB_CARRY     CI       In      -         4.590       -         
+test_cnt_cry_c[22]     SB_CARRY     CO       Out     0.126     4.716       -         
+test_cnt_cry[22]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[23]     SB_CARRY     CI       In      -         4.730       -         
+test_cnt_cry_c[23]     SB_CARRY     CO       Out     0.126     4.856       -         
+test_cnt_cry[23]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[24]     SB_CARRY     CI       In      -         4.870       -         
+test_cnt_cry_c[24]     SB_CARRY     CO       Out     0.126     4.996       -         
+test_cnt_cry[24]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[25]     SB_CARRY     CI       In      -         5.010       -         
+test_cnt_cry_c[25]     SB_CARRY     CO       Out     0.126     5.136       -         
+test_cnt_cry[25]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[26]     SB_CARRY     CI       In      -         5.151       -         
+test_cnt_cry_c[26]     SB_CARRY     CO       Out     0.126     5.277       -         
+test_cnt_cry[26]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[27]     SB_CARRY     CI       In      -         5.291       -         
+test_cnt_cry_c[27]     SB_CARRY     CO       Out     0.126     5.417       -         
+test_cnt_cry[27]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[28]     SB_CARRY     CI       In      -         5.431       -         
+test_cnt_cry_c[28]     SB_CARRY     CO       Out     0.126     5.557       -         
+test_cnt_cry[28]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[29]     SB_CARRY     CI       In      -         5.571       -         
+test_cnt_cry_c[29]     SB_CARRY     CO       Out     0.126     5.697       -         
+test_cnt_cry[29]       Net          -        -       0.014     -           2         
+test_cnt_cry_c[30]     SB_CARRY     CI       In      -         5.711       -         
+test_cnt_cry_c[30]     SB_CARRY     CO       Out     0.126     5.838       -         
+test_cnt_cry[30]       Net          -        -       0.386     -           1         
+test_cnt_RNO[31]       SB_LUT4      I3       In      -         6.223       -         
+test_cnt_RNO[31]       SB_LUT4      O        Out     0.316     6.539       -         
+test_cnt_s[31]         Net          -        -       1.507     -           1         
+test_cnt[31]           SB_DFF       D        In      -         8.046       -         
+=====================================================================================
+Total path delay (propagation time + setup) of 8.151 is 5.004(61.4%) logic and 3.147(38.6%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+##### END OF TIMING REPORT #####]
+
+
+Finished final timing analysis (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 133MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 132MB peak: 133MB)
+
+---------------------------------------
+Resource Usage Report for top 
+
+Mapping to part: ice40hx8kct256
+Cell usage:
+GND             32 uses
+SB_CARRY        31 uses
+SB_DFF          32 uses
+SB_GB           1 use
+VCC             32 uses
+SB_LUT4         36 uses
+
+I/O ports: 50
+I/O primitives: 50
+SB_IO          50 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   32 (0%)
+Total load per clock:
+   clk_100m: 1
+   clk_100m_tree: 32
+
+Mapping Summary:
+Total  LUTs: 36 (0%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 36 = 36 
+
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 56MB peak: 133MB)
+
+Process took 0h:00m:02s realtime, 0h:00m:01s cputime
+# Sat Dec 03 13:36:48 2016
+
+###########################################################]
+
+
+Synthesis exit by 0.
+Current Implementation impl_Implmnt its sbt path: //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt
+Synthesis succeed.
+Synthesis succeeded.
+Synthesis runtime 14 seconds
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\edifparser.exe" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/impl.edf " "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist" "-pCT256" "-y//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/constraint/top.pcf " -c --devicename iCE40HX8K
+starting edif parserrunning edif parserLattice Semiconductor Corporation  Edif Parser
+Release:        2015.04.27409
+Build Date:     May 27 2015 15:58:47
+
+Parsing edif file: //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/impl.edf...
+Parsing constraint file: //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/constraint/top.pcf ...
+start to read sdc/scf file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/impl.scf
+sdc_reader OK //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/impl.scf
+Stored edif netlist at //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top...
+Warning: The terminal connectivity gen_i0_0__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_0__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_0__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_5__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_5__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_0__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_0__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_0__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_0__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_4__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_4__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_7__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_7__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_2__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_2__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_4__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_4__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_1__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_1__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_4__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_4__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_3__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_3__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_6__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_6__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_7__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_7__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_6__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_6__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_2__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_2__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_1__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_1__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_6__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_6__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_7__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_7__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_5__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_5__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_7__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_7__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_7__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_4__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_4__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_4__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_3__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_3__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_1__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_1__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_5__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_5__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_6__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_6__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_6__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_2__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_2__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_0__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_0__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_0__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u1_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u1_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_5__u1_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_5__u1_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_5__u1_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_2__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_2__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_2__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u3_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u3_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_1__u3_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_1__u3_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_1__u3_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u2_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u2_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u2_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_3__u2_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_3__u2_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u0_buf_io.u_SB_IO:LATCHINPUTVALUE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u0_buf_io.u_SB_IO:CLOCKENABLE is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal connectivity gen_i0_3__u0_buf_io.u_SB_IO:INPUTCLK is removed because the PIN_TYPE is configured as 101001
+Warning: The terminal gen_i0_3__u0_buf_io.u_SB_IO:OUTPUTENABLE is driven by non-default constant value VCC
+Warning: The terminal connectivity gen_i0_3__u0_buf_io.u_SB_IO:OUTPUTCLK is removed because the PIN_TYPE is configured as 101001
+
+write Timing Constraint to //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt/Temp/sbt_temp.sdc
+
+EDIF Parser succeeded
+Top module is: top
+
+EDF Parser run-time: 3 (sec)
+edif parser succeed.
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\sbtplacer.exe" --des-lib "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --outdir "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer" --device-file "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" --package CT256 --deviceMarketName iCE40HX8K --sdc-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\Temp/sbt_temp.sdc" --lib-file "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib" --effort_level std --out-sdc-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer\top_pl.sdc"
+starting placerrunning placerExecuting : C:\lscc\iCEcube2.2015.04\sbt_backend\bin\win32\opt\sbtplacer.exe --des-lib //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top --outdir //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer --device-file C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev --package CT256 --deviceMarketName iCE40HX8K --sdc-file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\Temp/sbt_temp.sdc --lib-file C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib --effort_level std --out-sdc-file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer\top_pl.sdc
+Lattice Semiconductor Corporation  Placer
+Release:        2015.04.27409
+Build Date:     May 27 2015 16:06:30
+
+I2004: Option and Settings Summary
+=============================================================
+Device file          - C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev
+Package              - CT256
+Design database      - //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top
+SDC file             - //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\Temp/sbt_temp.sdc
+Output directory     - //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer
+Timing library       - C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib
+Effort level         - std
+
+I2050: Starting reading inputs for placer
+=============================================================
+I2100: Reading design library: //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top/BFPGA_DESIGN_ep
+I2065: Reading device file : C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev
+I2051: Reading of inputs for placer completed successfully
+
+I2053: Starting placement of the design
+=============================================================
+
+Input Design Statistics
+    Number of LUTs      	:	36
+    Number of DFFs      	:	32
+    Number of Carrys    	:	31
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	50
+    Number of GBIOs     	:	0
+    Number of GBs       	:	1
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+
+
+Phase 1
+I2077: Start design legalization
+
+Design Legalization Statistics
+    Number of feedthru LUTs inserted to legalize input of DFFs     	:	0
+    Number of feedthru LUTs inserted for LUTs driving multiple DFFs	:	0
+    Number of LUTs replicated for LUTs driving multiple DFFs       	:	0
+    Number of feedthru LUTs inserted to legalize output of CARRYs  	:	0
+    Number of feedthru LUTs inserted to legalize global signals    	:	0
+    Number of feedthru CARRYs inserted to legalize input of CARRYs 	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 01xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 10xxxx  	:	0
+    Number of inserted LUTs to Legalize IOs with PIN_TYPE= 11xxxx  	:	0
+    Total LUTs inserted                                            	:	0
+    Total CARRYs inserted                                          	:	0
+
+
+I2078: Design legalization is completed successfully
+I2088: Phase 1, elapsed time : 0.0 (sec)
+
+
+Phase 2
+I2088: Phase 2, elapsed time : 0.0 (sec)
+
+Phase 3
+
+Design Statistics after Packing
+    Number of LUTs      	:	37
+    Number of DFFs      	:	32
+    Number of Carrys    	:	31
+
+Device Utilization Summary after Packing
+    Sequential LogicCells
+        LUT and DFF      	:	1
+        LUT, DFF and CARRY	:	31
+    Combinational LogicCells
+        Only LUT         	:	5
+        CARRY Only       	:	0
+        LUT with CARRY   	:	0
+    LogicCells                  :	37/7680
+    PLBs                        :	5/960
+    BRAMs                       :	0/32
+    IOs and GBIOs               :	50/206
+    PLLs                        :	0/2
+
+
+I2088: Phase 3, elapsed time : 0.3 (sec)
+
+Phase 4
+I2088: Phase 4, elapsed time : 0.3 (sec)
+
+Phase 5
+I2088: Phase 5, elapsed time : 0.0 (sec)
+
+Phase 6
+I2088: Phase 6, elapsed time : 0.3 (sec)
+
+Final Design Statistics
+    Number of LUTs      	:	37
+    Number of DFFs      	:	32
+    Number of Carrys    	:	31
+    Number of RAMs      	:	0
+    Number of ROMs      	:	0
+    Number of IOs       	:	50
+    Number of GBIOs     	:	0
+    Number of GBs       	:	1
+    Number of WarmBoot  	:	0
+    Number of PLLs      	:	0
+
+Device Utilization Summary
+    LogicCells                  :	37/7680
+    PLBs                        :	8/960
+    BRAMs                       :	0/32
+    IOs and GBIOs               :	50/206
+    PLLs                        :	0/2
+
+
+
+#####################################################################
+Placement Timing Summary
+
+The timing summary is based on estimated routing delays after
+placement. For final timing report, please carry out the timing
+analysis after routing.
+=====================================================================
+
+#####################################################################
+                     Clock Summary 
+=====================================================================
+Number of clocks: 2
+Clock: clk_100m | Frequency: N/A | Target: 100.00 MHz
+Clock: clk_100m_tree | Frequency: 154.17 MHz | Target: 100.00 MHz
+
+=====================================================================
+                     End of Clock Summary
+#####################################################################
+
+I2054: Placement of design completed successfully
+
+I2076: Placer run-time: 1.7 sec.
+
+placer succeed.
+starting IPExporterrunning IPExporterIPExporter succeed.
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\packer.exe" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --package CT256 --outdir "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer" --DRC_only  --translator "C:\lscc\iCEcube2.2015.04\sbt_backend\bin\sdc_translator.tcl" --src_sdc_file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer\top_pl.sdc" --dst_sdc_file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer\top_pk.sdc" --devicename iCE40HX8K
+starting packerrunning packerLattice Semiconductor Corporation  Packer
+Release:        2015.04.27409
+Build Date:     May 27 2015 15:59:21
+
+Begin Packing...
+initializing finish
+Total HPWL cost is 745
+used logic cells: 37
+Design Rule Checking Succeeded
+
+DRC Checker run-time: 0 (sec)
+packer succeed.
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\packer.exe" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --package CT256 --outdir "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer" --translator "C:\lscc\iCEcube2.2015.04\sbt_backend\bin\sdc_translator.tcl" --src_sdc_file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer\top_pl.sdc" --dst_sdc_file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer\top_pk.sdc" --devicename iCE40HX8K
+starting packerrunning packerLattice Semiconductor Corporation  Packer
+Release:        2015.04.27409
+Build Date:     May 27 2015 15:59:21
+
+Begin Packing...
+initializing finish
+Total HPWL cost is 745
+used logic cells: 37
+Translating sdc file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\placer\top_pl.sdc...
+Translated sdc file is //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer\top_pk.sdc
+Packer succeeded
+
+Packer run-time: 1 (sec)
+packer succeed.
+
+
+"C:\lscc\iCEcube2.2015.04\sbt_backend\bin\win32\opt\sbrouter.exe" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" "\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\netlist\oadb-top" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib" "\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\packer\top_pk.sdc" --outdir "\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\router" --sdf_file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.sdf" --pin_permutation
+starting routerrunning routerSJRouter....
+Executing : C:\lscc\iCEcube2.2015.04\sbt_backend\bin\win32\opt\sbrouter.exe C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\netlist\oadb-top C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\packer\top_pk.sdc --outdir \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\router --sdf_file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.sdf --pin_permutation 
+Lattice Semiconductor Corporation  Router
+Release:        2015.04.27409
+Build Date:     May 27 2015 16:02:51
+
+I1203: Reading Design top
+Read design time: 0
+I1202: Reading Architecture of device iCE40HX8K
+Read device time: 8
+I1209: Started routing
+I1223: Total Nets : 84 
+I1212: Iteration  1 :     2 unrouted : 1 seconds
+I1212: Iteration  2 :     0 unrouted : 0 seconds
+I1215: Routing is successful
+Routing time: 2
+I1206: Completed routing
+I1204: Writing Design top
+Lib Closed
+I1210: Writing routes
+I1218: Exiting the router
+I1224: Router run-time : 10 seconds
+router succeed.
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\netlister.exe" --verilog "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.v" --vhdl "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/sbt/outputs/simulation_netlist\top_sbt.vhd" --lib "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --view rt --device "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" --splitio  --in-sdc-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\packer\top_pk.sdc" --out-sdc-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\netlister\top_sbt.sdc"
+starting netlistrunning netlistLattice Semiconductor Corporation  Verilog & VHDL Netlister
+Release:        2015.04.27409
+Build Date:     May 27 2015 16:13:41
+
+Generating Verilog & VHDL netlist files ...
+Writing //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.v
+Writing //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt/sbt/outputs/simulation_netlist\top_sbt.vhd
+Netlister succeeded.
+
+Netlister run-time: 7 (sec)
+netlist succeed.
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\sbtimer.exe" --des-lib "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --lib-file "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib" --sdc-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\netlister\top_sbt.sdc" --sdf-file "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.sdf" --report-file "\\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\timer\top_timing.rpt" --device-file "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" --timing-summary
+starting timerrunning timerExecuting : C:\lscc\iCEcube2.2015.04\sbt_backend\bin\win32\opt\sbtimer.exe --des-lib //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top --lib-file C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ice40HX8K.lib --sdc-file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\netlister\top_sbt.sdc --sdf-file //BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\simulation_netlist\top_sbt.sdf --report-file \\BLACKMESA\khubbard\blackmesa\lattice\icoboard\mesa_bus_spi\impl\impl_Implmnt\sbt\outputs\timer\top_timing.rpt --device-file C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev --timing-summary
+Lattice Semiconductor Corporation  Timer
+Release:        2015.04.27409
+Build Date:     May 27 2015 16:02:03
+
+Timer run-time: 6 seconds
+timer succeed.
+timer succeeded.
+
+
+"C:/lscc/iCEcube2.2015.04/sbt_backend/bin/win32/opt\bitmap.exe" "C:\lscc\iCEcube2.2015.04\sbt_backend\devices\ICE40P08.dev" --design "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\netlist\oadb-top" --device_name iCE40HX8K --package CT256 --outdir "//BLACKMESA/khubbard/blackmesa/lattice/icoboard/mesa_bus_spi/impl/impl_Implmnt\sbt\outputs\bitmap" --low_power on --init_ram on --init_ram_bank 1111 --frequency low --warm_boot on
+starting bitmaprunning bitmapLattice Semiconductor Corporation  Bit Stream Generator
+Release:        2015.04.27409
+Build Date:     May 27 2015 16:13:24
+
+Bit Stream File Size: 1080760 (1M 31K 440 Bits)
+Bit Stream Generator succeeded
+
+Bitmap run-time: 6 (sec)
+bitmap succeed.

@@ -1,0 +1,104 @@
+-------------------------------------------------------------------------------
+-- GPIO Memory Map 2016.12.17          
+-------------------------------------------------------------------------------
+[ Memory Map ]
+0x00 0000 : ID_REG
+0x00 0004 : VERSION_REG
+0x00 0008 : TIME_STAMP_REG
+0x00 000c : CTRL_REG
+0x00 0010 : SUMP2_CTRL_REG
+0x00 0014 : SUMP2_DATA_REG
+
+0x00 0020 : PMOD_P1_CFG
+0x00 0024 : PMOD_P2_CFG
+0x00 0028 : PMOD_P3_CFG
+0x00 002c : PMOD_P4_CFG
+
+0x00 0030 : PMOD_P1_CTRL
+0x00 0034 : PMOD_P2_CTRL
+0x00 0038 : PMOD_P3_CTRL
+0x00 003c : PMOD_P4_CTRL
+
+0x00 0080 : PWM0_CFG
+0x00 0084 : PWM1_CFG
+0x00 0088 : PWM2_CFG
+0x00 008c : PWM3_CFG
+0x00 0090 : PWM4_CFG
+0x00 0094 : PWM5_CFG
+0x00 0098 : PWM6_CFG
+0x00 009c : PWM7_CFG
+
+[ End Memory Map ]
+
+-------------------------------------------------------------------------------
+-- Definitions   
+-------------------------------------------------------------------------------
+[ ID_REG ] 
+  Description : RW register that defaults to 0x11223344
+
+[ VERSION_REG ] 
+  Description: Static Read Only Register indicats RTL revision 
+   D(15:8) : Major Revision Number in BCD
+   D(7:0)  : Minor Revision Number in BCD
+
+[ TIME_STAMP  ] 
+  Description: Static Read Only Register of 32bit UNIX time stamp of PAR run.
+
+[ CTRL_REG ] 
+  Description: Controls global chip functions. 
+  Bit Packing:
+   D(31:0)  : RESERVED
+
+[ PMOD_P1_CFG ]
+  Description: Configures pin function for each pin of PMOD connector P1.
+   D(31:28) : D(7) Pin Function
+   D(27:24) : D(6) Pin Function
+   D(23:20) : D(5) Pin Function
+   D(19:16) : D(4) Pin Function
+   D(15:12) : D(3) Pin Function
+   D(11:8)  : D(2) Pin Function
+   D(7:4)   : D(1) Pin Function
+   D(3:0)   : D(0) Pin Function
+    0x0     : Input  
+    0x1     : Output totem_pole ( Drive 0 or 1    )
+    0x2     : Output open-drain ( Drive 0 or Hi-Z )
+    0x3     : Output wired-or   ( Drive 1 or Hi-Z )
+    0x4-0x6 : Reserved
+    0x7     : Output debug Pi SPI interface, see top.v
+    0x8-0xF : Output PWM0 - PWM7
+
+[ PMOD_P2_CFG ]
+[ PMOD_P3_CFG ]
+[ PMOD_P4_CFG ]
+  Description: Same as PMOD_P1_CFG but for PMOD connectors P2,P3,P4.
+
+[ PMOD_P1_CTRL ]
+  Description: Control and Status of each pin of PMOD connector P1.
+   D(7:0)  : D(7:0) Pin Output Function.  0=Logic-0,1=Logic-1
+   D(15:8) : D(7:0) Pin Status Read-Only. 0=Logic-0,1=Logic-1
+
+[ PMOD_P2_CTRL ]
+[ PMOD_P3_CTRL ]
+[ PMOD_P4_CTRL ]
+  Description: Same as PMOD_P1_CTRL but for PMOD connectors P2,P3,P4.
+
+[ PWM0_CFG ]
+  Description: Configures operation of Pulse Width Modulator PWM0.
+  D(31:20) : PWM '1' Time in 0-4095 prescaler units
+  D(19:8)  : PWM '0' Time in 0-4095 prescaler units
+  D(7:4) : Counter Prescaler
+   0x0 : OFF
+   0x1 : No Prescaling, Clk/1    10  ns
+   0x2 : Clk/10                  100 ns
+   0x3 : Clk/100                   1 us
+   0x4 : Clk/1000                 10 us
+   0x5 : Clk/10000               100 us
+   0x6 : Clk/100000                1 ms
+#  0x7 : Clk/1000000             : RESERVED - REMOVED for timing closure
+  D(3:0) : 
+   0x0 : Halt Immediate 
+   0x1 : Halt after current cycle completion
+   0x2 : Enable One-Shot  ( single cycle )
+   0x3 : Enable Continous ( repeating cycles )
+
+EOF

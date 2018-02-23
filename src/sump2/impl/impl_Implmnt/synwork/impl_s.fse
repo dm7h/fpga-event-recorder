@@ -1,0 +1,14 @@
+
+fsm_encoding {929702971} onehot
+
+fsm_state_encoding {929702971} 0000 {00001}
+
+fsm_state_encoding {929702971} 1000 {00010}
+
+fsm_state_encoding {929702971} 1100 {00100}
+
+fsm_state_encoding {929702971} 1110 {01000}
+
+fsm_state_encoding {929702971} 1111 {10000}
+
+fsm_registers {929702971} {lb_rd_fsm[4]}  {lb_rd_fsm[3]}  {lb_rd_fsm[2]}  {lb_rd_fsm[1]}  {lb_rd_fsm[0]} 

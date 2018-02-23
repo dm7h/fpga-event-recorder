@@ -1,0 +1,54 @@
+# Written by Synplify Pro version maplat, Build 1178R. Synopsys Run ID: sid1486428686 
+# Top Level Design Parameters 
+
+# Clocks 
+create_clock -period 1000.000 -waveform {0.000 500.000} -name {gpio_pwm|clk} [get_ports {clk}] 
+
+# Virtual Clocks 
+
+# Generated Clocks 
+
+# Paths Between Clocks 
+
+# Multicycle Constraints 
+
+# Point-to-point Delay Constraints 
+
+# False Path Constraints 
+
+# Output Load Constraints 
+
+# Driving Cell Constraints 
+
+# Input Delay Constraints 
+
+# Output Delay Constraints 
+
+# Wire Loads 
+
+# Other Constraints 
+
+# syn_hier Attributes 
+
+# set_case Attributes 
+
+# Clock Delay Constraints 
+
+
+# syn_mode Attributes 
+
+# Cells 
+
+# Port DRC Rules 
+
+# Input Transition Constraints 
+
+# Unused constraints (intentionally commented out) 
+# create_clock -period {10.000} -name {clk_100m} {[get_nets clk_100m]}
+# create_clock -period {10.000} -name {clk_100m_tree} {[get_nets clk_100m_tree]}
+# create_clock -period {30.000} -name {pi_spi_clk} {[get_nets pi_spi_clk]}
+
+# Non-forward-annotatable constraints (intentionally commented out) 
+
+# Block Path constraints 
+

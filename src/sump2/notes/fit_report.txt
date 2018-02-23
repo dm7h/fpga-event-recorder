@@ -1,0 +1,9 @@
+2017.02.06: SUMP2 on IceZero Closure to 100 MHz
+ Device Utilization Summary
+    Number of LUTs      	:	2929
+    Number of DFFs      	:	1865
+    LogicCells                  :	2993/3520
+    PLBs                        :	440/440
+    BRAMs                       :	15/20
+    IOs and GBIOs               :	66/107
+    PLLs                        :	0/2

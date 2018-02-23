@@ -1,0 +1,22 @@
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\c_hdl.exe  -osyn  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs  -hdllog  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_compiler.srr  -encrypt  -mp  1  -verilog  -prodtype  synplify_pro  -primux -fixsmult -infer_seqShift -ice -sdff_counter -nram -divnmod -nostructver   -I \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\  -I C:\lscc\iCEcube2.2015.04\synpbase\lib   -v2001  -devicelib  C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v  -encrypt  -pro  -dmgen  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\dm  -ui -fid2 -ram -sharing on -ll 2000 -autosm  -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_core.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2ctrl.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_prom.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_byte2bit.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\time_stamp.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pin.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\iob_bidi.v -lib work \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v 
+rc:0 success:1
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs|o|1486431355|70563
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_compiler.srr|o|1486431355|767780
+C:\lscc\iCEcube2.2015.04\synpbase\lib\generic\sb_ice40.v|i|1480789678|222921
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v|i|1486326472|12980
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v|i|1482089521|7288
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_core.v|i|1482086081|13580
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v|i|1482077323|9559
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v|i|1476913511|12969
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2ctrl.v|i|1476913511|4218
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_prom.v|i|1476913511|39021
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_byte2bit.v|i|1476913511|13392
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\time_stamp.v|i|1482078409|107
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v|i|1486431210|7169
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v|i|1486431238|9753
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pin.v|i|1482013050|3875
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v|i|1482098196|31569
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\iob_bidi.v|i|1482003904|464
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v|i|1482097382|5754
+C:\lscc\iCEcube2.2015.04\synpbase\bin\c_hdl.exe|i|1480789667|1298944
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\c_hdl.exe|i|1480789671|1901568

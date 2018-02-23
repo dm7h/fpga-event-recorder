@@ -1,0 +1,958 @@
+Synopsys Lattice Technology Mapper, Version maplat, Build 1178R, Built Apr 22 2015 10:50:52
+Copyright (C) 1994-2015, Synopsys, Inc. This software and the associated documentation are proprietary to Synopsys, Inc. This software may only be used in accordance with the terms and conditions of a written license agreement with Synopsys, Inc.  All other use, reproduction, or distribution of this software is strictly prohibited.
+Product Version J-2015.03L
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled 
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 101MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 101MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 101MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 133MB peak: 135MB)
+
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[24] on net gpio_pin_q_1[24] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[25] on net gpio_pin_q_1[25] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[26] on net gpio_pin_q_1[26] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[27] on net gpio_pin_q_1[27] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[28] on net gpio_pin_q_1[28] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[29] on net gpio_pin_q_1[29] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[30] on net gpio_pin_q_1[30] has its enable tied to GND (module gpio_core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Tristate driver gpio_pin_q_1[31] on net gpio_pin_q_1[31] has its enable tied to GND (module gpio_core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[24] on net gpio_pin_q[24] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[25] on net gpio_pin_q[25] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[26] on net gpio_pin_q[26] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[27] on net gpio_pin_q[27] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[28] on net gpio_pin_q[28] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[29] on net gpio_pin_q[29] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[30] on net gpio_pin_q[30] has its enable tied to GND (module core) 
+@W: MO111 :|Tristate driver gpio_pin_q_t[31] on net gpio_pin_q[31] has its enable tied to GND (module core) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":89:22:89:28|Tristate driver ftdi_ro on net ftdi_ro has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":87:22:87:28|Tristate driver ftdi_wo on net ftdi_wo has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_1 on net xtra_a[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_2 on net xtra_a[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_3 on net xtra_a[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_4 on net xtra_a[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_5 on net xtra_a[0] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":61:22:61:30|Tristate driver sram_lb_l on net sram_lb_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":60:22:60:30|Tristate driver sram_ub_l on net sram_ub_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":59:22:59:30|Tristate driver sram_ce_l on net sram_ce_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_1 on net rsvd[5] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_2 on net rsvd[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_3 on net rsvd[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_4 on net rsvd[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_5 on net rsvd[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_6 on net rsvd[0] has its enable tied to GND (module top) 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":326:0:326:5|Sequential instance u_core.u_sump2.trigger_in_meta reduced to a combinational gate by constant propagation 
+@W: MO171 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":114:11:114:23|Sequential instance u_core.u_gpio_core.lb_003c_reg_tri_enable reduced to a combinational gate by constant propagation 
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|Removing sequential instance u_core.lb_wr_p1,  because it is equivalent to instance lb_wr_p1
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|Removing sequential instance u_core.lb_rd_p1,  because it is equivalent to instance lb_rd_p1
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@N: MT204 |Auto Constrain mode is disabled because clocks are defined in the SDC file
+
+            clk_100m
+            clk_100m_tree
+            pi_spi_sck
+
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":171:0:171:5|Removing sequential instance bit_togl of view:PrimLib.dffse(prim) in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":297:0:297:5|Removing sequential instance lb_rd_sr[31:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 135MB peak: 137MB)
+
+@N:"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":166:0:166:5|Found counter in view:work.top(verilog) inst test_cnt[25:0]
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 49 registers during mapping 
+@N:"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":171:0:171:5|Found counter in view:work.mesa_pi_spi(verilog) inst id_bit_cnt[7:0]
+Encoding state machine lb_rd_fsm[4:0] (view:work.mesa2lb(verilog))
+original code -> new code
+   0000 -> 00001
+   1000 -> 00010
+   1100 -> 00100
+   1110 -> 01000
+   1111 -> 10000
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[8] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[9] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[10] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[11] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[12] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[13] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[14] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[15] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[16] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[17] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[18] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[19] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[20] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[21] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[22] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[23] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[24] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[25] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[26] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[27] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[28] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[29] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[30] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[31] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[16] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[17] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[18] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[19] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[20] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[21] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[22] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[23] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[24] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[25] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[26] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[27] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[28] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[29] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[30] reduced to a combinational gate by constant propagation
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do[31] reduced to a combinational gate by constant propagation
+@W: FX107 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|No read/write conflict check. Possible simulation mismatch!
+@W: FX107 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":832:0:832:5|No read/write conflict check. Possible simulation mismatch!
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[31],  because it is equivalent to instance u_core.u_sump2.b_do_p1[30]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[30],  because it is equivalent to instance u_core.u_sump2.b_do_p1[29]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[29],  because it is equivalent to instance u_core.u_sump2.b_do_p1[28]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[28],  because it is equivalent to instance u_core.u_sump2.b_do_p1[27]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[27],  because it is equivalent to instance u_core.u_sump2.b_do_p1[26]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[26],  because it is equivalent to instance u_core.u_sump2.b_do_p1[25]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[25],  because it is equivalent to instance u_core.u_sump2.b_do_p1[24]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Removing sequential instance u_core.u_sump2.b_do_p1[24],  because it is equivalent to instance u_core.u_sump2.b_do_p1[23]
+@W: MO129 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":857:0:857:5|Sequential instance u_core.u_sump2.b_do_p1[16] reduced to a combinational gate by constant propagation
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":344:9:344:71|Found 32 bit by 32 bit '==' comparator, 'proc_trig\.trigger_and6'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":447:11:447:56|Found 10 bit by 10 bit '==' comparator, 'proc_cap\.acquired_jk4'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":426:15:426:57|Found 16 bit by 16 bit '==' comparator, 'proc_cap\.un1_trigger_dly_cnt_1'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":547:13:547:42|Found 16 bit by 16 bit '==' comparator, 'proc_rle\.un1_events_p2'
+@N:"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":111:0:111:5|Found counter in view:work.gpio_pwm(verilog) inst pwm_cnt[11:0]
+@N:"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":76:0:76:5|Found counter in view:work.gpio_pwm(verilog) inst prescale_cnt[16:0]
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":90:10:90:52|Found 18 bit by 18 bit '==' comparator, 'proc_pwm_cnt\.prescale_cnt10'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":131:14:131:37|Found 12 bit by 12 bit '==' comparator, 'proc_pwm_fsm\.pwm_loc8'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":140:14:140:37|Found 12 bit by 12 bit '==' comparator, 'proc_pwm_fsm\.pwm_loc20'
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 99 registers during mapping 
+
+Finished factoring (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 159MB peak: 161MB)
+
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 148 registers during mapping 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Removing sequential instance u_core.u_gpio_core.lb_rd_d_tri_enable in hierarchy view:work.top(verilog) because there are no references to its outputs 
+
+Finished gated-clock and generated-clock conversion (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 151MB peak: 161MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:02s; Memory used current: 152MB peak: 161MB)
+
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 197 registers during mapping 
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:03s; Memory used current: 153MB peak: 161MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:05s; Memory used current: 155MB peak: 161MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:05s; Memory used current: 154MB peak: 161MB)
+
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[10] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[9] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[8] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[25] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[24] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[23] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[22] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[21] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[20] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[19] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[18] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[17] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[16] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[15] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[14] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[13] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[12] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[11] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[31] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[30] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[29] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[28] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[27] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[26] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 246 registers during mapping 
+
+Finished preparing to map (Real Time elapsed 0h:00m:08s; CPU Time elapsed 0h:00m:06s; Memory used current: 155MB peak: 161MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:07s; Memory used current: 195MB peak: 198MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:07s		    -0.87ns		1549 /      1878
+   2		0h:00m:07s		    -0.87ns		1528 /      1878
+   3		0h:00m:07s		    -0.87ns		1528 /      1878
+@A: BN291 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":100:0:100:5|Boundary register u_mesa_pi_spi.nib_sr[2] packed into a complex cell. To disable register packing, set syn_keep=1 on net between register and complex cell. 
+@A: BN291 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":100:0:100:5|Boundary register u_mesa_pi_spi.nib_sr[1] packed into a complex cell. To disable register packing, set syn_keep=1 on net between register and complex cell. 
+@A: BN291 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":100:0:100:5|Boundary register u_mesa_pi_spi.nib_sr[0] packed into a complex cell. To disable register packing, set syn_keep=1 on net between register and complex cell. 
+@N: FX1016 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":77:22:77:31|SB_GB_IO inserted on the port pi_spi_sck.
+@N: FX1017 :|SB_GB inserted on the net u_core.u_sump2.N_96_i.
+@N: FX1017 :|SB_GB inserted on the net u_mesa_pi_spi.proc_rd_cnt\.id_bit_cnt10.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":124:0:124:5|SB_GB inserted on the net u_mesa_pi_spi.rd_rdy_xfer_wide.
+@N: FX1017 :|SB_GB inserted on the net u_mesa_core.u_mesa2lb.lb_wr_0_sqmuxa.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|SB_GB inserted on the net lb_rd_rdy.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v":196:0:196:5|SB_GB inserted on the net u_mesa_core.rx_loc_rdy.
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:11s; CPU Time elapsed 0h:00m:09s; Memory used current: 197MB peak: 199MB)
+
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:11s; CPU Time elapsed 0h:00m:09s; Memory used current: 197MB peak: 199MB)
+
+
+
+#### START OF CLOCK OPTIMIZATION REPORT #####[
+
+2 non-gated/non-generated clock tree(s) driving 1908 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+======================================= Non-Gated/Non-Generated Clocks ========================================
+Clock Tree ID     Driving Element        Drive Element Type              Fanout     Sample Instance            
+---------------------------------------------------------------------------------------------------------------
+@K:CKID0001       clk_100m_tree_keep     clock definition on keepbuf     1794       lb_rd_p1                   
+@K:CKID0002       pi_spi_sck_keep        clock definition on keepbuf     114        u_mesa_pi_spi.id_bit_cnt[7]
+===============================================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######]
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:11s; CPU Time elapsed 0h:00m:09s; Memory used current: 167MB peak: 199MB)
+
+Writing Analyst data base \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:10s; Memory used current: 191MB peak: 199MB)
+
+Writing EDIF Netlist and constraint files
+@N: BW103 |Synopsys Constraint File time units using default value of 1ns 
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+J-2015.03L
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:10s; Memory used current: 192MB peak: 199MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:10s; Memory used current: 191MB peak: 199MB)
+
+Found clock pi_spi_sck with period 30.00ns 
+Found clock clk_100m_tree with period 10.00ns 
+Found clock clk_100m with period 10.00ns 
+
+
+@S |##### START OF TIMING REPORT #####[
+# Timing Report written on Mon Feb 06 17:36:21 2017
+#
+
+
+Top view:               top
+Requested Frequency:    33.3 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\constraint\top.sdc
+                       
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary 
+*******************
+
+
+Worst slack in design: -3.603
+
+                   Requested     Estimated     Requested     Estimated                Clock        Clock           
+Starting Clock     Frequency     Frequency     Period        Period        Slack      Type         Group           
+-------------------------------------------------------------------------------------------------------------------
+clk_100m           100.0 MHz     NA            10.000        NA            NA         declared     default_clkgroup
+clk_100m_tree      100.0 MHz     65.3 MHz      10.000        15.315        -3.603     declared     default_clkgroup
+pi_spi_sck         33.3 MHz      21.8 MHz      30.000        45.944        -0.957     declared     default_clkgroup
+===================================================================================================================
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                        |    rise  to  rise    |    fall  to  fall    |    rise  to  fall    |    fall  to  rise  
+------------------------------------------------------------------------------------------------------------------------
+Starting       Ending         |  constraint  slack   |  constraint  slack   |  constraint  slack   |  constraint  slack 
+------------------------------------------------------------------------------------------------------------------------
+clk_100m_tree  clk_100m_tree  |  10.000      -3.603  |  No paths    -       |  No paths    -       |  No paths    -     
+clk_100m_tree  pi_spi_sck     |  No paths    -       |  No paths    -       |  5.000       -2.657  |  No paths    -     
+pi_spi_sck     clk_100m_tree  |  10.000      6.787   |  No paths    -       |  No paths    -       |  5.000       -0.957
+pi_spi_sck     pi_spi_sck     |  30.000      24.113  |  30.000      18.619  |  No paths    -       |  No paths    -     
+========================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: clk_100m_tree
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                      Starting                                                     Arrival           
+Instance                              Reference         Type         Pin     Net                   Time        Slack 
+                                      Clock                                                                          
+---------------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_len[1]     clk_100m_tree     SB_DFFSR     Q       addr_len[1]           0.540       -3.603
+u_mesa_core.u_mesa2lb.addr_len[2]     clk_100m_tree     SB_DFFSR     Q       addr_len[2]           0.540       -3.596
+u_mesa_core.u_mesa2lb.addr_len[3]     clk_100m_tree     SB_DFFSR     Q       addr_len[3]           0.540       -3.567
+u_mesa_core.u_mesa2lb.addr_len[4]     clk_100m_tree     SB_DFFSR     Q       addr_len[4]           0.540       -3.504
+u_core.u_sump2.ctrl_13_reg_p1[0]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[0]     0.540       -3.504
+u_core.u_sump2.ctrl_13_reg_p1[1]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[1]     0.540       -3.455
+u_core.u_sump2.ctrl_13_reg_p1[2]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[2]     0.540       -3.434
+u_core.u_sump2.ctrl_13_reg_p1[3]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[3]     0.540       -3.371
+u_core.u_sump2.ctrl_13_reg_p1[4]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[4]     0.540       -3.364
+u_core.u_sump2.ctrl_13_reg_p1[5]      clk_100m_tree     SB_DFF       Q       ctrl_13_reg_p1[5]     0.540       -3.315
+=====================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                       Starting                                                        Required           
+Instance                               Reference         Type         Pin     Net                      Time         Slack 
+                                       Clock                                                                              
+--------------------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_cnt[7]      clk_100m_tree     SB_DFF       D       addr_cnt_15[7]           9.895        -3.603
+u_core.u_sump2.c_addr[9]               clk_100m_tree     SB_DFFSR     D       c_addr_RNO[9]            9.895        -3.504
+u_mesa_core.u_mesa2lb.addr_cnt[6]      clk_100m_tree     SB_DFF       D       addr_cnt_15[6]           9.895        -3.462
+u_core.u_sump2.post_trig_cnt[9]        clk_100m_tree     SB_DFFSR     D       post_trig_cnt_RNO[9]     9.895        -3.392
+u_core.u_sump2.c_addr[8]               clk_100m_tree     SB_DFFSR     D       c_addr_RNO[8]            9.895        -3.364
+u_mesa_core.u_mesa2lb.addr_cnt[5]      clk_100m_tree     SB_DFF       D       addr_cnt_15[5]           9.895        -3.322
+u_core.u_sump2.post_trig_cnt[8]        clk_100m_tree     SB_DFFSR     D       post_trig_cnt_RNO[8]     9.895        -3.252
+u_core.u_sump2.trigger_dly_cnt[15]     clk_100m_tree     SB_DFFSS     D       N_2289_i                 9.895        -3.243
+u_core.u_sump2.c_addr[7]               clk_100m_tree     SB_DFFSR     D       c_addr_RNO[7]            9.895        -3.224
+u_mesa_core.u_mesa2lb.addr_cnt[4]      clk_100m_tree     SB_DFF       D       addr_cnt_15[4]           9.895        -3.182
+==========================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      13.497
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -3.603
+
+    Number of logic level(s):                11
+    Starting point:                          u_mesa_core.u_mesa2lb.addr_len[1] / Q
+    Ending point:                            u_mesa_core.u_mesa2lb.addr_cnt[7] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                  Pin      Pin               Arrival     No. of    
+Name                                               Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_len[1]                  SB_DFFSR     Q        Out     0.540     0.540       -         
+addr_len[1]                                        Net          -        -       1.599     -           4         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      I0       In      -         2.139       -         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      O        Out     0.386     2.525       -         
+un1_addr_len_3                                     Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      I2       In      -         3.896       -         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      O        Out     0.351     4.246       -         
+un1_addr_len                                       Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      I0       In      -         5.617       -         
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      O        Out     0.449     6.066       -         
+addr_cnt_0_sqmuxa_4                                Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      I2       In      -         7.437       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      O        Out     0.379     7.816       -         
+un1_addr_cnt_cry_2_c_RNO                           Net          -        -       0.905     -           1         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     I0       In      -         8.721       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     CO       Out     0.258     8.978       -         
+un1_addr_cnt_cry_2                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CI       In      -         8.992       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CO       Out     0.126     9.118       -         
+un1_addr_cnt_cry_3                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CI       In      -         9.133       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CO       Out     0.126     9.259       -         
+un1_addr_cnt_cry_4                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CI       In      -         9.273       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CO       Out     0.126     9.399       -         
+un1_addr_cnt_cry_5                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CI       In      -         9.413       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CO       Out     0.126     9.539       -         
+un1_addr_cnt_cry_6                                 Net          -        -       0.386     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      I3       In      -         9.925       -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      O        Out     0.316     10.241      -         
+addr_cnt_RNO_0[7]                                  Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      I2       In      -         11.612      -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      O        Out     0.379     11.990      -         
+addr_cnt_15[7]                                     Net          -        -       1.507     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt[7]                  SB_DFF       D        In      -         13.497      -         
+=================================================================================================================
+Total path delay (propagation time + setup) of 13.603 is 3.666(26.9%) logic and 9.937(73.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 2: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      13.490
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -3.596
+
+    Number of logic level(s):                11
+    Starting point:                          u_mesa_core.u_mesa2lb.addr_len[2] / Q
+    Ending point:                            u_mesa_core.u_mesa2lb.addr_cnt[7] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                  Pin      Pin               Arrival     No. of    
+Name                                               Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_len[2]                  SB_DFFSR     Q        Out     0.540     0.540       -         
+addr_len[2]                                        Net          -        -       1.599     -           4         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      I1       In      -         2.139       -         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      O        Out     0.379     2.518       -         
+un1_addr_len_3                                     Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      I2       In      -         3.889       -         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      O        Out     0.351     4.239       -         
+un1_addr_len                                       Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      I0       In      -         5.610       -         
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      O        Out     0.449     6.059       -         
+addr_cnt_0_sqmuxa_4                                Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      I2       In      -         7.430       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      O        Out     0.379     7.809       -         
+un1_addr_cnt_cry_2_c_RNO                           Net          -        -       0.905     -           1         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     I0       In      -         8.714       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     CO       Out     0.258     8.971       -         
+un1_addr_cnt_cry_2                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CI       In      -         8.985       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CO       Out     0.126     9.111       -         
+un1_addr_cnt_cry_3                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CI       In      -         9.126       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CO       Out     0.126     9.252       -         
+un1_addr_cnt_cry_4                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CI       In      -         9.266       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CO       Out     0.126     9.392       -         
+un1_addr_cnt_cry_5                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CI       In      -         9.406       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CO       Out     0.126     9.532       -         
+un1_addr_cnt_cry_6                                 Net          -        -       0.386     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      I3       In      -         9.918       -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      O        Out     0.316     10.234      -         
+addr_cnt_RNO_0[7]                                  Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      I2       In      -         11.605      -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      O        Out     0.379     11.983      -         
+addr_cnt_15[7]                                     Net          -        -       1.507     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt[7]                  SB_DFF       D        In      -         13.490      -         
+=================================================================================================================
+Total path delay (propagation time + setup) of 13.596 is 3.659(26.9%) logic and 9.937(73.1%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 3: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      13.462
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -3.568
+
+    Number of logic level(s):                11
+    Starting point:                          u_mesa_core.u_mesa2lb.addr_len[3] / Q
+    Ending point:                            u_mesa_core.u_mesa2lb.addr_cnt[7] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                  Pin      Pin               Arrival     No. of    
+Name                                               Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_len[3]                  SB_DFFSR     Q        Out     0.540     0.540       -         
+addr_len[3]                                        Net          -        -       1.599     -           4         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      I2       In      -         2.139       -         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      O        Out     0.351     2.490       -         
+un1_addr_len_3                                     Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      I2       In      -         3.861       -         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      O        Out     0.351     4.211       -         
+un1_addr_len                                       Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      I0       In      -         5.582       -         
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      O        Out     0.449     6.031       -         
+addr_cnt_0_sqmuxa_4                                Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      I2       In      -         7.402       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      O        Out     0.379     7.781       -         
+un1_addr_cnt_cry_2_c_RNO                           Net          -        -       0.905     -           1         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     I0       In      -         8.686       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     CO       Out     0.258     8.943       -         
+un1_addr_cnt_cry_2                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CI       In      -         8.957       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CO       Out     0.126     9.083       -         
+un1_addr_cnt_cry_3                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CI       In      -         9.097       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CO       Out     0.126     9.224       -         
+un1_addr_cnt_cry_4                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CI       In      -         9.238       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CO       Out     0.126     9.364       -         
+un1_addr_cnt_cry_5                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CI       In      -         9.378       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CO       Out     0.126     9.504       -         
+un1_addr_cnt_cry_6                                 Net          -        -       0.386     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      I3       In      -         9.890       -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      O        Out     0.316     10.206      -         
+addr_cnt_RNO_0[7]                                  Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      I2       In      -         11.577      -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      O        Out     0.379     11.955      -         
+addr_cnt_15[7]                                     Net          -        -       1.507     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt[7]                  SB_DFF       D        In      -         13.462      -         
+=================================================================================================================
+Total path delay (propagation time + setup) of 13.568 is 3.630(26.8%) logic and 9.937(73.2%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 4: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      13.399
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -3.504
+
+    Number of logic level(s):                11
+    Starting point:                          u_mesa_core.u_mesa2lb.addr_len[4] / Q
+    Ending point:                            u_mesa_core.u_mesa2lb.addr_cnt[7] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                  Pin      Pin               Arrival     No. of    
+Name                                               Type         Name     Dir     Delay     Time        Fan Out(s)
+-----------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.addr_len[4]                  SB_DFFSR     Q        Out     0.540     0.540       -         
+addr_len[4]                                        Net          -        -       1.599     -           4         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      I3       In      -         2.139       -         
+u_mesa_core.u_mesa2lb.addr_len_RNIETEO1[1]         SB_LUT4      O        Out     0.287     2.426       -         
+un1_addr_len_3                                     Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      I2       In      -         3.797       -         
+u_mesa_core.u_mesa2lb.addr_len_RNI5CMK2[5]         SB_LUT4      O        Out     0.351     4.148       -         
+un1_addr_len                                       Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      I0       In      -         5.519       -         
+u_mesa_core.u_mesa2lb.rpt_jk_e_RNI4DK64            SB_LUT4      O        Out     0.449     5.968       -         
+addr_cnt_0_sqmuxa_4                                Net          -        -       1.371     -           10        
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      I2       In      -         7.339       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c_RNO     SB_LUT4      O        Out     0.379     7.718       -         
+un1_addr_cnt_cry_2_c_RNO                           Net          -        -       0.905     -           1         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     I0       In      -         8.623       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_2_c         SB_CARRY     CO       Out     0.258     8.880       -         
+un1_addr_cnt_cry_2                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CI       In      -         8.894       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_3_c         SB_CARRY     CO       Out     0.126     9.020       -         
+un1_addr_cnt_cry_3                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CI       In      -         9.034       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_4_c         SB_CARRY     CO       Out     0.126     9.161       -         
+un1_addr_cnt_cry_4                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CI       In      -         9.175       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_5_c         SB_CARRY     CO       Out     0.126     9.301       -         
+un1_addr_cnt_cry_5                                 Net          -        -       0.014     -           2         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CI       In      -         9.315       -         
+u_mesa_core.u_mesa2lb.un1_addr_cnt_cry_6_c         SB_CARRY     CO       Out     0.126     9.441       -         
+un1_addr_cnt_cry_6                                 Net          -        -       0.386     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      I3       In      -         9.827       -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO_0[7]            SB_LUT4      O        Out     0.316     10.143      -         
+addr_cnt_RNO_0[7]                                  Net          -        -       1.371     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      I2       In      -         11.514      -         
+u_mesa_core.u_mesa2lb.addr_cnt_RNO[7]              SB_LUT4      O        Out     0.379     11.892      -         
+addr_cnt_15[7]                                     Net          -        -       1.507     -           1         
+u_mesa_core.u_mesa2lb.addr_cnt[7]                  SB_DFF       D        In      -         13.399      -         
+=================================================================================================================
+Total path delay (propagation time + setup) of 13.504 is 3.567(26.4%) logic and 9.937(73.6%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 5: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      13.399
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -3.504
+
+    Number of logic level(s):                22
+    Starting point:                          u_core.u_sump2.ctrl_13_reg_p1[0] / Q
+    Ending point:                            u_core.u_sump2.c_addr[9] / D
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                                  Pin      Pin               Arrival     No. of    
+Name                                                               Type         Name     Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------------------------------------------------------
+u_core.u_sump2.ctrl_13_reg_p1[0]                                   SB_DFF       Q        Out     0.540     0.540       -         
+ctrl_13_reg_p1[0]                                                  Net          -        -       1.599     -           2         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_0_c_RNO          SB_LUT4      I0       In      -         2.139       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_0_c_RNO          SB_LUT4      O        Out     0.449     2.588       -         
+un1_ctrl_13_reg_p1_1_0_and                                         Net          -        -       0.905     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_0_c              SB_CARRY     I0       In      -         3.493       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_0_c              SB_CARRY     CO       Out     0.258     3.750       -         
+un1_ctrl_13_reg_p1_1_0                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_1_c              SB_CARRY     CI       In      -         3.764       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_1_c              SB_CARRY     CO       Out     0.126     3.890       -         
+un1_ctrl_13_reg_p1_1_1                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_2_c              SB_CARRY     CI       In      -         3.905       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_2_c              SB_CARRY     CO       Out     0.126     4.031       -         
+un1_ctrl_13_reg_p1_1_2                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_3_c              SB_CARRY     CI       In      -         4.045       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_3_c              SB_CARRY     CO       Out     0.126     4.171       -         
+un1_ctrl_13_reg_p1_1_3                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_4_c              SB_CARRY     CI       In      -         4.185       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_4_c              SB_CARRY     CO       Out     0.126     4.311       -         
+un1_ctrl_13_reg_p1_1_4                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_5_c              SB_CARRY     CI       In      -         4.325       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_5_c              SB_CARRY     CO       Out     0.126     4.451       -         
+un1_ctrl_13_reg_p1_1_5                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_6_c              SB_CARRY     CI       In      -         4.465       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_6_c              SB_CARRY     CO       Out     0.126     4.591       -         
+un1_ctrl_13_reg_p1_1_6                                             Net          -        -       0.014     -           1         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_7_c              SB_CARRY     CI       In      -         4.606       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_7_c              SB_CARRY     CO       Out     0.126     4.732       -         
+un1_ctrl_13_reg_p1_1                                               Net          -        -       0.386     -           3         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_7_c_RNIMALB4     SB_LUT4      I2       In      -         5.118       -         
+u_core.u_sump2.proc_data_en\.un1_ctrl_13_reg_p1_1_7_c_RNIMALB4     SB_LUT4      O        Out     0.379     5.496       -         
+g2_5                                                               Net          -        -       1.371     -           1         
+u_core.u_sump2.data_en_loc_p1_RNIQR7JH_0                           SB_LUT4      I1       In      -         6.867       -         
+u_core.u_sump2.data_en_loc_p1_RNIQR7JH_0                           SB_LUT4      O        Out     0.400     7.267       -         
+g2_8                                                               Net          -        -       1.371     -           1         
+u_core.u_sump2.ctrl_cmd_p1_RNI6TNDK[1]                             SB_LUT4      I1       In      -         8.638       -         
+u_core.u_sump2.ctrl_cmd_p1_RNI6TNDK[1]                             SB_LUT4      O        Out     0.400     9.038       -         
+un1_trigger_dly_cnt_0_sqmuxa_0_i                                   Net          -        -       0.905     -           2         
+u_core.u_sump2.un1_c_addr_cry_0_c                                  SB_CARRY     CI       In      -         9.943       -         
+u_core.u_sump2.un1_c_addr_cry_0_c                                  SB_CARRY     CO       Out     0.126     10.069      -         
+un1_c_addr_cry_0                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_1_c                                  SB_CARRY     CI       In      -         10.083      -         
+u_core.u_sump2.un1_c_addr_cry_1_c                                  SB_CARRY     CO       Out     0.126     10.209      -         
+un1_c_addr_cry_1                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_2_c                                  SB_CARRY     CI       In      -         10.223      -         
+u_core.u_sump2.un1_c_addr_cry_2_c                                  SB_CARRY     CO       Out     0.126     10.349      -         
+un1_c_addr_cry_2                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_3_c                                  SB_CARRY     CI       In      -         10.363      -         
+u_core.u_sump2.un1_c_addr_cry_3_c                                  SB_CARRY     CO       Out     0.126     10.490      -         
+un1_c_addr_cry_3                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_4_c                                  SB_CARRY     CI       In      -         10.504      -         
+u_core.u_sump2.un1_c_addr_cry_4_c                                  SB_CARRY     CO       Out     0.126     10.630      -         
+un1_c_addr_cry_4                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_5_c                                  SB_CARRY     CI       In      -         10.644      -         
+u_core.u_sump2.un1_c_addr_cry_5_c                                  SB_CARRY     CO       Out     0.126     10.770      -         
+un1_c_addr_cry_5                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_6_c                                  SB_CARRY     CI       In      -         10.784      -         
+u_core.u_sump2.un1_c_addr_cry_6_c                                  SB_CARRY     CO       Out     0.126     10.910      -         
+un1_c_addr_cry_6                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_7_c                                  SB_CARRY     CI       In      -         10.924      -         
+u_core.u_sump2.un1_c_addr_cry_7_c                                  SB_CARRY     CO       Out     0.126     11.050      -         
+un1_c_addr_cry_7                                                   Net          -        -       0.014     -           2         
+u_core.u_sump2.un1_c_addr_cry_8_c                                  SB_CARRY     CI       In      -         11.064      -         
+u_core.u_sump2.un1_c_addr_cry_8_c                                  SB_CARRY     CO       Out     0.126     11.191      -         
+un1_c_addr_cry_8                                                   Net          -        -       0.386     -           1         
+u_core.u_sump2.c_addr_RNO[9]                                       SB_LUT4      I3       In      -         11.577      -         
+u_core.u_sump2.c_addr_RNO[9]                                       SB_LUT4      O        Out     0.316     11.892      -         
+c_addr_RNO[9]                                                      Net          -        -       1.507     -           1         
+u_core.u_sump2.c_addr[9]                                           SB_DFFSR     D        In      -         13.399      -         
+=================================================================================================================================
+Total path delay (propagation time + setup) of 13.504 is 4.864(36.0%) logic and 8.640(64.0%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+
+====================================
+Detailed Report for Clock: pi_spi_sck
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                Starting                                               Arrival           
+Instance                        Reference      Type          Pin     Net               Time        Slack 
+                                Clock                                                                    
+---------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.miso_sr[63]       pi_spi_sck     SB_DFFNES     Q       pi_spi_miso_c     0.540       -0.957
+u_mesa_pi_spi.mosi_nib_d[0]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[0]      0.540       6.787 
+u_mesa_pi_spi.mosi_nib_d[1]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[1]      0.540       6.787 
+u_mesa_pi_spi.mosi_nib_d[2]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[2]      0.540       6.787 
+u_mesa_pi_spi.mosi_nib_d[3]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[3]      0.540       6.787 
+u_mesa_pi_spi.rdy_loc           pi_spi_sck     SB_DFFR       Q       rdy_loc           0.540       6.787 
+u_mesa_pi_spi.id_bit_cnt[3]     pi_spi_sck     SB_DFFNER     Q       id_bit_cnt[3]     0.540       18.619
+u_mesa_pi_spi.id_bit_cnt[4]     pi_spi_sck     SB_DFFNER     Q       id_bit_cnt[4]     0.540       18.668
+u_mesa_pi_spi.id_bit_cnt[0]     pi_spi_sck     SB_DFFNES     Q       id_bit_cnt[0]     0.540       20.439
+u_mesa_pi_spi.id_bit_cnt[1]     pi_spi_sck     SB_DFFNER     Q       id_bit_cnt[1]     0.540       20.488
+=========================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                                       Starting                                                    Required           
+Instance                                               Reference      Type          Pin     Net                    Time         Slack 
+                                                       Clock                                                                          
+--------------------------------------------------------------------------------------------------------------------------------------
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out     pi_spi_sck     SB_DFF        D       pin_out_RNO_4          4.895        -0.957
+u_mesa_core.u_mesa_decode.byte_sr[0]                   pi_spi_sck     SB_DFFE       D       pi_mosi_d[0]           9.895        6.787 
+u_mesa_core.u_mesa_decode.byte_sr[1]                   pi_spi_sck     SB_DFFE       D       pi_mosi_d[1]           9.895        6.787 
+u_mesa_core.u_mesa_decode.byte_sr[2]                   pi_spi_sck     SB_DFFE       D       pi_mosi_d[2]           9.895        6.787 
+u_mesa_core.u_mesa_decode.byte_sr[3]                   pi_spi_sck     SB_DFFE       D       pi_mosi_d[3]           9.895        6.787 
+u_mesa_pi_spi.rdy_meta                                 pi_spi_sck     SB_DFF        D       rdy_loc                9.895        6.787 
+u_mesa_pi_spi.miso_sr[60]                              pi_spi_sck     SB_DFFNES     D       miso_sr_20_0_i[60]     29.895       18.619
+u_mesa_pi_spi.miso_sr[56]                              pi_spi_sck     SB_DFFNER     D       miso_sr_20_0_i[56]     29.895       18.640
+u_mesa_pi_spi.miso_sr[57]                              pi_spi_sck     SB_DFFNER     D       miso_sr_20_0_i[57]     29.895       18.640
+u_mesa_pi_spi.miso_sr[58]                              pi_spi_sck     SB_DFFNER     D       miso_sr_20_0_i[58]     29.895       18.640
+======================================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      5.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.895
+
+    - Propagation time:                      5.851
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.957
+
+    Number of logic level(s):                2
+    Starting point:                          u_mesa_pi_spi.miso_sr[63] / Q
+    Ending point:                            u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out / D
+    The start point is clocked by            pi_spi_sck [falling] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                             Pin      Pin               Arrival     No. of    
+Name                                                         Type          Name     Dir     Delay     Time        Fan Out(s)
+----------------------------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.miso_sr[63]                                    SB_DFFNES     Q        Out     0.540     0.540       -         
+pi_spi_miso_c                                                Net           -        -       1.599     -           2         
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out_RNO_0     SB_LUT4       I0       In      -         2.139       -         
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out_RNO_0     SB_LUT4       O        Out     0.386     2.525       -         
+pin_out_RNO_0_14                                             Net           -        -       1.371     -           1         
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out_RNO       SB_LUT4       I0       In      -         3.896       -         
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out_RNO       SB_LUT4       O        Out     0.449     4.345       -         
+pin_out_RNO_4                                                Net           -        -       1.507     -           1         
+u_core.u_gpio_core.gen_i1\[3\]\.u_gpio_pin.pin_out           SB_DFF        D        In      -         5.851       -         
+============================================================================================================================
+Total path delay (propagation time + setup) of 5.957 is 1.480(24.8%) logic and 4.477(75.2%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 2: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      3.108
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 6.787
+
+    Number of logic level(s):                0
+    Starting point:                          u_mesa_pi_spi.mosi_nib_d[0] / Q
+    Ending point:                            u_mesa_core.u_mesa_decode.byte_sr[0] / D
+    The start point is clocked by            pi_spi_sck [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                       Pin      Pin               Arrival     No. of    
+Name                                     Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[0]              SB_DFF      Q        Out     0.540     0.540       -         
+pi_mosi_d[0]                             Net         -        -       2.568     -           2         
+u_mesa_core.u_mesa_decode.byte_sr[0]     SB_DFFE     D        In      -         3.108       -         
+======================================================================================================
+Total path delay (propagation time + setup) of 3.213 is 0.645(20.1%) logic and 2.568(79.9%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 3: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      3.108
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 6.787
+
+    Number of logic level(s):                0
+    Starting point:                          u_mesa_pi_spi.mosi_nib_d[1] / Q
+    Ending point:                            u_mesa_core.u_mesa_decode.byte_sr[1] / D
+    The start point is clocked by            pi_spi_sck [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                       Pin      Pin               Arrival     No. of    
+Name                                     Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[1]              SB_DFF      Q        Out     0.540     0.540       -         
+pi_mosi_d[1]                             Net         -        -       2.568     -           2         
+u_mesa_core.u_mesa_decode.byte_sr[1]     SB_DFFE     D        In      -         3.108       -         
+======================================================================================================
+Total path delay (propagation time + setup) of 3.213 is 0.645(20.1%) logic and 2.568(79.9%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 4: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      3.108
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 6.787
+
+    Number of logic level(s):                0
+    Starting point:                          u_mesa_pi_spi.mosi_nib_d[2] / Q
+    Ending point:                            u_mesa_core.u_mesa_decode.byte_sr[2] / D
+    The start point is clocked by            pi_spi_sck [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                       Pin      Pin               Arrival     No. of    
+Name                                     Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[2]              SB_DFF      Q        Out     0.540     0.540       -         
+pi_mosi_d[2]                             Net         -        -       2.568     -           2         
+u_mesa_core.u_mesa_decode.byte_sr[2]     SB_DFFE     D        In      -         3.108       -         
+======================================================================================================
+Total path delay (propagation time + setup) of 3.213 is 0.645(20.1%) logic and 2.568(79.9%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+Path information for path number 5: 
+      Requested Period:                      10.000
+    - Setup time:                            0.105
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         9.895
+
+    - Propagation time:                      3.108
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 6.787
+
+    Number of logic level(s):                0
+    Starting point:                          u_mesa_pi_spi.mosi_nib_d[3] / Q
+    Ending point:                            u_mesa_core.u_mesa_decode.byte_sr[3] / D
+    The start point is clocked by            pi_spi_sck [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                       Pin      Pin               Arrival     No. of    
+Name                                     Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[3]              SB_DFF      Q        Out     0.540     0.540       -         
+pi_mosi_d[3]                             Net         -        -       2.568     -           2         
+u_mesa_core.u_mesa_decode.byte_sr[3]     SB_DFFE     D        In      -         3.108       -         
+======================================================================================================
+Total path delay (propagation time + setup) of 3.213 is 0.645(20.1%) logic and 2.568(79.9%) route.
+Path delay compensated for clock skew. Clock skew is added to clock-to-out value, and is subtracted from setup time value
+
+
+
+##### END OF TIMING REPORT #####]
+
+
+Finished final timing analysis (Real Time elapsed 0h:00m:14s; CPU Time elapsed 0h:00m:10s; Memory used current: 191MB peak: 199MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:14s; CPU Time elapsed 0h:00m:10s; Memory used current: 191MB peak: 199MB)
+
+---------------------------------------
+Resource Usage Report for top 
+
+Mapping to part: ice40hx4ktq144
+Cell usage:
+GND             33 uses
+SB_CARRY        217 uses
+SB_DFF          883 uses
+SB_DFFE         772 uses
+SB_DFFNER       27 uses
+SB_DFFNES       13 uses
+SB_DFFNR        32 uses
+SB_DFFNS        32 uses
+SB_DFFR         3 uses
+SB_DFFSR        96 uses
+SB_DFFSS        20 uses
+SB_GB           7 uses
+SB_RAM1024x4    12 uses
+SB_RAM256x16    3 uses
+VCC             33 uses
+SB_LUT4         1570 uses
+
+I/O ports: 102
+I/O primitives: 66
+SB_GB_IO       1 use
+SB_IO          65 uses
+
+I/O Register bits:                  0
+Register bits not including I/Os:   1878 (53%)
+
+RAM/ROM usage summary
+Block Rams : 15 of 20 (75%)
+
+Total load per clock:
+   clk_100m: 1
+   clk_100m_tree: 1794
+   pi_spi_sck: 115
+
+Mapping Summary:
+Total  LUTs: 1570 (44%)
+
+Distribution of All Consumed LUTs = LUT4 
+Distribution of All Consumed Luts 1570 = 1570 
+
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:14s; CPU Time elapsed 0h:00m:11s; Memory used current: 63MB peak: 199MB)
+
+Process took 0h:00m:14s realtime, 0h:00m:11s cputime
+# Mon Feb 06 17:36:22 2017
+
+###########################################################]

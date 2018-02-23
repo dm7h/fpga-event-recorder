@@ -1,0 +1,85 @@
+#OPTIONS:"|-layerid|0|-orig_srs|\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\impl\\impl_Implmnt\\synwork\\impl_comp.srs|-prodtype|synplify_pro|-primux|-fixsmult|-infer_seqShift|-ice|-sdff_counter|-nram|-divnmod|-nostructver|-I|\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\impl\\|-I|C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib|-v2001|-devicelib|C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\generic\\sb_ice40.v|-encrypt|-pro|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work"
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\bin64\\c_ver.exe":1480789671
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\generic\\sb_ice40.v":1480789678
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\vlog\\hypermods.v":1480789686
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\vlog\\umr_capim.v":1480789686
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\vlog\\scemi_objects.v":1480789686
+#CUR:"C:\\lscc\\iCEcube2.2015.04\\synpbase\\lib\\vlog\\scemi_pipes.svh":1480789686
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\top.v":1486326472
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\mesa_pi_spi.v":1482089521
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\mesa_core.v":1482086081
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\mesa_decode.v":1482077323
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\mesa2lb.v":1476913511
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\mesa2ctrl.v":1476913511
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\spi_prom.v":1476913511
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\spi_byte2bit.v":1476913511
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\time_stamp.v":1482078409
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\core.v":1486431210
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\gpio_core.v":1486431238
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\gpio_pin.v":1482013050
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\sump2.v":1482098196
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\iob_bidi.v":1482003904
+#CUR:"\\\\BLACKMESA\\khubbard\\blackmesa\\lattice\\ice_zero\\sump2\\source\\gpio_pwm.v":1482097382
+0			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v" verilog
+1			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v" verilog
+2			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_core.v" verilog
+3			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v" verilog
+4			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v" verilog
+5			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2ctrl.v" verilog
+6			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_prom.v" verilog
+7			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\spi_byte2bit.v" verilog
+8			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\time_stamp.v" verilog
+9			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v" verilog
+10			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v" verilog
+11			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pin.v" verilog
+12			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v" verilog
+13			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\iob_bidi.v" verilog
+14			"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v" verilog
+#Dependency Lists(Uses List)
+0 2 8 1 9
+1 -1
+2 6 5 4 3
+3 -1
+4 -1
+5 -1
+6 7 8
+7 -1
+8 -1
+9 12 10 8
+10 14 11
+11 13
+12 -1
+13 -1
+14 -1
+#Dependency Lists(Users Of)
+0 -1
+1 0
+2 0
+3 2
+4 2
+5 2
+6 2
+7 6
+8 9 6 0
+9 0
+10 9
+11 10
+12 9
+13 11
+14 10
+#Design Unit to File Association
+module work iob_bidi 13
+module work gpio_pwm 14
+module work gpio_pin 11
+module work sump2 12
+module work gpio_core 10
+module work spi_byte2bit 7
+module work spi_prom 6
+module work mesa2ctrl 5
+module work mesa2lb 4
+module work mesa_decode 3
+module work top 0
+module work mesa_core 2
+module work time_stamp 8
+module work mesa_pi_spi 1
+module work core 9

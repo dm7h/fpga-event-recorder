@@ -1,0 +1,76 @@
+#--  Synopsys, Inc.
+#--  Version J-2015.03L
+#--  Project file \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\run_options.txt
+#--  Written on Mon Feb 06 17:35:47 2017
+
+
+#project files
+add_file -verilog "../source/top.v"
+add_file -verilog "../source/mesa_pi_spi.v"
+add_file -verilog "../source/mesa_core.v"
+add_file -verilog "../source/mesa_decode.v"
+add_file -verilog "../source/mesa2lb.v"
+add_file -verilog "../source/mesa2ctrl.v"
+add_file -verilog "../source/spi_prom.v"
+add_file -verilog "../source/spi_byte2bit.v"
+add_file -verilog "../source/time_stamp.v"
+add_file -verilog "../source/core.v"
+add_file -verilog "../source/gpio_core.v"
+add_file -verilog "../source/gpio_pin.v"
+add_file -verilog "../source/sump2.v"
+add_file -verilog "../source/iob_bidi.v"
+add_file -verilog "../source/gpio_pwm.v"
+add_file -constraint "../constraint/top.sdc"
+
+
+
+#implementation: "impl_Implmnt"
+impl -add impl_Implmnt -type fpga
+
+#
+#implementation attributes
+
+set_option -vlog_std v2001
+set_option -project_relative_includes 1
+
+#device options
+set_option -technology SBTiCE40
+set_option -part iCE40HX4K
+set_option -package TQ144
+set_option -speed_grade ""
+set_option -part_companion ""
+
+#compilation/mapping options
+
+# mapper_options
+set_option -frequency auto
+set_option -write_verilog 0
+set_option -write_vhdl 0
+set_option -srs_instrumentation 1
+
+# Lattice iCE40
+set_option -maxfan 10000
+set_option -rw_check_on_ram 0
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -retiming 0
+set_option -update_models_cp 0
+set_option -fix_gated_and_generated_clocks 1
+set_option -run_prop_extract 1
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+
+# Compiler Options
+set_option -auto_infer_blackbox 0
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_file "impl_Implmnt/impl.edf"
+impl -active "impl_Implmnt"

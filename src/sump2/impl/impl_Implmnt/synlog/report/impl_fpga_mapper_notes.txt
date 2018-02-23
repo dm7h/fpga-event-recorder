@@ -1,0 +1,81 @@
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled 
+@N: MT204 |Auto Constrain mode is disabled because clocks are defined in the SDC file
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":171:0:171:5|Removing sequential instance bit_togl of view:PrimLib.dffse(prim) in hierarchy view:work.mesa_pi_spi(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":297:0:297:5|Removing sequential instance lb_rd_sr[31:0] of view:PrimLib.dffe(prim) in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 49 registers during mapping 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[8] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[9] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[10] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[11] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[12] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[13] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[14] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[15] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[16] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[17] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[18] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[19] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[20] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[21] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[22] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[23] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[24] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[25] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[26] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[27] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[28] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[29] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[30] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance lb_addr[31] in hierarchy view:work.mesa2lb(verilog) because there are no references to its outputs 
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":344:9:344:71|Found 32 bit by 32 bit '==' comparator, 'proc_trig\.trigger_and6'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":447:11:447:56|Found 10 bit by 10 bit '==' comparator, 'proc_cap\.acquired_jk4'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":426:15:426:57|Found 16 bit by 16 bit '==' comparator, 'proc_cap\.un1_trigger_dly_cnt_1'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\sump2.v":547:13:547:42|Found 16 bit by 16 bit '==' comparator, 'proc_rle\.un1_events_p2'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":90:10:90:52|Found 18 bit by 18 bit '==' comparator, 'proc_pwm_cnt\.prescale_cnt10'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":131:14:131:37|Found 12 bit by 12 bit '==' comparator, 'proc_pwm_fsm\.pwm_loc8'
+@N: MF179 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_pwm.v":140:14:140:37|Found 12 bit by 12 bit '==' comparator, 'proc_pwm_fsm\.pwm_loc20'
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 99 registers during mapping 
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 148 registers during mapping 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":166:1:166:2|Removing sequential instance u_core.u_gpio_core.lb_rd_d_tri_enable in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 197 registers during mapping 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[10] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[9] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[8] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[25] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[24] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[23] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[22] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[21] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[20] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[19] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[18] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[17] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[16] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[15] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[14] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[13] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[12] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[11] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[31] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[30] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[29] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[28] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[27] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: BN362 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.addr_cnt[26] in hierarchy view:work.top(verilog) because there are no references to its outputs 
+@N: MF794 |RAM a_di_p2_CR63[47:0] required 246 registers during mapping 
+@N: FX1016 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":77:22:77:31|SB_GB_IO inserted on the port pi_spi_sck.
+@N: FX1017 :|SB_GB inserted on the net u_core.u_sump2.N_96_i.
+@N: FX1017 :|SB_GB inserted on the net u_mesa_pi_spi.proc_rd_cnt\.id_bit_cnt10.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_pi_spi.v":124:0:124:5|SB_GB inserted on the net u_mesa_pi_spi.rd_rdy_xfer_wide.
+@N: FX1017 :|SB_GB inserted on the net u_mesa_core.u_mesa2lb.lb_wr_0_sqmuxa.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\core.v":78:0:78:5|SB_GB inserted on the net lb_rd_rdy.
+@N: FX1017 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa_decode.v":196:0:196:5|SB_GB inserted on the net u_mesa_core.rx_loc_rdy.
+@N: BW103 |Synopsys Constraint File time units using default value of 1ns 
+@N: BW107 |Synopsys Constraint File capacitance units using default value of 1pF 
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack

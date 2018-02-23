@@ -1,0 +1,7 @@
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\syn_nfilter.exe  -link  -multisrs  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs  -osyn  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_mult.srs  -log  \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_multi_srs_gen.srr 
+rc:0 success:1
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_comp.srs|i|1486431355|70563
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synwork\impl_mult.srs|o|1486431357|10830
+\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_multi_srs_gen.srr|o|1486431357|796
+C:\lscc\iCEcube2.2015.04\synpbase\bin\syn_nfilter.exe|i|1480789671|3000832
+C:\lscc\iCEcube2.2015.04\synpbase\bin64\syn_nfilter.exe|i|1480789675|3967488

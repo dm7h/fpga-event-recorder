@@ -1,0 +1,2 @@
+CKID0001:@|S:clk_100m_tree_keep@|E:lb_rd_p1@|F:@syn_sample_clock_path==CKID0001@|M:ClockId0001 
+CKID0002:@|S:pi_spi_sck_keep@|E:u_mesa_pi_spi.id_bit_cnt[7]@|F:@syn_sample_clock_path==CKID0002@|M:ClockId0002 

@@ -1,0 +1,35 @@
+#### START OF AREA REPORT #####[
+
+Part:			ICE40HX4KTQ144 (Lattice)
+
+------------------------------------------------------------------------
+########   Utilization report for  Top level view:   gpio_pwm   ########
+========================================================================
+
+SEQUENTIAL ELEMENTS
+Name      Total elements     Utilization     Notes
+--------------------------------------------------
+FLOPS     92                 100 %                
+==================================================
+Total SEQUENTIAL ELEMENTS in the block gpio_pwm:	92 (36.80 % Utilization)
+
+
+COMBINATIONAL LOGIC
+Name       Total elements     Utilization     Notes
+---------------------------------------------------
+LUTS       76                 100 %                
+CARRYS     48                 100 %                
+===================================================
+Total COMBINATIONAL LOGIC in the block gpio_pwm:	124 (49.60 % Utilization)
+
+
+IO PADS
+Name     Total elements     Utilization     Notes
+-------------------------------------------------
+PADS     32                 100 %                
+=================================================
+Total IO PADS in the block gpio_pwm:	32 (12.80 % Utilization)
+
+
+##### END OF AREA REPORT #####]
+

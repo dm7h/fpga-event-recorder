@@ -1,0 +1,2 @@
+@E: CG389 :"\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\source\gpio_core.v":237:10:237:19|Reference to undefined module gpio_pwm
+

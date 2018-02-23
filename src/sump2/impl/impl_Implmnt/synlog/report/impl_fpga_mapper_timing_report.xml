@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+Max Top 5 critical clocks will be reported. For rest user needs to refer to Detailed report
+*******************************************************************************************-->
+<report_table display_priority="2" name="Timing Summary">
+<report_link name="Detailed report">
+<data>\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_fpga_mapper.srr</data>
+<title>START OF TIMING REPORT</title>
+</report_link>
+<row>
+<data tcl_name="clock_name">Clock Name</data>
+<data tcl_name="req_freq">Req Freq</data>
+<data tcl_name="est_freq">Est Freq</data>
+<data tcl_name="slack">Slack</data>
+</row>
+<row>
+<data>clk_100m</data>
+<data>100.0 MHz</data>
+<data>NA</data>
+<data>NA</data>
+</row>
+<row>
+<data>clk_100m_tree</data>
+<data>100.0 MHz</data>
+<data>65.3 MHz</data>
+<data>-3.603</data>
+</row>
+<row>
+<data>pi_spi_sck</data>
+<data>33.3 MHz</data>
+<data>21.8 MHz</data>
+<data>-0.957</data>
+</row>
+</report_table>

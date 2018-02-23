@@ -1,0 +1,18 @@
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.prom_addr[31:0],  because it is equivalent to instance u_mesa_core.u_mesa2lb.lb_addr[31:0]
+@W: BN132 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\mesa2lb.v":223:0:223:5|Removing sequential instance u_mesa_core.u_mesa2lb.prom_wr_d[31:0],  because it is equivalent to instance u_mesa_core.u_mesa2lb.lb_wr_d[31:0]
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":89:22:89:28|Tristate driver ftdi_ro on net ftdi_ro has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":87:22:87:28|Tristate driver ftdi_wo on net ftdi_wo has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_1 on net xtra_a[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_2 on net xtra_a[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_3 on net xtra_a[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_4 on net xtra_a[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":86:22:86:27|Tristate driver xtra_a_5 on net xtra_a[0] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":61:22:61:30|Tristate driver sram_lb_l on net sram_lb_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":60:22:60:30|Tristate driver sram_ub_l on net sram_ub_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":59:22:59:30|Tristate driver sram_ce_l on net sram_ce_l has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_1 on net rsvd[5] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_2 on net rsvd[4] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_3 on net rsvd[3] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_4 on net rsvd[2] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_5 on net rsvd[1] has its enable tied to GND (module top) 
+@W: MO111 :"\\blackmesa\khubbard\blackmesa\lattice\ice_zero\sump2\source\top.v":53:22:53:25|Tristate driver rsvd_6 on net rsvd[0] has its enable tied to GND (module top) 

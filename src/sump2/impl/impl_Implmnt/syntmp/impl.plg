@@ -1,0 +1,39 @@
+@P:  Worst Slack : -3.603
+@P:  clk_100m - Estimated Frequency : NA
+@P:  clk_100m - Requested Frequency : 100.0 MHz
+@P:  clk_100m - Estimated Period : NA
+@P:  clk_100m - Requested Period : 10.000
+@P:  clk_100m - Slack : NA
+@P:  clk_100m_tree - Estimated Frequency : 65.3 MHz
+@P:  clk_100m_tree - Requested Frequency : 100.0 MHz
+@P:  clk_100m_tree - Estimated Period : 15.315
+@P:  clk_100m_tree - Requested Period : 10.000
+@P:  clk_100m_tree - Slack : -3.603
+@P:  pi_spi_sck - Estimated Frequency : 21.8 MHz
+@P:  pi_spi_sck - Requested Frequency : 33.3 MHz
+@P:  pi_spi_sck - Estimated Period : 45.944
+@P:  pi_spi_sck - Requested Period : 30.000
+@P:  pi_spi_sck - Slack : -0.957
+@P:  Worst Slack(min analysis) : 0.594
+@P:  clk_100m - Estimated Frequency(min analysis) : NA
+@P:  clk_100m - Requested Frequency(min analysis) : 100.0 MHz
+@P:  clk_100m - Estimated Period(min analysis) : NA
+@P:  clk_100m - Requested Period(min analysis) : 10.000
+@P:  clk_100m - Slack(min analysis) : NA
+@P:  clk_100m_tree - Estimated Frequency(min analysis) : 65.3 MHz
+@P:  clk_100m_tree - Requested Frequency(min analysis) : 100.0 MHz
+@P:  clk_100m_tree - Estimated Period(min analysis) : 15.315
+@P:  clk_100m_tree - Requested Period(min analysis) : 10.000
+@P:  clk_100m_tree - Slack(min analysis) : -3.603
+@P:  pi_spi_sck - Estimated Frequency(min analysis) : 21.8 MHz
+@P:  pi_spi_sck - Requested Frequency(min analysis) : 33.3 MHz
+@P:  pi_spi_sck - Estimated Period(min analysis) : 45.944
+@P:  pi_spi_sck - Requested Period(min analysis) : 30.000
+@P:  pi_spi_sck - Slack(min analysis) : -0.957
+@P: top Part : ice40hx4ktq144
+@P: top I/O primitives : 66
+@P: top I/O Register bits : 0
+@P: top Register bits (Non I/O) : 1878 (53%)
+@P: top Block Rams : 15 of 20 (75%)
+@P: top Total Luts : 1570 (44%)
+@P:  CPU Time : 0h:00m:10s

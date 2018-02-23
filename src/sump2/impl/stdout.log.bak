@@ -1,0 +1,40 @@
+Running in Lattice mode
+
+sourcing C:\lscc\iCEcube2.2015.04\synpbase\lib\message_override.tcl
+
+
+Starting:    C:\lscc\iCEcube2.2015.04\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\iCEcube2.2015.04\synpbase
+Hostname:    DESKTOP-8BPHC57
+Date:        Mon Feb 06 17:35:18 2017
+Version:     J-2015.03L
+
+Arguments:   -product synplify_pro -batch impl_syn.prj
+ProductType: synplify_pro
+
+
+
+
+
+log file: "\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\impl.srr"
+Running: impl_Implmnt in foreground
+
+Running impl_syn|impl_Implmnt
+
+Running: compile (Compile) on impl_syn|impl_Implmnt
+
+Running: compile_flow (Compile Process) on impl_syn|impl_Implmnt
+
+Running: compiler (Compile Input) on impl_syn|impl_Implmnt
+compiler exited with errors
+
+Job: "compiler" terminated with error status: 2
+See log file: "\\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\impl\impl_Implmnt\synlog\impl_compiler.srr"
+Return Code: 2
+Run Time:0h:00m:01s
+
+
+exit status=2
+
+exit status=2
+

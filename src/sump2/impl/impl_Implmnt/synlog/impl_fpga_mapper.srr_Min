@@ -1,0 +1,216 @@
+
+
+@S |##### START OF TIMING REPORT #####[
+# Timing Report written on Mon Feb 06 17:36:21 2017
+#
+
+
+Top view:               top
+Requested Frequency:    33.3 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    \\BLACKMESA\khubbard\blackmesa\lattice\ice_zero\sump2\constraint\top.sdc
+                       
+@N: MT320 |Timing report estimates place and route data. Please look at the place and route timing report for final timing.
+
+@N: MT322 |Clock constraints cover only FF-to-FF paths associated with the clock.
+
+
+
+Performance Summary 
+*******************
+
+
+Worst slack in design: 0.594
+
+                   Requested     Estimated     Requested     Estimated                Clock        Clock           
+Starting Clock     Frequency     Frequency     Period        Period        Slack      Type         Group           
+-------------------------------------------------------------------------------------------------------------------
+clk_100m           100.0 MHz     NA            10.000        NA            NA         declared     default_clkgroup
+clk_100m_tree      100.0 MHz     65.3 MHz      10.000        15.315        -3.603     declared     default_clkgroup
+pi_spi_sck         33.3 MHz      21.8 MHz      30.000        45.944        -0.957     declared     default_clkgroup
+===================================================================================================================
+@N: MT582 |Estimated period and frequency not reported for given clock unless the clock has at least one timing path which is not a false or a max delay path and that does not have excessive slack
+
+
+
+Clock Relationships
+*******************
+
+Clocks                        |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+--------------------------------------------------------------------------------------------------------------------
+Starting       Ending         |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+--------------------------------------------------------------------------------------------------------------------
+clk_100m_tree  clk_100m_tree  |  0.000       0.594  |  No paths    -      |  No paths    -      |  No paths    -    
+clk_100m_tree  pi_spi_sck     |  No paths    -      |  No paths    -      |  5.000       6.978  |  No paths    -    
+pi_spi_sck     clk_100m_tree  |  0.000       2.102  |  No paths    -      |  No paths    -      |  5.000       9.023
+pi_spi_sck     pi_spi_sck     |  0.000       2.102  |  0.000       2.614  |  No paths    -      |  No paths    -    
+====================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: clk_100m_tree
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                                 Starting                                                                                   Arrival          
+Instance                                         Reference         Type             Pin          Net                                        Time        Slack
+                                                 Clock                                                                                                       
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa_decode.byte_rdy_p1            clk_100m_tree     SB_DFF           Q            rx_loc_rdy                                 0.378       0.594
+u_core.lb_rd_rdy                                 clk_100m_tree     SB_DFF           Q            lb_rd_rdy                                  0.378       0.594
+u_core.u_sump2.a_we_p2                           clk_100m_tree     SB_DFF           Q            a_we_p2                                    0.378       1.976
+u_mesa_core.u_mesa2lb.dword_stage[2]             clk_100m_tree     SB_DFF           Q            dword_stage[2]                             0.378       1.983
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[0]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[0]     0.437       2.004
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[1]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[1]     0.437       2.004
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[2]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[2]     0.437       2.004
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[3]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[3]     0.437       2.004
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[4]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[4]     0.437       2.004
+u_core.u_sump2.a_di_p2_CR63_a_di_p2_CR63_0_0     clk_100m_tree     SB_RAM256x16     RDATA[5]     a_di_p2_CR63_a_di_p2_CR63_0_0_RDATA[5]     0.437       2.004
+=============================================================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                      Starting                                               Required          
+Instance                              Reference         Type        Pin     Net              Time         Slack
+                                      Clock                                                                    
+---------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa2lb.dword_sr[0]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[1]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[2]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[3]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[4]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[5]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[6]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[7]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[8]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+u_mesa_core.u_mesa2lb.dword_sr[9]     clk_100m_tree     SB_DFFE     E       rx_loc_rdy_g     0.000        0.594
+===============================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        0.594
+    + Clock delay at starting point:         0.000 (ideal)
+    - Requested Period:                      0.000
+    - Hold time:                             0.000
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (critical) :                     0.594
+
+    Number of logic level(s):                1
+    Starting point:                          u_mesa_core.u_mesa_decode.byte_rdy_p1 / Q
+    Ending point:                            u_mesa_core.u_mesa2lb.dword_sr[0] / E
+    The start point is clocked by            clk_100m_tree [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                                Pin                              Pin               Arrival     No. of    
+Name                                              Type        Name                             Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa_decode.byte_rdy_p1             SB_DFF      Q                                Out     0.378     0.378       -         
+rx_loc_rdy                                        Net         -                                -       0.000     -           2         
+u_mesa_core.u_mesa_decode.byte_rdy_p1_RNITS28     SB_GB       USER_SIGNAL_TO_GLOBAL_BUFFER     In      -         0.378       -         
+u_mesa_core.u_mesa_decode.byte_rdy_p1_RNITS28     SB_GB       GLOBAL_BUFFER_OUTPUT             Out     0.216     0.594       -         
+rx_loc_rdy_g                                      Net         -                                -       0.000     -           37        
+u_mesa_core.u_mesa2lb.dword_sr[0]                 SB_DFFE     E                                In      -         0.594       -         
+=======================================================================================================================================
+
+
+
+
+====================================
+Detailed Report for Clock: pi_spi_sck
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                Starting                                               Arrival          
+Instance                        Reference      Type          Pin     Net               Time        Slack
+                                Clock                                                                   
+--------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[0]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[0]      0.378       2.102
+u_mesa_pi_spi.mosi_nib_d[1]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[1]      0.378       2.102
+u_mesa_pi_spi.mosi_nib_d[2]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[2]      0.378       2.102
+u_mesa_pi_spi.mosi_nib_d[3]     pi_spi_sck     SB_DFF        Q       pi_mosi_d[3]      0.378       2.102
+u_mesa_pi_spi.nib_sr_e_0[0]     pi_spi_sck     SB_DFFE       Q       nib_sr[0]         0.378       2.102
+u_mesa_pi_spi.nib_sr_e_0[1]     pi_spi_sck     SB_DFFE       Q       nib_sr[1]         0.378       2.102
+u_mesa_pi_spi.rdy_loc           pi_spi_sck     SB_DFFR       Q       rdy_loc           0.378       2.102
+u_mesa_pi_spi.id_bit_cnt[0]     pi_spi_sck     SB_DFFNES     Q       id_bit_cnt[0]     0.378       2.614
+u_mesa_pi_spi.id_bit_cnt[1]     pi_spi_sck     SB_DFFNER     Q       id_bit_cnt[1]     0.378       2.614
+u_mesa_pi_spi.id_bit_cnt[2]     pi_spi_sck     SB_DFFNER     Q       id_bit_cnt[2]     0.378       2.614
+========================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                         Starting                                                 Required          
+Instance                                 Reference      Type          Pin     Net                 Time         Slack
+                                         Clock                                                                      
+--------------------------------------------------------------------------------------------------------------------
+u_mesa_core.u_mesa_decode.byte_sr[0]     pi_spi_sck     SB_DFFE       D       pi_mosi_d[0]        0.074        2.102
+u_mesa_core.u_mesa_decode.byte_sr[1]     pi_spi_sck     SB_DFFE       D       pi_mosi_d[1]        0.074        2.102
+u_mesa_core.u_mesa_decode.byte_sr[2]     pi_spi_sck     SB_DFFE       D       pi_mosi_d[2]        0.074        2.102
+u_mesa_core.u_mesa_decode.byte_sr[3]     pi_spi_sck     SB_DFFE       D       pi_mosi_d[3]        0.074        2.102
+u_mesa_pi_spi.nib_sr_e_0[1]              pi_spi_sck     SB_DFFE       D       nib_sr[0]           0.074        2.102
+u_mesa_pi_spi.nib_sr_e_0[2]              pi_spi_sck     SB_DFFE       D       nib_sr[1]           0.074        2.102
+u_mesa_pi_spi.rdy_meta                   pi_spi_sck     SB_DFF        D       rdy_loc             0.074        2.102
+u_mesa_pi_spi.id_bit_cnt[1]              pi_spi_sck     SB_DFFNER     D       id_bit_cnt_s[1]     0.074        2.614
+u_mesa_pi_spi.id_bit_cnt[2]              pi_spi_sck     SB_DFFNER     D       id_bit_cnt_s[2]     0.074        2.614
+u_mesa_pi_spi.id_bit_cnt[3]              pi_spi_sck     SB_DFFNER     D       id_bit_cnt_s[3]     0.074        2.614
+====================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+    Propagation time:                        2.176
+    + Clock delay at starting point:         0.000 (ideal)
+    - Requested Period:                      0.000
+    - Hold time:                             0.074
+    - Clock delay at ending point:           0.000 (ideal)
+    = Slack (non-critical) :                 2.102
+
+    Number of logic level(s):                0
+    Starting point:                          u_mesa_pi_spi.mosi_nib_d[0] / Q
+    Ending point:                            u_mesa_core.u_mesa_decode.byte_sr[0] / D
+    The start point is clocked by            pi_spi_sck [rising] on pin C
+    The end   point is clocked by            clk_100m_tree [rising] on pin C
+
+Instance / Net                                       Pin      Pin               Arrival     No. of    
+Name                                     Type        Name     Dir     Delay     Time        Fan Out(s)
+------------------------------------------------------------------------------------------------------
+u_mesa_pi_spi.mosi_nib_d[0]              SB_DFF      Q        Out     0.378     0.378       -         
+pi_mosi_d[0]                             Net         -        -       1.798     -           2         
+u_mesa_core.u_mesa_decode.byte_sr[0]     SB_DFFE     D        In      -         2.176       -         
+======================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
