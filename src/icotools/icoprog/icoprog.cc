@@ -49,17 +49,17 @@ bool enable_data_port = false;
 #  define RPI_ICE_CS      10 // PIN 24, CE0
 #  define RPI_ICE_SELECT  26 // PIN 32, GPIO.26
 
-#  define RASPI_D8   0 // PIN 11, GPIO.0
-#  define RASPI_D7   1 // PIN 12, GPIO.1
-#  define RASPI_D6   3 // PIN 15, GPIO.3
-#  define RASPI_D5   4 // PIN 16, GPIO.4
+#  define RASPI_D8   8 // PIN 11, GPIO.0
+#  define RASPI_D7   9 // PIN 12, GPIO.1
+#  define RASPI_D6  15 // PIN 15, GPIO.3
+#  define RASPI_D5  16 // PIN 16, GPIO.4
 #  define RASPI_D4  12 // PIN 19, MOSI
 #  define RASPI_D3  13 // PIN 21, MISO
 #  define RASPI_D2  11 // PIN 26, CE1
-#  define RASPI_D1  24 // PIN 35, GPIO.24
-#  define RASPI_D0  27 // PIN 36, GPIO.27
-#  define RASPI_DIR 28 // PIN 38, GPIO.28
-#  define RASPI_CLK 29 // PIN 40, GPIO.29
+#  define RASPI_D1  10 // PIN 35, GPIO.24
+#  define RASPI_D0   6 // PIN 36, GPIO.27
+#  define RASPI_DIR  5 // PIN 38, GPIO.28
+#  define RASPI_CLK  3 // PIN 40, GPIO.29
 
 void digitalSync(int usec_delay)
 {
