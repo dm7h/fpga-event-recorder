@@ -1,0 +1,115 @@
+Versuch UrJTAG zu kompileren:
+
+1. Patch von opendous
+2. urjtag rev 1486 verwenden
+3. patch verwenden
+
+nach ./configure, make kommt folgende fehlermedlung:
+
+make[3]: Betrete Verzeichnis '/home/andz/Desktop/urjtag-0.10/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -DLOCALEDIR=\"/usr/local/share/locale\"  -I.. -I../include    -g -O2 -Wall -MT jtag.o -MD -MP -MF .deps/jtag.Tpo -c -o jtag.o jtag.c
+mv -f .deps/jtag.Tpo .deps/jtag.Po
+gcc  -g -O2 -Wall   -o jtag jtag.o -Lcmd -lcmd -Ltap -ltap -Lpart -lpart -Llib -ljtaglib -Lflash -lflash -Ltap -ltap -Lflash -lflash -Lbus -lbus -lm -Lsvf -lsvf -Lbsdl -lbsdl   -lrt  -L/usr/lib -lusb
+tap/libtap.a(cable.o):(.data+0x3c): undefined reference to `urj_tap_cable_opendous_driver'
+tap/libtap.a(generic_usbconn.o):(.data+0x0): undefined reference to `urj_tap_cable_usbconn_opendous'
+collect2: ld returned 1 exit status
+make[3]: *** [jtag] Fehler 1
+
+anderer Versuch: Urjtag mit anderem PATCH verwenden: Revidision 3348 von BlackFin:
+
+nope...
+
+Openocd unter Windows:
+
+> There is nothing to be fixed - I can build OpenOCD from SVN on MinGW
+> without problems. MinGW is not enough - you need a lot of additional
+> tools - here is a list of what I have in my directory for MinGW. I
+> didn't install all of that, but I don't remember now what I have skipped
+> - I guess that not all gcc packages were needed, but I've downloaded
+> them all some time ago.
+>
+> autoconf-2.63.tar.bz2
+> automake-1.9.6.tar.bz2
+> bash-3.1-MSYS-1.0.11-1.tar.bz2
+> binutils-2.17.50-20060824-1.tar.gz
+> coreutils-5.97-MSYS-1.0.11-snapshot.tar.bz2
+> csmake-3.81-MSYS-1.0.11-2.tar.bz2
+> gcc-4.3.2.tar.bz2
+> gcc-core-3.4.5-20060117-3.tar.gz
+> gcc-core-4.3.2.tar.bz2
+> gcc-g++-3.4.5-20060117-3.tar.gz
+> gcc-g++-4.3.2.tar.bz2
+> gcc-testsuite-4.3.2.tar.bz2
+> libtool-2.2.6a.tar.tar
+> libusb-win32-device-bin-0.1.12.1.tar.gz
+> m4-1.4.7-MSYS.tar.bz2
+> mingw32-make-3.81-20080326-2.tar.gz
+> MinGW-5.1.4.exe
+> mingwrt-3.15.1-mingw32.tar.gz
+> MSYS-1.0.10.exe
+> msysCORE-1.0.11-2007.01.19-1.tar.bz2
+> msysDTK-1.0.1.exe
+> w32api-3.12-mingw32-dev.tar.gz
+>
+>
+> I'm planning to do a article about building OpenOCD under MinGW and
+> MSYS, but that won't be around any time soon... Anyway - I'm a complete
+> noob and somehow I managed to do that, so... it's possible and easy [;
+
+Kompilieren von UrJTAG für Windows:
+
+Libusb für windows sorucen downloaden: 
+
+1. alle mingw pakete mit aptitude runterladen
+2. ./configure --host=i586-mingw32msvc --with-inpout32 --with-libusb=/home/andz/libusb/libusb/
+3. make
+
+...geht irgendwie ned...
+
+==> cygwin:
+
+folgende Pakete:
+
+alle mingw dev Pakete
+
+autoconf
+automake
+bison
+flex
+libtool 
+gettext
+readline 
+ioperm 
+libusb
+libusb-win32 runterladen von http://libusb-win32.sourceforge.net/ (Filter) und in irgendein verzeichnis kopieren
+
+nope...
+
+also nochmal für Linux versuchen, Fehler in tap-lib gefunden
+
+==> Makefile.am und Makefile.im im Ordner src/tap anpassen
+
+Makefile.am:
+
+hinzufügen von 	cable/opendous.c in der sources list
+
+Makefile.im:
+
+an vorlage von z.B. Byteblaster halten und für opendous.c das selbe erzeugen
+
+Openopendous:
+=============
+
+rev. 1454 estick:
+
+1. Estick Firmware um PortB bitshift erweitert
+2. zusätliche pakete: texi2html, texinfo
+3. ./configuer --enable-estick
+
+jtag newtap Altera tap -irlen 10 -ircapture 0x6 irmask 0xf expected-id 0x20A10DD
+
+
+
+
+
+

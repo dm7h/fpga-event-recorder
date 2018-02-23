@@ -1,0 +1,19 @@
+[Eagle]
+Version="05 07 00"
+Platform="Linux"
+Serial="62191E841E-LSR-WLM-1EL"
+Globals="Globals"
+Desktop="Desktop"
+
+[Globals]
+AutoSaveProject=1
+
+[Win_1]
+Type="Control Panel"
+Loc="161 223 760 622"
+State=0
+Number=0
+
+[Desktop]
+Screen="1024 768"
+Window="Win_1"

@@ -1,0 +1,5 @@
+This is a modified LUFA Example:
+/LUFA-130901/Demos/Device/ClassDriver/VirtualSerial
+It is used for JTAG programming of the CPLD of the TPLE board.
+
+Matthias Weber

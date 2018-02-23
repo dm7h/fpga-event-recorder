@@ -1,0 +1,105 @@
+Gliederung Ausarbeitung
+-----------------------
+
+1. Einführung
+1.1 Motivation
+1.2 Ziel der Arbeit
+1.3 Open Source
+
+2. Digitale Messtechnik
+2.1 Speichergestützte Messtechnik
+2.2 Messsignale
+2.3 Messfehler
+2.4 Logikanalyse
+2.5 Erfassung von Zeitgrößen
+
+3. Hardwareprotoyp
+
+4. Auswahl der Komponenten
+4.1 Einführung
+4.2 Mikrocontroller
+4.3 Logikbaustein
+4.4 Speicherbausteine
+4.5 Spannungsversorgung
+4.6 Treiberbausteine
+
+5. Platinendesign
+5.1 Einführung
+5.2 Designsoftware Cadsoft EAGLE
+5.3 Entwurf des Schaltplanes
+5.4 Entwurf des Platinenlayoutes
+5.5 Aufbau des Prototypen
+
+6. Mikrocontroller Software
+6.1 Einführung
+6.2 Entwicklungsumgebung
+6.3 USB-Bootloader
+6.3.1 Atmel Bootloader
+6.3.2 LUFA Bootloader
+6.3.2 PC-Software
+6.4 Schnittstelle zum Logikbaustein
+
+7. USB Schnittstelle
+7.1 Einführung
+7.2 Hardwareschnittstelle des Atmega32-U4
+7.3 Atmel USB-Stack
+7.3.1 Einführung
+7.3.2 Firmware Architektur
+7.3.3 Scheduler
+7.3.4 USB-Treiber
+7.3.5 Anwendungsteil
+7.3.6 Beispiel USB-UART Adapter
+7.3.7 Anpassen an das TPLE-Board
+7.3.8 Erstellung eines neues USB-Device
+7.4 LUFA USB-Stack
+7.4.1 Einführung
+7.4.2 
+
+8. USB-JTAG Schnittstelle
+8.1 Einführung
+8.2 JTAG-Schnittstelle basierend auf Atmel-USB
+8.3 JTAG-Schnittstelle basierend auf LUFA
+8.4 PC-Software
+8.4.1 Altera Jam-STAPL-Player
+8.4.2 Ur-JTAG
+8.4.3 OpenOCD
+
+9. PC-Software
+9.1 Einführung
+9.2 Installieren der USB-Treibersoftware
+9.2.1 GNU/Linux basierende Systeme
+9.2.2 MS Windows basierende Systeme
+9.3 Software zur Kommunikaion mit der Hardware
+9.4 Steuerung über AT-ähnliche Befehle
+9.5 Format der Datenübertragung nach IEEE Std 1364-2001
+9.6 Software zur Verarbeitung der Logikdaten
+9.6.1 GTKWave
+
+10. VHDL Design
+10.1 Einführung
+10.2 Entwicklungsumgebung
+10.3 Schnittstelle zu den Messfühlern
+10.4 Trigger
+10.5 Timer
+10.6 Speicherschnittstelle
+10.7 Schnittstelle zum Mikrocontroller
+10.8 Steuerwerk
+
+11. Ausblick
+
+12. Literatur
+
+13. Einzelnachweise
+
+14. Abkürzungsverteichnis
+
+15. Softwareverzeichnis
+
+16. Index
+16.1 Abbildungsverzeichnis
+
+17. Schaltpläne und Zeichnungen
+
+18. Datenträger (CD)
+
+19. Erstellungserklärung

@@ -1,0 +1,365 @@
+% ==========================================================
+% Dokumentenart einstellen
+% ==========================================================
+%\documentclass[%
+%10pt,			% 10 Pt Schriftgr??e [default]
+%12pt, 			% 12 Pt Schriftgr??e
+%onecolumn,	% Eine Spalte [default]
+%oneside,		% Einseitiger Druck,
+%twosided,		% zweiseitiger Druck, funktioniert nur bei book
+%a4paper,		% Format: A4
+%pdftex,			% PDF-Erzeugung erzwingen
+%titlepage,		% Titelseite vorhanden
+%openright		% funktioniert nur bei Report oder book
+%]{report} 	% sonstige Einstellungen aus der Dokumentenart "report" verwenden
+
+		
+%\usepackage[nottoc]{tocbibind} % Literaturverzeichnis, Index, ... automatisch
+															 % in die Inhaltsangabe schreiben
+															 % im Normalfall muss dies mit dem Befehl
+															 % \addcontentsline{toc}{chapter}{Name} geschehen
+		
+
+% ==========================================================
+% Spracheinstellungen
+% ==========================================================
+
+\usepackage[ngerman]{babel}	% Silbentrennung nach neuer deutscher 
+														% Rechtschreibung erm?glichen
+\usepackage{bibgerm}		% Deutsches Literaturverzeichnis, nur n?tig wenn "thebibliography nicht reicht"
+\usepackage{ae}					% Textsatz u.a. in Formeln optimieren
+\usepackage[right]{eurosym}		% Euro Zeichen (laden erforderlich, da nicht in Standardzeichensatz vorhanden)
+															% Eurozeichen recht vom Betrag wenn mit \EUR{2,49} aufgerufen sonst [left] nehmen
+
+% ==========================================================
+%% Mathematische Symbole
+% ==========================================================
+\usepackage{amsmath} 	% Formelsatz erm?glichen
+\usepackage{amstext}	% Text in Formeln per \text{hier kommt der Text}
+\usepackage{amsfonts} % f?r komplexere Formeln mit z.B. Mengensymbolen
+\usepackage{amssymb}  % f?r komplexere Formeln mit z.B. Mengensymbolen
+\usepackage{lscape} %Ermöglicht Querformatseiten
+
+% ==========================================================
+% Quelltext 
+% ==========================================================
+\usepackage{listings} % Paket f?r Syntax Highlighting in Quelltext
+\lstset{
+numbers=left, 			% Zeilennummerierung links
+%numberstyle=\tiny, % kleine Nummern
+numbersep=5pt,			% Abstand der Zeilennummerierung
+breaklines=true, 		% Zeilenumbr?che erlauben
+captionpos=b,			% Beschriftung unter [bottom] dem Quelltext
+frame=lines, % Oberhalb und unterhalb des Listings ist eine Linie
+basicstyle=\small \ttfamily, % Schriftart
+keywordstyle=\color{blue}, % Farbe für die Keywords wie public, void, object u.s.w.
+commentstyle=\color{kotzgruen}, % Farbe der Kommentare
+stringstyle=\color{red}, % Farbe der Zeichenketten
+numbersep=5pt,
+breaklines=true, % Wordwrap a.k.a. Zeilenumbruch aktiviert
+showstringspaces=false,
+% emph legt Farben für bestimmte Wörter manuell fest
+emph={double,bool,int,unsigned,char,true,false,void},
+emphstyle=\color{blue},
+emph={Assert,Test},
+emphstyle=\color{red},
+emph={[2]\using,\#define,\#ifdef,\#endif}, emphstyle={[2]\color{blue}}
+} 
+		
+\lstset{language=C} % gew?nschte Programmiersprache, kann direkt beim Aufruf auch per
+											% \begin[language=xxx]{lstlisting} gesetzt werden
+											% Sprachen sind u.a. VBScript, C++, PHP, TeX, Java, SQL, XML
+
+% ==========================================================
+% Tastatur-Kodierung (PC/MAC)
+% ==========================================================
+%\usepackage[applemac]{inputenc}	% MAC
+\usepackage[latin9]{inputenc}			% PC
+\usepackage[T1]{fontenc}					% Umlaute richtige trennen
+
+% Celsius
+\usepackage{textcomp}							% Paket f?r Sonderzeichen
+
+
+% ==========================================================
+% Bilder, Tabellen und PDFs(einbinden)
+% ==========================================================
+\usepackage{graphicx}	%macht Einbinden von Bildern und Grafiken m?glich
+\usepackage{float} 	% Bietet die Option H zum wirklich 
+										% festen verankern von Elementen
+\usepackage{rotating} % Jedes Objekt rotieren. Im Text sind dann folgende
+											%  Umgebungen vorhanden:
+											% \begin{sideways} % Obj. um 90? drehen
+											% \begin{turn}{30} % Obj. um 30? drehen
+											% \begin{rotate}{30} % wie turn aber mit mehr Abstand
+											%\begin{sidewaysfigure} % gleitendes Obj. auf eigene Seite
+																							% und um 90? gedreht
+											% \begin{sidewaystable} % siehe sidewaysfigure
+								
+\usepackage{multirow}	% komplexere Tabellen erm?glichen
+											% http://andrewjpage.com/index.php?/archives/43-Multirow-and-multicolumn-spanning-with-latex-tables.html
+\usepackage{array}	% Macht Einbinden von Tabellen m?glich
+\usepackage{floatflt} % Macht Textfluss link oder recht neben einem Bild
+											% \begin{floatingfigure}[r]{0.4\textwidth}
+											%	% r = Bild rechts, l = bild links
+											%   \centering
+											%   \includegraphics[width=0.30\textwidth]{res/meinbild.png}
+											%   \caption{Das ist mein Bild}
+											%   \label{fig:Mein Bild}
+											% \end{floatingfigure}
+																	
+\usepackage{longtable} %Erm?glicht Tabellen die l?nger als eine Seite sind
+\usepackage{pdfpages}	% Erm?glicht einbinden von externen PDFs
+
+% ==========================================================
+% Farben
+% ==========================================================
+\usepackage{color} % Eigene Farben k?nnen definiert werden
+\definecolor{kotzgruen}{rgb}{0.0,0.5,0.0}
+\definecolor{darkred}{rgb}{0.7,0.0,0.0}
+
+% ==========================================================
+% Sonstiges
+% ==========================================================
+\usepackage{pslatex}	% 'standard' PS Fonts verwenden
+\usepackage{pifont} 	% spezielle Sonderzeichen erm?glichen
+											% http://willbenton.com/wb-images/pifont.pdf
+\usepackage{multicol} % Zum verwenden mehrerer Spalten innerhalb einer Umgebung
+
+
+% ==========================================================
+% Papierformat und Seitenr?der auf DIN-A4 einstellen
+% ==========================================================
+\usepackage{setspace}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+
+% ==========================================================
+% Kopfzeile: Name der Section, Fusszeile: rechtsb?ndig ``Seite von Gesamtseitenzahl''
+% ==========================================================
+\usepackage{fancyhdr} 			% laden des pakets
+\pagestyle{fancy}			% festlegen des pagestyle
+%
+%%Kopf- und Fusszeilendefinition f?r normalen Flie?text
+%\fancyhead{}
+%\fancyfoot{}
+\fancyhf{}
+\lhead{\leftmark}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt} % Linie mit 0.4pt oben
+\renewcommand{\footrulewidth}{0.4pt} % Linie mit 0.4pt unten
+
+%%Kopf- und Fusszeilendefinition f?r spezielle Seiten wie z.B Chapter 
+%%% Diese Seiten verwenden den Pagestyle plain, welcher nun im folgenden 
+%%% ?berschrieben wird.
+\fancypagestyle{plain}{%
+\fancyhf{}
+\lhead{\rightmark}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt} % unsichtbare Linie oben
+\renewcommand{\footrulewidth}{0.4pt} % Linie mit 0.4pt unten
+}
+
+%\fancyhead{}
+%\fancyfoot{}
+%\lhead{\slshape \rightmark}
+%\usepackage{lastpage}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
+%\addtolength{\headheight}{3pt} %1
+%\renewcommand{\sectionmark}[1]%
+%             {\markright{\thesection\ #1}}
+%\lhead[\fancyplain{}{\thepage}]%
+%         {\fancyplain{}{\rightmark}}
+%\rhead[\fancyplain{}{}]%
+%             {\fancyplain{}{}}
+%\chead[\fancyplain{}{}]%
+%             {\fancyplain{}{}}
+%\cfoot{} 													%Bei zweiseitigem Druck sollte 
+%%\rfoot[\fancyplain{}{\rightmark}]	%das rausgenommen werden weil die Seitenzahlen
+%%																		%sonst immer rechts angezeigt werden
+%%             {\fancyplain{}{\thepage\ von \pageref{LastPage}}}
+
+% ==========================================================
+% Hurenkinder raus
+% ==========================================================
+\clubpenalty = 15000
+\widowpenalty = 15000 \displaywidowpenalty = 15000
+
+% ==========================================================
+% Nach \\ und \newline nicht einr?cken
+% ==========================================================
+%\setlength{\parindent}{0em}
+
+% ==========================================================
+% Nummerierung bis subparagraph, Gliederung bis paragraph
+% ==========================================================
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ==========================================================
+% Standardschriftart auf Helvetica/Arial (sonst Times New Roman)
+% ==========================================================
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault} % Neuladen der Schrift
+
+% ==========================================================
+% Zeilenabstand 1,5
+% ==========================================================
+\onehalfspacing
+
+% ==========================================================
+% Fu?noten richtig einr?cken, Zahl hochgestellt
+% ==========================================================
+\makeatletter
+\newlength\footnoteindent
+\newlength\footnotenumwidth
+\newcommand*\footnotenumalign{r}
+\newcommand*\footnoteformat{}
+
+\renewcommand\footnoteformat{\textsuperscript} % Zahlen hochstellen
+
+\setlength\footnoteindent{0.7em}%\parindent}
+\settowidth\footnotenumwidth{999}%
+\renewcommand\@makefntext[1]{%
+	\@setpar{%
+		\@@par
+		\@tempdima\hsize
+		\advance\@tempdima-\footnoteindent
+		\parshape\@ne
+		\footnoteindent\@tempdima
+	}%
+\parindent 1em
+\par\noindent
+\makebox[0pt][r]{% make everything lap into left margin
+	\makebox[\footnoteindent][r]{%
+		\makebox[\footnotenumwidth][\footnotenumalign]{%
+			\footnoteformat{\@thefnmark}%
+			}%
+			\hspace*{\fill}%
+		}%
+	}%
+	#1%
+}
+\makeatother
+
+% ==========================================================
+% neue Zeile nach paragraph und subparagraph
+% ==========================================================
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+         {-3.25ex\@plus -1ex \@minus -.2ex}%
+         {.5ex \@plus .2ex}%<--- Zeilenvorschub
+         {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{4}{\z@}%
+         {-3.25ex\@plus -1ex \@minus -.2ex}%
+         {.5ex \@plus .2ex}%<--- Zeilenvorschub
+         {\normalfont\normalsize\bfseries}}
+\makeatother
+
+% ==========================================================
+% Bild- und Tabellenunterschriften links
+% ==========================================================
+\usepackage[nooneline]{caption2}
+\makeatletter
+%\captionstyle{left}
+%\captionstyle{center}
+\makeatother
+
+% ==========================================================
+% Index
+% ==========================================================
+\usepackage{makeidx}
+\makeindex
+% Der Index wird in TeXnicCenter per Ausgabe -> MakeIndex erstellt 
+% (Dazu muss man sich im Hauptdokument befinden)
+% Evtl. ist ein mehrfaches Erstellen des Dokuments n?tig
+
+% ==========================================================
+% Glossar
+% ==========================================================
+ \usepackage[style=super, header=none, border=none, number=none, cols=2,
+ toc=true]{glossary}
+
+ \makeglossary
+ \renewcommand{\glossaryname}{Glossar} % Damit wird Glossary in Glossar umgetauft
+ 
+% Externer Befehl. 
+%(In TeXnicCenter kann dieser Befehl z.B. nach dr?cken
+% von ALT +F7 im Bereich --MakeIndex als Kommando hineinkopiert werden. 
+% nach Erstellung des Glossars muss dann unbedingt wieder der Standardwert "%bm" in dieses Feld eingetragen werden, da sonst die Erstellung des Indexes nicht funktioniert)
+
+% makeindex -s DateinameOhneEndung.ist -t DateinameOhneEndung.glg -o DateinameOhneEndung.gls DateinameOhneEndung.glo
+
+% ==========================================================
+% PDF-Einstellungen (muss als letztes Paket geladen werden!)
+% ==========================================================
+\usepackage[
+%   % Farben fuer die Links
+   colorlinks=true,         % Links erhalten Farben statt Kaesten
+   urlcolor=pdfurlcolor,    % \href{...}{...} external (URL)
+   filecolor=pdffilecolor,  % \href{...} local file
+   linkcolor=pdflinkcolor,  %\ref{...} and \pageref{...}
+   citecolor=pdfcitecolor,  %Farbe von Zitaten
+%   % Links
+%   raiselinks=true,			 % calculate real height of the link
+   breaklinks,              % Links berstehen Zeilenumbruch
+   backref=page,            % Backlinks im Literaturverzeichnis (section, slide, page, none)
+   pagebackref=true,        % Backlinks im Literaturverzeichnis mit Seitenangabe
+%   hyperindex=true,         % backlinkex index
+   linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
+%   hyperfootnotes=false,     % Keine Links auf Fussnoten
+   % Bookmarks
+   bookmarks=true,          % Erzeugung von Bookmarks fuer PDF-Viewer
+   bookmarksopenlevel=1,    % Gliederungstiefe der Bookmarks
+   bookmarksopen=true,      % Expandierte Untermenues in Bookmarks
+%   bookmarksnumbered=true,  % Nummerierung der Bookmarks
+%   bookmarkstype=toc,       % Art der Verzeichnisses
+%   % PDF Informationen
+   pdftitle={Latex-Vortrag},             % Titel
+	 pdfsubject={Eine LaTeX-Einführung},
+   pdfauthor={Sebastian Stechl},            % Autor
+]{hyperref}
+
+% ==========================================================
+% Linkfarben im PDF
+% ==========================================================
+% Farben fuer die Links im PDF
+%\definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+%\definecolor{pdffilecolor}{rgb}{0.7,0,0}
+%\definecolor{pdflinkcolor}{rgb}{0,0,0.6}
+%\definecolor{pdfcitecolor}{rgb}{0,0,0.6}
+
+% PDF-Linkfarben auf schwarz f?r den Druck:
+ \definecolor{pdfurlcolor}{rgb}{0,0,0}
+ \definecolor{pdffilecolor}{rgb}{0,0,0}
+ \definecolor{pdflinkcolor}{rgb}{0,0,0}
+ \definecolor{pdfcitecolor}{rgb}{0,0,0}
+
+
+% ==========================================================
+% Benennung von Literaturverzeichnis und Abstrakt
+% ==========================================================
+\addto\captionsngerman{
+	\renewcommand{\abstractname}{Zusammenfassung}
+	\renewcommand{\refname}{Literaturverzeichnis}
+	\renewcommand{\lstlistingname}{Code}
+	}
+
+% ===========================================
+% Toleranz beim Trennen erh?hen (default=200)
+% ===========================================
+\tolerance=1000
+\newcommand{\bindestrich}{\discretionary{-}{}{-}}
+
+% ==========================================================
+% Selbstdefinierte Befehle
+% ==========================================================
+
+% Eurozeichen (als ? schreiben)
+% \newcommand{\eur}{\euro\hspace{0.3em}}
+\newcommand{¤}{\euro} % Eurozeichen direkt eigeben
+	
+% ==========================================================
+% ENDE DER VOREINSTELLUNGEN
+% ==========================================================

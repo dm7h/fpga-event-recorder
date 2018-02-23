@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "CLASS_DUAL_CDC1", "CLASS_DUAL_CDC1\CLASS_DUAL_CDC1.cproj", "{3F67C6DF-1B28-448E-8601-F2649D923BEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F67C6DF-1B28-448E-8601-F2649D923BEB}.Debug|AVR.ActiveCfg = Debug|AVR
+		{3F67C6DF-1B28-448E-8601-F2649D923BEB}.Debug|AVR.Build.0 = Debug|AVR
+		{3F67C6DF-1B28-448E-8601-F2649D923BEB}.Release|AVR.ActiveCfg = Release|AVR
+		{3F67C6DF-1B28-448E-8601-F2649D923BEB}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,122 @@
+\chapter{Hardwareprototyp: Platinendesign} % Kapitel 3
+
+\section{Einführung} \index{Platinendesign}
+
+Da die meisten verwendeten Baueile nur in SMD-Gehäusen produziert werden, ist es nahezu nicht möglich die Schaltung auf einer Experimentier- oder Lochrasterplatine aufzubauen. Auch können nicht vorhersehbaren Seiteneffekte, die eine Experimentierplatine zum Beispiel auf die Laufzeiten an den Speicherbausteinen hätte, auftreten. Aus diesem Grund war von Anfang an vorgesehen, den Prototyp der Schaltung auf einer geäzten Platine aufzubauen. Aufgrund der Komplexität und Leiterbahndichte der Schaltung, ist dies nur durch CAD-Anwendungen \footnote{CAD: Computer Aided Design, dt: Rechnergestützter Entwurf} realisierbar. Sowohl für den Schalplanentwurf, als auch für das Platinenlayout wurde die CAD-Software ``EAGLE'' von Cadsoft verwendet, welche im folgenden Abschnitt genauer erläutert wird.
+
+\section{Designsoftware Cadsoft EAGLE} \index{EAGLE}
+
+Die CAD-Software EAGLE ist ein relativ leicht anzuwendendes und schnell erlernbares Tool zur Erstellung von Schaltplänen und Platinenlayouts. Die Software ist bei einer nichtkomerziellen Anwendung komplett kostenlos, und daher bei Hobbyentwicklern und im Open-Hardware-Bereich sehr beliebt. Außerdem ist die Software sowohl für Linux als auch für Windows verfügbar. Die kostenlose Version hat jedoch die Enschränkung, dass nur zweiseitige Platinen, mit einer maximalen Größe von 100mm x 80mm erstellt werden können. Dies ist jedoch für dieses Projekt völlig ausreichend. Die für das Projekt verwendete Softwareversion ist 5.7.0 für Linux.
+
+Für den Schaltplan und Platinenentwurf stehen eine große Bauteilebibliothek zur Verfügung. Falls man in dieser Bibliothek nicht fündig wird, so gibt es eine Vielzahl weiterer Biblitoheken im Internet, welche von einer großen Comunity gepflegt werden. Für den Fall, dass das gesuchte Bauteil auch dort nicht auffindbar ist, kann man es im Bibliothekseditor selbst erstellen.
+
+In der Oberfläche selbst sind Schaltplan- und Platineneditor getrennt. Man kann mit den einzelnen Editoren seperat arbeiten, oder auch beide Editoren parallel verwenden. In diesem Fall wird zum Beispiel eine Bauteiländerung im Schaltplan sofort auf der Platine Sichtbar. Vor allem in einer Multi-Monitor Umgebung ist diese Arbeitsweise zu empfehlen.
+
+\section{Entwurf des Schaltplanes} \index{Schaltplan} 
+
+Beim Entwurf des Schaltplanes sollte man zum großen Teil systematisch vorgehen. So wurde in dieser Arbeit zunächst die gesamte Schaltung in mehrere Teilabschnitte unterteilt:
+
+\begin{itemize}
+ \item Spannungsversorgung
+ \item Mikrocontroller
+ \item Logikbaustein mit Speicher und IO
+\end{itemize}
+
+Die Spannungsversorgung enthält sämtliche Bauteile, die aus den verschiedenen Eingansspannungen die nötigen Versorgungsspannungen erstellen. Dafür werden zwei LM1117 Bautsteine für 3.3V und 5V, mit den zugehörigen Glättungskondensatoren, verwendet. Als Verpolungsschutz ist zusätzlich eine Diode am Eingang angebracht. Die Spannungsquelle kann mittels eines Jumpers von Extern auf USB umgestellt werden. Die anliegende Versorgungsspannug wird über eine rote LED signalisiert. Siehe Abblildung \ref{pic:Spannungsversorgung}.
+
+\begin{figure}[ht]
+	\includegraphics[width=1.0\textwidth]{images/Power_Supply.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Schaltplan der Spannungsversorgung}
+	\label{pic:Spannungsversorgung}
+\end{figure}
+
+
+Der Abschnitt für den Mikrocontroller enthält sämtliche Bauelemente die für die Grundfunktion des Prozessors nötig sind. Dazu zählen vor allem die Beschaltung der Spannungsversorgung mit den diversen Abblockkondensatoren und der Anschluss des 8MHz Quarzozillators als Taktquelle. Ausserdem ist der USB-Stecker, zusammen mit den benötigten 22$\Omega$ Widerständen in der Datenleitung, eingeplant. 
+
+Für die Programmierung des Mikrocontrollers ist der 10-Polige Wannenstecker vorgesehen. Über diesen wird eine JTAG-Verbindung realisert, wobei die Beschaltung des Steckers kompatibel ist zum Programmieradapter JTAG-ICE MKII von Atmel. Für eine Signalisierung, von zum Beispiel einer Aktivität am USB-Anschluss, sind an zwei Ausgängen LEDs vorgesehen. 
+
+Die LEDs werden als low-aktive Bauelemente beschaltet. Das bedeuted, dass der Ausgang des Mikrocontrollers auf logisch 0 (Masse) gesetzt wird, um die LED einzuschalten. Dadurch wird der Betriebsstrom für die LED nicht durch den Mikrocontroller, sondern durch die am Vorwiderstand abfallende Betriebsspannung erzeugt. Dies hat den Grund, dass der Stromfluß von außen durch den Mikrocontroller wesentlich höher sein kann, als der Strom welcher an den Ausgangspins zur Verfügung stehen würde.
+
+Der Reset-Eingang des Atmega ist mit einem Reset-Strang verbunden. Da der Reset Eingang lowaktiv ist, wird der Reset-Strang über einen 4.7k$\Omega$ Widerstand auf die Betriebsspannung gezogen. Über einen Jumper (JP6) kann die Leitung auf Masse gesetzt, und damit der Reset ausgelöst werden. Ausserdem ist die Resetleitung noch mit dem Programmieranschluss verbunden, so dass der Programmieradapter auch einen Reset auslösen kann. Als weiteres Bauteil kann der CPLD über eine Lötbrücke mit dem Reset verbunden werden.
+
+\begin{figure}[ht]
+	\includegraphics[width=0.66\textwidth]{images/Mikrocontroller.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Grundschaltung des Mikrocontrollers}
+	\label{pic:Mikrocontroller}
+\end{figure}
+
+Die Grundbeschaltung des CPLD ist auch relativ einfach. Zur Stabilisierung der Spannungsversorgung sind für die beiden IO-Bänke je ein, und für die Kernversorgung zwei Abblockkondensatoren vorgesehen. An einen der vier verfügbaren Takteingänge ist ein 100 MHz Quarzoszillator angeschlossen. Ein weiterer Takteingang kann über eine Lötbrücke mit dem oben beschriebenen Reset-Strang verbunden werden. Dadurch kann ein externer, asynchroner Reset ausgelöst werden. Jedoch ist darauf zu achten, dass ein unkonfigurierter CPLD, auf Grund der undefinierten Pinzustände, den gesamten Reset-Strang aktiv schalten kann. Dadurch kann der Mikrocontroller in einen gesprerrten Zustand versetzt werden. Daher ist darauf zu achten, die Lötbrücke nur dann zu setzen, wenn der entsprechende Pin als hochohmiger Eingangspin beschaltet ist.
+
+Die Verbindung zu den Speichern erfolgt direkt über einen parallelen Bus ohne zusätzliche Beschaltung. Mit dem Mikrocontroller ist der CPLD über einen 8-bit breiten Bidirektionalen Bus, mit seperater Interrupt und Taktleitung, verbunden. Somit können verschiedene synchrone oder asynchrone Bussysteme implementiert werden. Als Programmierschnittstelle ist eine JTAG Schnittstelle vorgesehn. Sie ist über eine vierpolige Stiftleiste verwendbar. Diese Stiftleiste kann auch mit vier Jumpern zum Mikrocontroller gebrückt werden, so dass dieser als USB-Programmieradapter verwendet werden kann. Siehe Kapitel \ref{USB-JTAG}.
+
+Die Speicherbausteine sind nur mit dem CPLD und der Spannungsversorgung verbunden, da laut Datenblatt keine spezifische Beschaltung notwendig ist. Die Bustreiber sind auf der B-Seite mit 24-IO-Pins des CPLD verbunden. Die A-Seite führt zu einem 28-poligen Wannenstecker, wobei an jeweils zwei der Pins eine Versorgungsspannug sowie der Masseanschluss anliegt. Die Auswahl der Messpannung an der A-Seite erfolgt über einen Jumper und kann zwischen 3.3V und 5V ausgewählt werden. Die Steuerleitung für die Signalrichtung (A nach B oder umgekehrt) ist ebenfalls direkt mit dem CPLD verbunden. Siehe Schaltplan im Anhang.
+
+\section{Entwurf des Platinenlayoutes} \index{Platine} \index{Leiterbahn} \index{Luftlinien} \index{Massefläche}
+
+Das Entwerfen der Platine unterteilt sich nun in mehrere Abschnitte. Zunächst versucht man die Bauteile im Platineneditor möglichst in den logische Gruppen anzuordnen. Also zum Beispiel alle Bauteile für die Spannungsversorgung möglichst nahe beieinander zu plazieren. Den CPLD als zentraler Baustein mit Verbindungen zu allen Seiten sollte auch möglichst zentral plaziert werden.
+
+Für die weitere Ausrichtung und Plazierung aller Bauelemente, stellt EAGLE sogenannte Luftlinien zur Verfügung. Das sind logische Verbindungen, die den Leiterbahnen im Schaltplan entsprechen und die einzelnen, zusammenhängenden Pins optisch miteinander verbinden. Nun ordnet man die Bauteile möglichst so an, dass sich die Luftlinien möglichst wenig kreuzen, denn so ist ein Layout mit möglichst wenig Durchkontaktierungen möglich. Auf die Benutzung des Autorouters, welcher die Leiterbahnen vollautomatisch erstellt, sollte möglichst verzichtet werden, da dessen Routinen nicht ausgereift sind, und so mehr ein Wirrwar entsteht als eine Leiterplatte.
+
+Nun geht man Luftlinie für Luftlinie vor. Zunächst wählt man die gewünsche Breite der Leiterbahn. Als nächstes werden möglichst kreuzungsfrei die Pins der Bauelemente zu verbunden. Ist dies nicht möglich, wechselt kann man auf den anderen Layer der Platine. Dabei werden automatisch die entsprechenden Durchkontaktierungen erzeugt.
+
+Begonnen wurde bei dieser Arbeit mit der Spannungsversorgung in der linken oberen Ecke. Es wurde jedoch auf das Routen der Leiterbahn für die Masse verzichtet, da die Masse später durch eine komplette Massefläche ersetzt wird. Die Leiterbahnen für die Spannungsversorgung wurden möglichst breit gestaltet. Dies hat zum einen den Grund den Widerstand aufgrunde der höheren Ströme zu minimieren, zum anderen werden bei den LM1117-Bausteinen die Anschlusspins für die geregelte Spannung, gleichzeitig als Kühlflächen benutzt. Deshalb wird durch die breiteren Leiterbahnen für eine bestmögliche Wärmeabfuhr gesorgt.
+
+\begin{figure}[ht]
+	\includegraphics[width=0.6\textwidth]{images/Platine_top.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Oberseite der Platine}
+	\label{pic:Platine_top}
+\end{figure}
+
+Als nächstes wurde der Atmega möglichst nahe am USB-Anschluss plaziert. Alle weiteren Bauteile, wie die LEDs und der Programmieranschluss, wurden in unmittelbarer Umgebung positioniert, um möglichst kurze Leiterbahnen zu ermöglichen. Die Spannungsversorgung des Atmega wurde durch eine U-förmige Leiterschleife innerhalb der Anschlusspins verwirklicht. Dadurch können die übrigen Pins, ohne Durchkontaktierungen, problemlos nach außen verbunden werden. Siehe Abbildung \ref{pic:Platine_top} und \ref{pic:Platine_bot}, Bauteil U\$1.
+
+Das komplexeste Layout ist der Speicherbus. Dieser verbindet den CPLD mit den beiden Speichern über einen parallelen Bus mit 40 Leitungen. Diese 40 Leitungen sind in der Form einer 8 an die Pins der Speicherbausteine angeschlossen und mit dem CPLD verbunden. Um dies bei möglichst gleichbleibender Leitungslänge zu ermöglichen, ist der CPLD in einem um 45° versetzen Winkel plaziert. Die Spannungsversorgung des CPLD wurde ähnlich der des Mikrocontrollers verwirklicht. 
+
+Als letzte Bauteile wurden die Bustreiber, zusammen mit dem Anschlusstecker für die Messleitungen, plaziert und verbunden. Nun kann das, in EAGLE integrierte, Testprogramm aufgerufen werden. Dieses Testprogramm weist auf mögliche Routingfehler, wie zum Beispiel Kurzschlüsse oder zu kleine Abstände, hin.
+
+Zum Schluss wird für die Masseanbindung aller Bauteile, eine Massefläche über die gesamte Oberseite, und zeilweise über die Unterseite, verwirklicht. Eine Massefläche verhindert das Entstehen von Masseschleifen. Bei einer Masseschleife geht die Leiterbahn, welche das Massepotential trägt, rings um die gesamte Leiterplate, um zu allen Bauelementen zu gelangen. Diese Leiterbahn kann wie eine Antenne für einfallende Störsignale wirken und so die Funktion der Schaltung stark beeinträchtigen. Durch die gleichmäßige Verteilung der Massefläche wird dies verhindert und zusätzlich werden die restlichen Leiterbahnen von der umliegenden Masse gegen Störungen geschirmt. Die beiden Massefläche der Ober- und Unterseite, sollten durch mehrere Durchkontaktierungen verbunden werden, um einem möglichen Kondensatoreffekt entgegenzuwirken. 
+
+Nach Abschluss können die Platinendaten in ein für die Herstellung passendes Format, wie zum Beispiel PDF, exportiert werden. Meist ist es möglich, die EAGLE Dateien auch direkt zu einem professionellen Platinenhersteller zu schicken.
+
+
+\begin{figure}[ht]
+	\includegraphics[width=0.6\textwidth]{images/Platine_bot.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Unterseite der Platine}
+	\label{pic:Platine_bot}
+\end{figure}
+
+\section{Aufbau und Test des Prototypen} \index{Prototyp} \index{Löttechnik}
+
+Die Platine wurde von einem professionellen Platinenhersteller (Multi PCB \footnote{Multi PCB: http://www.multipcb.de/}) geäzt. Durch die professionelle Herstellung sind auch bereits alle Durchkontaktierungen vorhanden und die Platine wurde elektrisch geprüft. Die Platine ist mit Lötstopplack sowie einer Beschriftung versehen, was den Aufbau des Analysators erheblich erleichtert.
+
+Beim Bestücken der Platine geht man nun ähnlich systematisch vor, wie beim Routen der Leiterbahnen. Man unterteilt die Platine in mehrere funktionelle Teilabschnitte. Diese werden nacheinander aufgebaut, und es wird erst mit dem nächsten Abschnitt begonnen, wenn der vorherige zumindest kurz auf Funktion überprüft wurde.
+
+Begonnen wurde mit der Stromversorgung, da ohne diese auch alle weiteren Abschnitte nicht funktionieren würden. Dazu wurden zunächst alle SMD-Bauteile aufgelötet. Die dafür verwendet Temperatur des Lötkolbens ist abhängig vom verwendeten Lot, liegt jedoch bei ungefähr 300°C. Um dies ohne professionellel SMD-Werkzeug zu ermöglichen, bedient man sich eines kleinen Tricks: Zunächst bringt man etwas Lötzinn auf die Spitze des Lötkolbens auf. Nun plaziert man mit einer Pinzette das Bauteil (z.b. Widerstand) an der richtigen Stelle und fixiert es an einer Seite kurz mit dem Lötkolben. Nun hat man die andere Hand wieder frei um die zweite Seite sauber anzulöten. Zum Schluss ersetzt man die kurze Fixierung vom Anfang durch eine Saubere Lötstelle. Als letztes werden nun die drahtgebundenen Bauteile, wie die Anschlusspins, aufgelötet.
+
+Nun kann die Funktion des Spannungsreglers überprüft werden. Nach einer Sichtprüfung auf eventuelle Kurzschlüsse oder Lötbrücken kann die Versorgungsspannung angelegt werden. Um hier evetuellen Schaden durch Kurzschlüsse zu vermeiden, sollte ein geregeltes Labornetzeil, mit niedrig eingestelltem Strombegrenzer, verwendet werden. Nun wird zunächst die 5V Spannungsdomäne mit einem Multimeter durchgemessen. Ist hier eine stabile Spannung, bei einem sehr geringen Stromverbrauch von wenigen mA, vorhanden, kann der Jumper für die Versorgung des 3.3V Spannungsreglers gesetzt werden. Ist auch an diesem eine konstante Spannung von 3.3V zu messen, sollte auch die Betriebs-LED leuchten. Als nächstes kann mit dem Aufbau des nächsten Abschnitts begonnen werden.
+
+Der nächste Abschnitt ist der Aufbau des Mikrocontrollers. Für dessen Auflöten muss man sich, aufgrund der geringen Pinabstände, folgendermaßen behelfen. Man fixiert zunächst den Chip an zwei gegenüberliegenden Ecken mit der selben Methode wie bei den SMD-Widerständen. Nun kann man Seite für Seite vorgehen, ohne den IC weiter fixieren zu müssen. Nun versucht man möglichst jedes Beinchen kurz zu erhitzen und mit genügend Lötzinn zu befestigen. Als Hilfe dient hier etwas Flussmittel. Dabei werden bei einer Standard-Lötspitze mit sicherheit einige Brücken zwischen den Pins entstehen. Das ist aber nicht weiter problematisch. Nachdem eine Seite fertig gelötet wurde, benutzt man eine Entlötlitze um die entstandenen Lötbrücken wieder zu entfernen. Dazu legt man die Litze quer über alle 11 Pins und erhitzt diese mit dem Lötkolben. Beim Anlöten des Oszillators liegt die Schwierigkeit darin, dass sich die Lötflächen auf desssen Unterseite befinden. Jedoch mit etwas mehr Flussmittel wird beim Erhitzten das Lot unter den Baustein ``gesogen''.
+
+Nachdem nun der Abschnitt für den Mikrocontroller fertig aufgelötet ist, sollte auch dieser zunächst optisch auf Kurzschlüsse überprüft werden. Nun kann die Versorgunsspannung mit eingestelltem Strombegrenzer (ca. 100mA) angelegt werden. Zur überprüfung der Funktion kann mit dem JTAG-ICE-MKII Programmierkabel ein kleines Testprogramm aufgespielt werden. Dieses Testprogramm kann z.B. alle Ausgangspins im Sekundentakt Ein- und Ausschalten, welche dann durchgemessen werden.
+
+Als nächsten Arbeitsschritt wird nun der CPLD aufgelötet. Dafür wird, aufgrund der ähnlichen Gehäuseform, genauso vorgegangen wie beim Mikrocontroller. Zwar ist der Pinabstand hier noch geringer, jedoch noch gut von Hand lötbar. Getestet wird der CPLD über die JTAG-Schnittstelle. Dazu werden die vier Jumper an JP5 entfernt. Als Programmiergerät ist ein Altera-USB-Blaster am besten geeignet. Mit einer sogenannten Peitsche, also einem 10-poligen Programmierkabel mit einzelnen flexiblen Leitern, wird nun der Byteblaster mit der Platine verbunden. Dazu müssen jediglich die vier JTAG-Leitungen (TDI, TDO, TCK und TMS), sowie die Spannungsversorgung (+3.3V und GND) angeschlossen werden. Weitere Verbindungen, wie Reset, sind nicht notwendig. Nun kann ein kleines Testprogramm zum Auslesen der ID-Codes verwendet werden. Es ist auch möglich, ein kleines Projekt mittels der Altera Software ``Quartus II'' zu erstellen und aufzuspielen.
+
+Jetz können die Speicherbausteine und die Bustreiber auf die gleiche Weise aufgelötet werden. Die Bustreiber lassen sich in Ausgangsrichtung durch einen im CPLD implementierten Schieberegister testen. In Eingangsrichtung könnte man die Signale in den Speicherbausteinen zwischenspeichern und zurückschicken. Dadurch wären auch die Speicherbausteine getestet. Dieser Test wurde jedoch im Rahmen dieser Arbeit noch nicht vollständig durchgeführt.
+
+\begin{figure}[ht]
+	\includegraphics[width=0.7\textwidth]{images/board.jpg}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Fertig aufgebauter Prototyp}
+	\label{pic:Prototyp}
+\end{figure}
+
+
+\section{Bekannte Fehler im Prototyp} \index{Prototyp}
+
+Der einzige bekannte Fehler im Prototyp der Version 1.1, ist ein Fehler in der Beschaltung der Bustreiber. Das Problem liegt hierbei in der Tatsache, dass der Spannungspegel für die Steuerleitung $\overline{DIR}$ von dem Spannungspegel der A-Seite bestimmt wird. Wird die Messpannung nun auf 5V gestellt, so reichen die 3.3V Spannung des CPLD nicht aus, um diese Leitung zu schalten. Somit ist ein sicherer Betrieb nur im 3.3V-Modus möglich. In einem zukünfitigen Prototyp kann einfach die A-Seite und B-Seite des Bustreibers getauscht werden, so dass die A-Seite immer mit 3.3V und die B-Seite Variabel beschaltet wird.
+
+
+

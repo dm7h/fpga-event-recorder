@@ -1,0 +1,192 @@
+\chapter{Hardwareprototyp: Auswahl der Komponenten} % Kapitel 3
+
+\section{Einführung} \index{Hardwarekomponenten}
+
+Grundlegend ist zu überlegen, welche einzelnen Komponenten man benötigt um das Ziel eines universellen, rekonfigurierbaren und freien USB Geräts zur Timing-, Protokoll-, Logik- und Eventanalyse, von digitalen Signalen zu erreichen. Um die größtmöglichste Felxibilität zu erreichen, wurde schnell klar, dass dies nur mit Hilfe eines frei konfigurierbaren Logikbausteins erreichbar ist. Für die Steuerung des Gerätes ist ein zusätzlicher Mikrocontroller am besten geeignet, da in diesem sequenzielle Programme wesentlich effektiver abgearbeitet werden können, als in einem Logikbaustein. Auch sollte genügend Speicher für die Messergebnisse vorhanden sein. Auf dieser Basis müssen nun die, für folgenden Einzelkomponenten geeignete Bausteine gefunden werden.
+
+\begin{itemize}
+ \item Logikbaustein
+ \item Mikrocontroller
+ \item Speicherbausteine
+ \item Treiberbausteine
+ \item Spannungsversorgung
+\end{itemize}
+
+\noindent
+Bei der genauern Auswahl der einzelnen Komponenten für den Prototypen sind mehrere Kriterien entscheidend:
+
+\begin{itemize}
+ \item Verwendungszweck
+ \item Verfügbarkeit
+ \item Flexibilität
+ \item Preis
+ \item Verhältnis Größe/Lötbarkeit
+\end{itemize}
+
+\noindent
+In den nachfolgenden Abschnitten wird nun die Bauteilwahl genauer erläutert.
+
+\section{Logikbaustein} \label{Logikbaustein} \index{Logikbaustein} \index{CPLD} \index{FPGA} \index{Makrozelle} \index{Flip-Flop}
+
+Die Hauptaufgabe des Logikbausteines ist es, die zu messenden Signale zu erfassen, eventuell einsynchronisieren oder zu triggern. Diese Signale werden dann mit einem Zeitstempel versehen und an einen Speicherbus weitergeiletet. Dieser Speicher muss dann nach Abschluss der Messung ausgelesen werden umd die Messergebnisse weiterverarbeiten zu können.
+
+Als erstes stellt sich nun die Frage, ob man auf einen FPGA \footnote{FPGA: Field Programmable Gate Array} oder einem CPLD \footnote{CPLD: Complex Programmable Logic Device} zurückgreift. Zu den Unterschieden zählt vor allem die Komplexität der Bausteine. Ein CPLD besteht aus einer begrenzten Zahl (typischerweise zwischen 64 und 1024) an sogenannten Makrozellen. Jede dieser Makrozellen besitzt ein D-Flip-Flop, eine UND-ODER-Matrix sowie Ein-Ausgabekomponenten für den Aufbau einer komplexen logischen Schaltung. Ein FPGA besitzt im Gegenzug dazu wesentlich mehr logische Zellen, welche meist aus einer Lookup-Table an den Eingangssignalen und einem Flip-Flop bestehen. Durch die so wesentlich größere Anzahl an Speicherelementen sowie zusätzlichen Komponenten, wie zum Beispiel Zähler und Schieberegister, sind FPGA-Bausteine vor allem für SoC \footnote{SoC: System on a Chip}-Anwendungen mit integriertem Prozessorkern geeignet.
+
+In dieser Arbeit wird ein CPLD Baustein verwendet, da zum einen der Preis eines CPLDs wesentlich günstiger ist. Zum anderen ist die Komplexität eines FPGA nicht erforderlich, da die sequenzielle Programmsteuerung extern von einem Mikrocontroller übernommen wird und somit kein Prozessorkern in den Logikbaustein integriert werden muss. Ein weiterer Nachteil eines FPGA ist, dass die Logikschaltung hier auf flüchtigen SRAM-Elementen basiert, im Gegensatz zu einem meist Flash-basierenden CPLD. Dadurch müsste nach einem Entfernen der Versorgungsspannung der Baustein neu konfiguriert werden, was zusätzliche Bausteine erforderlich machen würde.
+
+Auf Grund der Verfügbarkeit, die dieser Baustein aufweisen sollte, kann man nun auf die drei größten Hersteller für CPLD zurückgreifen. Diese sind die Marktfüher Xilinx und Altera, sowie Lattice Semiconductor als dritte Kraft. Lattice Semiconductor schied jedoch bereits bei der Vorauswahl aus, da die Entwicklungstools nicht frei verfügbar sind, was dem Open-Source Gedanken der Arbeit entgegenwirkt. Im Gegensatz dazu, stehen mit den kostenlosen Web-Editionen von Xilinx-ISE und Altera-Quartus-II mächtige Entwicklungstools zur Verfügung.
+
+Nun stellt sich die Frage nach der Komplexität des Bausteines. Da der begrenzende Faktor bei den CPLDs die Anzahl der Speicherelemente (D-Flip-Flop) ist, sollte man zunächst abschätzen, wieviele davon mindestens benötigt werden.
+
+%\begin{quote}
+\begin{table}[h]
+\caption{Benögtigte Speicherzellen}
+\begin{tabular}{|l|l|}
+\hline
+Komponente 		& geschätzte Anzahl benötigter Speicherzellen \\
+\hline \hline
+32-bit Zähler		& 33	\\
+\hline
+Messwertregister	& 24	\\
+\hline
+Zählregister		& 32	\\
+\hline
+Trigger			& 24	\\
+\hline
+Steuerregister		& 8	\\
+\hline
+Datenregister		& 8	\\
+\hline
+Steuerwerk		& 10	\\
+\hline \hline
+Summe:			& 139	\\
+\hline
+\end{tabular}
+\end{table}
+%\end{quote}
+
+Übliche Größen von CPLD in diesem Bereich sind zwischen 192 oder 256 Makrozellen. Somit ist noch etwas ``Puffer'' für weitere Elemente wie das oben erwähnte, zweite Messwertregister vorhanden.
+
+Unter den aktuell verfügbaren Logikbausteinen kommen nun noch der Altera Max II mit 240 Makrozellen oder der Xilinx Cool-Runner-II mit 256 Makrozellen. In den Funktionalitäten unterscheiden sich beide Bausteine nur in eingigen Details. So besitzt der Altera Baustein zusätlich einige Kilobyte frei programmierbaren Flash. Darin könnten zum Beispiel Daten abgelegt werden, welche bei bestimmten Ereignissen in den Messwertspeicher geschrieben werden. Ein weiterer, von außen jedoch nicht bemerkbarer Punkt ist die Tatsache, dass der Altera CPLD wie ein FPGA mit SRAM-Technologie arbeitet, jedoch bei jedem Einschalten von einem internen Flash konfiguriert wird. Da dies in Sekundenbruchteilen geschieht, verhält sich der Baustein nach außen wie ein CPLD auf Flash-Basis. Beide Bausteine verfügen über Bidirektionale I/0-Pins mit integrierten Tristate-Puffern und Schmitt-Triggern und sind dadurch sowohl für die Messwerterfassung als auch für die Datenkommunikation geeignet.
+
+Da beide Bausteine über etwa die selbe Anzahl an I/O-Pins verfügen und in den selben Baugrößen erhältlich sind, ist hier nun der Preis das ausschlaggebende Argument. Bei den meisten großen Distributoren für Bauelemente, wie zum Beispiel Farnell, bewegt sich der Preis für den Altera Baustein aktuell zwischen 8,- ¤ und 13,- ¤ (zzgl. MwSt) und der Preis des Xilinx Coolrunners beträgt 19,- ¤ bis 30,- ¤ (zzgl. MwSt) pro Stück. 
+
+Aufgrund dieses Preisunterschieds wurde der Altera Max II mit 240 Makrozellen als zentraler Logikbaustein für den Analysator ausgewählt. Eine Möglichkeit der Programmierung für den CPLD ist in Kapitel \ref{VHDL-Design}, \nameref{VHDL-Design} beschrieben. \cite{Xilin01}, \cite{Alter01}
+
+\begin{figure}[h,c]
+	\includegraphics[width=0.3\textwidth]{images/CPLD_Photo.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{CPLD mit Quarzoszillator (aufgelötet auf Platine)}
+\end{figure}
+
+\section{Mikrocontroller} \index{Mikrocontroller} \index{USB} \index{Programmierschnittstelle} \index{Atmega32-U4}
+
+Die Aufgabe des Mikrocontrollers ist es, eine Schnittstelle zwischen PC und Logibaustein zur Verfügung zu stellen. Dazu zählen vor allem folgende Dienste:
+
+\begin{itemize}
+ \item Bereitstellen einer Verbindung zum PC (USB)
+ \item Steuerung des Logikbausteines
+ \item Auslesen des Messdatenspeichers
+ \item Aufbereitung und Übertragung der Messdaten
+ \item Zur Verfügung stellen einer Programmierschnittstelle für den CPLD
+ \item Eigene, einfach zu handhabende Programmierschnittstelle
+\end{itemize}
+
+
+In der Aufgabenstellung der Arbeit war gegeben, dass die Verbindung zwischen Mikrocontroller und PC nicht über einen zusätzlichen Baustein erfolgen sollte. Solche Bausteine werden zum Beispiel von dem Chiphersteller FTDI produziert und stellen eine USB zu UART oder JTAG Verbindung zur Verfügung.
+
+Dadurch wurde die Auswahl auf Mikrocontroller mit integrierter USB-Schnittstelle beschränkt. Solche Mikrocontroller werden von mehreren Herstellern, mit unterschiedlichen Prozessorkernen und Speichergrößen hergestellt. Als Prozessorkern in der benötigten Leistungsklasse kamen 8051-Derivate oder die 8-Bit AVR-Kerne der Firma Atmel in die nähere Auswahl.
+
+Für den Logikanalysator wurde ein Mikrocontroller mit AVR-Kern verwendet. Dies liegt zum einen an der schon etwas veralteten Technologie der 8051-Derivate, zum anderen gibt es für die 8-bit AVR Familie sehr viele, kostenlos verfügbare Compiler und Programmiertools. Atmel nennt diese Produktlinie AT90USB. Die einzelnen Mikrocontroller dieser Familie unterscheiden sich hauptsächlich in der Speichergröße sowie den integrierten Schnittstellen, wie zum Beispiel Ethernet.
+
+Der abschließend ausgewählte Mikrocontroller ist der Atmel Atmega32-U4. Dieser Mikrocontroller besitzt die für die Aufgabe minimal benötigten Schnittstellen und verfügt über genügend Speicher. Zusätzlich besitzt er noch weitere Schnittstellen, wie zum Beispiel ein 10-bit A/D-Wandler, um eine zukünftige Erweiterung des Analysators zu ermöglichen. Trotz der großzügigen Ausstattung befindet sich der Mikrocontroller noch weit unter der Preismarke von 10,- ¤ pro Stück.
+
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Eigenschaft 		& Größe / Wert 	\\
+\hline \hline
+Taktgeschwindigkeit	& 8 oder 16 MHz	\\
+\hline
+Arbeitsspeicher		& 2.5 KByte	\\
+\hline
+EEPROM-Speicher		& 1 Kbyte	\\
+\hline
+Flash-Speicher		& 32 KByte	\\
+\hline
+Schnittstellen (Auszug)	& USB 2.0	\\
+			& SPI		\\
+			& JTAG		\\
+			& 10bit A/D-Wandler \\
+\hline
+Betriebsspannung	& 3.3 V	\\
+\hline
+\end{tabular}
+\caption{Eigenschaften des Atmega32-U4}
+\end{table}
+
+Der verwendete Prozessortakt von 8MHz wird von einem Quarzoszillator erzeugt. Der für den Betrieb der USB-Schnittstelle notwendige 12MHz-Takt wird von einem internen Taktgenerator erzeugt. Porgrammiert werden kann der Mikrocontroller entweder über die integrierte JTAG-Schnittstelle oder, mit Hilfe eines Bootloaders, direkt über die USB-Schnittstelle. Die Programmierung des Atmega32-U4 ist in den Kapiteln \ref{Mikrocontroller_Software}, \ref{USB-Schnittstelle} und \ref{USB-JTAG} beschrieben. \cite{Atmel01}
+
+\begin{figure}[h,c]
+	\includegraphics[width=0.3\textwidth]{images/Mikrocontroller_Photo.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Mikrocontroller (aufgelötet auf Platine)}
+\end{figure}
+
+\section{Treiberbausteine} \index{Treiberbaustein} \index{Messfühler}
+
+Zwischen die IO-Pins des CPLD und den Messfühlern wurden Treiberbausteine gesetzt. Der Grund dafür ist vor allem der Schutz des CPLD vor Spannunsspitzen oder falscher Anwendung mit zu großen Spannungen. Im schlimmsten Fall sind dann zwar die Treiberbausteine defekt, jedoch liegen diese in einem wesentlich niedrigeren Preissegment als der CPLD und sind auch leichter austauschbar.
+
+Ein weiterer Grund für die Verwendung der Treiberbausteine ist der Betrieb mit unterschiedlichen Spannungen. So wurden die Bausteine so gewählt, dass sie wahlweise mit Spannungen von 3.3V oder 5V an den Messfühlern arbeiten. Diese Eingansspannung wird immer in die 3.3V IO-Spannung des CPLD gewandelt. Auch kann, für den Fall dass der Analysator als Logikgenerator betrieben wird, die 3.3V Ausgansspannung des CPLD in einen 5V Pegel gewandelt werden.
+
+Anhand dieser Kriterien wurde nun der SN74LVC8T245 von Texas Instruments ausgewählt. Dieser Baustein verfügt über insgesamt acht Treiber, so dass, für die 24 Messfühler, drei dieser Bausteine benötigt werden. Zu beachten sind noch die unterschiedlichen Laufzeiten bei 3.3 V (0.8ns bis 6.3ns) und 5 V (0.8ns bis 4.4ns). Diese Laufzeitdifferenz muss in der Messfehlerberechnung mit einbezogen werden. \cite{Texas01}
+
+\section{Speicherbausteine} \label{Speicherbausteine} \index{Speicherbausteine} \index{SRAM}
+
+Die Auswahlkriterien des Speichers sind vor allem die benötigte Speichergröße, sowie die möglichst geringe Zugriffszeit, um eine schnelle Speicherung der Messergebnisse zu ermöglichen.
+
+Als Speicherart kommt ein SRAM-Speicher \footnote{Static Random Access Memory} zum Einsatz. Dieser hat gegenüber den DRAM-Speichern \footnote{Dynamic Random Access Memory} den Vorteil, dass die Ansteuerung des Speichers wesentlich einfacher gestaltet werden kann. Bei einem DRAM-Speicher müsste der Speicherinhalt in regelmäßigen Abständen aufgefrischt werden, da dieser sonst seine Informationen verliert. Durch die begrenzte Verfügbarkeit an Logik im CPLD wäre eine solche Steuerung hier nicht realisierbar. Auch kann der SRAM-Speicher asynchron, also ohne Taktsteuerung, verwendet werden, was die Ansteuerung noch weiter vereinfacht.
+
+Ein weiteres Kriterium ist die Datenbusbreite. Je breiter der Datenbus desto mehr Daten können auf einmal gespeichert werden. Dies verringert die Zeit, welche für das speichern und lesen einer bestimmte Menge an Daten benötigt wird. Jedoch erhöht sich auch die Anzahl der benötigten IO-Pins am Logikbaustein. Am Logikbaustein ist eine der beiden IO-Bänke komplett für den Speicherzugriff vorgesehen. An dieser Bank befinden sich 40 IO-Pins zur freien Verfügung. Übliche Datenbusbreiten sind 8, 16 und 32-Bit, wobei 32-Bit nicht praktikabel wären, da dann nur noch 8 Pins für die Adress und Steuerleitungen verfügbar wären. Somit fiel die Wahl auf einen 16-Bit breiten Datenbus.
+
+Die gesamte, maximale Speichergröße ist nun abhängig von der Anzahl der restlichen, verfügbaren IO-Pins. Dies wird in der nachfolgenden Tabelle verdeutlicht.
+
+\begin{table}[h]
+
+\begin{tabular}{|l|l|}
+\hline
+Steuerleitung 		& Anzahl \\
+\hline \hline
+Gesamt			& 40	\\
+\hline
+Datenbus		& 16	\\
+\hline
+Chip-Enable		& 1	\\
+\hline
+Read- und Write-Enable	& 2	\\
+\hline
+Byteauswahl		& 2	\\
+\hline \hline
+Für Adressbus vefügbar:	& 19	\\
+\hline
+\end{tabular}
+\caption{Benögtigte Busleitungen}
+\end{table}
+
+Um eine flexiblere Bestückung des Alysators zu ermöglichen, wurde entschieden den Speicher auf zwei Bausteine zu verteilen. Diese beiden Bausteine sind parallel über einen Speicherbus verbunden, wobei die Auswahl des aktiven Speichers durch ein seperates Chip-Enable Signal erfolgt. Durch dieses doppelte CE-Leitung verringert sich die maximale Breite des Adressbusses auf 18.
+
+Somit besitzt jeder dieser beiden Speicher eine Größe von $2^{18} \cdot 16 Bit = 512 Kbyte$. Daher vefügt der Analysator über ingesamt einen Megabyte an Speicher. Dadurch können, zum Beispiel bei einer Anwendung mit acht Messleitungen und 24-Bit Zeitstempel, bis zu 262.144 Messergebnisse gespeichert werden. Dies entspricht, bei einem durchschnittlichen Abstand von 1ms zwischen den Messwerten, einer Aufzeichnungszeit von über 260 Sekunden oder 4,3 Minuten.
+
+Anhand dieser eingeschränkten Suchkriterien wurde der Speicherbaustein AS7C34098A von Alliance Memory ausgewählt. Er bestitzt genau die erwähnte Buskonfiguration und verfügt über eine geringe Zugriffszeit von 8ns. \cite{Allia01}
+
+
+
+\section{Spannungsversorgung} \index{Spannungsregler} \index{LM1117}
+
+Auch die Spannungsversorgung des Analysators sollte so variabel wie möglich gestaltet werden. So kann die Versorgungsspannung sowohl nur über die USB-Schnittstelle, als auch durch ein externes Netzteil bereitgestellt werden. 
+
+Der Schaltungsaufbau verfügt über zwei unterschiedliche Spannungen. Eine 5V und eine 3.3V Spannungsdomäne. Die 3.3V Versorgungsspannung wird von nahezu sämtlichen Bausteinen verwendet. Lediglich die Treiberbausteine verwenden, für die Pegelwandlung, die 5V Betriebsspannung. 
+
+Bei einer Spannungsversorgung über USB wird die 5V Spannungsdomäne direkt von der USB-Spannung betrieben. Lediglich ein Glättungskondesator ist zusätzlich vorgesehn. Für die Erzeugung der 3.3V sorgt ein LM1117-3.3 Spannungsregler von National Semiconductor. Dieser Regler erzeugt, aus einer beliebigen Spannung zwischen 4.25V und 10V, eine konstante Spannung von 3.3V, bei einem maximalen Strom von 800mA. Jedoch stellt die USB-Schnittstelle nur einen Strom von 500mA zur Verfügung, so dass dieser bereits hier begrenzt ist. Für die gesamte Schaltung wurde im Betrieb ein Stromverbrauch von unter 400mA gemessen, so dass hier keine Probleme zu erwarten sind.
+
+Falls nur ein USB-Anschluss mit geringerem Maximalstrom zur Verfügung steht, oder der Analysator unabhängig von USB betrieben werden soll, ist noch eine externe Spannungsversorgung vorgesehen. Diese kann mit 6.5V bis 12V betrieben werden. Ein LM1117-5.0 Baustein erzeugt daraus eine Spannung von 5.0V, welche dann, über einen Jumper auswählbar, in den oben erwähnten 5V-Kreis gespeist werden kann.

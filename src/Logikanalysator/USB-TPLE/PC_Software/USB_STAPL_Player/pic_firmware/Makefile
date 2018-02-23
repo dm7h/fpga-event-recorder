@@ -1,0 +1,50 @@
+# $Id: Makefile,v 1.6 2006/04/18 19:44:32 gaufille Exp $
+# Modified by Wojciech M. Zabolotny for USB STAPL Player
+PIC_TYPE = PIC18F4550
+sdcc_PIC_TYPE = 18f4455
+#sdcc_PIC_TYPE = 18f4550
+lkr_PIC_TYPE = 18f4550
+#modify the line below to get it pointing to
+#your sdcc directory
+TOOLSDIR = ../firmware/tools
+CC = $(TOOLSDIR)/bin/sdcc
+CFLAGS = -mpic16 -p$(sdcc_PIC_TYPE) $(DEBUG) 
+LNK = $(TOOLSDIR)/bin/sdcc
+LDFLAGS = 
+ODYSSEY = $(TOOLSDIR)/bin/odyssey
+#DEBUG = --denable-peeps --obanksel=9 --opt-code-size --optimize-cmp --optimize-df --fstack 
+#DEBUG = --calltree
+#DEBUG = --stack-auto
+#DEBUG = -D_DEBUG
+#DEBUG = --obanksel=1 --optimize-df --opt-code-size
+#DEBUG = --ivt-loc=0x2000 --fstack --opt-code-size --obanksel=2 --optimize-df --optimize-cmp
+#DEBUG = --extended
+DEBUG=--optimize-df --opt-code-speed --optimize-cmp --obanksel=2 --calltree 
+all: boot.hex
+
+# Link with sdcc causes an error when accessing UCFG and UCON : access bit is set
+# but it should not. Using the CVS version 20050112 of gplink to link the code
+# solves this issue
+boot.hex: boot_iface.o boot_main.o usb.o usb_descriptors.o ep0.o ep1.o \
+		 jtag.o ep2.o application_iface.o flash.o config.o interrupt_iface.o
+	$(LNK) $(DEBUG) $(LDFLAGS) --use-crt=crt0.o -Wl-s$(lkr_PIC_TYPE).lkr,-m \
+	-mpic16 -p$(sdcc_PIC_TYPE) $+ -o $@ -llibio$(sdcc_PIC_TYPE).lib -llibc18f.lib
+
+clean:
+	rm -f *.o *.rel *.lst *.cod *.hex *.map *.asm *.calltree
+
+prog: boot.hex
+	(echo "Blanking...";\
+	$(ODYSSEY) $(PIC_TYPE) erase) && \
+	(echo "Writing...";\
+	$(ODYSSEY) $(PIC_TYPE) write $<)
+
+.PHONY: all clean prog erase
+
+application_iface.o boot_main.o boot_iface.o \
+usb.o usb_descriptors.o ep0.o jtag.o ep1.o ep2.o flash.o \
+config.o interrupt_iface.o : usb.h usb_descriptors.h ep0.h \
+	ep1.h ep2.h application_iface.h \
+	usb_std_req.h common_types.h \
+	debug.h flash.h Makefile boot_iface.h \
+	config.h

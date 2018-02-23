@@ -1,0 +1,41 @@
+\chapter{Einführung} % Kapitel 1
+
+\section{Motivation} \label{Motivation}
+
+Digitale Schaltungen und Mikroprozessoren befinden sich heutzutage in so gut wie jedem Gerät. Die Bandbreite geht hier von einfachen Kaffemaschinen, bis hin zur komplexen Automatiserungstechnik zum Beispiel einer Autowaschstraße.
+
+Hierfür sind auch zeitlich miteinander abgestimmte Prozesse und Echtzeitanwendungen nötig. So löst zum Beispiel ein Sensor, wie eine Lichtschranke, einen Interrupt-Subroutine innerhalb eines Mikrocontrollers aus. Dieser springt nun aus seinem Hauptprogramm in das entsprechende Unterprogramm. Nun ist es für den problemlosen Ablauf einer Steuerung manchmal wichtig, schon vor Ausführung des Unterprogramms zu wissen, wie lange die Ausführung vermutlich dauern wird.
+
+Dies kann nur durch ein vorheriges messen der Dauer erfolgen. Diese Messung kann nun natürlich von der Anwendung selbst erfolgen. Jedoch muss hier beachtet werden, dass die Funktion zur Zeitmessung ebenfalls Ausführungszeit benötigt, was das Ergebnis, welches im Millisekunden-Bereich liegen kann, verfälscht. 
+
+Als weiteres kommt noch eine externe Messung in Frage. Dafür wird zu Beginn und Ende der zu messenden Funktion ein Hardwarpin gesetzt. Dieses Setzen eines Hardwarpins verfälscht bei modernen Mikrocontrollern das Ergebnis maximal um einen Takt. Nun kann dieses Signal durch ein externes Gerät registriert werden, und die Zeit zwischen den beiden Pulsen gemessen werden. 
+
+Ein solches Gerät müsste mindestens über einen Messleitungs-Eingang, einen Zeitgeber und einen Zwischenspeicher verfügen. Auch ein Ausgang zur Datenanalyse muss vorhanden sein.
+
+\section{Ziel der Arbeit}
+
+Ziel der Arbeit ist es, eine Basis für den oben erwähnen Analysator zu schaffen. Dazu gehören die Auswahl der Komponenten, das Erstellen des Schaltplanes und das Fertigen und Testen des Prototypen.
+
+Auf Softwareseite sollen Möglichkeiten aufgezeigt werden, wie mit dem Gerät kommuniziert werden kann. Dazu gehören die Implementierung einer USB-Schnittstelle für die Kommunikation mit der Hardware. Ausserdem soll über die selbe Schnittstelle ein Austausch der Firmware erfolgen können.
+
+Ein komplett funktionsfähiger Analysator wurde in dieser Arbeit nicht erstellt. Jedoch wird eine mögliche Implementierung sowohl auf Softwareseite als auch auf Seite der logischen Schaltung erläutert.
+
+Auf der so erstellten Basis, kann nun in zukünftigen Arbeiten oder Projektgruppen ein Analysator entwickelt werden, der die unter Abschnitt \ref{Motivation} erwähnten Funktionen ermöglicht. Auch sind durch die Flexibilität des verwendeten Mikrocontrollers und des Logikbausteins eine Vielzahl weiterer Funktionen möglich.
+
+\section{Open-Source}
+
+Die gesamte Arbeit steht unter einer Open-Source Lizenz. Dies betrifft zum einen die Software, also die Firmware des Mikrocontrollers, den VHDL-Code des Logikbausteins und die PC-Software. Außerdem steht die Hardware, also die Schaltpläne und das Platinenlayout, auch unter einer Open-Hardware-Lizenz.
+
+Als Lizenz wurde die LGPL-Lizenz ausgewählt. Diese Lizenz erlaubt es auch komerziellen Anwendern die Soft- und Hardware in Ihre Anwendungen zu Integrieren. Eine genaue Beschreibung der Lizenz befindet sich im Anhang. Einige der verwendeten Codeabschnitte und Programme verfügen über eine eigene Lizenz. Der Hinweis auf diese Lizenzen befindet sich in den entsprechenden Quellcode-Dateien. 
+
+Für den schriftlichen Teil der Bachelorarbeit wurde die GNU-Lizenz für freie Dokumentation ausgewählt, was sowohl nichtkommerzielles als auch kommerzielles Kopieren ausdrücklich erlaubt.
+
+\begin{center}
+\includegraphics[width=0.3\textwidth]{images/lgpl.png}
+\end{center}
+
+\section{Aufbau der Arbeit}
+
+In Kapitel 2 wird die Theorie der digitalen Messtechnik angeschnitten. In den Kapiteln 3 und 4 wird die Entwicklung des Hardwareprototypen erläutert. Die Kapitel 5 bis 7 befassen sich mit der Firmware des Mikrocontrollers. Die PC-Software wird in Kapitel 8 und da VHDL-Desighn in Kapitel 9 erklärt. 
+
+Ein Ausblick auf die zukünftige Entwicklung befindet sich unter Kapitel 10. Im Anhang sind Schaltpläne, Listen und Verzeichnisse sowie die LGPL-Lizenz abgedruckt.

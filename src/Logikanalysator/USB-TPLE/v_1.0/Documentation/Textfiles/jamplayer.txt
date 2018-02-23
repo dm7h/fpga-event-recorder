@@ -1,0 +1,150 @@
+Anpassen des JTAG players:
+--------------------------
+
+PC Software:
+------------
+
+Ändern der USB-IDs in der Datei: jtag.h
+Ändern der EndPoints der funkitonen usb_bulk_write und usb_bulk_read der libusb in der Datei: usb_prog.c
+
+usb_bulk_write: Alter EP: 1, Neuer EP: 4
+usb_bulk_read:  Alter EP: 2, Neuer EP: 5
+
+USB-Firmware:
+-------------
+
+1. Erstellen der beiden neuen EPs:
+
+Neue Endpoints in der conf_usb.h definieren
+
+//JTAG Endpoints:
+#define JTAG_RX_EP			0x04
+#define JTAG_TX_EP			0x05
+
+Endpoints und Interfaces in der usb_descriptors.h einstellen
+
+// Interface 2 descriptor
+#define INTERFACE2_NB        2
+#define ALTERNATE2           0
+#define NB_ENDPOINT2         2
+#define INTERFACE2_CLASS     0xFF    // Vendor Class
+#define INTERFACE2_SUB_CLASS 0xFF
+#define INTERFACE2_PROTOCOL  0xFF
+#define INTERFACE2_INDEX     4
+
+// USB Endpoint 4 descriptor
+//Bulk OUT  JTAG_RX endpoint
+#define JTAG_RX_EP_SIZE     0x20
+#define ENDPOINT_NB_4       JTAG_RX_EP
+#define EP_ATTRIBUTES_4     0x02          // BULK = 0x02, INTERUPT = 0x03
+#define EP_SIZE_4           64				//64byte= Maximum
+#define EP_INTERVAL_4       0x00
+
+// USB Endpoint 5 descriptor
+//Bulk IN  JTAG_RX endpoint
+#define JTAG_TX_EP_SIZE     0x20
+#define ENDPOINT_NB_5       JTAG_TX_EP
+#define EP_ATTRIBUTES_5     0x02          // BULK = 0x02, INTERUPT = 0x03
+#define EP_SIZE_5           64				//64byte= Maximum
+#define EP_INTERVAL_5       0x00
+
+Struktur erweitern:
+
+/*_____ U S B   C D C  D E S C R I P T O R __________________________________*/
+
+typedef struct
+{
+   S_usb_configuration_descriptor cfg;
+   S_usb_interface_descriptor     ifc0;
+   U8 CS_INTERFACE[19];
+   S_usb_endpoint_descriptor      ep3;
+   S_usb_interface_descriptor     ifc1;
+   S_usb_endpoint_descriptor      ep1;
+   S_usb_endpoint_descriptor      ep2;
+   S_usb_interface_descriptor     ifc2;
+   S_usb_endpoint_descriptor      ep4;
+   S_usb_endpoint_descriptor      ep5;
+
+} S_usb_user_configuration_descriptor;
+
+
+Enpoints in der usb_specific_request.c initialisieren:
+
+  usb_configure_endpoint(JTAG_RX_EP,      \
+                         TYPE_BULK,     \
+                         DIRECTION_OUT,  \
+                         SIZE_32,       \
+                         ONE_BANK,     \
+                         NYET_ENABLED);
+
+  usb_configure_endpoint(JTAG_TX_EP,      \
+                         TYPE_BULK,  \
+                         DIRECTION_IN,  \
+                         SIZE_32,     \					//Size mal no gucken
+                         ONE_BANK,     \
+                         NYET_ENABLED);
+
+  Usb_reset_endpoint(JTAG_RX_EP);
+  Usb_reset_endpoint(JTAG_TX_EP);
+  
+Defintionen von Interface und EP in der usb_descriptors.c:
+
+
+//JTAG:
+
+ { sizeof(S_usb_interface_descriptor)
+ , DESCRIPTOR_INTERFACE
+ , INTERFACE2_NB
+ , ALTERNATE2
+ , NB_ENDPOINT2
+ , INTERFACE2_CLASS
+ , INTERFACE2_SUB_CLASS
+ , INTERFACE2_PROTOCOL
+ , INTERFACE2_INDEX
+ }
+ ,
+ { sizeof(S_usb_endpoint_descriptor)
+ , DESCRIPTOR_ENDPOINT
+ , ENDPOINT_NB_4
+ , EP_ATTRIBUTES_4
+ , Usb_write_word_enum_struc(EP_SIZE_4)
+ , EP_INTERVAL_4
+ }
+ ,
+ { sizeof(S_usb_endpoint_descriptor)
+ , DESCRIPTOR_ENDPOINT
+ , ENDPOINT_NB_5
+ , EP_ATTRIBUTES_5
+ , Usb_write_word_enum_struc(EP_SIZE_5)
+ , EP_INTERVAL_5
+ }
+
+
+ 
+Erstellen neuer Tasks:
+----------------------
+
+1. Tasks in der conf_scheduler.h hinzufügen:
+
+//JTAG:
+#define Scheduler_task_3_init   jtag_task_init
+#define Scheduler_task_3        jtag_task
+
+2. Neue tasks erstellen:
+
+Files: jtag_task.c und jtag_task.h
+Funktionen: 
+void jtag_task_init(void);
+void jtag_task(void);
+
+Erstellen der API:
+------------------
+
+1. Neue Files: jtag_usb_lib.c und jtag_usb_lib.h
+
+Hier jetzt funktionen zur komunikation mit den beiden EPs erstellen (read, write usw)
+
+Kommen aus der Originaldatei Jtag.c und jtag.h vom jamplayer
+
+Anpassung der Portpins
+Anpassung der Dateitypen (uchar in U8)

@@ -1,0 +1,168 @@
+ -- Copyright (C) 1991-2009 Altera Corporation
+ -- Your use of Altera Corporation's design tools, logic functions 
+ -- and other software and tools, and its AMPP partner logic 
+ -- functions, and any output files from any of the foregoing 
+ -- (including device programming or simulation files), and any 
+ -- associated documentation or information are expressly subject 
+ -- to the terms and conditions of the Altera Program License 
+ -- Subscription Agreement, Altera MegaCore Function License 
+ -- Agreement, or other applicable license agreement, including, 
+ -- without limitation, that your use is for the sole purpose of 
+ -- programming logic devices manufactured by Altera and sold by 
+ -- Altera or its authorized distributors.  Please refer to the 
+ -- applicable agreement for further details.
+ -- 
+ -- This is a Quartus II output file. It is for reporting purposes only, and is
+ -- not intended for use as a Quartus II input file. This file cannot be used
+ -- to make Quartus II pin assignments - for instructions on how to make pin
+ -- assignments, please see Quartus II help.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- NC            : No Connect. This pin has no internal connection to the device.
+ -- DNU           : Do Not Use. This pin MUST NOT be connected.
+ -- VCCINT        : Dedicated power pin, which MUST be connected to VCC  (2.5V/3.3V).
+ -- VCCIO         : Dedicated power pin, which MUST be connected to VCC
+ --                 of its bank.
+ --					Bank 1:		3.3V
+ --					Bank 2:		3.3V
+ -- GND           : Dedicated ground pin. Dedicated GND pins MUST be connected to GND.
+ --					It can also be used to report unused dedicated pins. The connection
+ --					on the board for unused dedicated pins depends on whether this will
+ --					be used in a future design. One example is device migration. When
+ --					using device migration, refer to the device pin-tables. If it is a
+ --					GND pin in the pin table or if it will not be used in a future design
+ --					for another purpose the it MUST be connected to GND. If it is an unused
+ --					dedicated pin, then it can be connected to a valid signal on the board
+ --					(low, high, or toggling) if that signal is required for a different
+ --					revision of the design.
+ -- GND+          : Unused input pin. It can also be used to report unused dual-purpose pins.
+ --					This pin should be connected to GND. It may also be connected  to a
+ --					valid signal  on the board  (low, high, or toggling)  if that signal
+ --					is required for a different revision of the design.
+ -- GND*          : Unused  I/O  pin.   For transceiver I/O banks (Bank 13, 14, 15, 16 and 17),
+ --           	    connect each pin marked GND* either individually through a 10k Ohm resistor
+ --           	    to GND or tie all pins together and connect through a single 10k Ohm resistor
+ --           	    to GND.
+ --           	    For non-transceiver I/O banks, connect each pin marked GND* directly to GND
+ --           	    or leave it unconnected.
+ -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
+ -- RESERVED_INPUT    : Pin is tri-stated and should be connected to the board.
+ -- RESERVED_INPUT_WITH_WEAK_PULLUP    : Pin is tri-stated with internal weak pull-up resistor.
+ -- RESERVED_INPUT_WITH_BUS_HOLD       : Pin is tri-stated with bus-hold circuitry.
+ -- RESERVED_OUTPUT_DRIVEN_HIGH        : Pin is output driven high.
+ ---------------------------------------------------------------------------------
+
+
+
+ ---------------------------------------------------------------------------------
+ -- Pin directions (input, output or bidir) are based on device operating in user mode.
+ ---------------------------------------------------------------------------------
+
+Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
+CHIP  "top"  ASSIGNED TO AN: EPM240T100C4
+
+Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
+-------------------------------------------------------------------------------------------------------------
+mem_ce2                      : 1         : output : 3.3-V LVTTL       :         : 2         : Y              
+io_dir                       : 2         : output : 3.3-V LVTTL       :         : 1         : Y              
+io_data[0]                   : 3         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[1]                   : 4         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[2]                   : 5         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[3]                   : 6         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[4]                   : 7         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[5]                   : 8         : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+VCCIO1                       : 9         : power  :                   : 3.3V    : 1         :                
+GNDIO                        : 10        : gnd    :                   :         :           :                
+GNDINT                       : 11        : gnd    :                   :         :           :                
+clk100                       : 12        : input  : 3.3-V LVTTL       :         : 1         : Y              
+VCCINT                       : 13        : power  :                   : 2.5V/3.3V :           :                
+mega_clk                     : 14        : input  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[6]                   : 15        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[7]                   : 16        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[8]                   : 17        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[9]                   : 18        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[10]                  : 19        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[11]                  : 20        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[12]                  : 21        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+TMS                          : 22        : input  :                   :         : 1         :                
+TDI                          : 23        : input  :                   :         : 1         :                
+TCK                          : 24        : input  :                   :         : 1         :                
+TDO                          : 25        : output :                   :         : 1         :                
+io_data[13]                  : 26        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[14]                  : 27        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[15]                  : 28        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[16]                  : 29        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[17]                  : 30        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+VCCIO1                       : 31        : power  :                   : 3.3V    : 1         :                
+GNDIO                        : 32        : gnd    :                   :         :           :                
+io_data[18]                  : 33        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[19]                  : 34        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[20]                  : 35        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[21]                  : 36        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[22]                  : 37        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+io_data[23]                  : 38        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+mega_int                     : 39        : output : 3.3-V LVTTL       :         : 1         : Y              
+mega_reg_sel[1]              : 40        : input  : 3.3-V LVTTL       :         : 1         : Y              
+mega_reg_sel[0]              : 41        : input  : 3.3-V LVTTL       :         : 1         : Y              
+mega_nib_sel                 : 42        : input  : 3.3-V LVTTL       :         : 1         : Y              
+GND*                         : 43        :        :                   :         : 1         :                
+GND*                         : 44        :        :                   :         : 1         :                
+VCCIO1                       : 45        : power  :                   : 3.3V    : 1         :                
+GNDIO                        : 46        : gnd    :                   :         :           :                
+mega_rw                      : 47        : input  : 3.3-V LVTTL       :         : 1         : Y              
+mega_data[3]                 : 48        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+mega_data[2]                 : 49        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+mega_data[1]                 : 50        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+mega_data[0]                 : 51        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
+mem_adr[9]                   : 52        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[8]                   : 53        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[7]                   : 54        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[6]                   : 55        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[5]                   : 56        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_we                       : 57        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[7]                  : 58        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+VCCIO2                       : 59        : power  :                   : 3.3V    : 2         :                
+GNDIO                        : 60        : gnd    :                   :         :           :                
+mem_data[6]                  : 61        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+ext_reset                    : 62        : input  : 3.3-V LVTTL       :         : 2         : Y              
+VCCINT                       : 63        : power  :                   : 2.5V/3.3V :           :                
+GND*                         : 64        :        :                   :         : 2         :                
+GNDINT                       : 65        : gnd    :                   :         :           :                
+mem_data[5]                  : 66        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[4]                  : 67        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[3]                  : 68        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[2]                  : 69        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[1]                  : 70        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[0]                  : 71        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[4]                   : 72        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[3]                   : 73        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[2]                   : 74        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[1]                   : 75        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[0]                   : 76        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[17]                  : 77        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[16]                  : 78        : output : 3.3-V LVTTL       :         : 2         : Y              
+GNDIO                        : 79        : gnd    :                   :         :           :                
+VCCIO2                       : 80        : power  :                   : 3.3V    : 2         :                
+mem_adr[15]                  : 81        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_oe                       : 82        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_ub                       : 83        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_lb                       : 84        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[15]                 : 85        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[14]                 : 86        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[13]                 : 87        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[12]                 : 88        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[11]                 : 89        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[10]                 : 90        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[9]                  : 91        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+mem_data[8]                  : 92        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
+GNDIO                        : 93        : gnd    :                   :         :           :                
+VCCIO2                       : 94        : power  :                   : 3.3V    : 2         :                
+mem_adr[14]                  : 95        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[13]                  : 96        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[12]                  : 97        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[11]                  : 98        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_adr[10]                  : 99        : output : 3.3-V LVTTL       :         : 2         : Y              
+mem_ce1                      : 100       : output : 3.3-V LVTTL       :         : 2         : Y              

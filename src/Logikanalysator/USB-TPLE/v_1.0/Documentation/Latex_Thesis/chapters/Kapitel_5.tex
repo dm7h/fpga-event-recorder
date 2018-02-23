@@ -1,0 +1,87 @@
+\chapter{Mikrocontroller Software} \label{Mikrocontroller_Software}
+
+\section{Einführung}
+
+In diesem Kapitel wird beschrieben, wie die Programmierung für den Mikrocontroller erfolgt. Als Programmiersprache kommt C zum Einsatz. Die Firmware des Mikrocontrollers muss so konzipert werden, dass sie alle Aufgaben, die zur Funktion des Analysators notwendig sind, ausführen kann. Dazu zählen vor allem die Schnittstellenfunktion zwischen PC und CPLD, und die Fähigkeit die Firmware beider Bausteine (Mikrokontroller und CPLD) über USB aktualisieren zu können. Eine genaue Beschreibung der USB-Schnittstelle und des USB-JTAG-Adapters befindet sich in den Kapiteln \ref{USB-Schnittstelle} und \ref{USB-JTAG}.
+
+\section{Entwicklungsumgebung} \index{Entwicklungsumgebung} \index{Linux} \index{Windows}
+
+Als Entwicklungsrechner wurde ein Standard x86-PC mit den folgenden Spezifikationen verwendet:\\
+
+% use packages: array
+\begin{tabular}{ll}
+Prozessor: & Pentium IV, 2.8 GHz, HT \\ 
+Arbeitsspeicher: & 1 GB DDR2 \\ 
+Chipsatz: & Intel 865 \\ 
+Betriebssystem: & Windows 7
+\end{tabular}\\
+
+Die Entwicklungsumgebung zur Erstellung der Firmware des Mikrocontrollers besteht, auf Softwareseite, aus dem kostenlos erhältlichen AVR-Studio in der Version 8 von Atmel. Das AVR-Studio enthält neben dem Quelltexteditor und einer Projektverwaltung auch eine integrierte Toolchain. Mit dieser Toolchain lassen sich die entwickelten Programme direkt kompilieren und über einen Programmieradapter auf den Mikrocontroller spielen. Zusätzlich ist in dem AVR-Studio noch ein leistungsfähiger Debugger integriert. Mit dem Debugger lassen sich, unter der Vorraussetzung, dass der Programmieradapter und der Prozessor dies unterstützen, die Programme zur Laufzeit analysieren.
+
+Es ist jedoch auch problemlos möglich jede andere Toolchain, welche die für den Mikrocontroller passenden Entwicklungswerkzeuge enthält, zu verwenden. Dazu zählen ein für AVR-Prozessoren geeigneter Compiler (z.B. avr-gcc), ein Linker (z.B: avr-ld), eine passende Standard C-Bibliothek, sowie eine Software zum Aufspielen der Firmware (z.B. avrdude). Diese Tools sind für die meisten gängigen Betriebssysteme vorkompiliert, oder als Quellcode vefügbar.
+
+Als Programmieradapter wurde der JTAG-ICE-MKII von Atmel verwendet. Mit diesem Adapter lässt sich der JTAG-Anschluss des Mikrocontrollers direkt über USB mit dem PC verbinden. Der JTAG-ICE-MKII wird vollständig vom AVR-Studio unterstützt, was auch die Verwendung des integrierten Debuggers ermöglicht.
+
+Um einige plattformübergreifende Aspekte zu testen, wurde auf dem Entwicklungs-PC eine virtuelle Maschine mit einem Linux Betriebssystem installiert. Dazu wurde die kostenlose VMware-Player Version von VMware Inc. \footnote{http://www.vmware.com/de/} verwendet. Als Gastbetriebssystem kam die Linuxdistribution Debain in der Version 5.0 (Lenny) zum Einsatz.
+
+\section{USB-Bootloader} \index{Bootloader}
+
+Ein Bootloader ist ein eigenständiges Programm, welches es ermöglicht, den Speicher eines Bausteins ohne externes Programmiergerät zu beschreiben. Der Bootloader übernimmt dabei die Aufgaben den Flash des Bausteins zu löschen, den zum Beispiel über USB gesendeten Datenstrom in ein entsprechendes Format zu wandeln um den Flash-Speicher anschießend zu beschreiben. Im Falle des verwendeten Atmega32-U4, ist der für den Bootloader vorgesehene Specherbereich am oberen Ende des Flash-Speichers vorgesehen. Dies hat zur Folge, dass es dem Bootloader nur möglich ist den Speicherbereich unterhalb dieser Adresse zu beschreiben, da er sich nicht selbst updaten kann. Der Bootloader selbst kann also nur durch einen externen Programmieradapter, wie den JTAG-ICE-MKII, aufgespielt werden.
+
+Da sich nun zwei eigenständige Programme im Speicher des Mikrokontrollers befinden, der Bootloader sowie die eigenliche Anwendung, gibt es nun verschiedene Mechanismen für die Auswahl, welches gestartet werden soll.
+
+Beim Atmega gibt es nun drei verschiedene Konzepte: Eines dieser Konzepte sieht vor, dass der Prozessor immer von der Speicheradresse des Bootloaders (0x3800) startet. Dazu muss die BOOTRST-Fuse des Mikrocontrollers gesetzt werden. So kann man nun entweder ein neues Programm aufspielen, oder den Bootloader dazu veranlassen die Programmausführung an der Startadresse 0x0 fortzusetzen. Dies kann zum einen über einen per USB gesendeten Befehl, oder über einen Timer erfolgen.
+
+Ein anderes Konzept sieht vor, dass der Prozessor immer bei der Startadresse 0x0 mit der Programmausführung beginnt. Wird nun an einem bestimmten Externen Pin () eine logische 0 angelegt, und danach der Hardware-Reset betätigt, so springt der Prozessor nach dem Reset an die Startadresse des Bootloaders.
+
+Eine dritte Möglichkeit ist es den Bootloader direkt aus dem Anwendungsprogramm herraus zu starten. Dazu wird der Watchdog verwendet. Der Watchdog hat normalerweise die Aufgabe, eine Störung um Programmablauf zu identifizieren um bei einem Fehler einen Reset auszulösen. Man kann jedoch nun in der Anwendungssoftware den Startvektor des Watchdogs auf die Startadresse des Bootloaders setzen, und den Watchdog im Anschluss auslösen lassen. Dadurch wird ein Reset mit der anschließenden Startadresse 0x3800 ausgelöst.
+
+\subsection{Atmel-Bootloader} 
+
+Der Atmel Bootloader für den Atmega32-U4 kann als vorkompilerte HEX-Datei von der Homepage bezogen werden. Der Quellcode kann auf Anfrage per Email direkt von Atmel bezogen werden. Standardmäßig ist der Bootloader bereits auf fabrikneuen Bausteinen aufgespielt, so dass der Programmiervorgang ohne Programmieradapter sofort möglich ist. Jedoch ist darauf zu achten, dass beim nachträglichen programmieren über einen externen Programmieradapter meist der gesamte Flash, also auch der Bootsektor, gelöscht wird. Somit muss der Bootloader im Anschluss neu aufgespielt werden.
+
+Wird der Mikrocontroller über den integrierten USB-Controller nun an den PC angeschlossen, so meldet sich der Controller als eine DFU-Klasse \footnote{DFU: Device Firmware Upgrade} am Host des PCs an. Die entsprechenden Parameter sind 0x03EB für die VID \footnote{VID: Vendor ID} von Atmel und 0x2FF4 für die PID \footnote{PID: Product ID} des Atmega32-U4 Bootloaders.
+
+Nun können über den USB-Anschluss verschiedene Befehle, wie zum Beispiel für das Auslesen des Status, gesendet werden. Die genauen Befehle sind in dem Datenblatt des USB-DFU-Bootloaders enthalten \footnote{USB DFU Bootloader Datasheet: http://www.atmel.com/dyn/resources/prod\_documents/doc7618.pdf}. Man kann jedoch auch eine einfache Programmiersoftware wie den FLIP-Programmer von Atmel verwenden. Auf diesen Punkt wird weiter unten genauer eingegangen.
+
+\subsection{LUFA-Bootloader}
+
+LUFA \footnote{LUFA: Lightweight USB Framework for AVRs} ist ein von dem Australier Dean Camera entwickelter USB-Stack für alle Mikrocontroller der Atmel AT90-Serie, wozu auch der verwendete Atmega32-U4 gehört. Auf alle Möglichkeiten die dieses USB-Framework bietet, wird im Kapitel \ref{USB-Schnittstelle} noch genauer eingegangen. Das gesamte Projekt steht unter der MIT-Lizenz \footnote{MIT: Massachusetts Institute of Technology} wodurch eine uneingeschränkte Nutzung des Quellcodes möglich ist.
+
+Zu dem LUFA-Projekt zählt unter anderem auch ein DFU-kompatibler Bootloader. Dieser Bootloader kann die gleichen Befehle wie der original Atmel Bootloader verarbeiten. Er kann problemlos für den Atmega32-U4 kompiliert werden. Es muss dazu einfach im Makefile der Mikrocontrollertyp und die Startadresse des Bootsektors angegeben werden.
+
+\begin{lstlisting}[caption=Einstellungen im DFU-Makefile]
+MCU = Atmega32U4
+BOOT_START = 0x3800
+\end{lstlisting}
+
+Um die Windowstreiber für den DFU-Bootloader von Atmel nutzen zu können, sind in der Datei ``Descripors.h'' bereits die oben erwähnten PID und VID von Atmel eingetragen. Durch die Auswahl der entsprechenden MCU im Makefile werden diese ausgewählt.
+
+Dadurch verhält sich der LUFA DFU-Bootloader genauso wie das Original von Atmel, und kann auch mit den selben Tools verwendet wrden. Er steht jedoch unter einer Open-Source Lizenz und kann problemlos an die eigene Anwendung angepasst werden. \cite{Lufa01}
+
+\subsection{PC-Software} \index{FLIP} \index{DFU-Programmer}
+
+Um den DFU nutzen zu können, ist auf der PC-Seite eine Software nötig welche die Steuerung des Bootloaders übernimmt. Dazu zählen neben dem Auslesen des Bootloader Status vor allem das Löschen, Beschreiben und Auslesen des Flash-Speichers. Zum Beschreiben muss nach der Löschung die vom Compler erzeuge HEX-Datei ausgelesen, und über den USB-Anschluss an den Bootloader übertragen werden. 
+
+Mit dem von Atmel erhältichen Tool ``FLIP'' \footnote{FLIP: FLexible In-system Programmer} können diese Aufgaben über eine grafische Oberfläche getätigt werden. Das Programm ist in Java geschrieben und benötigt eine aktuelle Java Runtime Umgebung. Die Software ist sowohl für Windows als auch für Linux erhältlich. Jedoch ist die aktuelle Programmversion für Linux die Version 3.2.1 während FLIP für Windows bereits in Version 3.4.1 erhältlich ist. Leider wird der Atmega32U4 erst ab Version 3.3.x unterstützt, so dass eine Programmierung unter Linux mit desem Tool noch nicht möglicht ist. Flip kann neben USB-Bootloadern auch mit Bootloadern für die RS232 Schnittstelle oder den CAN-Bus umgehen. Die Bedienoberfläche ist übersichtlich gestaltet und größtenteils selbsterklärend.
+
+\begin{figure}[ht]
+	\includegraphics[width=0.6\textwidth]{images/FLIP.jpg}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Benuntzeroberfläche von FLIP unter Windows}
+	\label{pic:FLIP}
+\end{figure}
+
+Mit dem freien Programm \textit{DFU-Programmer} gibt es jedoch eine gute Alternative zu FLIP unter Linux. Der DFU-Programmer bietet auch die Möglichkeit den Atmega32-U4 über den Bootloader zu flashen. Er kann kostenlos unter http://dfu-programmer.sourceforge.net/ heruntergeladen werden.
+
+Um das einfach anzuwendende Konsolenprogramm für die Verwendung mit USB zu kompilieren, wird zusätzlich noch die Bibliothek \texttt{usblib} benötigt. Auch muss das Paket \texttt{automake} für die Erstellung des Makefiles installiert werden. Die Anwendung des Programms ist nun recht simpel. In folgendem Beispiel wird eine HEX-Datei in den Flash-Speicher des Atmega geschrieben.
+
+\texttt{dfu-programmer atmega32u4 flash test.hex}
+
+Der erste Parameter bezeichnet hierbei den verwendeten Mikrocontroller, der zweite die Anweisung und der dritte Parameter die zu übertragende Datei.
+
+Mit dem DFU-Programmer können neben den Flash-Anwendungen auch einige Fuses des Atmegas ausgelesen und gesetzt werden. Eine detailierte Beschreibung findet sich in den Manpages des Programms wieder (Linux Befehl: \texttt{man dfu-programmer}).
+
+\section{Schnittstelle zum Logikbaustein} \label{SchnittstelleCPLD} \index{CPLD}
+
+Für die Kommunikation mit dem CPLD muss eine passende Schnittstelle überlegt werden. Hardwaretechnisch sind die beiden Bausteine über einen 8-Bit breiten, bidirektionalen Bus, sowie 2 Steuerleitungen verbunden. Die Schnittstelle wurde im Rahmen dieser Arbeit noch nicht realisiert. In Abschnitt \ref{EntityMicro} wird eine Möglichkeit aufgezeigt, wie die Schnittstelle aufgebaut werden könnte.

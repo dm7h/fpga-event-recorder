@@ -1,0 +1,57 @@
+--- Makefile.am
++++ Makefile.am
+@@ -34,7 +34,6 @@
+ 	gmc-mh-1x-2x \
+ 	hameg-hmo \
+ 	hantek-dso \
+-	hsa-tple \
+ 	ikalogic-scanalogic2 \
+ 	ikalogic-scanaplus \
+ 	kecheng-kc-330b \
+@@ -116,10 +115,6 @@
+ libsigrokhardware_la_LIBADD += hantek-dso/libsigrok_hw_hantek_dso.la
+ endif
+ 
+-if HW_HSA_TPLE
+-libsigrokhardware_la_LIBADD += hsa-tple/libsigrok_hw_hsa_tple.la
+-endif
+-
+ if HW_IKALOGIC_SCANALOGIC2
+ libsigrokhardware_la_LIBADD += ikalogic-scanalogic2/libsigrok_hw_ikalogic_scanalogic2.la
+ endif
+--- Makefile.am
++++ /dev/null
+@@ -1,33 +0,0 @@
+-##
+-## This file is part of the libsigrok project.
+-##
+-## Copyright (C) 2013 Matthias Weber <matthias.weber@hs-augsburg.de>
+-##
+-## This program is free software: you can redistribute it and/or modify
+-## it under the terms of the GNU General Public License as published by
+-## the Free Software Foundation, either version 3 of the License, or
+-## (at your option) any later version.
+-##
+-## This program is distributed in the hope that it will be useful,
+-## but WITHOUT ANY WARRANTY; without even the implied warranty of
+-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-## GNU General Public License for more details.
+-##
+-## You should have received a copy of the GNU General Public License
+-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-##
+-
+-if HW_HSA_TPLE
+-
+-# Local lib, this is NOT meant to be installed!
+-noinst_LTLIBRARIES = libsigrok_hw_hsa_tple.la
+-
+-libsigrok_hw_hsa_tple_la_SOURCES = \
+-	api.c \
+-	protocol.c \
+-	protocol.h
+-
+-libsigrok_hw_hsa_tple_la_CFLAGS = \
+-	-I$(top_srcdir)
+-
+-endif

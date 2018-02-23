@@ -1,0 +1,532 @@
+\chapter{USB-Schnittstelle} \label{USB-Schnittstelle} % Kapitel 6
+
+\section{Einführung} \index{USB}
+
+Die USB-Schnittstelle ist ein standartisiertes Bussystem, welches an einer vielzahl an Geräten verwendet wird. Die Geräte sind meist Hot-Plug-fähig, können also im laufenden Betrieb an die USB-Schnittstelle angeschlossen werden. In dieser Arbeit dient die USB-Schnittstelle als Verbindung zwischen dem Analysator und dem Host-PC. 
+
+Wird ein USB-Gerät an den PC angeschlossen, so wird es vom Betriebssystem adressiert. Danach kann mit bestimmten Registern im Gerät, den Endpunkten, kommuniziert werden. Die Adressierung erfolgt über eine baumartige Strukur: Gerät $\Rightarrow$ Konfiguration $\Rightarrow$ Interface $\Rightarrow$ Endpunkt.
+
+Die Kommunikation kann dabei auf vier verschiedene Arten ablaufen:
+
+\begin{description}
+ \item[Kontroll-Transfer:] Dient zum Austausch von Konfigurations- und Statusdaten.
+ \item[Bulk-Transfer:] Der Bulk-Transfer ist geeignet für große Datenmengen. Dabei wird immer das gerade verfügbare Zeitfenster verwendet
+ \item[Interrupt-Transfer:] Beim Interrupt-Transfer werden Daten, welche zu unregelmäßigen Zeiten vorliegen, mit voller Geschwindigkeit übertragen
+ \item[Isochrone-Transfer:] Hier werden Daten möglichst zeitnah, also in Echtzeit übertragen. Dabei werden, zur Analyse von Verzögerungen, Timing-Daten mit übertragen.
+ \end{description}
+
+
+\section{Hardwareschnittstelle des Atmega32-U4} \index{USB} \index{Atmega32-U4} \index{Mikrocontroller}
+
+Der Atmega32-U4 hat, wie alle Bausteine der AT90-USB-Serie, einen USB-2.0 Baustein fest integriert. Der Baustein ist intern mit dem 8-Bit Daten- und Adressbus des AVR-Kernes verbunden. Nach außen, zu den Anschlusspins, führen die Leitungen D- (Pin 3) und D+ (Pin 4). An dem Anschlusspin VBUS (Pin 7) wird die USB-Versorgungsspannung von 5V angelegt. Am Mikrocontroller ist zwar ein extra Massepin für den USB-Anschluss vorgesehen, jedoch ist dieser, sowohl intern als auch extern, mit der Masse der Spannungsversorgung verbunden. Für die Unterscheidung von USB-Steckern vom Typ Micro-A- und Micro-B, kann der, bei Mikrobuchsen vorgesehene, fünfte ID-Pin angschlossen werden. Dabei wird bei einem Micro-A Stecker der Pin auf Masse gezogen und bei einem Micro-B Stecker auf 5V. Da die Art des Steckers jedoch bei dieser Arbeit nicht relevant ist, wurde auf diesen ID-Pin verzichtet.
+
+Da USB in der Version 2.0 mit einer Datenübertragungsgeschwindigkeit von 12MBit/s arbeitet, benötigt der USB-Baustein eine Taktfrequenz von 12Mhz mit einer möglichst hohen Genauigkeit. Da der AVR-Kern für Taktfreqenzen von 8MHz oder 16MHz ausgelegt ist, wird der USB-Takt direkt im Baustein erzeugt. Dazu wird der anliegende Systemtakt von 8MHz von einem PLL-Baustein \footnote{PLL: Phase-locked loop, dt: Phasenregelschleife} auf eine Frequenz von 48MHz gebracht. Diese Frequenz wird nun von einem Prescaler durch vier geteilt, wodurch die für den USB-Baustein nötige Frequenz von 12MHz erzeugt wird.
+
+Der Mikrocontroller besitzt zwar einen internen Taktgeber von 8MHz, jedoch ist dieser nicht stabil genung für den Betrieb des USB-Controllers. So werden die 8MHz nur bei idealen Umgebungsbedingungen stabil gehalten. Zwar ist eine externe Kompensationsschaltung möglich, da der interne Taktgeber durch einen Registereintrag beeinflussbar ist, jedoch ist diese zu aufwendig zu realisieren. Aus diesem Grund wurde als Taktquelle ein externer Quarzoszillator verwendet, dessen Toleranzbereich kleiner ist als in der USB-Spezifikation angegeben.
+
+Zu beachten ist, dass der interne USB-Baustein nur die elektrische Regelung des USB-Anschlusses, sowie die Anbindung an den Datenbus des AVR-Kerns übernimmt. Im Gegensatz zu fertigen USB-Bausteinen, wie zum Beispiel ein RS232-USB Modul von FTDI, muss die Steuerung auf Protokollebene hier softwareseitig vorgenommen werden. Um jedoch nicht das komplette USB-Protokoll neu implementieren zu müssen, gibt es bereits fertige USB-Frameworks für diesen Controller. Dazu zählen vor allem der von Atmel selbst veröffentlichte USB-Stack, sowie das OpenSource Projekt LUFA. Auf diese beiden USB-Softwarelösungen wird in den folgenden Abschnitten genauer eingegangen. 
+
+\section{Atmel USB-Stack} \label{AtmelUSB}
+
+\subsection{Einführung} \index{Atmel USB-Stack}
+
+Der Atmel USB-Stack stellt die Softwarebasis für die USB-Protokollebene zur Verfügung. Er übernimmt hierbei die Enumeration, also das Anmelden des USB-Devices am PC, sowie die Datenkommunikation währen des Betriebs. 
+
+Mit Hilfe dieser Architektur, können Geräte sowohl mit Low Speed (1.5 Mbit/s) als auch Full-Speed (12Mbit/s) betrieben werden. Für Standardklassen wie zum Beispiel HID \footnote{HID: Humen Interface Device} sind bereits fertige Module implementiert. Diese können dann in die eigene Anwendung integriert werden. Als Datenübertragunsarten sind Kontroll-, Bulk-, Isochron- und Interrupt-Transfer möglich. Für die Kommunikation der Anwendungssoftware mit der USB-Schnittstelle können bis zu sechs Endpunkte implementiert werden. In jeden dieser Endpunkte können bis zu zwei Puffer integriert werden, so dass der eine Puffer bereits befüllt werden kann, während der andere noch ausgelesen wird.
+
+In den folgenden Abschnitten wird die genaue Funktion, sowie die Anwendung des Atmel USB-Stacks erläutert. \cite{Atmel02}
+
+\subsection{Firmware Architektur} \index{USB-Firmware}
+
+Die Architektur des USB-Stacks lässt sich in vier Schichten unterteilen Auf niedrigster Ebene liegt das zu Beginn beschriebene USB-Hardwareinterface, welches durch eine Ebene darüber, dem Treiber, angesteuert wird. Als Schnittstelle zwischen Anwendung und Treiber dient die nächste Schicht, die API. Diese regelt die Komunikation mit dem USB-Bus und stellt die Endpunkte zur Verfügung. In der obersten Ebene, der Anwendungsschicht, können nun mehrere Anwendungen implementiert werden. Welche Anwendung gerade ausgeführt wird, regelt ein einfacher Scheduler. Somit wird die komplette Anwendung, auch die Teile welche keinen Zugriff auf den USB-Anschlus benötigen innerhalb dieses Schichtmodels ausgeführt. Bevor jedoch der Scheduler, und damit der Anwendungsteil, starten kann, müssen zunächst die Initialisierungsroutinen, wie die Enumeration, ausgeführt werden.
+
+\subsection{Enumeration} \label{Enumeration} \index{Enumeration} \index{Deskriptor}
+
+Bei der Enumeration wird das USB-Gerät beim Betriebssystem des PCs angemeldet. Dafür fragt das Betriebssystem bestimmte Informationen vom Gerät ab. Anhand dieser Informationen kann das Betriebssystem so den passenden Gerätetreiber laden und dem USB-Gerät eine Busadresse zur Kommunikation zuweisen.
+
+Diese abrufbaren Informationen werden in USB-Diskreptoren gespeichert. Jeder dieser Diskreptoren hat seine Daten in einer Struktur gespeichert. Die Diskreptoren sind ebenfalls hirarchisch aufgebaut, und sind untereinander in einer Baumstruktur mit vier Ebenen verknüpft (Siehe Grafik \ref{pic:Deskriptoren}). Das Gerüst der jeweiligen Datenstrukturen ist im Anhang abgebildet.
+
+\begin{figure}[ht]
+	\includegraphics[width=0.6\textwidth]{images/Baumstruktur.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Baumstruktur der USB-Deskriptoren}
+	\label{pic:Deskriptoren}
+\end{figure}
+
+Die Wurzel der Baumstruktur bildet der \textbf{Device-Deskriptor}. Hier sind alle grundlegenden Informationen über das USB-Gerät selbst enthalten. Dazu zählen die verwendete USB-Version und die Geräteklasse. Die Geräteklasse (zum Beispiel HID-Maus) kann hier entweder fest eingetragen werden, oder, für Geräte welche mehrere Klassen enthalten, in einer darunterliegenden Ebene festgelegt werden (zum Beispiel bei einem USB-Speicherstick mit integriertem Fingerabdruck-Sensor). Weitere Informationen des Device-Destkripors sind das verwendete Code-Protokoll, die Größe der Datenpakete und die für die Identifikation notwendige Vendor-, Produkt-ID und Device-ID. Zusätzlich sind noch drei Strings vorgesehen, in welche der Hersteller, der Produktname sowie die Seriennummer im Klartext abgelegt werden können. 
+
+Mit diesem Device-Deskriptor können nun eine oder mehrere \textbf{Konfigurations-Deskriptoren} verknüpft werden. Hierbei ist zu beachten, dass nur eine Konfiguration aktiv sein kann. Welche dies ist, wird durch die Konfigurationsauswahl des Betriebssystems bestimmt. Im Konfigurations-Deskriptor wird die Anzahl der verwendeten Interfaces festgelegt. Außerdem wird hier bestimmt, ob das USB-Gerät eine eigene Spannungsversorgung besitzt oder über den USB-Bus versorgt wird. Wird das Gerät über den USB-Bus versorgt, so wird hier auch die maximale Stromaufnahme angegeben.
+
+Eine Ebene tiefer werden nun die \textbf{Interface-Deskriptoren} festgelegt. Hier kann nun die USB-Klasse festgelegt werden, falls diese noch nicht im Device-Desktriptor angegeben ist. Auch kann ein String abgelegt werden, um das Interface genauer zu beschreiben. Die Anzahl der, an das jeweilige Interface angeschlossenen Endpunkte, wird ebenfalls angegeben.
+
+In der untersten Ebene der Baumstruktur sind nun die \textbf{Endpunkt-Deskriptoren} angesiedelt. Die Endpunkte bilden die eigentliche Schnittstelle zwischen der Anwendungssoftware und dem USB-Bus. Jedem Endpunkt wird in diesem Deskriptor eine 8-Bit große Adresse zugewiesen, über welche das Betriebssystem mit dem Endpunkt direkt kommunizieren kann. Im Atmel USB-Stack können die vier niederwertigsten Bits für die Adressierung verwendet werden. Dies ermöglicht einen Adressbereich von 0x00 bis 0x0A. Das Bit mit dem höchsten Stellenwert bestimmt die Richtung in der der Endpunkt betrieben wird. Somit ergibt sich für einen Endpunkt in OUT Richtung eine Adresse von 0x0X und für IN eine Adresse von 0x8X. Die Übertragungsart wird mit dem Transfer-Attribut festgelegt. Dadurch wird zwischen Kontroll, Isochron, Bulk und Interrupt-Transfer unterschieden. Die maximale Größe der Datenpakete, und damit die Puffergröße, wird ebenfalls für jeden Endpunkt individuell bestimmt. Das letzte Attribut ist die Abtastrate des Endpunktes. Diese ist zwischen 1ms und 255ms einstellbar, wird jedoch nur bei Interrupt- und Isochrone-Transfer angewendet.
+
+Die Datenstrukturen werden befinden sich in den Quellcodedateien \texttt{usb\_descriptor.h} und \texttt{usb\_descripor.c}. Wie neue Deskriptoren und Endpunkte erzeugt werden, ist in Abschnitt \ref{USB-Dev} genauer erläutert.
+
+\subsection{USB-Treiber} \index{USB-Treiber}
+
+Der USB-Treiber bildet die Verbindung zwischen der Hardware und der Benutzerschnittstelle (API). Er enthält alle Low-Level Routinen, welche für den Betrieb des USB-Bausteins notwendig sind. Diese Routinen müssen normalerweise nicht für eigene Zwecke angepasst werden, dabBenutzerspezifische Zugriffe eine Ebene höher, in der API, erfolgen. Beispiele für die im Treiber enthaltenen Routinen sind die Initialisierung und Auswahl eines Endpunktes, das Senden oder Empfangen von Daten an diesem Endpunkt, sowie das Deaktivieren und Rücksetzen. Außerdem sind eine Vielzahl an Makros enthalten, welche die Kommunikation auf Bitebene mit dem USB-Baustein erleichtern. Als Beispiel kann hier das folgende Makro aufgezeigt werden:
+
+\begin{quote}
+%\texttt{\#define Is\_usb\_endpoint_enabled() ((UECONX \& (1 $\langel\langel$ EPEN)) ? TRUE : FALSE)}
+\verb|#define Is_usb_endpoint_enabled()	((UECONX & (1<<EPEN)) ? TRUE : FALSE)|
+\end{quote}
+
+Hier wird auf Bitebene ein bestimmtes Register des USB-Bausteins abgefragt, ob der ausgewählte Endpunkt aktiviert ist. Als Rückgabewert wird hier TRUE oder FALSE ausgegeben. Die in den Quellcode-Dateien \texttt{usb\_drv.h} und \texttt{usb\_drv.c} enthaltenen Makros und Low-Level-Funktionen können nun in der API angewendet werden, um höhere Funktionen zu realisieren.
+
+\subsection{API} \index{API}
+
+In der API werden die Funktionen bestimmt, auf welche die eigentliche Anwendung zugreift. Dadurch muss die Anwendungssoftware nicht auf die Lowlevel-Funktionen des Treibers zugreifen. Die API selbst kann nun wieder in vier Abschnitte unterteilt werden. Dazu gehören die Standard-USB-Funktionen. Diese Funktionen steuern alle Anfragen, welche für alle Klassen und Geräte gültig sind und benötigt werden. Deshalb sollten diese Funktionen nicht geändert werden. Anfragen welche nur an die verwendete Geräteklasse gerichtet sind, werden von den gerätespezifischen Funktionen ausgeführt. Dazu zählt zum Beispiel eine Funktion zum Senden eines Bytes über einen virtuellen COM-Port.
+
+Ebenfalls zur API-Schicht werden die weiter oben beschriebenen Deskriptor-Dateien gezählt. Das hat den Grund, da diese bei der Initialisierung des Gerätes von der Enumerationsroutine an den Treiber übergeben werden.
+
+Der vierte Abschnitt der API sind die benutzerspezifischen Funktionen. Hierzu werden alle Funktionen gezählt, welche nur von der Anwendungssoftware selbst verwendet werden.
+
+
+\subsection{Anwendungsteil} \index{Anwendungsschicht}
+
+Im Anwendungsteil befinden sich nun die eigentlichen Programme, welche als getrennte Tasks auf dem Prozessor ausgeführt werden. Zu diesen Tasks gehört auf jeden Fall der USB-Task. Dieser Task steuert alle allgemeinen und gerätespezifischen Funktionen. Zu Beginn führt dieser Task die Initialiserung der USB-Schnittstelle, unter Zuhilfenahme der Deskriptoren aus der API-Schicht, durch. Nach der Initialisierung führt der Task interruptgesteuert alle USB-Funktionen, wie den Datentransfer oder Powermanagement (WakeUp, Resume, Reset), aus.
+
+Neben diesem USB-Task können nun nahezu beliebig viele eigenen Anwendungen geschrieben werden. In diesen Tasks steuert man nun die HighLevel Funktionen. So wird hier zum Beispiel bei einer HID-Maus Implementierung die Funkton integriert, welche die Zustände der Maustasten abfragt, um diese dann über eine API-Funktion an den entsprechenden Endpunkt weiterzureichen. Auch können an dieser Stelle Tasks ausgeführt werden, die nicht auf die USB-Schnittstelle zugreifen, sondern zum Beispiel Daten von der seriellen Schnittstelle verarbeiten.
+
+In dieser Arbeit werden im Anwendungsteil mindestens drei Tasks benötigt. Dazu zählen ein USB-RS232-Task für die Komunikation mit dem Analysator. Dieser wird in Abschnitt \ref{USB-UART} genauer beschrieben. Der Zweite Task stellt eine USB-JTAG-Verbindung zur Verfügung. Mit Hilfe dieser Verbindung soll der CPLD ohne externen Programmieradapter konfiguriert werden. Dies wird im Kapitel \ref{USB-JTAG} erläutert. Der dritte notwendige Task soll die Datenverbindung zwischen dem Mikrocontroller und CPLD herstellen. Das Konzept dieses Tasks wurde in Abschnitt \ref{SchnittstelleCPLD} erklärt.
+
+Da der Prozessor des Atmega nur einen Task gleichzeitig ausführen kann, ist nun ein System notwendig welches die Tasks nacheinander ablaufen lässt. Da hier kein Betriebssystem vorhanden ist, welches diese Aufgabe übenehmen könnte, wird auf einen einfachen Scheduler zurückgegriffen. Auf die Funktion und Anwendung des Schedulers wird im folgenden Abschnitt eingegegangen.
+
+\subsection{Scheduler} \index{Scheduler} \index{Task}
+
+Im Atmel USB-Stack ist ein einfacher Scheduler zum Ausführen von mehreren Tasks implementiert. Dieser Scheduler arbeitet nacheinander alle vorhandenen Tasks ab. Die einzelnen Tasks müssen dabei nach jedem Durchlauf abgeschlossen sein. Denn im Gegensatz zu vielen anderen Multi-Task-Systemen, springt der hier verwendete Scheduler nur in den nächsten Task, wenn der vorherige beendet wurde.
+
+Jeder Task wird in zwei Abschnitte unterteilt. Eine Initalisierungsroutine und die eigentliche Anwendung. Die Initialiserungsroutine wird beim Startvorgang einmal ausgeführt. Hier können zum Beispiel, bei der HID-Maus, die Mikrocontroller-Pins, an welchen die Maustasten angeschlossen sind, als Eingänge definiert werden.
+
+Der Scheduler selbst befindet sich in der Datei \texttt{scheduler.c} und wird nach der Initialisierung als Endlosschleife von der Main-Funktion ausgeführt. Um einen neuen Task zu erstellen, muss lediglich die Datei \texttt{conf\_scheduler.h} angepasst werden (Siehe Codebeispiel unten). Der Scheduler selbst muss nur angepasst werden, falls mehr als 11 Tasks ausgeführt werden sollen.
+
+\begin{lstlisting}[caption={Ausschnitt aus conf\_scheduler.h}]
+/*--------------- SCHEDULER CONFIGURATION --------------*/
+#define SCHEDULER_TYPE          SCHEDULER_FREE
+#define Scheduler_task_1_init   usb_task_init
+#define Scheduler_task_1        usb_task
+#define Scheduler_task_2_init   cdc_task_init
+#define Scheduler_task_2        cdc_task
+#define Scheduler_task_3_init   jtag_task_init
+#define Scheduler_task_3        jtag_task
+\end{lstlisting}
+
+In der Quellcodedatei des jeweiligen Tasks, müssen dann mindestens die Funktion zur Initalisierung und der Task selbst enthalten sein. Außerdem muss die Konfigurations-Header-Datei eingebunden werden.
+
+\begin{lstlisting}[caption={Ausschnitt aus jtag\_task.c}]
+#include "../conf/config.h"
+
+void jtag_task_init(void)
+{
+	//Intialisierungsfunktionen
+}
+
+void jtag_task(void)
+{
+	//Taskfuntionen
+}
+\end{lstlisting}
+
+\subsection{Anpassen an das TPLE-Board} \index{LED} \index{Mikrocontroller-Ports} 
+
+Für einen einfachen Umgang mit der Hardware des Analysators, kann eine boardspezifische Header-Datei erstellt werden. In dieser Datei werden dann alle verwendeten Defintionen und Makros eingetragen, welche auf die verwendete Hardware zutreffen.
+
+Dazu zählt als Beispiel die Ansteuerung der beiden vorhandenen Status-LEDs. Dafür wird zunächst der entsprechende Port, in diesem Fall Port-F, initialisiert.
+
+\begin{lstlisting}[caption={Ausschnitt aus usb\_tple.h}]
+#define  LED_PORT       PORTF
+#define  LED_DDR        DDRF
+#define  LED_PIN        PINF
+#define  LED1_BIT       PIND1
+#define  LED2_BIT       PIND0
+\end{lstlisting}
+
+Nun können auch Makros zum einfachen Ansteuern der LEDs implementiert werden:
+
+\begin{lstlisting}[caption={Ausschnitt aus usb\_tple.h}]
+#define  Leds_init()    (LED_DDR  |= (1<<LED1_BIT) | (1<<LED2_BIT))
+#define  Led1_on()      (LED_PORT |= (1<<LED2_BIT))
+#define  Led1_off()     (LED_PORT &= ~(1<<LED1_BIT))
+\end{lstlisting}
+
+Diese Header-Datei kann nun in allen Quellcodedateien integriert werden, in denen auf die Hardware zugegriffen wird. Zusätzlich zu der Ansteuerung der LEDs beinhaltet die Datei auch noch Definitionen und Makros der Verbindugsports für den Datenaustausch mit dem CPLD sowie für den JTAG-Port. Siehe auch Kapitel \ref{USB-JTAG}
+
+\subsection{Erstellen eines neuen USB-Devices am Beispiel eines USB-UART-Adapters} \label{USB-Dev} \label{USB-UART} \index{USB-UART} \index{Interface} \index{Endpunkt}
+
+In diesem Abschnitt wird nun kurz erläutert wie ein neues USB-Device erstellt wird. Als Beispiel wird hier ein USB-UART Adapter erstellt. Zunächst müssen dafür die Deskriptoren definiert werden.
+
+Zunächst werden in der Quellcodedatei \texttt{usb\_descriptors.h} die Werte für alle Diskreptoren  der Baumstruktur definiert. Dies hat den Vorteil, dass diese Werte, trotz mehrfacher Verwendung, einfach geändert werden können.
+
+Begonnen wird hier mit der Wurzel des Baumes, dem Device-Deskriptor:
+
+\begin{lstlisting}[caption={USB-Device-Deskriptor aus usb\_descriptors.h}]
+#define USB_SPECIFICATION     0x0200		// USB 2.0
+#define DEVICE_CLASS          CDC_GLOB_CLASS	// CDC class (0x0A)
+#define DEVICE_SUB_CLASS      0      		// Unterklasse in Interface
+#define DEVICE_PROTOCOL       0      		// Protokoll in Interface
+#define EP_CONTROL_LENGTH     32
+#define VENDOR_ID             0x1781		//HSA
+#define PRODUCT_ID            0x0C66		//USB-TPLE
+#define RELEASE_NUMBER        0x1000
+#define MAN_INDEX             0x00
+#define PROD_INDEX            0x00
+#define SN_INDEX              0x00
+#define NB_CONFIGURATION      1			// Anzahl Konfigurationen
+\end{lstlisting}
+
+Als nächstes werden die Deskriptorwerte der Konfiguraion festgelegt. Im Normalfall wird nur eine Konfiguration benötigt. Es wäre jedoch an dieser Stelle möglich eine zweite Konfiguration einzufügen, welche dann beim Start vom Betriebssystem des Hostrechners ausgewählt wird.
+
+\begin{lstlisting}[caption={Konfigruations-Deskriptor aus usb\_descriptors.h}]
+#define NB_INTERFACE       3	// Anzahl der Interface Deskriptoren
+#define CONF_NB            1	// Nummer der Konfiguration	
+#define CONF_INDEX         0	// Auswahlindex des Betriebssystems
+#define CONF_ATTRIBUTES    USB_CONFIG_BUSPOWERED
+#define MAX_POWER          250  // Maximaler Strom: 250x2mA = 500mA
+\end{lstlisting}
+
+Für einen USB-UART-Adapter werden zwei getrennte Interfaces benötigt. Davon ist eines für die Datenübertragung in Sende- und Empfangsrichtung verantwortlich, das andere ist für die Steuerung des Datenflusses zuständig.
+
+\begin{lstlisting}[caption={Interface-Deskriptor aus usb\_descriptors.h}]
+// Interface 0 descriptor
+#define INTERFACE0_NB        0
+#define ALTERNATE0           0
+#define NB_ENDPOINT0         1			//Anzahl der angeschlossenen EP
+#define INTERFACE0_CLASS     CDC_COMM_CLASS	//Klasse des Interfaces (0x02)
+#define INTERFACE0_SUB_CLASS CDC_COMM_SUBCLASS	//Unterklasse (0x02)
+#define INTERFACE0_PROTOCOL  CDC_COMM_PROTOCOL	//Protokoll (0x01)
+#define INTERFACE0_INDEX     0
+
+// Interface 1 descriptor
+#define INTERFACE1_NB        1
+#define ALTERNATE1           0
+#define NB_ENDPOINT1         2			//Anzahl der angeschlossenen EP
+#define INTERFACE1_CLASS     CDC_DATA_CLASS	//Klasse des Interfaces (0x0A)
+#define INTERFACE1_SUB_CLASS CDC_DATA_SUBCLASS	//Unterklasse (0x00)
+#define INTERFACE1_PROTOCOL  CDC_DATA_PROTOCOL	//Protokoll (0x00)
+#define INTERFACE1_INDEX     0
+\end{lstlisting}
+
+Als letztes werden nun die Deskriptoren der Endpunkte festgelegt.
+
+\begin{lstlisting}[caption={Interface-Deskriptor aus usb\_descriptors.h}]
+// USB Endpoint 1 descriptor Bulk IN
+#define TX_EP_SIZE          0x20	// Größe des Puffers in Byte
+#define ENDPOINT_NB_1       USB_ENDPOINT_IN | TX_EP	// 0x81
+#define EP_ATTRIBUTES_1     0x02	// BULK = 0x02, INTERUPT = 0x03
+#define EP_SIZE_1           TX_EP_SIZE	// gleiche Größe wie Puffer
+#define EP_INTERVAL_1       0x00
+// USB Endpoint 2 descriptor Bulk OUT  RX endpoint
+#define RX_EP_SIZE          0x20	// Größe des Puffers in Byte
+#define ENDPOINT_NB_2       RX_EP	// 0x02
+#define EP_ATTRIBUTES_2     0x02	// BULK = 0x02, INTERUPT = 0x03
+#define EP_SIZE_2           RX_EP_SIZE	// gleiche Größe wie Puffer
+#define EP_INTERVAL_2       0x00
+// USB Endpoint 3 descriptor Interrupt IN
+#define INT_EP_SIZE         0x20	// Größe des Puffers in Byte
+#define ENDPOINT_NB_3       USB_ENDPOINT_IN | INT_EP	// 0x83
+#define EP_ATTRIBUTES_3     0x03	// BULK = 0x02, INTERUPT = 0x03
+#define EP_SIZE_3           INT_EP_SIZE	// gleiche Größe wie Puffer
+#define EP_INTERVAL_3       0xFF 	// Polling Zeit: 255ms
+\end{lstlisting}
+
+Zusätzlich können an dieser Stelle auch die String-Desktriptoren definiert werden. Als Beispiel wird hier der Hersteller-String-Desktriptor angegeben:
+
+\begin{lstlisting}[caption={String-Deskriptor aus usb\_descriptors.h}]
+#define USB_MN_LENGTH         3
+#define USB_MANUFACTURER_NAME \
+{ Usb_unicode('H') \
+, Usb_unicode('S') \
+, Usb_unicode('A') \
+}
+\end{lstlisting}
+
+Nun müssen die Werte der Deskriptoren in die Datenstrukturen geschrieben werden. Die Prototypen der Strukturen befinden sich ebenfalls in der gleichen Header-Datei wie die Deskriptor-Werte, müssen jedoch nicht weiter angepasst werden. Die einzige Struktur die anzupassen ist, ist die Gesamtstruktur, welche die Endpunkt- und Interface-Desktriptoren an die Konfiguration knüpft.
+
+\begin{lstlisting}[caption={Konfigurations-Deskriptor-Strukur aus usb\_descriptors.h}]
+typedef struct
+{
+   S_usb_configuration_descriptor cfg;
+   S_usb_interface_descriptor     ifc0;
+   S_usb_endpoint_descriptor      ep3;
+   S_usb_interface_descriptor     ifc1;
+   S_usb_endpoint_descriptor      ep1;
+   S_usb_endpoint_descriptor      ep2;
+} S_usb_user_configuration_descriptor;
+\end{lstlisting}
+
+Die Daten werden in der Datei \texttt{usb\_descriptors.c} in die jeweiligen Strukturen geschrieben. Die Werte für den Device-Deskriptor stehen dabei in einer eigenen Datenstruktur, da dieser nur einmal vorhanden sein kann.
+
+\begin{lstlisting}[caption={Device-Deskriptor aus usb\_descriptors.c}]
+// usb_user_device_descriptor
+code S_usb_device_descriptor usb_dev_desc =
+{
+  sizeof(usb_dev_desc)
+, DESCRIPTOR_DEVICE
+, Usb_write_word_enum_struc(USB_SPECIFICATION)
+, DEVICE_CLASS
+, DEVICE_SUB_CLASS
+, DEVICE_PROTOCOL
+, EP_CONTROL_LENGTH
+, Usb_write_word_enum_struc(VENDOR_ID)
+, Usb_write_word_enum_struc(PRODUCT_ID)
+, Usb_write_word_enum_struc(RELEASE_NUMBER)
+, MAN_INDEX
+, PROD_INDEX
+, SN_INDEX
+, NB_CONFIGURATION
+};
+\end{lstlisting}
+
+Nun werden der Konfigurations-, die Interface- und die Endpunkt-Deskriptoren in die oben erwähnte Gesamtstruktur geschrieben. Aus Platzgründen wird hier nur der Beginn der Struktur abgebildet. Die gesamte Struktur befindet sich im Quellcode des USB-UART-Beispiels auf der Daten-CD.
+
+\begin{lstlisting}[caption={Konfigurations-Deskriptor-Strukur aus usb\_descriptors.c}]
+// usb_user_configuration_descriptor
+code S_usb_user_configuration_descriptor usb_conf_desc = {
+ { sizeof(S_usb_configuration_descriptor)
+ , DESCRIPTOR_CONFIGURATION
+ , Usb_write_word_enum_struc(sizeof(usb_conf_desc_kbd))
+ , NB_INTERFACE
+ , CONF_NB
+ , CONF_INDEX
+ , CONF_ATTRIBUTES
+ , MAX_POWER
+ }
+ ,	// COM-Interface
+ { sizeof(S_usb_interface_descriptor)
+ , DESCRIPTOR_INTERFACE
+ , INTERFACE0_NB
+ , ALTERNATE0
+ , NB_ENDPOINT0
+ , INTERFACE0_CLASS
+ , INTERFACE0_SUB_CLASS
+ , INTERFACE0_PROTOCOL
+ , INTERFACE0_INDEX
+ }
+ ,	// COM-Endpunkt
+ { sizeof(S_usb_endpoint_descriptor)
+ , DESCRIPTOR_ENDPOINT
+ , ENDPOINT_NB_3
+ , EP_ATTRIBUTES_3
+ , Usb_write_word_enum_struc(EP_SIZE_3)
+ , EP_INTERVAL_3
+ }
+ ,
+ \\ Hier folgen nun noch des Daten-Interface und die zugehörigen Endpunkte
+};
+\end{lstlisting}
+
+Nun kann über die Low-Level-Funktionen aus dem USB-Treiber direkt auf die jeweiligen Endpunkte zugegriffen werden. So kann ein Enpunkt aktiviert und, je nach Datenrichtung, der Datenpuffer gelesen bzw. beschrieben werden. Mit diesen Low-Level-Funktionen kann nun eine API erstellt werden, welche dann zum Beispiel die Funktionen zum Senden und Empfangen über den virtuellen COM-Port, enthält. In der Anwendungsschicht kann dann wiederum über diese API-Funktionen mit dem Host-PC kommuniziert werden.
+
+Auf Host-PC-Seite kann ebenfalls über die Low-Level-Funktionen auf das USB-Gerät zugegriffen werden. Dafür wird zum Beispiel die Bibliothek \texttt{ubslib} verwendet. Diese bietet die zur Kommunikation nötigen Gegenstücke des Atmel-USB-Treibers. Dadurch ist es möglich, eine Anwendungssoftware zu schreiben, welche über den USB-Bus mit dem Gerät kommuniziert. Dies wird in Kapitel \ref{PC-Software}, \nameref{PC-Software}, genauer beschrieben.
+
+Auch ist es, bei Standard-USB-Klassen wie dem beschriebenen USB-UART-Adapter, möglich, einen bereits im Betriebssystem integrierten Treiber zu verwenden. Dadurch kann auf das USB-Gerät unter Zuhilfenahme höherer Funktionen, wie zum Beispiel mit einem Terminalprogramm, zugegriffen werden, ohne auf die Lowlevel-Funktionen der USB-Bibliothek zurückgreifen zu müssen.
+
+\section{LUFA USB-Stack} \index{LUFA}
+
+\begin{figure}[ht]
+	\center
+	\includegraphics[width=0.15\textwidth]{images/LUFA.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Logo des LUFA-Frameworks (Quelle: http://www.fourwalledcubicle.com) }
+	\label{pic:FLIP}
+\end{figure}
+
+\subsection{Einführung}
+
+Alternativ zum oben beschrieben Atmel-USB-Stack, wurde das ``Lightweight USB Framework for AVRs'', kurz LUFA, entwickelt. Zu diesem Projekt gehört auch der in Kapitel \ref{Mikrocontroller_Software} beschriebene USB-Bootloader. 
+
+Das Projekt hat es sich zur Aufgabe gemacht, ohne größere Kenntnisse über die Technik von USB, die Schnittstelle des Atmegas verwenden zu können. Dazu wurden Treiber für einen Großteil der USB-Standard-Klassen implementiert. Die gesamte Bibliothek umfasst 25 verschieden Geräteklassen. Davon sind 14 Device-Klassen und 10 Host-Klassen, sowie eine Klasse im Dual-Modus. Die API-Funktionen dieser Bibliothek können nun direkt in der eigenen Anwendung verwendet, oder den spezifischen Bedürfnissen angepasst werden. Die Bibliothek wird in regelmäßigen Abständen (ca. 3 Monate) in einer stabilen Version aktualisiert. Diese sind auf der Homepage http://www.fourwalledcubicle.com/ abrufbar.
+
+Neben der Open-Source-Lizenz (MIT) liegt der große Unterschied in der zentralen Verwendbarkeit der Bibliothek. So kann der gesamte Quelcode unverändert in einem Unterordner des Projektes abgelegt werden. Über diesen Ordner kann nun von der Anwendugsseite auf das Framework zugegriffen werden. So wird die Bibliothek auch für mehrere USB-Klassen nur einmal benötigt. Die API selbst ist hierbei übersichtlicher und strukturierter gestaltet als beim Atmel-Stack, was die Anwendung wesentlich erleichtert.
+
+Der Umfang der Bibliothek bewirkt zugleich auch dessen Nachteil. So ist der Quellcode der Bibliothek mit 1MB Größe relativ umfangreich und umfasst zusammen mit den zugehörigen Beispielaplikationen sogar mehr als 4MB.
+
+\subsection{Firmware Architektur} \index{LUFA-Stack}
+
+Die Architektur ähnelt der Strukur des Atmel-Stacks. Sie besteht ebenfalls aus mehreren Schichten.
+
+In der \textbf{Low-Level-Schicht} werden, wie in der Treiber-Schicht des Atmel-Stacks, die Hardwarefunktionen zur Verfügung gestellt. Jedoch in wesentlich komplexerem Umfang. So enthält der LUFA-Stack nicht nur einfache Device-Endpunkt Funktionen, sondern auch Funktionen für den Hostbetrieb. Ausserdem ist mit LUFA die Entwicklung eines OTG- \footnote{OTG: On The Go} Gerätes möglich. Das bedeutet das ein Gerät, etwa ein USB-Speicher, auch als eingeschränkter Host betrieben werden kann. So kann zum Beispiel eine Digitalkamera an diesen USB-Speicher angeschlossen werden um automatisch Fotos von dieser zu sichern. LUFA stellt an dieser Stelle auch Templates zu Verfügung, um einen direkten Zugriff auf die Low-Level Funktionen ohne API zu ermöglichen.
+
+Für bestimmte Mikrocontroller und Entwicklungsboards beinhaltet LUFA auch noch Low-Level-Funktionen für nicht-USB-Hardware. Dazu zählen zum Beispiel A/D-Wandler oder die serielle Schnittstelle.
+
+Die Funktionen der \textbf{High-Level-Schicht} erledigen Aufgaben wie zum Beispiel das Setzten der Deskriptoren beim Start und die Steuerung des USB-Buses im Betrieb. Dazu zählen die Interruptverwaltung, sowie die Regelung der Datenübertragung an die Endpunkte.
+
+Die dritte Schicht, welche mit der API-Schicht des Atmel-Stacks verglichen werden kann, ist die \textbf{Klassen-Schicht}. Hier sind nun alle höheren Funktionen, getrennt nach Klassen, implementiert. Auf diese Funktionen kann nun von der eigentlichen Anwendung zugegriffen werden. Insgesamt sind hier 25 verschiedene Klassen implementiert, von Audio-Device bis zum virtuellen-seriellen-Host. Für jede Klasse werden hierbei 2 Dateien verwendet, eine Quellcode-Datei, in welcher sich alle Funktionen befinden, sowie eine Header-Datei, mit den Prototypen der Funktionen und den Strukturdefinitionen. Diese Header-Datei wird nun in die Anwendung eingebunden, um auf die Klassenfunktionen zugreifen zu können.
+
+Die \textbf{Anwendungsschicht} entspricht im Wesentlichen der im Atmel-Stack, auch hier kommt ein seperater Scheduler zum Einsatz. Alternativ können die Anwendungsfunktionen auch in einer Endlosschleife innerhalb der Main-Funktion ausgeführt werden. Nach jedem Durchlauf der Schleife wird die Funktion \texttt{USB\_USBTask()} ausgeführt. Diese High-Level Funktion ist für die Steuerung des USB-Busses verantwortlich. Vor dieser Endlosschleife muss zur Initialisierung des USB-Ports die Funktion \texttt{SetupHardware()} ausgeführt werden. 
+
+Die Deskriptoren werden in den Dateien \texttt{Descriptors.h} und \texttt{Descriptors.c} festgelegt. Diese Dateien werden, wie die Dateien der Anwendungsschicht, ausserhalb des LUFA-Frameworks abgelegt. Dadurch muss keine Datei des Frameworks abgeändert werden.
+
+\subsection{Anwendung des Framworks am Beispiel eines USB-UART-Adapters} \index{USB-UART}
+
+Für die Erstellung eines USB-UART-Adapters werden nun lediglich fünf zusätzliche Dateien benötigt. Jeweils eine Quellcode- und Header-Datei für die Deskriptoren und die eigentliche Anwendung, sowie ein Makefile, in dem einige Parameter über die verwendete Hardware und der Pfad zum LUFA-Framework eingestellt werden müssen.
+
+Zunächst müssen die Deskriptoren für den USB-UART-Adapter definiert werden. Dazu werden in der Datei \texttt{Descriptors.h} zunächst die Nummerierung der Endpunkte sowie die Bestimmung der Puffergröße definiert.
+
+\begin{lstlisting}[caption={Festlegung der Endpunkte aus Descriptors.h}]
+// Endpunkt des COM-Interfaces
+#define CDC_NOTIFICATION_EPNUM         2
+// Endpunkt TX, Dateneingang
+#define CDC_TX_EPNUM                   3	
+// Endpunkt RX, Datenausgang
+#define CDC_RX_EPNUM                   4	
+// Größe des COM-Endpunktes
+#define CDC_NOTIFICATION_EPSIZE        8
+// Größe der Daten-Endpunkte
+#define CDC_TXRX_EPSIZE                16
+\end{lstlisting}
+
+Für die Funktion des CDC-Device ist eine zusätzliche Datenstruktur notwendig. Diese Struktur beinhaltet für die Enumeration notwendige zusätzliche Daten.
+
+\begin{lstlisting}[caption={CDC-Funktions-Deskriptor aus Descriptors.h}]
+#define CDC_FUNCTIONAL_DESCRIPTOR(DataSize)	\
+	struct					\
+	{					\
+		USB_Descriptor_Header_t Header;	\
+		uint8_t                 SubType;	\
+		uint8_t                 Data[DataSize];	\
+	}
+\end{lstlisting}
+
+Zuletzt wird, analog zum Atmel-Stack, die Gesamtstruktur der Deskriptoren festgelegt.
+
+\begin{lstlisting}[caption={CDC-Funktions-Deskriptor aus Descriptors.h}]
+typedef struct
+{
+	USB_Descriptor_Configuration_Header_t	Config;
+	USB_Descriptor_Interface_t	CCI_Interface;
+	CDC_FUNCTIONAL_DESCRIPTOR(2)	CDC_Functional_IntHeader;
+	CDC_FUNCTIONAL_DESCRIPTOR(2)	CDC_Functional_CallManagement;
+	CDC_FUNCTIONAL_DESCRIPTOR(1)	CDC_Functional_AbstractControlManagement;
+	CDC_FUNCTIONAL_DESCRIPTOR(2)	CDC_Functional_Union;
+	USB_Descriptor_Endpoint_t	ManagementEndpoint;
+	USB_Descriptor_Interface_t	DCI_Interface;
+	USB_Descriptor_Endpoint_t	DataOutEndpoint;
+	USB_Descriptor_Endpoint_t	DataInEndpoint;
+} USB_Descriptor_Configuration_t;
+\end{lstlisting}
+
+In der Datei \texttt{Descriptors.c} werden nun die Daten der Deskriptoren in die Struktur geschrieben. Auch der Device-Deskriptor wird hier festgelegt. Aus Platzgründen wird hier nur der Device-Deskriptor, sowie der Beginn des Konfigurations-Deskriptors aufgezeigt. Der gesammte Quellcode sowie die Vorlage zur Einstellung von allen Deskriptoren, befindet sich im LUFA-Verzeichnis auf dem Datenträger.
+
+\begin{lstlisting}[caption={Device-Deskriptor und Teil aus Konfigurations-Deskriptor aus Descriptors.c}]
+USB_Descriptor_Device_t PROGMEM DeviceDescriptor =
+{
+  .Header	= {.Size = sizeof(USB_Descriptor_Device_t), .Type = DTYPE_Device},
+  .USBSpecification	= VERSION_BCD(01.10),	//USB Version 1.1
+  .Class		= 0x02,		 //Klasse: CDC
+  .SubClass		= 0x00,		 //Unterklasse in Konfiguration
+  .Protocol		= 0x00,		 //Protokoll in Konfiguration
+  .Endpoint0Size	= FIXED_CONTROL_ENDPOINT_SIZE,	//Größe EP 0
+  .VendorID		= 0x03EB,	 // Vendor ID (Atmel)
+  .ProductID		= 0x204B,	 // Produkt ID (Atmel CDC)
+  .ReleaseNumber	= 0x0000,	 // Versionsnummer
+  .ManufacturerStrIndex	= 0x01,		 // Hersteller-String
+  .ProductStrIndex	= 0x02,		 // Produkt-String
+  .SerialNumStrIndex	= NO_DESCRIPTOR, // Seriennummer-String
+  .NumberOfConfigurations = 1		 // Anzahl der Konfigurationen
+};
+
+USB_Descriptor_Configuration_t PROGMEM ConfigurationDescriptor =
+{
+  //Konfigurations-Deskriptor
+  .Config =
+  {
+    .Header = {.Size = sizeof(USB_Descriptor_Configuration_Header_t), .Type = DTYPE_Configuration},
+    .TotalConfigurationSize = sizeof(USB_Descriptor_Configuration_t),
+    .TotalInterfaces        = 2,
+    .ConfigurationNumber    = 1,
+    .ConfigurationStrIndex  = NO_DESCRIPTOR,
+    .ConfigAttributes       = (USB_CONFIG_ATTR_BUSPOWERED | USB_CONFIG_ATTR_SELFPOWERED),
+    .MaxPowerConsumption    = USB_CONFIG_POWER_MA(500)
+  },
+  ...
+  // Interface-Deskriptor:
+  .DCI_Interface =
+  {
+    .Header                 = {.Size = sizeof(USB_Descriptor_Interface_t), .Type = DTYPE_Interface},
+    .InterfaceNumber        = 1,
+    .AlternateSetting       = 0,
+    .TotalEndpoints         = 2,
+    .Class                  = 0x0A,
+    .SubClass               = 0x00,
+    .Protocol               = 0x00,
+    .InterfaceStrIndex      = NO_DESCRIPTOR
+  },
+  // Endpunkt-Deskriptor
+  .DataOutEndpoint =
+  {
+    .Header                 = {.Size = sizeof(USB_Descriptor_Endpoint_t), .Type = DTYPE_Endpoint},
+    .EndpointAddress        = (ENDPOINT_DESCRIPTOR_DIR_OUT | CDC_RX_EPNUM),
+    .Attributes             = EP_TYPE_BULK,
+    .EndpointSize           = CDC_TXRX_EPSIZE,
+    .PollingIntervalMS      = 0x00
+  },
+...
+};
+\end{lstlisting}
+
+Nun kann die eigentliche Anwendung erstellt werden. Bei Verwendung des Schedulers wird dieser zunächst in der Quellcodedatei konfiguriert. Dabei müssen die Tasks genauso benannt werden, wie die Funktionen vom Typ TASK, welche ausgeführt werden. Der Task USB\_USBTask übernimmt hierbei die USB-Funktionen, der Task CDC\_Task beinhaltet die eigentliche Anwendung.
+
+\begin{lstlisting}[caption={Scheduler-Task-List}]
+TASK_LIST
+{
+  { .Task = USB_USBTask	, .TaskStatus = TASK_STOP },
+  { .Task = CDC_Task	, .TaskStatus = TASK_STOP },
+};
+\end{lstlisting}
+
+Die Klassenfunktionen werden mit der folgenden Konfigurationsfunktion aktiviert. Dadurch werden den gewünschten API-Treibern die entsprechenden Endpunkte und Interfaces zugewiesen. Nach dieser Konfiguration kann auf die Klassenfunktionen zugegriffen werden.
+
+\begin{lstlisting}[caption={Klassenkonfiguration}]
+USB_ClassInfo_CDC_Device_t VirtualSerial1_CDC_Interface =
+{
+  .Config =
+  {
+    .ControlInterfaceNumber           = 0,
+    .DataINEndpointNumber             = CDC_TX_EPNUM,
+    .DataINEndpointSize               = CDC_TXRX_EPSIZE,
+    .DataINEndpointDoubleBank         = false,
+    .DataOUTEndpointNumber            = CDC_RX_EPNUM,
+    .DataOUTEndpointSize              = CDC_TXRX_EPSIZE,
+    .DataOUTEndpointDoubleBank        = false,
+    .NotificationEndpointNumber       = CDC_NOTIFICATION_EPNUM,
+    .NotificationEndpointSize         = CDC_NOTIFICATION_EPSIZE,
+    .NotificationEndpointDoubleBank   = false,
+  },
+ };
+\end{lstlisting}
+
+
+Nun wird die Mainfunktion erstellt. In der Mainfunktion werden zunächst die Initialisierungsfunktionen ausgeführt, um als letztes den Scheduler zu starten. Der Schedluer führt dann in einer Endlosschleife die konfigurierten Funktionen aus.
+
+\begin{lstlisting}[caption={Main-Funktion}]
+int main(void)
+{
+	MCUSR &= ~(1 << WDRF);	//Watchdog Deaktivieren
+	wdt_disable();
+	LEDs_Init();		//Hardware Initialisieren
+	ReconfigureUSART();
+	UpdateStatus(Status_USBNotReady); //Warten bis USB Bereit
+	Scheduler_Init();	//Scheduler intialisieren
+	USB_Init();		//USB initialisieren
+	Scheduler_Start();	//Endlosschleife Scheduler
+}
+\end{lstlisting}
+
+In der eigentliche Anwendung, der Funktion CDC\_Task, wird nun auf die Klassenfunktionen der API zugegriffen. Als einfaches Beispiel werden hier nur die empfangenen Bytes an die Sende-Schnittstelle übergeben. Somit ist zum Beispiel der am PC-Terminal getippte Buchstabe, als Echo sichtbar.
+
+\begin{lstlisting}[caption={CDC-Task}]
+TASK(CDC_Task)
+{
+  while (CDC_Device_BytesReceived(&VirtualSerial_CDC_Interface))
+  {
+    CDC_Device_SendByte(&VirtualSerial_CDC_Interface, \
+    CDC_Device_ReceiveByte(&VirtualSerial_CDC_Interface));
+  {
+}
+\end{lstlisting}
+
+An diesem Beispiel ist sehr gut sichtbar, wie einfach nun die Klassenfunktionen in die jeweilige Anwendung eingebunden werden können. Dadurch ist auch eine Integration der USB-Schnittstelle in bereits existierende Anwendungen problemlos möglich. So können zum Beispiel serielle Standardfunktionen einfach durch die oben vorgestellten CDC-Funktionen ersetzt werden.
+
+Wie dieses Framework und das von Atmel für den Analysator angewendet werden, wird in den folgenden Kapiteln beschrieben.

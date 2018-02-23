@@ -1,0 +1,55 @@
+--- configure.ac
++++ configure.ac
+@@ -154,15 +154,6 @@
+ 	[HW_HANTEK_DSO="$enableval"],
+ 	[HW_HANTEK_DSO=$HW_ENABLED_DEFAULT])
+ 
+-AC_ARG_ENABLE(hsa-tple, AC_HELP_STRING([--enable-hsa-tple],
+-	[enable HSA-TPLE support [default=yes]]),
+-	[HW_HSA_TPLE="$enableval"],
+-	[HW_HSA_TPLE=$HW_ENABLED_DEFAULT])
+-AM_CONDITIONAL(HW_HSA_TPLE, test x$HW_HSA_TPLE = xyes)
+-if test "x$HW_HSA_TPLE" = "xyes"; then
+-	AC_DEFINE(HAVE_HW_HSA_TPLE, 1, [HSA-TPLE support])
+-fi
+-
+ AC_ARG_ENABLE(ikalogic-scanalogic2, AC_HELP_STRING([--enable-ikalogic-scanalogic2],
+ 	[enable IKALOGIC Scanalogic-2 support [default=yes]]),
+ 	[HW_IKALOGIC_SCANALOGIC2="$enableval"],
+@@ -568,7 +559,6 @@
+ 		 hardware/common/Makefile
+ 		 hardware/gmc-mh-1x-2x/Makefile
+ 		 hardware/hameg-hmo/Makefile
+-		 hardware/hsa-tple/Makefile
+ 		 hardware/ikalogic-scanalogic2/Makefile
+ 		 hardware/ikalogic-scanaplus/Makefile
+ 		 hardware/kecheng-kc-330b/Makefile
+@@ -639,7 +629,6 @@
+ echo "  - gmc-mh-1x-2x.................... $HW_GMC_MH_1X_2X"
+ echo "  - hameg-hmo....................... $HW_HAMEG_HMO"
+ echo "  - hantek-dso...................... $HW_HANTEK_DSO"
+-echo "  - hsa-tple........................ $HW_HSA_TPLE"
+ echo "  - ikalogic-scanalogic2............ $HW_IKALOGIC_SCANALOGIC2"
+ echo "  - ikalogic-scanaplus.............. $HW_IKALOGIC_SCANAPLUS"
+ echo "  - kecheng-kc-330b................. $HW_KECHENG_KC_330B"
+--- Makefile.am
++++ Makefile.am
+@@ -34,7 +34,6 @@
+ 	gmc-mh-1x-2x \
+ 	hameg-hmo \
+ 	hantek-dso \
+-	hsa-tple \
+ 	ikalogic-scanalogic2 \
+ 	ikalogic-scanaplus \
+ 	kecheng-kc-330b \
+@@ -116,10 +115,6 @@
+ libsigrokhardware_la_LIBADD += hantek-dso/libsigrok_hw_hantek_dso.la
+ endif
+ 
+-if HW_HSA_TPLE
+-libsigrokhardware_la_LIBADD += hsa-tple/libsigrok_hw_hsa_tple.la
+-endif
+-
+ if HW_IKALOGIC_SCANALOGIC2
+ libsigrokhardware_la_LIBADD += ikalogic-scanalogic2/libsigrok_hw_ikalogic_scanalogic2.la
+ endif

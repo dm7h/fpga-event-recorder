@@ -1,0 +1,8 @@
+
+
+avrdude GUI: avr8-burn-omat
+---------------------------
+
+1. /usr/share/avr8-burn-o-mat/AVR8_Burn_O_Mat_Config.xml anpassen auf Atmega32U4
+
+

@@ -1,0 +1,709 @@
+Archive-name: usb-stapl-player
+Submitted-by: w...@ise.pw.edu.pl (Wojciech M. Zabolotny)
+
+This is the modifed Altera Jam Player for my USB STAPL Player
+
+Download the original JamPlayer 2.5 from the Altera site:
+ftp://ftp.altera.com/outgoing/download/jam/jp_25.exe
+Unpack it with lowercase letters:
+$ unzip -a -LL jp_25.exe
+Change the write permission in the extracted directories:
+Go to the jp_25/source directory and  apply the patch file
+extracted from the shar archive below:
+$ patch < usb_jam_player.patch
+Now you should be able to compile the patched Jam Player
+just by:
+$ make
+
+#!/bin/sh
+# This is a shell archive (produced by GNU sharutils 4.6.3).
+# To extract the files from this archive, save it to some FILE, remove
+# everything before the `#!/bin/sh' line above, then type `sh FILE'.
+#
+lock_dir=_sh32404
+# Made on 2007-10-30 12:50 CET by <wzab@wzlaphp>.
+# Source directory was `/tmp'.
+#
+# Existing files will *not* be overwritten, unless `-c' is specified.
+#
+# This shar contains:
+# length mode       name
+# ------ ---------- ------------------------------------------
+#  15439 -rw-r--r-- usb_jam_player.patch
+#
+MD5SUM=${MD5SUM-md5sum}
+f=`${MD5SUM} --version | egrep '^md5sum .*(core|text)utils'`
+test -n "${f}" && md5check=true || md5check=false
+${md5check} || \
+  echo 'Note: not verifying md5sums.  Consider installing GNU coreutils.'
+save_IFS="${IFS}"
+IFS="${IFS}:"
+gettext_dir=FAILED
+locale_dir=FAILED
+first_param="$1"
+for dir in $PATH
+do
+  if test "$gettext_dir" = FAILED && test -f $dir/gettext \
+     && ($dir/gettext --version >/dev/null 2>&1)
+  then
+    case `$dir/gettext --version 2>&1 | sed 1q` in
+      *GNU*) gettext_dir=$dir ;;
+    esac
+  fi
+  if test "$locale_dir" = FAILED && test -f $dir/shar \
+     && ($dir/shar --print-text-domain-dir >/dev/null 2>&1)
+  then
+    locale_dir=`$dir/shar --print-text-domain-dir`
+  fi
+done
+IFS="$save_IFS"
+if test "$locale_dir" = FAILED || test "$gettext_dir" = FAILED
+then
+  echo=echo
+else
+  TEXTDOMAINDIR=$locale_dir
+  export TEXTDOMAINDIR
+  TEXTDOMAIN=sharutils
+  export TEXTDOMAIN
+  echo="$gettext_dir/gettext -s"
+fi
+if (echo "testing\c"; echo 1,2,3) | grep c >/dev/null
+then if (echo -n test; echo 1,2,3) | grep n >/dev/null
+     then shar_n= shar_c='
+'
+     else shar_n=-n shar_c= ; fi
+else shar_n= shar_c='\c' ; fi
+f=shar-touch.$$
+st1=200112312359.59
+st2=123123592001.59
+st2tr=123123592001.5 # old SysV 14-char limit
+st3=1231235901
+
+if touch -am -t ${st1} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st1} && test -f ${f}; then
+  shar_touch='touch -am -t $1$2$3$4$5$6.$7 "$8"'
+
+elif touch -am ${st2} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st2} && test ! -f ${st2tr} && test -f ${f}; then
+  shar_touch='touch -am $3$4$5$6$1$2.$7 "$8"'
+
+elif touch -am ${st3} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st3} && test -f ${f}; then
+  shar_touch='touch -am $3$4$5$6$2 "$8"'
+
+else
+  shar_touch=:
+  echo
+  ${echo} 'WARNING: not restoring timestamps.  Consider getting and'
+  ${echo} 'installing GNU `touch'\'', distributed in GNU coreutils...'
+  echo
+fi
+rm -f ${st1} ${st2} ${st2tr} ${st3} ${f}
+#
+if test ! -d ${lock_dir}
+then : ; else ${echo} 'lock directory '${lock_dir}' exists'
+  exit 1
+fi
+if mkdir ${lock_dir}
+then ${echo} 'x - created lock directory `'${lock_dir}\''.'
+else ${echo} 'x - failed to create lock directory `'${lock_dir}\''.'
+  exit 1
+fi
+# ============= usb_jam_player.patch ==============
+if test -f 'usb_jam_player.patch' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING usb_jam_player.patch (file already exists)'
+else
+${echo} 'x - extracting usb_jam_player.patch (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'usb_jam_player.patch' &&
+diff -w -N -U 2 source/Makefile /tmp/source/Makefile
+--- source/Makefile     1970-01-01 01:00:00.000000000 +0100
++++ /tmp/source/Makefile        2007-10-22 16:30:55.000000000 +0200
+@@ -0,0 +1,52 @@
++
++OBJS =  jamarray.o jamcomp.o jamcrc.o jamexec.o jamexp.o jamheap.o jamjtag.o jamnote.o jamstack.o jamstub.o jamsym.o jamutil.o usb_prog.o
++
++CFLAGS = -O2 -g
++LUSB= -lusb
++all: jamplayer
++
++clean:
++       rm -rf core $(OBJS) jamplayer
++
++jamplayer: $(OBJS)    
++       gcc $(CFLAGS) $(OBJS) $(LUSB) -o jamplayer
++
++jamarray.o: jamarray.c jamarray.h
++       gcc $(CFLAGS) -c jamarray.c -o jamarray.o
++
++jamcomp.o: jamcomp.c jamcomp.h
++       gcc $(CFLAGS) -c jamcomp.c -o jamcomp.o
++
++jamcrc.o: jamcrc.c
++       gcc $(CFLAGS) -c jamcrc.c -o jamcrc.o
++
++jamexec.o: jamexec.c jamexec.h
++       gcc $(CFLAGS) -c jamexec.c -o jamexec.o
++
++jamexp.o: jamexp.c jamexp.h
++       gcc $(CFLAGS) -c jamexp.c -o jamexp.o
++
++jamheap.o: jamheap.c jamheap.h
++       gcc $(CFLAGS) -c jamheap.c -o jamheap.o
++
++jamjtag.o: jamjtag.c jamjtag.h
++       gcc $(CFLAGS) -c jamjtag.c -o jamjtag.o
++
++jamnote.o: jamnote.c
++       gcc $(CFLAGS) -c jamnote.c -o jamnote.o
++
++jamstack.o: jamstack.c jamstack.h
++       gcc $(CFLAGS) -c jamstack.c -o jamstack.o
++
++jamstub.o: jamstub.c
++       gcc $(CFLAGS) -c jamstub.c -o jamstub.o
++
++jamsym.o: jamsym.c jamsym.h
++       gcc $(CFLAGS) -c jamsym.c -o jamsym.o
++
++jamutil.o: jamutil.c jamutil.h
++       gcc $(CFLAGS) -c jamutil.c -o jamutil.o
++
++usb_prog.o: usb_prog.c jtag.h
++       gcc $(CFLAGS) -c usb_prog.c -DLINUX -o usb_prog.o
++
+diff -w -N -U 2 source/jamdefs.h /tmp/source/jamdefs.h
+--- source/jamdefs.h    2004-05-26 15:36:00.000000000 +0200
++++ /tmp/source/jamdefs.h       2007-05-09 12:23:58.000000000 +0200
+@@ -36,5 +36,6 @@
+X #define JAMC_MAX_JTAG_DR_PREAMBLE  1024
+X #define JAMC_MAX_JTAG_DR_POSTAMBLE 1024
+-#define JAMC_MAX_JTAG_DR_LENGTH    2048
++//#define JAMC_MAX_JTAG_DR_LENGTH    2048
++#define JAMC_MAX_JTAG_DR_LENGTH    2048*1000
+X
+X /* memory needed for JTAG buffers (in bytes) */
+diff -w -N -U 2 source/jamport.h /tmp/source/jamport.h
+--- source/jamport.h    2002-06-26 20:07:44.000000000 +0200
++++ /tmp/source/jamport.h       2007-05-09 12:24:05.000000000 +0200
+@@ -36,5 +36,5 @@
+X
+X /* change this line to build a different port */
+-#define PORT WINDOWS
++#define PORT UNIX
+X
+X #endif /* INC_JAMPORT_H */
+diff -w -N -U 2 source/jamstub.c /tmp/source/jamstub.c
+--- source/jamstub.c    2004-05-26 15:36:12.000000000 +0200
++++ /tmp/source/jamstub.c       2007-10-29 18:17:30.000000000 +0100
+@@ -53,7 +53,9 @@
+X #include <stdlib.h>
+X #include <string.h>
+-#include <io.h>
++#include <unistd.h>
++#include <time.h>
++//#include <io.h>
+X #include <fcntl.h>
+-#include <process.h>
++//#include <process.h>
+X #if defined(USE_STATIC_MEMORY)
+X       #define N_STATIC_MEMORY_KBYTES ((unsigned int) USE_STATIC_MEMORY)
+@@ -65,5 +67,5 @@
+X #endif /* USE_STATIC_MEMORY */
+X #include <time.h>
+-#include <conio.h>
++//#include <conio.h>
+X #include <ctype.h>
+X #include <sys/types.h>
+@@ -189,4 +191,8 @@
+X #endif
+X
++/* Variables used in the jtag.c module */
++int jtag_output_chain = 0;
++int jtag_delay = 0;
++
+X /* function prototypes to allow forward reference */
+X extern void delay_loop(long count);
+@@ -274,5 +280,5 @@
+X }
+X
+-int jam_jtag_io(int tms, int tdi, int read_tdo)
++int jam_jtag_io_orig(int tms, int tdi, int read_tdo)
+X {
+X       int data = 0;
+@@ -459,5 +465,5 @@
+X }
+X
+-void jam_delay(long microseconds)
++void jam_delay_orig(long microseconds)
+X {
+X #if PORT == WINDOWS
+@@ -516,5 +522,5 @@
+X }
+X
+-int jam_vector_io
++int jam_vector_io_orig
+X (
+X       int signal_count,
+@@ -846,17 +852,5 @@
+X DWORD get_tick_count(void)
+X {
+-       DWORD tick_count = 0L;
+-
+-#if PORT == WINDOWS
+-       tick_count = GetTickCount();
+-#elif PORT == DOS
+-       _bios_timeofday(_TIME_GETCLOCK, (long *)&tick_count);
+-       tick_count *= 55L;      /* convert to milliseconds */
+-#else
+-       /* assume clock() function returns microseconds */
+-       tick_count = (DWORD) (clock() / 1000L);
+-#endif
+-
+-       return (tick_count);
++  return clock()/CLOCKS_PER_SEC;
+X }
+X
+@@ -960,4 +954,5 @@
+X       /* print out the version string and copyright message */
+X       fprintf(stderr, "Jam STAPL Player Version 2.5 (20040526)\nCopyright (C) 1997-2004 Altera Corporation\n\n");
++  fprintf(stderr, "Modified by WZab for USB STAPL Player 2007 \n\n");
+X
+X       for (arg = 1; arg < argc; arg++)
+@@ -1038,4 +1033,18 @@
+X                               break;
+X
++             case 'O':                         /* set output JTAG chain */
++               jtag_output_chain = -1;
++               if (sscanf(&argv[arg][2], "%d", &jtag_output_chain) != 1)
++                 error = TRUE;
++               if (jtag_output_chain == -1) error = TRUE;
++               break;
++
++             case 'T':                         /* set output JTAG chain */
++               jtag_delay = -1;
++               if (sscanf(&argv[arg][2], "%d", &jtag_delay) != 1)
++                 error = TRUE;
++               if (jtag_output_chain == -1) error = TRUE;
++               break;
++
+X                       case 'H':                               /* help */
+X                               help = TRUE;
+@@ -1097,4 +1106,7 @@
+X               fprintf(stderr, "    -s<port>    : serial port name (for BitBlaster)\n");
+X               fprintf(stderr, "    -r          : don't reset JTAG TAP after use\n");
++      fprintf(stderr, " Options added specifically for USB STAPL Player:\n");
++      fprintf(stderr, "    -o<chain>   : number of the JTAG chain\n");
++      fprintf(stderr, "    -t<delay>   : delay value (0 to 65535)\n");
+X               exit_status = 1;
+X       }
+@@ -1654,5 +1666,5 @@
+X #endif
+X
+-void initialize_jtag_hardware()
++void initialize_jtag_hardware_orig()
+X {
+X       if (specified_com_port)
+@@ -1778,5 +1790,5 @@
+X }
+X
+-void close_jtag_hardware()
++void close_jtag_hardware_orig()
+X {
+X       if (specified_com_port)
+diff -w -N -U 2 source/jtag.h /tmp/source/jtag.h
+--- source/jtag.h       1970-01-01 01:00:00.000000000 +0100
++++ /tmp/source/jtag.h  2007-10-22 16:30:55.000000000 +0200
+@@ -0,0 +1,25 @@
++//#define jtag_addr (0xcaffffe0)
++#define  GET_INFO (0x01)
++#define  CONFIG_CHAIN (0x02)
++#define  SINGLE_DATA_WITH_READ (0xac)
++#define  BLOCK_DATA (0xb0)
++#define  BLOCK_DATA_WITH_READ (0xc0)
++#define  SET_PINS (0xd0)
++#define  SELECT_CHAIN (0xe0)
++
++
++/* Encoding of bits */
++#define TDI_bit (0) /* TDI & TMS must(!) be on the two lowest bits */
++#define TMS_bit (1) /* it is used when passing args to jtag_single! */
++#define TCK_bit (2)
++#define TRST_bit (3) /* TDI, TMS, TCK & TRST must be on bits 0...3 ! */
++#define TDO_bit (4)
++
++#define TDI_mask (1<<TDI_bit)
++#define TMS_mask (1<<TMS_bit)
++#define TCK_mask (1<<TCK_bit)
++//#define TRST_mask (1<<TRST_bit)
++#define TDO_mask (1<<TDO_bit)
++
++#define CJ_USB_ID_VENDOR (0xa5a5)
++#define CJ_USB_ID_PRODUCT (0x313)
+diff -w -N -U 2 source/usb_prog.c /tmp/source/usb_prog.c
+--- source/usb_prog.c   1970-01-01 01:00:00.000000000 +0100
++++ /tmp/source/usb_prog.c      2007-10-29 18:45:52.000000000 +0100
+@@ -0,0 +1,325 @@
++/*
++  This file implements the USB specific part of the stapl player
++
++*/
++
++#include <stdlib.h>
++#include <errno.h>
++#include <time.h>
++//#include "ports.h"
++#include "jtag.h"
++#include <stdio.h>
++#include <sched.h>
++#include <usb.h>
++
++extern int jtag_hardware_initialized; // Was type BOOL in jamstub.c!!!
++extern int jtag_delay;
++extern int jtag_output_chain;
++int jam_jtag_io(int tms, int tdi, int read_tdo);
++int low_jtag_io(int tms, int tdi, int read_tdo);
++void write_usb_cache(int tdi_tms);
++void flush_usb_cache(void);
++void waitTime(long microsec);
++void waitNano(long nanosec);
++
++struct usb_bus *busses=NULL;
++struct usb_bus *bus=NULL;
++usb_dev_handle *hdev=NULL;
++
++unsigned char recbuf[64];
++
++unsigned char config_chain[4];
++void sp_usb_config_chain(int delay_val)
++{
++  int res;
++  config_chain[0]=CONFIG_CHAIN;
++  config_chain[1]=delay_val & 0xff;
++  config_chain[2]=(delay_val >> 8) & 0xff;
++  res=usb_bulk_write(hdev, 1, config_chain, 4, 500);
++  if (res != 4) {
++    fprintf(stderr,"Can't send CONFIG_CHAIN command! got %d \n",res);
++    exit(1);      
++  }
++  res=usb_bulk_read(hdev, 2, recbuf, sizeof(recbuf)-1, 1500);
++  if(res<0) {
++    fprintf(stderr,"Can't receive CONFIG_CHAIN response!\n");
++    exit(1);      
++  }
++  return;
++}
++
++unsigned char select_chain[1];
++void sp_usb_select_chain(int num)
++{
++  int res;
++  select_chain[0]=SELECT_CHAIN | (num & 0x0f);
++  res=usb_bulk_write(hdev, 1, select_chain, 1, 500);
++  if (res != 1) {
++    fprintf(stderr,"Can't send SELECT_CHAIN command! got %d \n",res);
++    exit(1);      
++  }
++  res=usb_bulk_read(hdev, 2, recbuf, sizeof(recbuf)-1, 500);
++  if(res<0) {
++    fprintf(stderr,"Can't receive SELECT_CHAIN response!\n");
++    exit(1);      
++  }
++    if(recbuf[0] != SELECT_CHAIN) {
++      fprintf(stderr,"Incorrect SELECT_CHAIN response!\n");
++      exit(1);    
++    }  
++  fprintf(stderr,"Selected chain: %d\n",num);
++  return;
++}
++
++void sp_usb_init(void)
++{
++
++  int c, i, a;
++  int res;
++  unsigned char get_info[1];
++  get_info[0]=0x01;
++    
++  /* ... */
++  usb_init();
++  //usb_set_debug(255);
++  usb_find_busses();                                                            
++  usb_find_devices();                                                                            
++  busses=usb_get_busses();
++  for (bus = busses; bus; bus = bus->next) {
++    struct usb_device *dev;    
++    for (dev = bus->devices; dev; dev = dev->next) {
++      /* Check if this is our device */
++      if ((dev->descriptor.idVendor == CJ_USB_ID_VENDOR) &&
++         (dev->descriptor.idProduct == CJ_USB_ID_PRODUCT)) {
++       fprintf(stderr,"Probably found the USB STAPL Player");
++       /* Open the device, claim the interface and do your processing */
++       if(dev->descriptor.bNumConfigurations<2) {
++         fprintf(stderr,"Too few configurations!\n");
++         exit(1);        
++       }
++       hdev=usb_open(dev);
++       if(!hdev) {
++         fprintf(stderr,"Can't open device!\n");
++         exit(1);        
++       }
++       /* Warning!!! the number of configuration is increased by 1 comparing
++          to the number in Python */
++       if(usb_set_configuration(hdev, 2)) {
++         fprintf(stderr,"Can't set configuration 2!\n");
++         exit(1);        
++       }
++       if(usb_claim_interface(hdev, 0)) {
++         fprintf(stderr,"Can't claim interface 0!\n");
++         exit(1);        
++       }
++       if(usb_set_altinterface(hdev, 0)) {
++         fprintf(stderr,"Can't set alt interface 0!\n");
++         exit(1);        
++       }
++       /* Now let's check the GET_INFO function */
++       //sleep(1);
++       res=usb_bulk_write(hdev, 1, get_info, 1, 500);
++       if (res != 1) {
++         fprintf(stderr,"Can't send GET_INFO command! got %d \n",res);
++         exit(1);        
++       }
++       res=usb_bulk_read(hdev, 2, recbuf, sizeof(recbuf)-1, 500);
++       if(res<0) {
++         fprintf(stderr,"Can't receive GET_INFO response!\n");
++         exit(1);        
++       }
++       fprintf(stderr,"%s\n",recbuf);
++       // Select the chain
++       sp_usb_select_chain(jtag_output_chain);
++       // Config the chain
++       sp_usb_config_chain(jtag_delay);
++       // Reset the  TAP controller
++       for(res=0;res<10;res++) write_usb_cache(3);
++       flush_usb_cache();
++       return;
++      }
++      else {
++       fprintf(stderr,"found other device: Vid:%x Pid:%x\n",
++               dev->descriptor.idVendor,dev->descriptor.idProduct);
++      }
++    }
++  }
++}
++
++
++void sp_usb_release(void)
++{
++  usb_release_interface(hdev,0);
++  usb_close(hdev);
++  hdev=NULL;
++}
++
++void initialize_jtag_hardware()
++{
++  sp_usb_init();
++}
++void close_jtag_hardware()
++{
++  //First we flush the VME cache
++  flush_usb_cache();
++  //Then we wait for a few miliseconds
++  waitTime(1000);
++  //And finally we release the caen
++  sp_usb_release();
++}
++
++
++//Buffers used for caching of write accesses
++#define USB_CACHE_LEN (60*4)
++unsigned char usb_cache[(USB_CACHE_LEN+3)/4+2];
++
++//Pointer used to cache
++unsigned int usb_cache_cnt = 0;
++
++void flush_usb_cache()
++{
++  if(usb_cache_cnt) {
++    //Update the cache header
++    usb_cache[0] = BLOCK_DATA | ((usb_cache_cnt >> 8) & 0xf);
++    usb_cache[1] = usb_cache_cnt & 0xff;
++    //Send the cache via the USB
++    //fprintf(stderr,"u");
++    if(usb_bulk_write(hdev, 1, usb_cache, 2+(usb_cache_cnt+3)/4, 500) < 0) {
++      fprintf(stderr,"Sending BLOCK_DATA error in usb_bulk_write!\n");
++      exit(1);
++    }
++    //Receive the answer from the programmer
++    if(usb_bulk_read(hdev, 2, recbuf, sizeof(recbuf)-1, 500)<0) {
++      fprintf(stderr,"Can't receive BLOCK_DATA response!\n");
++      exit(1);    
++    }
++    if(recbuf[0] != BLOCK_DATA) {
++      fprintf(stderr,"Incorrect BLOCK_DATA response!\n");
++      exit(1);    
++    }  
++    usb_cache_cnt = 0;
++  }
++}
++
++void write_usb_cache(int tdi_tms)
++{
++  if(usb_cache_cnt>=USB_CACHE_LEN) flush_usb_cache();
++  int byte_pos = usb_cache_cnt/4 + 2;
++  int byte_shift = (usb_cache_cnt & 3) * 2;
++  if (byte_shift==0) usb_cache[byte_pos] = 0;
++  usb_cache[byte_pos] |= ((tdi_tms & 3) << byte_shift);
++  usb_cache_cnt++;
++}
++
++unsigned char single_with_read[1];
++int single_data_with_read(tms_tdi){
++  int res;
++  single_with_read[0]= SINGLE_DATA_WITH_READ | (tms_tdi & 3);
++  res=usb_bulk_write(hdev, 1, single_with_read, 1, 500);
++  if (res != 1) {
++    fprintf(stderr,"Can't send SINGLE_DATA_WITH_READ command! got %d \n",res);
++    exit(1);      
++  }
++  res=usb_bulk_read(hdev, 2, recbuf, sizeof(recbuf)-1, 2500);
++  if(res<0) {
++    fprintf(stderr,"Can't receive SINGLE_DATA_WITH_READ response!\n");
++    exit(1);      
++  }
++  //fprintf(stderr,"%x",(int)recbuf[0]);
++  if((recbuf[0] & 0x0fc) != SINGLE_DATA_WITH_READ) {
++    fprintf(stderr,"Incorrect SINGLE_DATA_WITH_READ response! got:%x instead of %x\n",
++           (int) (recbuf[0] & 0xf0), (int) SINGLE_DATA_WITH_READ);
++    exit(1);      
++  }  
++  return recbuf[0] & 1;
++}
++
++int low_jtag_io_(int tms, int tdi, int read_tdo)
++  {
++  int tdo=0;
++  int tms_tdi=0;
++  if(tdi) tms_tdi |= 1;
++  if(tms) tms_tdi |= 2;
++  tdo=single_data_with_read(tms_tdi);
++  return tdo;
++  }
++
++
++int low_jtag_io(int tms, int tdi, int read_tdo)
++{
++  int tdo=0;
++  int tms_tdi=0;
++  if(tdi) tms_tdi |= 1;
++  if(tms) tms_tdi |= 2;
++  if(read_tdo) {
++    // read is requested
++    // flush the FIFO
++    flush_usb_cache();
++    // perform the single data transfer
++    tdo=single_data_with_read(tms_tdi);
++    //fprintf(stderr,"%c",tdo ? '1' : '0');
++  } else {
++    // queue the request
++    write_usb_cache(tms_tdi);
++  }
++  return tdo;
++}
++
++//More advanced version of the low_jtag_io - all write requests are cached, until read
++//request is issued,
++//the cache is emptied when 1) read of TDO is requested, 2) jam_delay is called
++//3) the cache is full
++
++int jam_jtag_io(int tms, int tdi, int read_tdo)
++{
++  int tdo=0;
++  if (!jtag_hardware_initialized)
++    {
++      fprintf(stderr,"JTAG not initialized yet...\n");
++      initialize_jtag_hardware();
++      jtag_hardware_initialized = 1; //we must set it in advance
++    }
++  return low_jtag_io(tms, tdi, read_tdo);
++}
++
++int jam_vector_io
++(
++ int signal_count,
++ long *dir_vect,
++ long *data_vect,
++ long *capture_vect
++ )
++{
++  fprintf(stderr,"VECTOR functions not implemented!!!\n");
++  exit(1);
++}
++
++void waitTime(long microsec)
++{
++  waitNano(microsec*1000);
++}
++
++void waitNano(long nanosec)
++{
++  struct timespec rec;
++  int res;
++  rec.tv_sec=0;
++  rec.tv_nsec=nanosec;
++  for(;;) {
++    res=nanosleep(&rec, &rec);
++    if (res==0) break;
++    else {
++      if (errno==EINVAL){
++       fprintf(stderr,"nanosleep error\n",res);
++       exit(1);
++      }
++    }
++  }
++}
++
++void jam_delay(long microseconds)
++{
++  if(jtag_hardware_initialized) flush_usb_cache();
++  //usleep(microseconds);
++  waitNano(1000*microseconds);
++}
+diff -w -N -U 2 source/usb_prog.h /tmp/source/usb_prog.h
+--- source/usb_prog.h   1970-01-01 01:00:00.000000000 +0100
++++ /tmp/source/usb_prog.h      2007-10-21 01:32:24.000000000 +0200
+@@ -0,0 +1,12 @@
++/*
++ This file implements the USB specific part of the stapl player
++
++ */
++
++#define  GET_INFO (0x01)
++#define  CONFIG_CHAIN (0x02)
++#define  SINGLE_DATA_WITH_READ (0xac)
++#define  BLOCK_DATA (0xb0)
++#define  BLOCK_DATA_WITH_READ (0xc0)
++#define  SET_PINS (0xd0)
++#define  SELECT_CHAIN (0xe0)
+SHAR_EOF
+  (set 20 07 10 30 12 47 04 'usb_jam_player.patch'; eval "$shar_touch") &&
+  chmod 0644 'usb_jam_player.patch'
+if test $? -ne 0
+then ${echo} 'restore of usb_jam_player.patch failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'usb_jam_player.patch: MD5 check failed'
+       ) << SHAR_EOF
+a0db931556aafbe2965e690a03f1c9d2  usb_jam_player.patch
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'usb_jam_player.patch'` -ne 15439 && \
+  ${echo} 'restoration warning:  size of usb_jam_player.patch is not 15439'
+  fi
+fi
+if rm -fr ${lock_dir}
+then ${echo} 'x - removed lock directory `'${lock_dir}\''.'
+else ${echo} 'x - failed to remove lock directory `'${lock_dir}\''.'
+  exit 1
+fi
+exit 0 

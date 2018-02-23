@@ -1,0 +1,68 @@
+DFU Bootloader
+==============
+
+Aufgespielte Version: 1.0.2
+
+Speicherbereich: ab 0x3800
+Sprung in Bootloader: Immer bei Reset
+
+Ausgabe dmesg:
+--------------
+VendorID: 03EB
+ProductID: 2FF4
+Product: ATm32U4 DFU V1.0.2
+Manufacturer: ATMEL
+Serial Number: 0
+
+Test FLIP Software Windows:
+---------------------------
+
+Installierte Verison: 3.4.1
+Treiber manuell Installiert von Installationsverzeichnis
+Flip starten
+Verbindung klappt einwandfrei
+
+USB Firmwarefile von Atmel Seite geladen:
+HID (Maus) wird von Windows einwadfrei erkannt
+ --> Wechsel in Linux
+ 
+Test DFU Programmer unter Linux:
+--------------------------------
+
+http://dfu-programmer.sourceforge.net/
+1. usblib installiert
+2. ./configure, make, make install
+
+Geht am anfang nicht, kein Device gefunden
+befehl: 
+dfutool -d /dev/usbdev1.2_ep00
+Ausgegführt, dann konnte mit:
+dfu-programmer atmega32u4 flash /win/Users/andz/Desktop/EVK527-ATMega32U4-usbdevice_hid-2_0_0-doc.a90 
+Testfile flashen und mit:
+dfu-programmer atmega32u4 start
+das Programm starten
+
+Anderer PC: ging nicht, kein device...brauchte superuserrechte für /dev/usb...
+
+Weiter gehts mit UrJTAG:
+------------------------
+
+http://urjtag.svn.sourceforge.net
+
+Was anders: eclipse für atmega:
+-------------------------------
+
+1. ecliplse IDE runterladen
+2. avr-eclipse plugin von sourceforge runterladen
+3....erstmal lenny auf squeezy oder wie der heist upgraden
+
+USB-STAPL-Player
+----------------
+
+
+
+
+
+
+
+

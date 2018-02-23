@@ -1,0 +1,114 @@
+\chapter{Digitale Messtechnik} % Kapitel 2
+
+\section{Einführung} \index{Digitale Messtechnik} \index{Messtechnik}
+
+Die digitale Messtechnik steht als Oberbegriff für jegliche Messverfahren, welche nicht aus rein analogen oder mechanischen Komponenten aufgebaut sind. Es ist jedoch nicht davon auszugehen, dass es sich immer um eine komplett digitalisierte Lösung handelt. Bei einem Großteil der Messverfahren geschieht die Aufbereitung, wie zum Beispiel die Verstärkung oder Filterung eines elektrischen Signals, mittels einer analogen Schaltung. Dieses Signal wird dann durch ein geeignetes Verfahren digitalisiert und kann nun durch digitale Schaltungen oder einen PC-Messplatz weiterverarbeitet und dargestellt werden. Der wichtigste Grundsatz in der digitalen Messtechnik ist das Abtasttheorem von Claude Shannon und W. A. Kotelnikov. Dies besagt, dass die Abtastfrequenz $f_{a}$ der Messung mindestens doppelt so groß sein muss als die maximale Frequenz des zu messenden Signals $f_{max}$. \cite{Hoffm02}
+
+\begin{quote}
+$f_{a} > 2 f_{max}$ 
+\end{quote}
+
+In der Praxis jedoch wird, zur Vermeidung größerer Messfehler bei der Amplitudenmessung, üblicherweise eine Abtastfreqenz von $f_{a} = (5...10) f_{max}$ verwendet.
+
+\section{Speichergestützte Messtechnik} \index{Speichergestüzte Messtechnik}
+
+Ein großer Nachteil der analogen Messtechnik ist die stark begrenzte Speichermöglichkeit analoger Signale. Diese erfolgt meist nur in einem stark begrenzten Zeitbereich zum Beispiel durch das Nachleuchten einer braunschen Röhre in einem Osziloskop. Dauerhafte Speicherung ist hier meist nur durch aufwendige Verfahren, wie das Belichten eines Fotopapiers, möglich.
+Hier liegt nun ein großer Vorteil bei der digitalen Messtechnik. Messwerte, welche in digitaler Form vorliegen, können verlustfrei in flüchtigen oder nicht-flüchtigen Speichern abgelegt werden um zu einem späteren Zeitpunkt weiterverarbeitet oder dargestellt zu werden. Auch können die Messwerte so mit verschiedenen Analyseverfahren, wie zum Beispiel einer Fourier-Transformation, aufbereitet werden ohne dabei an Qualität zu verlieren. Durch die heutzutage verfügbaren günstigen Speicherbausteine mit hoher Datendichte ist es problemlos möglich Messignale über einen großen Zeitraum zu speichern, um sie später weiterverarbeiten zu können. Auch können die Messwerte über eine Datenverbindung zu einem beliebigen, vom Messplatz unabhängigen, Ort zur Verarbeitung übertragen werden.
+
+Worauf jedoch bei der speichergestützten Messtechnik geachtet werden muss ist die Schreibgeschwindigkeit der Speicherbausteine bzw. die Geschwindigkeit des verwendeten Bussystems. Diese muss so ausgelegt sein, dass, bei gleicher Größe des Datenwortes, die Speicherzugriffszeit kleiner oder gleich ist der Abtastzeit des Messsignals.
+
+\begin{quote}
+$T_{Speicher} \leq T{a}$ 
+\end{quote}
+
+\section{Messignale} \index{Messignale} \index{Komparator} \index{Schmitt-Trigger}
+
+Im Gegensatz zur Digitalisierung von kontinuierlichen analogen Signalen, welche relativ aufwendige Schaltungen benötigt, ist die Erfassung von bereits digitalen Messsignalen relativ einfach aufgebaut. Da in dieser Arbeit nur mit Signalen gearbeitet wird, welche die Zustände \textit{High} und \textit{Low} besitzen, kann auf eine Digitalisierung der Signale durch einen Analog/Digital-Wandler verzichtet werden. Stattdessen wird ein einfacher Komparator oder Schmitt-Trigger verwendet, um die vorliegenden Signalpegel in digitale Messwerte zu wandeln.
+
+Bei einem einfachen Komparator, welcher in der Grundschaltung nur aus einem Operationsverstärker besteht, geht das Ausgangssignal beim Überschreiten eines bestimmten Schwellwertes $V_{ref}$, von $V_{max}$ (logisch 1) auf 0V (logisch 0) zurück. Dadurch wird ein negiertes, jedoch rein digitales Signal ohne Amplitudenfluktuation erzeugt. Dieses Signal kann nun von einer digitalen Schaltung weiterverarbeitet und gespeichert werden.
+
+\begin{figure}[ht]
+%Grafik ähnlich PC Messtechnik Sewite 149
+	\includegraphics[width=1.0\textwidth]{images/Komparator.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Komparator mit Kennlinie}
+\end{figure}
+
+Der große Nachteil des Komparators ist jedoch, dass bei einer Amplitudenfluktuation um den Schwellwert ein ungewünschtes Prellen des Ausganssignals verursacht wird. Dieses Prellen verursacht einen mehrfachen Wechsel des Messwertes innerhalb eines Zeitraumes, in dem das zu messende Signal eigentlich einen relativ konstanten Pegel besitzt. Um diese starke Verfälschung der Messung zu verhindern, kann ein Schmitt-Trigger eingesetzt werden.
+
+Der Schmitt-Trigger besitzt im gegensatz zum Komparator zwei Schwellwerte um das Signal zu digitalisieren. Der erste Schwellwert liegt etwas über der gewünschen Referenzspannung und veranlasst den Schmitt-Trigger das Ausganssignal auf logisch 0 zu setzen. In der Grundbeschaltung des Schmitt-Triggers liegt der Pegel des Ausganssignales hier bei etwa der negativen Versorgungsspannung $-U_{V}$. Wird dieser Schwellwert nun wieder unterschritten, so bleibt der Schmitt-Trigger in seinem Zustand. Dies wird durch eine Mitkopplung des Ausgangssignals am Plus-Eingang des Operationsverstärkers bewrikt, welche den Schwellwert auf eine Spannung etwas unter der Referenzspannung absenkt. Erst wenn dieser, tiefer liegende, zweite Schwellwert unterschritten wird, wird das Ausgangssignal wieder auf logisch 1 ($+U_{V}$) gesetzt.
+
+\begin{figure}[ht]
+%Grafik ähnlich PC Messtechnik Sewite 149
+	\includegraphics[width=1.0\textwidth]{images/Schmittrigger.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Schmitt-Trigger mit Hysteresekurve}
+\end{figure}
+
+Durch die so entstehende Hysterese wird ein Prellen des Ausgangssignal verhindert. Dadurch wird eine Verfälschung der Messung durch Störgrößen um den Schwellwert vermieden. Jedoch ist bei beiden Methoden darauf zu achten, dass das Ausgangssignal negiert ist. Dies kann jedoch in der nachfolgenden digitalen Schaltung zum Beispiel durch ein logisches \textit{NOT} korrigiert werden. \cite{Schwe97} In dieser Arbeit ist der Schmitt-Trigger bereits in dem verwendeten CPLD integriert, welcher im Abschnitt \nameref{Logikbaustein} näher erläutert wird.
+
+
+\section{Erfassung von Zeitgrößen} \index{Zeitgröße} \index{Oszillator} \index{Zähler} \index{Zeitstempel}
+
+Bei der Analyse von digitalen Signalen ist die Messung der Amplitude normalerweise zweitrangig und wird hauptsächlich zur Bestimmung der Signalqualität verwendent. Ein wesentlich wichtigeres Merkmal ist der Zeitpunkt wann ein Signal einen Zustandswechsel erfährt oder die Dauer eines bestimmten Signalzustandes. 
+
+Um dies zu ermöglichen, muss eine möglichst genaue Referenzzeit erzeugt werden auf deren Basis alle Messungen von Pulsdauer oder -zeitpunkt erfolgen. Dazu verwendet man in den meisten Fällen einen hochgenauen Frequenzgenerator mit fixer Periodendauer, einen sogenannten Oszillator. Diese Oszillatoren sind für gängige Frequenzen zu relativ niedrigen Preisen und einer hohen Genauigkeit von $\pm$ einigen ppm \footnote{parts per million dt.: millionstel} erhältlich.
+
+Auf dieser Zeitbasis aufbauend kann nun in Kombination mit einem Zähler eine Zeitmessung stattfinden. Dazu wird der Zähler zum Beginn eines Ereignisses auf 0 gesetzt und der Impuls des Oszillators über ein Gate an den Pulseingang des Zählers geschaltet. Ist das Ereignis vorbei, schließt sich das Gate wieder und der Zähler stoppt. Nun entspricht der Zählerstand der Anzahl der in diesem Zeitraum erzeugten Pulse des Oszillators. Nun kann mit der Formel
+
+\begin{quote}
+$T = N \cdot \bigtriangleup t$
+\end{quote}
+
+die gemessene Zeit $T$ berechnet werden. Wobei $N$ für den Zählerstand und $ \bigtriangleup t$ für die Zeitbasis steht. \cite{Schwe97} 
+
+Eine weitere Möglichkeit der Zeiterfassung ist es, nicht den absoluten Zählerstand nach Ablauf des Ereignisses zu verwenden, sondern die Differenz der Zählerstände zwischen zwei Ereignissen.
+
+\begin{quote}
+$T = (N_{b} - N_{a}) \cdot \bigtriangleup t$
+\end{quote}
+
+Dies hat mehrere Vorteile. Zum Einen muss der Zähler nicht nach jedem Ereignis zurückgesetzt werden. Da dieses Rücksetzten eventuell länger dauert als eine Zeiteinheit, kann dadurch das Messergebnis verfälscht werden. Auch können so mehrere Ereignisse leichter in Relation zueinander gesetzt werden. So kann man sehr leicht den Zeitraum zwischen Ereignis 3 und Ereignis 5 bestimmen, ohne vorher die Zeiträume zwichen Ereignis 3 und 4 oder 4 und 5 zu kennen. 
+
+Realisiert wird diese Methode der Zeiterfassung, indem man jedes Ereignis mit einem sogenannten Zeitstempel versieht. Das bedeuted, dass jedem Ereignis der zu diesem Zeitpunkt aktuelle Zählerstand zugeordnet wird. Diese Methode wird auch bei dieser Arbeit angewendet und im Kapitel \nameref{VHDL-Design} näher erläutert. 
+
+\section{Logikanalyse} \index{Logikanalyse} 
+
+Kombiniert man die Erfassung der Messsignale mit der Zeiterfassung, so kann auf dieser Basis eine Logikanalyse durchgeführt werden.
+
+Bei einer Logikanalyse werden logische Zustände von mindestens einem Signal als Funktion der Zeit erfasst. Meist werden jedoch mehrere Signale von mindestens 16 Kanälen aufgezeichnet, um so zum Beispiel die verschiedenen Datenleitungen eines Bussystems als Funktion der Zeit darstellen zu können. Hierbei ist noch auf zwei unterschiedliche Messverfahren zu achten: Die synchrone und die asynchrone Signalanalyse.
+
+Bei der synchronen Signalanalyse wird das Eingangssignal auf ein bestimmtes Taksignal einsynchronisiert. Dazu wird das Eingangssignal zunächst in einem Register zwischengespeichert. Eine oder mehrere Eingangleitungen werden zu einem Trigger geleitet. Dieser Trigger reagiert auf eine bestimmte Signalkombination und gibt ein Ausganssignal aus wenn diese Triggerbedingung erfüllt ist. Im einfachsten Fall ist dies die steigende oder fallende Flanke eines bestimmten Taktes. Ist die Triggerbedingung erfüllt, so wird in genau diesem Moment der Inhalt des Eingangsregisters in den Speicher übernommen. Diese Art der Analyse wird verwendet um die Daten eines synchronen Busses zu analysieren, ohne dabei von unterschiedlichen Signallaufzeiten beeinflusst zu werden.
+
+Bei der asynchronen Signalanalyse werden die Signale permanent aufgezeichnet. Das bedeutet, dass sobald sich eines der Signale im logischen Wert ändert, wird diese Änderung mit einem Zeitstempel versehen und kann somit später untersucht werden. Bei diesem Verfahren hat man den Vorteil, dass zum Beispiel unterschiedliche Signallaufzeiten der einzelnen Bussignale gut dargestellt werden können. Daher wird dieses Verfahren auch als \textit{Zeitanalyse} bezeichnet. Um hier einen guten Messwert zu erziehlen sollte darauf geachtet werden, die Abtastrate im Bereich der 5 bis 10-fachen Frequenz des zu untersuchenden Signales zu wählen. \cite{Schwe97}
+
+Der in dieser Arbeit erstellte Analysator ist aufgrund seiner flexiblen Programmierung in der Lage, beide Formen der Logikanalyse zu ermöglichen. Auch ist es möglich, durch eine Einkanal-Logikanalyse eine Eventmessung durchzuführen. Also das Aufzeichnen der genauen Start- und Endzeit eines bestimmten Ereignisses.
+
+\section{Logikanalyse über USB} \index{USB} \index{Speicher}
+
+USB ist eine universelle Datenverbindung zwischen einem USB-Gerät (z.B. Logikanalysator) und einem USB-Host (z.B. PC). Diese Schnittstelle hat den Vorteil, dass sie an einem Großteil der geläufigen Rechner vorhanden ist, so dass sich der PC sehr gut zur Darstellung und Weiterverarbeitung der Messwerte des Logikanalysators eignet. Die genaue Funktion der in dieser Arbeit verwendeten USB-Schnittstelle ist in Kapitel \ref{USB-Schnittstelle}, \nameref{USB-Schnittstelle}, beschrieben.
+
+Zu beachten ist hierbei vor allem die Tatsache, dass in einem USB-Bus die Daten immer in Datenpaketen übertragen werden. Diese Pakete werden in Zeitfenstern von 1ms vom Gerät zum Host übertragen. Das bedeuted in der Praxis, dass wenn man die Messignale direkt über den USB-Bus an den PC übertragen möchte, eine maximale Abtasrate von 1kHz möglich wäre. Da innerhalb dieses Rahmens mehrere Pakete von je bis zu 256 Byte \footnote{1 Byte = 8 Bit} Größe übertragen werden, lassen sich im Fullspeed-Modus bis zu 12 Mb/s \footnote{Megabit pro Sekunde} übertragen. Deshalb müssen die Signale in einem Zwischenpuffer gespeichert werden, welcher so dimensioniert werden sollte, dass er sämtliche Messwerte aufnehmen kann, welche in einem Zeitrahmen von einer Millisekunde anfallen. \cite{Kaink00}
+
+In dieser Arbeit ist der Zwischenspeicher noch um ein vielfaches größer gewählt, da die Signale nicht nur gepuffert, sondern erst nach Beendigung der Messung aufbereitet und zum PC übertragen werden. Siehe Abschnitt \ref{Speicherbausteine}, \nameref{Speicherbausteine} und \ref{Datenübertragung}, \nameref{Datenübertragung}.
+
+\section{Messfehler} \index{Messfehler} \index{Signallaufzeit} \index{Pulsübertragungsverhalten} \index{Torfehler} \index{Speicherverzögerung}
+
+In jeder Form der Messtechnik, auch in der digitalen, treten Messfehler auf. Das bedeuted, dass der gemessene Wert vom tatsächlichen abweicht. Man kann jedoch den maximalen Fehler einzelner Messglieder oder der gesamten Messkette bestimmen. Dadurch kann ein Gültigkeitsbereich der Messwerte festgelegt werden, um so die Ergebnisse richtig interpretieren zu können.
+
+In dieser Arbeit treten vor allem an den folgenden Stellen signifikante Messfehler auf:
+
+\begin{description}
+ \item[Signallaufzeiten] 
+	Als Signallaufzeit bezeichnet man die Zeit welche ein Signal von der Erzeugung bis zur eigentlichen Messeinrichtung benötigt. Bei diesem Analysator ist jedoch nicht die absolute Signallaufzeit interessant, da die Zeitmessung zwischen den einzelnen Events relativ zueinander erfolgt und nicht absolut. Jedoch ist auf die unterschiedlichen Signallaufzeiten der einzelnen Signale zu achten. So sind zwar die Leiterbahnen mit wenigen Zentimenter verhältnismäßig kurz, jedoch kann vor allem durch die verwendeten Bustreiber eine Signalverzögerung von wenigen ns \footnote{ns = Nanosekunde, millionstel Sekunden} erzeugt werden. Somit kann es passieren, dass ein Signal um einen Bruchteil früher ankommt als ein anderes. Wenn nun genau in diesem Moment eine getaktete Messung stattfindet, so könnte den beiden, ursprünglich gleichzeitig erzeugten Signalen, ein unterschiedlicher Zeitstempel zugewiesen werden. Dies entspricht einem Messfehler von einem Takt, wodurch das niederwertigste Bit des Zeitstempels bei der Analyse vernachlässigt werden muss. \cite{Schwe97}
+ \item[Pulsübertragungsverhalten]
+	Es ist auch darauf zu achten, dass ein zu messender Rechteckimpuls in seinen Oberwellen gedämpft wird. Dadurch wird die ansteigende oder fallende Flanke des Impulses etwas abgeflacht, was zu leichten Verzögerungen oder Fluktuationen führen kann. Dies wird jedoch größtenteils durch den verwendeten Schmitt-Trigger wieder ausgeglichen. \cite{Schwe97}
+ \item[Torfehler bei Zeitmessung]
+	Unter einem Torfehler bei der Zeitmessung versteht man die Tatsache, dass durch die oben erwähnten Signallaufzeiten nicht nur ein Messfehler relativ zueinander auftreten kann. So kann für zwei exakt gleiche Signale, durch eine leichte Verschiebung relativ zueinander, eine unterschiedliche Pulsdauer gemessen werden. Da auch dieser Fehler einem Bit in der Zeitmessung entspricht, müssen nun die beiden niederwertigsten Bits des Zeitstempels als Messfehler angesehen werden. \cite{Schwe97} (evtl. Grafik? Seite 252)
+ \item[Ungenauigkeit des Oszillators]
+	Der verwendete Oszillator besitzt einen angegebenen Fehler von $\pm$ XXX ppm. Dies Entspricht im Falle von 100 MHz Taktfrequent einenem absoluten Fehler von $\pm$ XXX ns.
+ \item[Speicherverzögerung]
+	Da die Messung über schnelle, getaktete Register efolgt, ist die Verzögerung zum RAM im Grunde vernachlässigbar. Folgen jedoch zwei Messungen so schnell nacheinander, dass das vorherige Messergebnis noch nicht gespeichert wurde, so kann es hier zu einem Messfehler kommen, oder gar zum Verlust eines Messwertes. Dies kann jedoch zum Beispiel durch zwei, oder mehr wechselnde Register ermöglicht werden. Während der Inhalt des einen Registers noch in den RAM ausgelagert wird, ist das nächste schon bereit einen Messwert aufzunehmen.	
+ \end{description}
+
+Alle weiteren Fehler, vor allem durch Nichtlinearitäten der verwendeten Bauteile, lassen sich bei dieser digitalen Messung vernachlässigen, da diese höchstens die Amplitude oder Form des Signals beeinflussen.

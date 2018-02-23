@@ -1,0 +1,10 @@
+--- configure.ac
++++ configure.ac
+@@ -559,7 +550,6 @@
+ 		 hardware/common/Makefile
+ 		 hardware/gmc-mh-1x-2x/Makefile
+ 		 hardware/hameg-hmo/Makefile
+-		 hardware/hsa-tple/Makefile
+ 		 hardware/ikalogic-scanalogic2/Makefile
+ 		 hardware/ikalogic-scanaplus/Makefile
+ 		 hardware/kecheng-kc-330b/Makefile

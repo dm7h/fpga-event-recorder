@@ -1,0 +1,461 @@
+\chapter{USB-JTAG Schnittstelle} 
+\label{USB-JTAG}% Kapitel 7
+
+\section{Einführung} \index{JTAG} \index{USB} \index{USB-JTAG} \index{Altera-MAX-II} \index{CPLD}
+
+Eine Hauptaufgabe dieser Arbeit war es, eine Möglichkeit zu finden, den Logikbaustein ohne externe Hardware konfigurieren zu können. Da die einzige Verbindung zwischen dem Analysator und dem PC die USB-Schnittstelle ist, muss die Konfigiration über diesen Anschluss erfolgen. Es soll damit möglich sein, den vom Synthetiserungstool, in diesem Fall Quartus II von Altera, erzeugeten Datenstrom aufzuspielen. Dazu ist eine zusätzliche PC-Software nötig, da das Konfigurationstool von Altera nur mit bestimmten, externen Programmiergeräten verwendbar ist. 
+
+Die Programmierschnittstelle des Altera-MAX-II-Bausteins ist eine JTAG Schnittstelle. Die genaue Funktion dieser Schnittstelle wird in Abschnitt \ref{Wasist} beschrieben. Es muss also auf dem Mikrocontroller ein Adapter implementiert werden, welcher auf einer Seite diese JTAG-Schnittstelle, und auf anderer Seite den USB-Bus ansprechen kann.
+
+Nun gibt es zwei unterschiedliche Ansätze dies zu verwirklichen. Die erste Möglichkeit ist es, die erzeugte Konfigurationsdatei über die USB-Schnittstelle an den Mikrocontroller zu übertragen. Auf dem Mikrocontroller wird nun eine Software implementiert, welche die Konfigurationsdatei interpretiert, in einen JTAG-Datenstrom wandelt und anschließend über eine Hardwareschnittstelle an den CPLD überträgt. Diese Variante wird sogar von Altera als ``Embedded-Programming'' empfohlen. Jedoch hat dieser Weg einen großen Nachteil: Der benögtigte Arbeitsspeicher des Mikrocontrollers muss mindestens so groß sein, wie die zu interpretierende Konfigurationsdatei. Die Konfigurationsdatei des verwendeten Bausteins EPM240 hat eine Größe von etwa 12.4 Kbyte, und übersteigt damit den im Mikrocontroller vorhandenen RAM von 1.5Kbyte um ein vielfaches. \cite{Alter02}
+
+Somit ist in diesem Fall nur die zweite Möglichkeit anwendbar. Hierbei wird das Interpreterprogramm auf dem PC ausgeführt, welcher mehr als genug Arbeitsspeicher zur Verfügung hat. Der erzeuge JTAG-Datenstrom wird nun transparent, über die USB-Schnittstelle, an den Mikrocontroller übertragen. Dieser leitet nun, unter Verwendung einiger Steuerfunktionen, den Datenstrom an die Hardwareschnittstelle weiter. Ausserdem müssen die von der JTAG-Schnittstelle rückgesendeten Daten über USB an die Interpreter-Software weitergeleitet werden.
+
+Leider konnte im Laufe dieser Arbeit aus Zeitgründen keine problemlose Konfigurationsverbindung hergestellt werden. Jedoch werden in den folgenden Abschnitten alle Ansätze und Arbeitsschritte erläutert, um in Zukunft die Konfiguration des CPLD über USB zu ermöglichen. 
+
+\section{Kurze Einführung zu JTAG} \label{Wasist} \index{JTAG} \index{TDI} \index{TDO} \index{TMS} \index{TCK} 
+
+JTAG ist ein von der ``\textbf{J}oint \textbf{T}est \textbf{A}ction \textbf{G}roup'' entwickelter Standard (IEEE 1149.1) um das Debuggen, Testen und Programmieren von digitalen Schaltkreisen zu ermöglichen. Dies geschieht durch einen sogenannten ``Boundary Scan''. Dabei sind in dem Baustein mehrere Stellen definiert, von welchen Signale gelesen und gesetzt werden können. Diese Stellen beinflussen den Baustein im normalen Betrieb nicht. Im JTAG-Modus werden diese Signale in Form einer langen Kette (Pfad) bitweise weitergereicht. Dabei werden neue Daten über den TDI \footnote {TDI: Test Data In} -Eingang in den Baustein ``geschoben'', während die Baustein-internen Daten aus dem TDO \footnote{TDO: Test Data Out}-Ausgang ``gedrückt'' werden. Zur Weiterverarbeitung der Daten muss sowohl die Kettenlänge, als auch die Bedeutung der einzelnen Bitstellen bekannt sein.
+
+JTAG ist eine synchrone Datenschnittstelle. Das heißt sie verfügt über ein Taktsignal (TCK) mit dem die Datensignale synchronisiert werden. Gesteuert wird die Datenübertragung über einen Zustandsautomaten, den TAP-Controller. Dieser Automat besitzt verschiedene Zustände, wie zum Beispiel ``Test Läuft'' oder ``Pause''. Jeder dieser 16 Zustände besitzt zwei Folgezustände. In welchen dieser Zustände beim nächsten Takt gesprungen wird, bestimmt das TMS \footnote{TMS: Test Mode Select}-Signal. Optional ist auch eine Resetleitung vorgesehen. Dadurch kann der Baustein zum Beispiel nach dem Programmieren neu gestartet werden.
+
+Zusätzlich verfügt JTAG noch über zwei Register. Ein Instruktions- und ein Daten-Register. Über das Instruktionsregiser kann zum Beispiel ein Befehl für das Ausgeben des ID-Codes gesetzt werden. Der ID-Code des Bausteins wird dann daraufhin an das Datenregister gelegt. Dieses Datenregister kann dann wiederum über die Datenkette ausgelesen werden.
+
+Es können auch die TDI und TDO Leitungen mehrerer Bausteine zu einer langen Kette zusammegeschlossen werden. Dann ist zusätzlich jedoch, neben der Länge der Einzelketten, auch noch die Position der einzelnen Bausteine relevant. 
+
+Bei dem verwendeten CPLD wird die JTAG-Schnittstelle ausschließlich zur Konfiguration verwendet. Dazu ist der interne, flashbasierende Konfigurationsspeicher an die JTAG-Kette angeschlossen. Da der Konfigurationsspeicher parallel programmiert wird, ist in dem CPLD ein Programmieradapter vorhanden, der die JTAG-Signale in die nötigen Datensignale wandelt. \cite{Khirm01}
+
+\section{Hardwareverbindung zwischen Mikrocontroller und CPLD} \index{SPI}
+
+Die vier JTAG Leitungen des CPLDs werden auf eine vierpolige Stiftleiste geführt. Dadurch ist der Anschluss eines externen Programieradapters, wie dem Altera-USB-Blaster, über eine Kabelpeitsche möglich. Vier Anschluss-Pins des Mikrocontrollers sind ebenfalls an eine vierpolgie Stiftleiste geführt, so dass diese über Jumper mit der JTAG-Schnittstelle verbunden werden können. Diese vier Pins befindens sich alle an Port-B des Mikrocontrollers. Dabei wurde darauf geachtet, dass die Pins für TDI, TDO und TMS an die Pins des SPI-Moduls angeschlossen werden. Dadurch ist es für eine spätere Implementierung möglich, das interne SPI-Modul für die Datenstromübertragung zu nutzen, wodurch eventuell ein Geschwindigkeitsvorteil erreicht werden kann. Eine zusätzliche Resetleitung ist bei der JTAG-Schnittstelle des CPLD nicht vorgesehen.
+
+Für diese Arbeit wird der Port-B allerdings als nomaler Port, also mit direkter Verbindung zum Datenbus, verwendet. Die Pinbelegung der Schnittstelle ist in Tabelle \ref{tab:JTAGPin} aufgeführt.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Pin am Mikrocontroller	& Signalname	& Pin am CPLD \\
+\hline \hline
+B 1 (SCLK)		& TCK		& 24 \\
+\hline
+B 2 (MOSI)		& TDI		& 23 \\
+\hline
+B 3 (MISO)		& TDO		& 25 \\
+\hline
+B 7			& TMS		& 22 \\
+\hline
+\end{tabular}
+\caption{JTAG Pinbelegung}
+\label{tab:JTAGPin}
+\end{table}
+
+
+
+\section{JTAG-Schnittstelle basierend auf Atmel USB-Stack}
+
+\subsection{Einführung} \index{USB-JTAG}
+
+Auf Basis des in Kapitel \ref{USB-Schnittstelle} erläuterten USB-Stacks von Atmel, kann nun ein USB-JTAG-Device entwickelt werden. Dazu wird das erläuterte Beispiel des USB-UART Adapters um ein zusätzliches Interface erweitert. Dadurch entsteht ein USB-Verbundgerät, also ein Gerät das mehr als eine Klasse enthält. Die Erweiterung hat den Grund, da die virtuelle serielle Schnittstelle weiterhin für die Komunikation mit der Hardware zur Verfügung stehen soll.
+
+Auf PC-Seite kommt der USB-STAPL-Player von Altera zum Einsatz. Dieser interpretiert die Konfigurationsdatei des CPLD und wandelt sie in JTAG Signale um. Diese werden dann über Funktionen der Bibliothek \texttt{libusb} an die entsprechenden Endpunkte des USB-Geräts gesendet und dort weiterverarbeitet.
+
+\subsection{USB-STAPL-Player von Wojciech M. Zabolotny} \index{Jam-STAPL-Player}
+
+Auf Basis des Jam-STAPL-Players von Altera, wurde von Wojciech M. Zabolotny, Dozent am Warschauer Polytechnikum, ein USB-JTAG-Adapter entwickelt.
+Dieser Adapter ist Hauptsächlich für die Verwendung als Programmieradapter für Altera Logikbausteine konzipiert. Als Hardware wurde ein PIC18F4550 Mikrocontroller mit integrierter USB-Schnittstelle verwendet. Als Firmwarebasis kam das, von Pierre Gaufillet entwickelte, PIC-USB-Framework zum Einsatz.
+
+Dieses Framework ist jedoch völlig inkompatibel zum Atmel-USB-Stack. Deshalb kann die Firmware für den Atmega32-U4 nicht angewendet werden. Jedoch können die höheren API-Funktionen für den Atmel-Stack nachgebildet werden. Dadurch ist es möglich, die von Wojciech M. Zabolotny angepasste Version des Altera-Jam-STAPL-Players, für die Konfiguration des CPLD zu verwenden.
+
+\subsection{Hinzufügen eines neuen Interfaces} \index{Interface} \index{Endpunkt}
+
+Der erste Schritt hierfür ist, alle nötigen Deskriptoren für einen USB-JTAG-Adapter festzulegen. Die Schritte, wie dabei vorzugehen ist, sind in Kapitel \ref{USB-Schnittstelle}, Abschnitt \ref{AtmelUSB} genauer erläutert. 
+
+Zunächst wird der Device Desktriptor des USB-UART Adapters angepasst. Dafür muss die CDC-Klasse entfernt werden, da es sich bei dem Gerät nun nicht mehr um einen reinen USB-UART Adapter handelt. Stattdessen wird die Klasse 0x00 verwendet. Diese weist den USB-Host darauf hin, dass die Festlegung der Klasse nicht im Device-Desktriptor, sondern erst in den Interface-Deskriptoren festgelegt wird. Leider hat dies zur Folge, dass daraufhin die Standard-Klassentreiber von MS Windows die virtuelle serielle Schnittstelle nicht mehr erkennen. Dafür muss eventuell die entsprechende .inf-Datei abgeändert werden. Für dieses Problem wurde noch keine zufriedenstellende Lösung gefunden. Die unter Debian (Lenny) verwendeten Klassentreiber erkennen den USB-UART Adapter auch nach der Änderung des Device-Deskriptors problemlos.
+In Tabelle \ref{tab:DevDesc} sind alle Werte des neuen Device-Deskriptors aufgelistet.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Deskriptorfeld		& Wert		& Beschreibung \\
+\hline \hline
+bDescriptorType		& 0x01		& Device-Deskriptor \\
+\hline
+bcdUSB			& 0x0200	& USB 2.0	 \\
+\hline
+bDeviceClass		& 0x00		& Klassenspezifikation im Interface \\
+\hline
+bDeviceSubClass		& 0x00		& Unterklassenspezifikation im Interface \\
+\hline
+bDeviceProtocol		& 0x00		& Protokollpezifikation im Interface \\
+\hline
+bMaxPacketSize		& 32		& Maximale Paketgröße für EP0 in Byte \\
+\hline
+idVendor		& 0x1781	& Vendor: HS-Augsburg \\
+\hline
+idProduct		& 0x0C66	& Product: USB-TPLE \\
+\hline
+bcdDevice		& 0x1000	& Versionsnummer 1.0.0.0 \\
+\hline
+iManufacturer		& 0x00		& Index des Hersteller-Strings \\
+\hline
+iProduct		& 0x00		& Index des Produkt-Strings \\
+\hline
+iSerialNUmber		& 0x00		& Index des Seriennummer-Strings \\
+\hline
+bNumConfigurations	& 1		& Anzahl der Konfigurationen \\
+\hline
+\end{tabular}
+\caption{Werte des Device-Deskriptors}
+\label{tab:DevDesc}
+\end{table}
+
+Nun kann der Kofigurationsdeskriptor angepasst werden. Notwendige Daten sind hier vor allem die Anzahl der angeschlossenen Interfaces (hier von zwei auf drei erhöht) und der Strombedarf. Dieser wird auf den Maximalwert von 500mA gesetzt. Auch muss die Größe der gesamten Datenstrukur angepasst werden. Eine Besonderheit des Atmel-CDC-Adapters ist, dass hier die für die CDC-Konfiguration zusätzlich nötigen Deskriptordaten von Hand, also außerhalb einer Strukur, eingetragen wurden. Deshalb läßt sich die größe der Strukur nicht berechnen, und muss manuell eingetragen werden.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Deskriptorfeld		& Wert		& Beschreibung \\
+\hline \hline
+bDescriptorType		& 0x02		& Konfigurations-Deskriptor \\
+\hline
+bTotalLength		& 0x005A 	& Gesamtgröße aller Deskriptoren \\
+\hline
+bNumInterfaces		& 3		& Anzahl der Interfaces	 \\
+\hline
+bConfigurationValue	& 1		& Nummer der Konfiguration \\
+\hline
+iConfiguration		& 0		& Index des Konfigurations-Strings \\
+\hline
+bmAttributes		& 0x01		& 0: Eigenversorgung \\ 
+			&		& 1: Versorgung über USB-Bus \\
+\hline
+MaxPower		& 250		& Maximaler Strom in 2mA-Schritten (500mA) \\
+\hline
+\end{tabular}
+\caption{Werte des Konfigurations-Deskriptors}
+\label{tab:KonfDesc}
+\end{table}
+
+Für den USB-JTAG Adapter wird nun ein neues Interface erstellt. Dieses Interface kann nun, unabhängig von den vorhandenen Interfaces für die USB-UART-Schnittstelle, angesprochen werden. Da JTAG eine bidirektionale Schnittstelle ist, in diesem Fall TDI, TMS und TCK in das Gerät und TDO zurück zum Host, muss das Interface auch in beide Richtungen arbeiten können. Da aber ein USB-Endpunkt nur in eine Datenrichtung arbeiten kann, müssen an das Interface zwei Endpunke, einen für den Datenempfang und einen für das Senden von Daten, angeschlossen werden. 
+
+Auch wichtig ist die Einstellung der Klasse und des Protokolls. Wie oben beschrieben wurde, erfolgt die Festlegung der Klasse nun nicht mehr im Device-Deskriptor, sondern in den Interface-Deskriptoren. Da in der UBS-Spezifikation für JTAG weder eine Standard-Klasse noch ein Standard-Protokoll vorhanden sind, werden Klasse, Subklasse und Protokoll auf einen Wert von 0xFF eingestellt. Dadurch wird dem USB-Host signalisiert, dass kein Standardtreiber verwendbar ist und das Interface nur über spezielle Treiber, oder direkt über die USB-Bibliothek ansprechbar ist.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Deskriptorfeld		& Wert		& Beschreibung \\
+\hline \hline
+bDescriptorType		& 0x04		& Interface-Deskriptor \\
+\hline
+bInterfaceNumber	& 2	 	& Interface 0 und 1 werden für USB-UART benötigt \\
+\hline
+bAlternateSetting	& 2		& Alternatives Interface, wird nicht verwendet	 \\
+\hline
+bNumEndpoints		& 2		& Anzahl Angeschlossener Endpunkte \\
+\hline
+bInterfaceClass		& 0xFF		& Anbieterspezifische Klasse \\
+\hline
+bInterfaceSubclass	& 0xFF		& Anbieterspezifische Unterklasse \\
+\hline
+bInterfaceProtocol	& 0xFF		& Anbieterspezifisches Protokoll \\
+\hline
+iInterface		& 0		& Index des Interface-Strings \\ 
+\hline
+\end{tabular}
+\caption{Werte des JTAG-Interface-Deskriptors}
+\label{tab:IntDesc}
+\end{table}
+
+Den Endpunkten wird nun eine der verfügbaren Adresses zugewiesen (siehe Abschnitt \ref{Enumeration}). Dabei ist darauf zu achten, bei dem Endpunkt in Eingangsrichtung, das Adress-Bit mit der höchsten Wertigkeit zu setzten. Dies erreicht man durch Addition von 0x80 zu der Endpunktadresse. Als Datenübertragungsart wird der Bulk-Transfer verwendet. Dadurch können größere Datenmengen pro Zeitfenster übertragen werden, um für zukünftige Implementierungen eine größere JTAG-Geschwindigkeit zu ermöglichen. Aus diesem Grund wurde auch die Registergröße der Endpunkte auf den Maximalwert von 64 Byte gesetzt, obwohl für das verwendete Übertragungsverfahren 2 Byte in jede Richtung ausreichen würden.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Deskriptorfeld		& Wert		& Beschreibung \\
+\hline \hline
+bDescriptorType		& 0x05		& Endpunkt-Deskriptor \\
+\hline
+bEndpointAdress		& 0x04	 	& Adresse des Endpunktes \\
+\hline
+bmAttributes		& 0x02		& 0x02: Bulk-Transfer \\ 
+			&		& 0x03: Interrupt-Transfer \\
+\hline
+wMaxPacketSize		& 64		& Registergröße in Byte \\
+\hline
+bInterval		& 0x00		& Abfrageintervall in ms (nicht bei Bulk) \\
+\hline
+\end{tabular}
+\caption{Werte des JTAG-RX-Deskriptors}
+\label{tab:EPRXDesc}
+\end{table}
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Deskriptorfeld		& Wert		& Beschreibung \\
+\hline \hline
+bDescriptorType		& 0x05		& Endpunkt-Deskriptor \\
+\hline
+bEndpointAdress		& 0x85	 	& Adresse des Endpunktes mit Richtungsangabe (MSB = 1) \\
+\hline
+bmAttributes		& 0x02		& 0x02: Bulk-Transfer \\ 
+			&		& 0x03: Interupt-Transfer \\
+\hline
+wMaxPacketSize		& 64		& Registergröße in Byte \\
+\hline
+bInterval		& 0x00		& Abfrageintervall in ms (nicht bei Bulk) \\
+\hline
+\end{tabular}
+\caption{Werte des JTAG-TX-Deskriptors}
+\label{tab:EPTXDesc}
+\end{table}
+
+Sind nun alle Deskriptoren angepasst und die Strukturen entsprechend erweitert worden, kann das Gerät für einen ersten Test an den Hostrechner angeschlossen werden. Bei Windows als Betriebsystem wird man nun eine Meldung über ein neues Gerät bekommen, für das Windows keinen passenden Treiber findet. Um dieses Problem zu lösen, kann eine .inf-Datei erzeugt werden, welche dem Betriebssystem sagt, welche Treiber verwendet werden sollen. Für die virtuelle-serielle Schnittstelle kann hier ein Standard-Treiber verwendet werden. Für das JTAG-Interface wird kein eigener Treiber verwendet, da dieser direkt über die USB-BIbliothek angesprochen wird.
+
+Unter Linux wird die virtuelle-serielle-Schnittstelle erkannt, und in das System als Gerät \texttt{/dev/ttyASM0} eingepflegt. Über diese Schnittstelle kann nun mit jedem Terminalprogramm ein Byte gesendet werden, welches dann als Echo wieder am Bildschirm angezeigt wird.
+
+Wird das Gerät unter Linux angeschlossen, kann mit dem Befehl \texttt{dmesg} die korrekte Enumeration überprüft werden. Mit dem Befehl \texttt{lsusb -v} kann nun angezeigt werden, ob alle Interfaces und Endpunkte am System angemeldet wurden.
+
+\begin{lstlisting}[caption={Ausgabe des Befehls "dmesg"}]
+[29382.928143] usb 3-1: new full speed USB device using uhci_hcd and address 3
+[29383.085589] usb 3-1: config 1 interface 2 has no altsetting 0
+[29383.085589] usb 3-1: configuration #1 chosen from 1 choice
+[29383.089326] cdc_acm 3-1:1.0: ttyACM0: USB ACM device
+[29383.092648] usb 3-1: New USB device found, idVendor=1781, idProduct=0c66
+[29383.092655] usb 3-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Ausgabe des Befehls "lsusb -v" (Ausschnitt)}]
+Bus 003 Device 003: ID 1781:0c66 Multiple Vendors 
+Device Descriptor:
+  [---]
+  idVendor           0x1781 Multiple Vendors
+  idProduct          0x0c66 
+  bcdDevice           10.00
+  [...]
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        2
+      bAlternateSetting       2
+      bNumEndpoints           2
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass    255 Vendor Specific Subclass
+      bInterfaceProtocol    255 Vendor Specific Protocol
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x04  EP 4 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x85  EP 5 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0020  1x 32 bytes
+        bInterval               1
+\end{lstlisting}
+
+\subsection{Anpassen der gerätespezifischen Funktionen} \index{API}
+
+Die gerätespezifischen Funktionen, welche sich in der Datei \texttt{usb\_specific\_request.c} befinden, müssen nun noch für den JTAG-Adapter erweitert werden. So befinden sich in dieser Datei die Initialisierungsfunktionen der Endpunkte, die bei Gerätestart ausgeführt werden. Dafür wird die Funktion \texttt{usb\_configure\_endpoint()} mit folgenden Attributen verwendet:
+
+\begin{lstlisting}[caption={Initialiserung der Endpunkte}]
+ usb_configure_endpoint(JTAG_RX_EP,      \
+                         TYPE_BULK,     \
+                         DIRECTION_OUT,  \
+                         SIZE_32,       \
+                         ONE_BANK,     \
+                         NYET_ENABLED);
+
+  usb_configure_endpoint(JTAG_TX_EP,      \
+                         TYPE_BULK,  \
+                         DIRECTION_IN,  \
+                         SIZE_32,     \
+                         ONE_BANK,     \
+                         NYET_ENABLED);
+\end{lstlisting} 
+
+Nun werden die Endpunke noch mit der Funktion \texttt{usb\_reset\_endpoint(Endpunktadresse)} aktiviert. Weitere gerätespezifische Funktionen sind nicht nötig, da der Host-P,C unter Verwendung der USB-Bibliothek, direkt mit den Endpunkten kommuniziert.
+
+\subsection{Implementieren der API-Funktionen}
+
+Nun werden die anwendugsspezifischen Schntittstellen angepasst. Die nötigen Funktionen sind bereits in der Firmware von W. M. Zabolotny implementiert, und müssen nun an die Atmel-Firmware angepasst werden. Die größte Anpassung muss hierbei an der Art des Datenaustausches mit den Endpunktregistern erfolgen.
+
+Bei der verwendeten USB-Firmware für PIC-Mikrocontroller, werden alle Funktionen nach Endpunkten getrennt ausgeführt. Das heißt für jeden Endpunkt existiert ein eigener Task, welcher entweder angepollt, oder Interruptgesteuert ausgeführt wird. Bei der Atmel-Firmware kann jedoch, durch das Schichtenmodell, von der Anwendung auf alle Endpunkte zugegriffen werden. Deshalb vermischen sich bei der PIC-Firmware die API- und Anwendungsfunktionen. Diese müssen nun erst voneinander getrennt werden.
+
+Ein weiterer Unterschied ist, dass der USB-JTAG Adapter von W. M. Zabolotny für bis zu acht JTAG-Ketten ausgelegt ist, jedoch hier nur eine Kette vorhanden ist.
+
+Nachfolgend sind nun die Prototypen der API-Funktionen aufgelistet und beschrieben. Sie befinden sich in der Quellcodedatei \texttt{jtag\_usb\_lib.c}.
+
+\begin{description}
+ \item[void jtag\_usb\_init(void):] In dieser Initialisierungsfunktion werden alle verwendeten Flags und Zähler zurückgesetzt.
+ \item[void jtag\_set\_chain(U8 chain):] Diese Funktion wählt die JTAG-Kette aus. Da nur eine Kette vorhanden ist, wird die Variable für die Auswahl immer auf ``0'' gesetzt.
+ \item[void jtag\_block\_xmit(U8 *datain, short len):] In dieser Funktion können TDI, TMS und TCK gleichzeitig mehrfach übertragen werden. Als Dateneingabe für TDI und TMS werden die unteren beiden Bits von \texttt{datain} verwendet. in der Variable \texttt{len} ist die Anzahl der zu übertragenden Daten angegeben. TDO wird in deser Funktion nicht gelesen und muss daher in einer eigenen Funktion verarbeitet werden.
+ \item[uchar jtag\_single(uchar datain):] Auch in dieser Funktion werden TDI, TMS und TCK gesetzt. Jedoch nicht für mehrere Takte, sondern nur für einen TCK-Zyklus. Zusätzlich werden hier jedoch auch die TDO-Daten ausgelesen und zurückgegeben. Daher ist diese Funktion am besten geeignet.
+ \item[void set\_XXX(uchar d):] XXX steht hier für TDI, TMS und TCK. Mit diesen Funktionen können die drei Signale einzeln, zum Beispiel für Testzwecke, gesetzt werden.
+ \item[uchar get\_tdo(void):] Hier wird der Wert des TDO-Pins gelesen und als Unsigned-Char zurückgegeben
+\end{description}
+
+Der gesamte Quellcode ist auf der Daten-CD im Abschnitt ``Mikrocontroller Firmware'' zu finden.
+
+\subsection{Der JTAG-Task} \index{Task}
+
+Die Funktionen der erstellten API können nun in einer Anwendung verwendet werden. Dazu wird ein neuer Task mit dem Namen ``JTAG-Task'' erstellt. Dieser befindet sich in der Quellcodedatei \texttt{jtag\_task.c} und in der Header-Datei \texttt{jtag\_task.h}. 
+
+Leider konnten, aufgrund der in Abschnitt \ref{Probleme} erläuterten Probleme, die API-Funktionen nicht getestet und dadurch der Task nicht vollständig implementiert werden. Deshalb wird in diesem Abschnitt auf die Anwedungsfunktionen aus der Original-Firmware von W. M. Zabolotny eingegangen. Diese müssen dann, nach Beseitigung der USB-Probleme, noch portiert werden.
+
+Die Hauptaufgabe der Anwendung ist es, von der PC-Software kommende Befehle zu interpretieren, und mit den verfügbaren API-Funktionen auszuführen. Die Befehle befinden sich im ersten Byte des Endpunktregisters. Die Codierung ist in Tabelle \ref{tab:Befehlsliste} aufgelistet.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Befehl				& Codierung	& Beschreibung \\
+\hline \hline
+GET\_INFO			& 0x01		& Gibt den String: \\
+				&		& ``USB JTAG GPL Interface 1.0'' zurück \\
+\hline
+CONFIG\_CHAIN			& 0x02		& Zum setzen von Parametern wie JTAG-Timing. \\
+				&		& Wird nicht verwendet \\
+\hline
+SINGLE\_DATA\_WITH\_READ	& 0xAC		& Funktion jtag\_single() wird ausgeführt \\
+\hline
+BLOCK\_DATA			& 0xB0		& Funktion jtag\_block\_xmit() wird ausgeführt \\
+\hline
+BLOCK\_DATA\_WITH\_READ		& 0xC0		& Wird nicht verwendet. \\
+\hline
+SET\_PINS			& 0xD0		& Setzt TCK, TMS und TDI (untere 3 Bit des Befehls) \\
+				&		& Gibt TDO zurück. \\
+\hline
+SELECT\_CHAIN			& 0xE0		& Auswahl der JTAG-Kette. Wird nicht verwendet \\
+\hline
+\end{tabular}
+\caption{Befehlsliste Jam-STAPL-Player}
+\label{tab:Befehlsliste}
+\end{table}
+
+\subsection{Ansprechen der Hardware-Pins}
+
+Die Makros zum Setzen der Hardware-Pins befinden sich in der Header-Datei \texttt{usb\_tple.h} zusammen mit den anderen Schnittstellen-Makros wie zum Beispiel für die LEDs.
+\begin{lstlisting}[caption={JTAG-Makros}]
+#define	jtag_init()	(JTAG_DDR |= 0x86) //10000110
+
+#define	Jtag_TDI_1()	(JTAG_PORT |= (1<<JTAG_TDI))
+#define	Jtag_TDI_0()	(JTAG_PORT &= ~(1<<JTAG_TDI))
+
+#define	Jtag_TCK_1()	(JTAG_PORT |= (1<<JTAG_TCK))
+#define	Jtag_TCK_0()	(JTAG_PORT &= ~(1<<JTAG_TCK))
+
+#define	Jtag_TMS_1()	(JTAG_PORT |= (1<<JTAG_TMS))
+#define	Jtag_TMS_0()	(JTAG_PORT &= ~(1<<JTAG_TMS))
+
+#define	Get_TDO()	((JTAG_PIN>>JTAG_TDO) & (1))
+\end{lstlisting}
+
+Mit Hilfe dieser Makros können die API-Funktionen mit der Hardware außerhalb der USB-Schnittstelle kommunizieren.
+
+\subsection{Anpassen des Altera Jam-STAPL-Player} \index{Jam-STAPL-Player}
+
+Auf PC-Seite kommt der unter \cite{Alter02} beschriebene Jam-STAPL-Player von Altera zum Einsatz. Dieses Programm interpretiert die von Quartus-II erstellen Konfigurationsdateien und wandelt diese in JTAG-Signale um. In der Grundfunktion verwendet der Player die parallele Schnittstelle des PC als Programmierinterface, wobei die vier Signale TDI, TDO, TMS und TCK je an einem eigenen Pin anliegen. In der von W. M. Zabolotny angepassten Version, werden die Signale und die in Tabelle \ref{tab:Befehlsliste} aufgelisteten Befehle, über die USB-Schnittstelle an die entsprechenden Endpunkte übertragen.
+
+Die für die Verwendung des PIC-USB-JTAG-Adapters angepasste Version kann mit wenigen Änderungen an den Atmel-Stack angepasst werden. Da die Software die USB-Biblitothek \texttt{libusb} verwendet, müssen lediglich die verwendeten VID und PID sowie die Endpunktadressen angepasst werden.
+
+Die Hardware-IDs befinden sich in der Datei \texttt{jtag.h} im Quellcode-Ordner des Jam-Stapl-Players.
+
+\begin{lstlisting}[caption={Einstellung der Hardware IDs}]
+#define CJ_USB_ID_VENDOR (0x1781)	\\HSA
+#define CJ_USB_ID_PRODUCT (0x0C66)	\\USB-TPLE
+\end{lstlisting}
+
+Die Endpunkte müssen in der Datei \texttt{usb\_prog.c} angepasst werden. Dafür müssen an allen Funktionen der USB-Bibliothek die Endpunkte von 1 und 2 auf 4 und 5 abgeändert werden. Als Beispiel hier die Funktion für den Bulk-Transfer:
+
+\texttt{usb\_bulk\_write(hdev, 1, select\_chain, 1, 500);}
+
+Hier ist der zweite Parameter (1) die Endpunktadresse und muss durch eine 4 ersetzt werden. Das gleiche gilt für die Lesefunktion \texttt{usb\_bulk\_read()}.
+
+Die Software kann nun mit dem beigefügten Makefile für Linux kompiliert und verwendet werden. Für Windows ist eine Kompilierung mit MinGW, einer Windows-GCC-Version, möglich, aber nicht getestet.
+
+\subsection{Aufgetretene Probleme} \label{Probleme}
+
+Leider sind bei der Verwendung der angepassten Altera-USB-Firmware Probleme aufgetreten, welche im Laufe dieser Arbeit nicht gelöst werden konnten. Dies betrifft vor allem die Adressierung der Endpunkte. Wird zum Beispiel ein Byte an den JTAG-RX Endpunkt gesendet, so sollte es problemlos möglich sein, danach ein Byte an die virtuelle serielle Schnittstelle zu übertragen. Jedoch stürzt das Gerät aus nicht nachvollziehbaren Gründen bei dem Versuch der Übertragung ab. Das Gerät muss dann neu gestartet, und am Host-PC neu angemeldet werden.
+
+Eine Analyse mit \texttt{dmesg} und \texttt{lsusb -v} ergab keine sichtbaren Probleme bei der Enumerierung. Vermutlich ist die USB-UART-Firmware von Atmel nicht dafür ausgelegt, dass ein zusätzliches Interface im Gerät vorhanden ist. Dies könnte durch die Implementierung eines Dual-Serial-Adapters umgangen werden, da hier ein zusätzliches Interface für die zweite serielle Schnittstelle vorhanden ist.
+
+\section{JTAG-Schnittstelle basierend auf LUFA USB-Stack} \index{LUFA}
+
+\subsection{Einführung}
+
+Durch das scheitern der Implementierung des Atmel-USB-Stacks, wurde kurzfristig nach Alternativen gesucht. Am besten geeignet war hier das in Kapitel \ref{USB-Schnittstelle} beschriebene LUFA-Framework. Basierend auf diesem Framework wurde von Cahaya Wirawan bereits ein USB-JTAG Adapter implementiert \footnote{Estick: http://code.google.com/p/estick-jtag/}. In den folgenden Abschnitten möchte ich kurz die Funktionen der Firmware aufzeigen. Ein problemloses Konfigurieren des CPLD konnte in der kürze der Zeit jedoch nicht erreicht werden.
+
+\subsection{Estick-Firmware} \index{Estick}
+
+Das Estick-JTAG Projekt von Cahaya Wirawan entstand aus der Idee herraus, einen kostengünstigen Open-Source (MIT-Lizenz) JTAG Adapter für ARM-Mikrocontroller zu entwickeln. Der Adapter basiert auf der Estick Entwicklerplattform der Fachhochschule Wien \footnote{http://embsys.technikum-wien.at/index.php}. Diese Plattform in Form eines USB-Sticks, enthält einen Atmel-AT90USB162 Mikrocontroller dessen Anschlusspins nach außen geführt sind. An diese Anschlusspins werden dann direkt die JTAG Signale abgegriffen. Da das Projekt auf dem LUFA-Stack basiert, kann es ohne Probleme für den verwendeten Atmega32-U4 kompiliert werden. Da beide Mikrocontrollertypen von LUFA unterstützt werden, muss lediglich der MCU-Entrag im Makefile von \texttt{AT90USB162} auf \texttt{Atmega32U4} geändert werden. 
+
+Realisiert wurde das Projekt mit der LUFA Version 090605 (02.06.2009), basierend auf einer Anbieterspezifischen Klasse (0xFF). Das USB-Gerät verfügt über ein Interface mit zwei Endpunkten (Eines für jede Richtung). Unter Linux wird für die Verwendung des Gerätes die USB-Bibliothek verwendet. Für Windows wurde von den Entwickern eine .inf-Datei erstellt, welche die USB-Bibliothek als Treiber in das Betriebssystem einpflegt.
+
+\subsection{Anpassen der Hardwareschnittstellen}
+
+Da der Estick-JTAG-Adapter eine andere Pinbelegung verwendet als die USB-TPLE-Platine, muss die Firmware an dieser Stelle angepasst werden.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+JTAG-Signal	& Pinbelegung Estick	& Pinbelegung USB-TPLE \\
+\hline \hline
+TDI		& Port B0		& Port B2 \\
+\hline
+TMS		& Port B1	 	& Port B7 \\
+\hline
+TRST		& Port B2		& Nicht verwendet \\ 
+\hline
+SRST		& Port B3		& Nicht verwendet \\
+\hline
+TCK		& Port B4		& Port B1 \\
+\hline
+TDO		& Port B5		& Port B3 \\
+\hline
+\end{tabular}
+\caption{Pinbelegung Estick-JTAG}
+\label{tab:Estick}
+\end{table}
+
+Die Anpassung erfolgt in der Datei \texttt{jtah\_defs.h}. Hier sind auch zusätzlich die Makros zur Steuerueung der beiden LEDs eingebunden worden. Die Makros für die Maskierung können von der Original Firmware übernommen werden.
+
+\begin{lstlisting}[caption={Estick Pinbelegung}]
+	//jtag i/o pins
+	#define JTAG_OUT PORTB
+	#define JTAG_IN  PINB
+	#define JTAG_DIR DDRB
+
+	//output pins
+	#define JTAG_PIN_TDI  2
+	#define JTAG_PIN_TMS  7
+	#define JTAG_PIN_TRST 0
+	#define JTAG_PIN_SRST 0
+	#define JTAG_PIN_TCK  1
+	//input pins
+	#define JTAG_PIN_TDO  3
+\end{lstlisting}
+
+Das einzige Problem ist nun noch, dass die beiden Bits für TDI und TMS an Bit 0 und Bit 1 des Port B vorgesehen sind. Bei der USB-TPLE-Platine jedoch an Bit 2 und 7. Dies hat die Folge, dass die API-Funktionen nicht einfach ein Byte, mit den beiden Signalwerten an Bit 0 und 1, an den Port senden können. Deshalb muss in den API Funktionen noch ein Verschieben der Bits an die richtige Stelle erfolgen. Die API Funktionen befinden sich in der Quellcodedatei \texttt{jtag\_functions.c}.
+
+Nun kann das Gerät mit dem Host-PC verbunden werden. Unter Windows müssen nun noch die Treiber installiert werden. Die entsprechende .inf-Datei sowie die USB-Bibliothek befinden sich auf dem Datenträger im Unterverteichnis \texttt{Microcontroller\_Firmware/estick\_firmware/src/WindowsDriver}. Für Linux ist kein zusätzlicher Treiber nötig, da die USB-Bibliothek in der Anwednugssoftware integriert ist.
+
+\subsection{PC-Software Open-OCD} \index{Open-OCD}
+
+Da der Estick-JTAG-Adapter ursprünglich für das Debuggen von ARM-Prozessoeren enwickelt wurde, wurde nur die freie Debug-Software Open-OCD \footnote{http://openocd.berlios.de/} für dessen Verwendung angepasst. Prinzipiell ist es zwar möglich, auch mit dieser Software die JTAG-Kette des CPLD zu initialisieren und die Konfiguration durchzuführen, jedoch konnte diese Methode aus Zeitmangel nicht mehr durchgeführt werden.
+
+\section{Weitere Entwicklung}
+
+Um die Konfiguration des CPLD über USB zu ermöglichen, können nun zwei Wege eingeschlagen werden. Zum einen kann die Atmel-Firmware weiterentwickelt werden, um auf Basis des Jam-STAPL-Players von Altera die Konfiguration zu ermöglichen. Der Vorteil dieser Methode ist sicherlich, dass der Player für die Verwendung mit Altera Logikbausteinen entwickelt wurde und deshalb auf Seite der PC-Software am wenigsten Fehler auftreten sollten. 
+
+Die andere Möglichkeit wäre es, auf Basis des Estick-JTAG-Adapters, eine PC-Anwendung zu implementieren, mit welcher der CPLD konfiguriert werden kann. Dazu zählt zum Einen natürlich die Anpassung des Jam-STAPL-Players auf die Estick-Funktionen. Eine andere Möglichkeit ist die Verwendung von UrJTAG \footnote{http://urjtag.org/} als PC-Software. UrJTAG ist ebenfalls für die Konfiguration von Logikbausteinen über JTAG ausgelegt. In UrJTAG ist bereits eine USB-Bibliothek integriert, da die Software auch mit Programmieradaptern wie dem USB-Byte-Blaster von Altera umgehen kann.

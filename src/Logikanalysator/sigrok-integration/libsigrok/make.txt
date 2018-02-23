@@ -1,0 +1,150 @@
+make  all-recursive
+Making all in contrib
+make[2]: Nothing to be done for `all'.
+Making all in hardware
+Making all in agilent-dmm
+make[3]: Nothing to be done for `all'.
+Making all in alsa
+  CC     libsigrok_hw_alsa_la-protocol.lo
+  CC     libsigrok_hw_alsa_la-api.lo
+  CCLD   libsigrok_hw_alsa.la
+Making all in asix-sigma
+  CC     libsigrok_hw_asix_sigma_la-asix-sigma.lo
+  CCLD   libsigrok_hw_asix_sigma.la
+Making all in brymen-dmm
+make[3]: Nothing to be done for `all'.
+Making all in cem-dt-885x
+make[3]: Nothing to be done for `all'.
+Making all in center-3xx
+make[3]: Nothing to be done for `all'.
+Making all in chronovu-la8
+  CC     libsigrok_hw_chronovu_la8_la-api.lo
+  CC     libsigrok_hw_chronovu_la8_la-protocol.lo
+  CCLD   libsigrok_hw_chronovu_la8.la
+Making all in colead-slm
+make[3]: Nothing to be done for `all'.
+Making all in common
+Making all in dmm
+  CC     libsigrok_hw_common_dmm_la-es51922.lo
+  CC     libsigrok_hw_common_dmm_la-es519xx.lo
+  CC     libsigrok_hw_common_dmm_la-fs9721.lo
+  CC     libsigrok_hw_common_dmm_la-fs9922.lo
+  CC     libsigrok_hw_common_dmm_la-metex14.lo
+  CC     libsigrok_hw_common_dmm_la-rs9lcd.lo
+  CCLD   libsigrok_hw_common_dmm.la
+  CC     libsigrok_hw_common_la-ezusb.lo
+  CC     libsigrok_hw_common_la-usb.lo
+  CCLD   libsigrok_hw_common.la
+Making all in demo
+  CC     libsigrok_hw_demo_la-demo.lo
+  CCLD   libsigrok_hw_demo.la
+Making all in fluke-dmm
+make[3]: Nothing to be done for `all'.
+Making all in fx2lafw
+  CC     libsigrok_hw_fx2lafw_la-api.lo
+  CC     libsigrok_hw_fx2lafw_la-protocol.lo
+  CCLD   libsigrok_hw_fx2lafw.la
+Making all in gmc-mh-1x-2x
+make[3]: Nothing to be done for `all'.
+Making all in hantek-dso
+  CC     libsigrok_hw_hantek_dso_la-api.lo
+  CC     libsigrok_hw_hantek_dso_la-dso.lo
+  CCLD   libsigrok_hw_hantek_dso.la
+Making all in hsa-tple
+  CC     libsigrok_hw_hsa_tple_la-api.lo
+  CC     libsigrok_hw_hsa_tple_la-protocol.lo
+  CCLD   libsigrok_hw_hsa_tple.la
+Making all in ikalogic-scanalogic2
+  CC     libsigrok_hw_ikalogic_scanalogic2_la-api.lo
+  CC     libsigrok_hw_ikalogic_scanalogic2_la-protocol.lo
+  CCLD   libsigrok_hw_ikalogic_scanalogic2.la
+Making all in ikalogic-scanaplus
+  CC     libsigrok_hw_ikalogic_scanaplus_la-api.lo
+  CC     libsigrok_hw_ikalogic_scanaplus_la-protocol.lo
+  CCLD   libsigrok_hw_ikalogic_scanaplus.la
+Making all in kecheng-kc-330b
+  CC     libsigrok_hw_kecheng_kc_330b_la-api.lo
+  CC     libsigrok_hw_kecheng_kc_330b_la-protocol.lo
+  CCLD   libsigrok_hw_kecheng_kc_330b.la
+Making all in lascar-el-usb
+  CC     libsigrok_hw_lascar_el_usb_la-api.lo
+  CC     libsigrok_hw_lascar_el_usb_la-protocol.lo
+  CCLD   libsigrok_hw_lascar_el_usb.la
+Making all in link-mso19
+make[3]: Nothing to be done for `all'.
+Making all in mic-985xx
+make[3]: Nothing to be done for `all'.
+Making all in norma-dmm
+make[3]: Nothing to be done for `all'.
+Making all in openbench-logic-sniffer
+make[3]: Nothing to be done for `all'.
+Making all in rigol-ds
+make[3]: Nothing to be done for `all'.
+Making all in saleae-logic16
+  CC     libsigrok_hw_saleae_logic16_la-api.lo
+  CC     libsigrok_hw_saleae_logic16_la-protocol.lo
+  CCLD   libsigrok_hw_saleae_logic16.la
+Making all in serial-dmm
+make[3]: Nothing to be done for `all'.
+Making all in teleinfo
+make[3]: Nothing to be done for `all'.
+Making all in tondaj-sl-814
+make[3]: Nothing to be done for `all'.
+Making all in uni-t-dmm
+  CC     libsigrok_hw_uni_t_dmm_la-api.lo
+  CC     libsigrok_hw_uni_t_dmm_la-protocol.lo
+  CCLD   libsigrok_hw_uni_t_dmm.la
+Making all in uni-t-ut32x
+  CC     libsigrok_hw_uni_t_ut32x_la-api.lo
+  CC     libsigrok_hw_uni_t_ut32x_la-protocol.lo
+  CCLD   libsigrok_hw_uni_t_ut32x.la
+Making all in victor-dmm
+  CC     libsigrok_hw_victor_dmm_la-api.lo
+  CC     libsigrok_hw_victor_dmm_la-protocol.lo
+  CCLD   libsigrok_hw_victor_dmm.la
+Making all in zeroplus-logic-cube
+  CC     libsigrok_hw_zeroplus_la-api.lo
+  CC     libsigrok_hw_zeroplus_la-protocol.lo
+  CC     libsigrok_hw_zeroplus_la-analyzer.lo
+  CC     libsigrok_hw_zeroplus_la-gl_usb.lo
+  CCLD   libsigrok_hw_zeroplus.la
+  CCLD   libsigrokhardware.la
+Making all in input
+  CC     libsigrokinput_la-binary.lo
+  CC     libsigrokinput_la-chronovu_la8.lo
+  CC     libsigrokinput_la-csv.lo
+  CC     libsigrokinput_la-input.lo
+  CC     libsigrokinput_la-vcd.lo
+  CC     libsigrokinput_la-wav.lo
+  CCLD   libsigrokinput.la
+Making all in output
+Making all in text
+  CC     libsigrokoutputtext_la-text.lo
+  CC     libsigrokoutputtext_la-bits.lo
+  CC     libsigrokoutputtext_la-hex.lo
+  CC     libsigrokoutputtext_la-ascii.lo
+  CCLD   libsigrokoutputtext.la
+  CC     libsigrokoutput_la-binary.lo
+  CC     libsigrokoutput_la-vcd.lo
+  CC     libsigrokoutput_la-ols.lo
+  CC     libsigrokoutput_la-gnuplot.lo
+  CC     libsigrokoutput_la-chronovu_la8.lo
+  CC     libsigrokoutput_la-csv.lo
+  CC     libsigrokoutput_la-analog.lo
+  CC     libsigrokoutput_la-output.lo
+  CCLD   libsigrokoutput.la
+Making all in tests
+make[2]: Nothing to be done for `all'.
+  CC     backend.lo
+  CC     device.lo
+  CC     session.lo
+  CC     session_file.lo
+  CC     session_driver.lo
+  CC     hwdriver.lo
+  CC     filter.lo
+  CC     strutil.lo
+  CC     log.lo
+  CC     version.lo
+  CC     error.lo
+  CC     std.lo
+  CCLD   libsigrok.la

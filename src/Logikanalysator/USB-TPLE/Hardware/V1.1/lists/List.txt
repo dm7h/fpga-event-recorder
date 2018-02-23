@@ -1,0 +1,27 @@
+Menge	Wert		Device			Bezeichnung		Farnell
+-------------------------------------------------------------------------------
+2	1X2		PINHEAD			JP4, JP6		-------
+2	1X3		PINHEAD			JP1, JP3 		-------
+1 	2X4		PINHEAD			JP5			-------
+1	2X5		PINHEAD			JP7			-------
+1	2X14		PINHEAD			JP2			-------
+1			MINI-USB		X3			1558179
+2	22		R3216			R1, R2			1577421
+1	4.7k		R3216			R3			1717749
+3	100		R3216			R4, R5, R6		1717738
+1	0		R0201			R7			-------
+1	10u		C3216			C1			1432339
+3	100n		C1206			C2, C3, C4		1759312
+1	10u		CPOL2-5			C5			
+1	1u		C0402			C6			1611915
+4	100n		C0402			C7, C8, C9, C10		1611916
+1	1N4004		Diode			D1			9556109
+1	8M		Oszilator		Q1			
+1	100M		Oszilator		Q2			1538960
+3	RED		LED1206			LED1, LED2, LED3	1318261
+1	ATMEGA32U4-AU	Microcontroller		U$1			
+2 	AS7C34098A	Memory			U$2, U$3		1562920
+1	EPM240-T100	Altera CPLD		IC1			1453502
+1	LM1117IMPX-3.3	Regulator		IC2			1652313
+1     	LM1117IMPX-5.0	Regulator		IC3			1652314
+3	SN74LVC8T245	BUS-Driver		U$4, U$5, U$6		1236406

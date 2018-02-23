@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<!-- Text uebernommen von
+https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi
+
+https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/TitleIndex
+
+
+H. Hoegl, 2014-12-07 -->
+<div class="contents topic" id="inhalt">
+<p class="topic-title first">Inhalt</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#systemarchitektur" id="id1">1&nbsp;&nbsp;&nbsp;Systemarchitektur</a></li>
+<li><a class="reference internal" href="#top-level" id="id2">2&nbsp;&nbsp;&nbsp;top_level</a><ul class="auto-toc">
+<li><a class="reference internal" href="#mega-control" id="id3">2.1&nbsp;&nbsp;&nbsp;mega_control</a><ul class="auto-toc">
+<li><a class="reference internal" href="#send-control" id="id4">2.1.1&nbsp;&nbsp;&nbsp;send_control</a></li>
+<li><a class="reference internal" href="#receive-control" id="id5">2.1.2&nbsp;&nbsp;&nbsp;receive_control</a></li>
+<li><a class="reference internal" href="#mega-tristate-driver" id="id6">2.1.3&nbsp;&nbsp;&nbsp;mega_tristate_driver</a></li>
+<li><a class="reference internal" href="#control-register" id="id7">2.1.4&nbsp;&nbsp;&nbsp;control_register</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ram-control" id="id8">2.2&nbsp;&nbsp;&nbsp;ram_control</a><ul class="auto-toc">
+<li><a class="reference internal" href="#ram-write-control" id="id9">2.2.1&nbsp;&nbsp;&nbsp;ram_write_control</a></li>
+<li><a class="reference internal" href="#a-counter" id="id10">2.2.2&nbsp;&nbsp;&nbsp;A_counter</a></li>
+<li><a class="reference internal" href="#ram-tristate-driver" id="id11">2.2.3&nbsp;&nbsp;&nbsp;ram_tristate_driver</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#measure-control" id="id12">2.3&nbsp;&nbsp;&nbsp;measure_control</a><ul class="auto-toc">
+<li><a class="reference internal" href="#measure-control-datapath" id="id13">2.3.1&nbsp;&nbsp;&nbsp;measure_control_datapath</a></li>
+<li><a class="reference internal" href="#measure-control-controlpath" id="id14">2.3.2&nbsp;&nbsp;&nbsp;measure_control_controlpath</a></li>
+<li><a class="reference internal" href="#trigger" id="id15">2.3.3&nbsp;&nbsp;&nbsp;trigger</a></li>
+<li><a class="reference internal" href="#timestamp-cnt" id="id16">2.3.4&nbsp;&nbsp;&nbsp;timestamp_cnt</a></li>
+<li><a class="reference internal" href="#freqdiv" id="id17">2.3.5&nbsp;&nbsp;&nbsp;freqdiv</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manager" id="id18">2.4&nbsp;&nbsp;&nbsp;manager</a><ul class="auto-toc">
+<li><a class="reference internal" href="#rising-edge-detector" id="id19">2.4.1&nbsp;&nbsp;&nbsp;rising_edge_detector</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#status-register" id="id20">2.5&nbsp;&nbsp;&nbsp;status_register</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hardware-entwicklungsumgebung" id="id21">3&nbsp;&nbsp;&nbsp;Hardware Entwicklungsumgebung</a></li>
+<li><a class="reference internal" href="#mikrocontroller" id="id22">4&nbsp;&nbsp;&nbsp;Mikrocontroller</a></li>
+<li><a class="reference internal" href="#pc-software" id="id23">5&nbsp;&nbsp;&nbsp;PC Software</a></li>
+<li><a class="reference internal" href="#schluss" id="id24">6&nbsp;&nbsp;&nbsp;Schluss</a></li>
+</ul>
+</div>
+<div class="section" id="systemarchitektur">
+<h1><a class="toc-backref" href="#id1">1&nbsp;&nbsp;&nbsp;Systemarchitektur</a></h1>
+<div class="figure">
+<img alt="2013-12-04_Komponenten_Architektur_simplified_wiki.png" src="2013-12-04_Komponenten_Architektur_simplified_wiki.png" />
+</div>
+</div>
+<div class="section" id="top-level">
+<h1><a class="toc-backref" href="#id2">2&nbsp;&nbsp;&nbsp;top_level</a></h1>
+<!-- https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/CpldImplToplevel -->
+<p>Hier sind alle Komponenten des CPLD für den Logikanalysator enthalten.</p>
+<div class="figure">
+<a class="reference external image-reference" href="top_level.png"><img alt="top_level.png" src="top_level.png" style="width: 1043.8px; height: 609.4px;" /></a>
+</div>
+<p>Folgende Module sind enthalten:</p>
+<p>(Alles Links)</p>
+<ul class="simple">
+<li>mega_control</li>
+<li>ram_control</li>
+<li>measure_control</li>
+<li>manager</li>
+<li>status_register</li>
+</ul>
+<div class="section" id="mega-control">
+<h2><a class="toc-backref" href="#id3">2.1&nbsp;&nbsp;&nbsp;mega_control</a></h2>
+<div class="figure">
+<a class="reference external image-reference" href="Mega_Control_TopBox.png"><img alt="Mega_Control_TopBox.png" src="Mega_Control_TopBox.png" style="width: 445.2px; height: 399.3px;" /></a>
+</div>
+<p>Beschreibung zu Mega-Control:</p>
+<p>Das Modul mega_control ist für die Kommunikation des CPLD mit dem
+Mikrocontroller zuständig. Hier wird die Datenrichtung der bidirektionalen
+Datenleitungen zwischen CPLD und Mikrocontroller entsprechend der Steuersignale
+des uC festgelegt. Die empfangenen Kommandos werden intern von control_register
+ausgewertet und entsprechende Steuersignale erzeugt.</p>
+<div class="figure">
+<img alt="mega_control_overview.jpg" src="mega_control_overview.jpg" />
+</div>
+<p>Folgende Sub-Module sind darin enthalten:</p>
+<ul class="simple">
+<li>send_control</li>
+<li>receive_control</li>
+<li>mega_tristate_driver</li>
+<li>control_register</li>
+</ul>
+<div class="section" id="send-control">
+<h3><a class="toc-backref" href="#id4">2.1.1&nbsp;&nbsp;&nbsp;send_control</a></h3>
+<div class="figure">
+<img alt="send_control.png" src="send_control.png" />
+</div>
+<p>send_control</p>
+<p>Wenn Daten vom Mikrocontroller angefragt wurden, ist das Modul send_control
+dafür zuständig, dass die gewünschten Informationen an dem 4-Bit breiten
+bidirektionalen Datenbus M_data vom CPLD ausgegeben werden. Der Automat wird
+aktiv sobald vom Mikrocontroller der Lesebefehl (Befehl mit Bitmuster XXXX0110
+) empfangen wurde. Dann wird das Eingangssignal send_data vom manager
+aktiviert. Zusätzlich muss am Pin M_rw ein Low-Pegel anliegen, da ein Senden
+der Daten erst dann Sinn macht wenn die Gegenstelle so signalisiert, dass diese
+bereit zum Empfangen ist. Außerdem beeinflusst der Pegel an M_rw den
+mega_tristate_driver, der die Datenrichtung des Datenbus M_data festlegt.</p>
+<p>Auswahl der Daten</p>
+<p>Das Modul send_control kann Daten, die aus dem RAM ausgelesen wurden, oder den Inhalt des Statusregisters senden. Beide Quellen haben eine Signalbreite von 16 Bit. Der Datenbus zum Mikrocontroller hat allerdings nur 4 Bit. Deshalb muss jedes Datenwort in vier Nibble aufgeteilt werden, die nacheinander gesendet werden. Der Mikrocontroller kann an den Leitungen M_reg_sel (2 Bit) und M_nib_sel (1 Bit) auswählen, welches Nibble er als nächstes haben will. Bei der nächsten steigenden Flanke von M_clk werden die logischen Pegel des aktuell ausgewählten Nibble an den Datenbus M_data angelegt und bleiben dort erhalten bis zur nächsten steigenden Flanke von M_clk.</p>
+<p>Codierung Register-Select:</p>
+<pre class="literal-block">
+Codierung   Register                         Bits
+00          Unteres Byte Daten-Register      0-7
+01          Oberes Byte Daten-Register       8-15
+10          Unteres Byte Status-Register     0-7
+11          Oberes Byte Status-Register      8-15
+</pre>
+<p>Die Reihenfolge, in der die einzelnen Nibble abgefragt werden, sollte sein:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Unteres Byte, unteres Nibble (M_reg_sel = X0, M_nib_sel = 0)</li>
+<li>Unteres Byte, oberes Nibble (M_reg_sel = X0, M_nib_sel = 1)</li>
+<li>Oberes Byte, unteres Nibble (M_reg_sel = X1, M_nib_sel = 0)</li>
+<li>Oberes Byte, oberes Nibble (M_reg_sel = X1, M_nib_sel = 1)</li>
+</ol>
+</blockquote>
+<p>Dieser Ablauf gilt für das Auslesen des RAM (X = 0) und des Statusregisters (X
+= 1). Der zweite Entwurf des Automaten ist zwar nicht mehr fest an diese
+Reihenfolge gebunden, sie sollte aber trotzdem eingehalten werden. Nach dem
+Senden des letzten Nibble der RAM Daten (M_reg_sel = 01, M_nib_sel = 1) wird
+der Adresszähler des RAM um eins erhöht. So stehen bei der folgenden Abfrage
+die nächsten 16 Bit aus dem Speicher zur Verfügung.</p>
+<div class="figure">
+<img alt="send_control.png" src="send_control.png" />
+</div>
+<p>Das Modul send_control besteht aus einem Datenpfad, in dem ein Nibble aus den
+jeweils 16 Bit breiten Daten aus RAM und Satusregister mit Multiplexern
+ausgewählt wird, und einem Kontrollpfad, in dem die Ansteuerung des Datenpfades
+erfolgt.</p>
+<div class="figure">
+<img alt="send_controldatapathcontrolpath.png" src="send_controldatapathcontrolpath.png" />
+</div>
+<p>Datenpfad</p>
+<p>Im Datenpfad wird das nächste zu sendende Nibble aus Statusregister bzw. RAM
+ausgewählt und auf Anforderung auf den Datanbus M_data zum Mikrocontroller
+gelegt. Die Auswahl des Nibbles erfolgt über mehrere hintereinander geschaltete
+Multiplexer, die über Signale aus dem Kontrollpfad angesteuert werden. Das
+ausgewählte Nibble wird nicht direkt auf den Datanbus gelegt. Um ein synchrones
+Verhalten zu gewährleisten, wird der Zustand am Datenbus über ein Register
+gepuffert. Erst wenn aus dem Kontrollpfad das Signal nib_sel_valid einen
+High-Pegel hat, werden die am Register anliegenden logischen Pegel auf den
+Datenbus übertragen. Die Werte am Ausgang des Registers bleiben erhalten, bis
+nib_sel_valid das nächste mal wieder einen High-Pegel hat.</p>
+<div class="figure">
+<img alt="send_control_datapath.png" src="send_control_datapath.png" />
+</div>
+<p>Die Simulation des Implementierten Datenpfades erfolgte in Modelsim. Hier wurde
+in der Testbench an dem Eingang RAM_data_in ein fester Wert von 0xABCD und an
+den Eingang status_register ein Wert von 0x1234 angelegt. Dann wurden die
+Steuerleitungen M_A, M_B, nib_sel und nib_sel_valid mit unterschiedlichen
+Werten stimuliert und überprüft, ob am Ausgang das richtige Nibble anliegt.</p>
+<div class="figure">
+<img alt="modelsim_tb_send_control_datapath.png" src="modelsim_tb_send_control_datapath.png" />
+</div>
+<p>Kontrollpfad</p>
+<p>Im Kontrollpfad befindet sich ein Zustandsautomat, der die Steuersignale des
+Mikrocontrollers (M_clk, M_reg_sel, M_nib_sel, M_rw) auswertet und den
+Datenpfad entsprechend ansteuert. Wenn der RAM ausgelesen wird und das letzte
+Nibble der aktuellen Daten aus dem RAM ausgegeben wurde, wird der Adresszähler
+des Speichers inkrementiert. So liegen bei der nächsten Abfrage schon die neuen
+Daten zur Abholung bereit.</p>
+<p>Erster Versuch</p>
+<p>Der erste Entwurf unseres Automaten ging von einer festen Reihenfolge aus, in
+der die einzelnen Nibble abgefragt werden. Die Abfrage eines flaschen Nibble
+(Reihenfolge nicht eingehalten) hätte die Ausgabe eines Fehler-Signals zur
+Folge. Es wurde nur der Automat für das Auslesen des RAM in einem
+Zustandsdiagramm entworfen; der Teil für das Auslesen des Steuerregisters
+sollte noch folgen. Da der Ablauf für das Steuerregister dem dem Ablauf für den
+RAM sehr ähnelt (die Steuersignale zu Datenpfad sind nicht ganz identisch) wäre
+der Automat also fast doppelt so groß geworden.</p>
+<div class="figure">
+<img alt="send_control_controlpath_ram.png" src="send_control_controlpath_ram.png" />
+</div>
+<p>Die Bedingungen der Zustandsübergänge:</p>
+<div class="figure">
+<img alt="send_control_controlpath_ram_tabelle.png" src="send_control_controlpath_ram_tabelle.png" />
+</div>
+<p>Das Modul send_control wurde mit dem &quot;halben&quot; Steuerautomat in Quartus
+synthetisiert. Der Bedarf an Logikelementen wäre bei ungefähr 70 gewesen (Der
+auf der vorhandenen Hardware befindliche CPLD hat 240 Logikelemente). Wegen
+des hohen Bedarfs an Logikelementen und der Komplexität des Automaten wurde
+ein neuer Zustandsautomat entworfen.</p>
+<p>Aktuelle Version</p>
+<p>Der erste Entwurf des Automaten ging von einer festen Reihenfolge aus, in der
+die Nibble abgefragt werden. Für jedes Nibble wurden jeweils meherere Zustände
+benötigt. Im aktuellen Entwurf werden die Steuerleitungen zum Datenpfad (M_A,
+M_B, nib_sel_tx) direkt angesteuert von den Steuersignalen des Mikrocontrollers
+(M_reg_sel, M_nib_sel). Dadurch ist es nicht mehr nötig, mehrere Zustände für
+jedes einzelne abgefragte Nibble haben zu müssen. Der Automat überprüft,
+welches Nibble bei steigender Flanke von M_clk abgefragt wurde. Wenn das letzte
+Nibble des Statusregisters (M_reg_sel=11, M_nib_sel=1) abgefragt wurde, wird
+anschließend das Senden beendet. Wenn das letzte Nibble des RAM (M_reg_sel=01,
+M_nib_sel=1) abgefragt wurde, wird anschließend der Adresszähler des RAM
+inkrementiert. Wurde dann die letzte Adresse des RAM (signalisiert durch das
+Signal A_end_reached) erreicht, wird anschließend das Senden beendet. Da die
+Reihenfolge, in der die Nibble abgefragt werden, nicht mehr überprüft wird, ist
+ein Fehlerzustand nicht mehr nötig, was den Automaten weiter vereinfacht.</p>
+<div class="figure">
+<img alt="send_control_controlpath.png" src="send_control_controlpath.png" />
+</div>
+</div>
+<div class="section" id="receive-control">
+<h3><a class="toc-backref" href="#id5">2.1.2&nbsp;&nbsp;&nbsp;receive_control</a></h3>
+<div class="figure">
+<img alt="Receive_Data_and_Control_Path.png" src="Receive_Data_and_Control_Path.png" />
+</div>
+<p>Daten, die über den 4-Bit breiten bidirektionalen Datenbus M_data vom
+Mikrocontroller kommen, werden von receive_control zu einem 8-Bit breiten
+Befehlsbyte zusammengebaut und zur weiteren Auswertung an control_register
+weitergereicht. Das Modul ist immer dann aktiv, wenn an M_rw ein high-Pegel
+anliegt.</p>
+<p>Die vom Mikrocontroller kommenden Steuerleitungen M_reg_sel werden von
+receive_control nicht verwendet. Über M_nib_sel legt der Mikrocontroller fest,
+ob die gerade am Datenbus M_data anliegenden Daten das erste (M_nib_sel = 0)
+oder das zweite (M_nib_sel = 1) Nibble des Befehlsbytes ist. Die Daten der
+einzelnen Nibbles werden im Datenpfad von receive_control gepuffert, bis das
+letzte (das zweite) Nibble empfangen wurde. Anschließend wird dem
+control_register mit reg_data_valid signalisiert, dass ein komplettes
+Datenbyte empfangen wurde und nun analysiert werden kann.</p>
+<p>Das letzte (das zweite) Nibble wird nicht durch einen Zähler, sondern durch den
+logischen Pegel an M_nib_sel erkannt. Deshalb ist es wichtig, die Reihenfolge,
+in der die einzelnen Nibbles vom Mikrocontroller gesendet werden einzuhalten:</p>
+<ol class="arabic simple">
+<li>Unteres Nibble (M_nib_sel = 0)</li>
+<li>Oberes Nibble (M_nib_sel = 1)</li>
+</ol>
+<div class="figure">
+<img alt="Receive_Data_and_Control_Path.png" src="Receive_Data_and_Control_Path.png" />
+</div>
+<p>Das Modul receive_control besteht aus einem Datenpfad, in dem die einzelnen
+Nibble zu einem Befehlsbyte zusammengefügt werden, und einem Kontrollpfad, in
+dem die Ansteuerung des Datenpfades erfolgt.</p>
+<div class="figure">
+<img alt="Receive_Data_and_Control_Path_both.png" src="Receive_Data_and_Control_Path_both.png" />
+</div>
+<p>Datenpfad</p>
+<p>Im Datenpfad werden die einzelnen empfangenen Nibbles jeweils in einem eigenen
+4-Bit Register gespeichert, sobald der Kontrollpfad signalisiert, dass das
+aktuell an M_data_in anliegende Nibble gültig ist (nib_sel_valid = 1). Die
+Auswahl des zu aktivierenden Registers erfolgt über nib_sel_tx. Die Kombination
+aus den Ausgängen der einzelnen Nibble-Register ergibt den 8-Bit breiten
+Datenausgang reg_data.</p>
+<div class="figure">
+<img alt="receive_control_datapath.png" src="receive_control_datapath.png" />
+</div>
+<p>Kontrollpfad</p>
+<p>Im Kontrollpfad befindet sich ein Zustandsautomat, der die Steuersignale des
+Mikrocontrollers (M_clk, M_nib_sel, M_rw) auswertet und den Datenpfad
+entsprechend ansteuert. Wenn M_rw einen low-Perel hat, befindet sich der
+Automat im Idle-Zustand. Bei einer steigenden Flanke von M_clk wird dem
+Datenpfad mit nib_sel_valid signalisiert, dass die aktuell am M_data_in
+anliegenden Daten gültig sind. Wurde zu diesem Zeitpunkt das zweite Nibble des
+Befehlsbytes übertragen, wird davon ausgegangen, dass nun alle Daten empfangen
+wurden. Dies wird dem control_register durch reg_data_valid angezeigt.</p>
+<div class="figure">
+<img alt="Zustandsdiagramm_receive_control_controlpath.png" src="Zustandsdiagramm_receive_control_controlpath.png" />
+</div>
+</div>
+<div class="section" id="mega-tristate-driver">
+<h3><a class="toc-backref" href="#id6">2.1.3&nbsp;&nbsp;&nbsp;mega_tristate_driver</a></h3>
+<p>Eine konkrete Version der generischen Komponente generic_tristate_driver.</p>
+<div class="figure">
+<img alt="Tristate_Driver_MControl.png" src="Tristate_Driver_MControl.png" />
+</div>
+<p>Die Breite der Datenleitungen ist 4 Bit, da es vier bidirektionale
+Datenleitungen zwischen CPLD und Mikrocontroller gibt.</p>
+<p><strong>generic_tristate_driver</strong></p>
+<p>Zur Realisierung der bidirektionalen Datenleitungen bei der Schnittstelle
+zwischen CPLD und Mikrocontroller bzw. CPLD und externem Speicher wird ein
+Tristate-Treiber benötigt. Dieser muss dafür sorgen, dass jeder Pin an den
+Datenleitungen als hochohmiger Eingang agiert, wenn die Gegenstelle Daten auf
+den Bus legen will. Sollen Daten gesendet werden, müssen die entsprechenden
+Signale auf die Datenleitungen gelegt werden. Somit wird vermieden, dass ein
+Kurzschluss entsteht. (Beispiel: Gegenstelle legt einen HIGH-Pegel an die
+gleiche Leitung an, an der bereits durch den eigenen Baustein ein LOW-Pegel
+ist.)</p>
+<div class="figure">
+<img alt="generic_tristate_driver.png" src="generic_tristate_driver.png" />
+</div>
+<p>Der bidirektionale Bus bidir_data wird später mit den Pins der Datenleitungen
+verbunden. Die Daten, die vom Bus in den CPLD kommen, liegen am Ausgang
+data_in. Die Daten, die vom CPLD auf den Bus gelegt werden sollen, werden über
+den Eingang data_out eingespeist. Die Datenrichtung der bidirektionalen Pins
+wird über den Steuereingang dir festgelegt.</p>
+<pre class="literal-block">
+dir   Datenrichtung
+0     CPLD ---&gt; uC / Speicher
+1     CPLD &lt;--- uC / Speicher
+</pre>
+<p>In der Entity des implementierten generic_tristate_driver gibt es einen
+generic-Parameter, über den die Bitbreite des Treibers eingestellt werden kann.
+Somit muss kein eigener Treiber für jede Bitbreite neu erstellt werden.</p>
+<p>Simulation</p>
+<p>Die erstellte Architektur des generic_tristate_driver wurde mit Modelsim in der
+Testbench tb_tristate_driver.vhdl simuliert und getestet. Es wurde überprüft,
+ob die richtigen Daten auf dem bidirektionalen Bus sowie auf dem Eingang und
+Ausgang anliegen. Auch ein Konflikt, bei dem beide Gegenstellen Daten auf den
+Bus legen, konnte so erzeugt werden. Die von der Gegenstelle angelegten Pegel
+auf die bidirektionale Leitung werden durch den Vektor mega_data repräsentiert.
+Nachdem dir auf Low-Pegel gewechselt hat, wird die Datenrichtung sofort auf
+Schreiben (aus Sicht des CPLD) umgestellt und die zu sendenden &quot;1001&quot; werden an
+den Bus angelegt. Da in der Simulation die Gegenstelle gleichzeitig &quot;1010&quot;
+sendet, kommt es hier zu einem Konflikt in den beiden unteren Bits.</p>
+<div class="figure">
+<img alt="modelsim_tb_tristate_driver.png" src="modelsim_tb_tristate_driver.png" />
+</div>
+<p>Test auf der Hardware</p>
+<p>Da die Simulation keine Fehler ergab, wurde ein generic_tristate_driver mit
+einer Bitbreite von 4 auf das CPLD-Evaluationsboard übertragen. Um alle Signale
+messen zu können, sind auch die eigentlich nur für interne Verarbeitung
+gedachten Signale von data_out und data_in nach außen an die Pins geführt.</p>
+<div class="figure">
+<img alt="messaufbau.gif" src="messaufbau.gif" />
+</div>
+<p>Mit einem Logikanalysator konnte so das Timingverhalten des
+generic_tristate_driver ermittelt werden. Die Signale D0...D3 zeigen das Signal
+auf den bidirektionalen Leitungen (bidir_data), D4...D7 sind M_data_in,
+D8...D11 zeigen data_out und D12 (rot) ist das Signal dir. Die eingehenden
+Daten (wenn dir dies signalisiert) auf bidir_data sind &quot;0000&quot;. Die vom CPLD zu
+sendenden Daten auf data_out sind &quot;1100&quot;.</p>
+<p>Fallende Flanke auf dir</p>
+<p>Zu Beginn hat dir einen HIGH-Pegel. Das bedeutet, dass der CPLD im Lesemodus
+ist. Auf bidir_data liegen die von der Gegenstelle gesendeten &quot;0000&quot; an. Somit
+liegen diese auch an data_in an. Nachdem dir auf LOW-Pegel umgeschaltet worden
+ist, liegen die vom CPLD zu sendenden &quot;1100&quot; von data_out auch nach einer
+gewissen Verzögerung auf bidir_data an.</p>
+<div class="figure">
+<img alt="neg_M_rw.gif" src="neg_M_rw.gif" />
+</div>
+<p>Steigende Flanke auf dir</p>
+<p>Zu Beginn hat dir einen LOW-Pegel. Das bedeutet, dass der CPLD im Schreibmodus
+ist. Auf bidir_data liegen die vom CPLD gesendeten &quot;1100&quot; an. Somit liegen
+diese auch an data_in an. Nachdem dir auf HIGH-Pegel umgeschaltet worden ist,
+liegen die von der Gegenstelle gesendeten &quot;0000&quot; auch nach einer gewissen
+Verzögerung auf bidir_data an.</p>
+<div class="figure">
+<img alt="pos_M_rw.gif" src="pos_M_rw.gif" />
+</div>
+</div>
+<div class="section" id="control-register">
+<h3><a class="toc-backref" href="#id7">2.1.4&nbsp;&nbsp;&nbsp;control_register</a></h3>
+<div class="figure">
+<img alt="Control_Register.png" src="Control_Register.png" />
+</div>
+<p>Im control_register werden die 8 Bit breiten Befehle, die receive_control vom
+Mikrocontroller empfängt, ausgewertet und daraus die entsprechenden Signale
+erzeugt. Die Daten, die an reg_data anliegen, werden übernommen, wenn
+reg_data_valid einen high-Pegel hat.</p>
+<p>Die Ausgangssignale werden durch einen Vergleich mit vorgegebenen Bitmustern
+erzeugt. Diese Bitmuster wurden festgelegt in InterfacePC-uC-CPLD:</p>
+<pre class="literal-block">
+Codierung     Beschreibung            aktives Ausgangssignal
+xxxx0100      Messung starten         start_measure_cmd
+xxxx0101      Messung stoppen         stop_measure_cmd
+xxxx0110      Auslesen der Daten starten      send_cmd
+xxxx0111      Reset   reset_cmd
+xxxx0000      Dummy-Byte      -
+sonst         Kein gültiger Befehl    error_contr_reg
+</pre>
+<p>XXX to do:</p>
+<ul>
+<li><p class="first"><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/InterfacePC-uC-CPLD">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/InterfacePC-uC-CPLD</a></p>
+<p>&quot;Dieser Artikel behandelt die verschiedenen Use Cases im Umgang mit dem
+Logikanalysator. Daraus ergeben sich Schnittstellen: PC&lt;-&gt;uC und uC&lt;-&gt;CPLD.
+Aus den Use Cases abgeleitet wird das Protokoll zur Übertragung der Daten
+zwischen PC und uC.&quot;</p>
+</li>
+<li><p class="first"><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/InterfacePC-uC-API">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/InterfacePC-uC-API</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ram-control">
+<h2><a class="toc-backref" href="#id8">2.2&nbsp;&nbsp;&nbsp;ram_control</a></h2>
+<img alt="ram_control_topBox.png" src="ram_control_topBox.png" />
+<p>Beschreibung zu Ram_Control:</p>
+<p>Das Modul ram_control übernimmt die Ansteuerung der externen RAM-Bausteine.
+Hier wird die Datenrichtung der bidirektionalen Datenleitungen zwischen CPLD
+und RAM festgelegt und der Speicher entsprechend angesteuert. Auch der
+Adresszähler für die Adressierung der zu lesenden/schreibenden Speicherzelle
+des RAM befindet sich hier. Die vom RAM ausgelesenenen Daten werden nicht
+weiter verarbeitet und verlassen das Modul. Wenn ein Mess-Datensatz zum
+Schreiben in den Speicher vorhanden ist, wird dieser in 16-Bit große Teilen
+aufgeteilt, welche dann nacheinander in den RAM geschrieben werden.</p>
+<p>Folgende Sub-Module sind enthalten:</p>
+<ul class="simple">
+<li>ram_write_control</li>
+<li>A_counter (Adresszähler mit Überlaufschutz)</li>
+<li>ram_tristate_driver</li>
+</ul>
+<p>Mit einem Multiplexer wird festgelegt, ob das Modul mega_control oder
+ram_write_control dem Adresszähler den Befehl geben kann, hoch zu zählen. Wenn
+ram_write_control signalisiert, dass gerade Daten an den RAM gesendet werden,
+kann mega_control nicht den Adresszähler ansteuern.</p>
+<p>Der Ausgang <strong>we</strong> kann den RAM in einen Lesemodus bringen; der Ausgang oe kann
+den RAM in einen Schreibmodus bringen. Die beiden RAM-Bausteine können jeweils
+einzeln angesteuert werden mit ce1 bzw. ce2. Mit den Signalen lb und ub können
+die unteren und/oder die oberen 8 Bit des 16-Bit breiten Datenbus aktiviert
+werden. Es sollen sowohl die unteren als auch die oberen 8 Bit aktiv sein.
+Deshalb wird an lb und ub fest ein LOW-Pegel angelegt, da alle Steuerleitungen
+zum RAM low-aktiv sind.</p>
+<div class="section" id="ram-write-control">
+<h3><a class="toc-backref" href="#id9">2.2.1&nbsp;&nbsp;&nbsp;ram_write_control</a></h3>
+<div class="figure">
+<img alt="ram_write_control.png" src="ram_write_control.png" />
+</div>
+<p>Mess-Datensatz des measure_control, der aus Messdaten, Zeitstempel und
+Status-Byte besteht, in den RAM zu schreiben. Dazu müssen die 32 Bit breiten
+Daten in zwei 16 Bit breite Blöcke aufgeteilt werden, die dann nacheinander in
+den Speicher geschreiben werden. Die Datenrichtung auf der bidirektionalen
+Datenverbindung zwischen CPLD und RAM wird festgelegt durch das
+RAM-Steuersignal we und den Richtungs-Eingang des ram_tristate_driver, der sich
+im ram_control befindet.</p>
+<p>Das Modul ram_write_control besteht aus einem Datenpfad, in dem aus den 32 Bit
+Eingangsdaten die gerade benötigten 16 Bit ausgewählt werden, und einem
+Kontrollpfad.</p>
+<div class="figure">
+<img alt="ram_write_control_datapath_controlpath.png" src="ram_write_control_datapath_controlpath.png" />
+</div>
+<p>Datenpfad</p>
+<p>Da die Speicherzellen im RAM jeweils 16 Bit groß sind, müssen die 32 Bit
+breiten Daten aus dem Messautomaten measure_control aufgeteilt werden. Dies
+geschieht über einen 2 zu 1 Multiplexer. Im Datenpfad befindet sich auch ein
+Iterationszähler cnt2. Dieser zählt bis 1 und ist daher 1 Bit breit. Der
+Zähler-Ausgang steuert direkt den Multiplexer an, über den Carry-Ausgang wird
+dem Kontrollpfad signalisiert, dass der Endwert erreicht wurde. Im Kontrollpfad
+wird so lange der RAM-Schreibzyklus durchlaufen, bis der Iterationszähler
+seinen Endwert erreicht hat. Falls die Messdaten später einmal größer werden
+sollten, muss nur der Iterationszähler entsprechend angepasst werden; der
+Kontrollpfad muss nicht verändert werden. Zusätlich ist im Datenpfad noch ein
+Zähler für die Erzeugung von Delays cnt_delay vorhanden. Der Zähler kann vom
+Kontrollpfad zurückgesetzt werden. Das Erreichen des Endwertes wird durch ein
+Signal angezeigt. Die Delays sind nötig, um das Timing für den Zugriff auf den
+RAM einhalten zu können.</p>
+<div class="figure">
+<img alt="ram_write_control_datapath.png" src="ram_write_control_datapath.png" />
+</div>
+<p>Die Funktion des Datenpfades wurde in einer Testbench simulliert:</p>
+<div class="figure">
+<img alt="testbench_ramwritecontrol_datapath.png" src="testbench_ramwritecontrol_datapath.png" />
+</div>
+<p>Kontrollpfad</p>
+<div class="figure">
+<img alt="ram_write_timing.png" src="ram_write_timing.png" />
+</div>
+<p>Quelle:  <a class="reference external" href="http://www.alliancememory.com/pdf/sram/fa/as7c34098a_v2.1.pdf">http://www.alliancememory.com/pdf/sram/fa/as7c34098a_v2.1.pdf</a></p>
+<p>Im Datenblatt des RAM-Bausteines gibt es ein Timing-Diagramm, in dem die
+Signalfolge abgebildet ist, die zur Speicherung eines 16-Bit Datensatzes nötig
+ist. Dieser Ablauf wird durch den Automaten im Kontrollpfad abgebildet. Wenn
+über den Eingang store_data signalisiert wird, dass ein Mess-Datensatz zum
+Schreiben in den RAM vorhanden ist, wird diese Signalfolge so oft abgearbeitet,
+bis der Iterationszähler cnt2 im Datenpfad das Erreichen des Endwertes anzeigt.</p>
+<div class="figure">
+<img alt="ram_write_control_controlpath.png" src="ram_write_control_controlpath.png" />
+</div>
+<p>Die Funktion des Moduls ram_write_control wurde in einer Testbench simulliert:</p>
+<div class="figure">
+<img alt="testbench_ramwritecontrol.png" src="testbench_ramwritecontrol.png" />
+</div>
+</div>
+<div class="section" id="a-counter">
+<h3><a class="toc-backref" href="#id10">2.2.2&nbsp;&nbsp;&nbsp;A_counter</a></h3>
+<p>Eine konkrete Version der generischen Komponente
+cntup_modm_maxm_no_overflow_limit.</p>
+<div class="figure">
+<img alt="cntup_n_maxm_no_overflow_limit_ramcontrol.png" src="cntup_n_maxm_no_overflow_limit_ramcontrol.png" />
+</div>
+<p>Der Zähler ist 19 Bit breit, da die beiden Speicherbausteine jeweils 18 Bit
+haben und über einen Zähler angesteuert werden. Das Höchstwertige Bit des
+Zählers wird in ram_control für die Chip-Select-Logik zur Auswahl des aktiven
+Speichermoduls verwendet. Der Maximalwert des Zählers ergibt sich aus der
+höchsten Adresse, die der Zähler erzeugen kann (219 -1). Da der Messautomat
+measure_control noch 32 Bit (entspricht zwei Speicherzellen im RAM) für eine
+Endekennung der Messung benötigt, ist der Wert für das Limit um 2 geringer als
+der Maximalwert des Zählers.</p>
+</div>
+<div class="section" id="ram-tristate-driver">
+<h3><a class="toc-backref" href="#id11">2.2.3&nbsp;&nbsp;&nbsp;ram_tristate_driver</a></h3>
+<p>Eine konkrete Version der generischen Komponente generic_tristate_driver.</p>
+<div class="figure">
+<img alt="generic_tristate_driver.png" src="generic_tristate_driver.png" />
+</div>
+<p>Die Breite der Datenleitungen ist 16 Bit, da die Speichermodule in 16-Bit
+Speicherzellen organisiert sind.</p>
+</div>
+</div>
+<div class="section" id="measure-control">
+<h2><a class="toc-backref" href="#id12">2.3&nbsp;&nbsp;&nbsp;measure_control</a></h2>
+<div class="figure">
+<img alt="measure_control.png" src="measure_control.png" />
+</div>
+<p>Beschreibung zu measure_control:</p>
+<p>Das Modul measure_control übernimmt die Erstellung der Messdatensätze, die dann
+von ram_control in den RAM geschrieben werden. Ein Messdatensatz besteht aus
+den Signalen der 8 digitalen Messeingänge, einem Zeitstempel und einem
+Statusbyte, das signalisiert ob noch weitere Messdatensätze folgen.</p>
+<p>Folgende Sub-Module sind enthalten</p>
+<div class="section" id="measure-control-datapath">
+<h3><a class="toc-backref" href="#id13">2.3.1&nbsp;&nbsp;&nbsp;measure_control_datapath</a></h3>
+<p>In diesem Modul wird vor dem Speichern einer Messung der Zustand an den
+Messeingängen in einem 8-Bit Register gespeichert, damit die Werte für die
+Weiterverarbeitung konstant bleiben.</p>
+<div class="figure">
+<img alt="measure_control_datapath.png" src="measure_control_datapath.png" />
+</div>
+</div>
+<div class="section" id="measure-control-controlpath">
+<h3><a class="toc-backref" href="#id14">2.3.2&nbsp;&nbsp;&nbsp;measure_control_controlpath</a></h3>
+<p>Das Modul wertet die internen und externen Statussignale aus und erzeugt
+daraus entsprechende Steuersignale, die sowohl innerhalb als auch außerhalb
+von measure_control verwendet werden.</p>
+<div class="figure">
+<img alt="measure_control_controlpath.png" src="measure_control_controlpath.png" />
+</div>
+</div>
+<div class="section" id="trigger">
+<h3><a class="toc-backref" href="#id15">2.3.3&nbsp;&nbsp;&nbsp;trigger</a></h3>
+<div class="figure">
+<img alt="trigger.png" src="trigger.png" />
+</div>
+<p>Das Modul signalisiert mit der durch freqdiv geteilten Systemfrequenz an
+trigger_out eine Signaländerung an den Messeingängen input oder das
+Überlaufen des Zeitstempels.</p>
+</div>
+<div class="section" id="timestamp-cnt">
+<h3><a class="toc-backref" href="#id16">2.3.4&nbsp;&nbsp;&nbsp;timestamp_cnt</a></h3>
+<p>timestamp_cnt_i0</p>
+<p>Eine konkrete Version der generischen Komponente timestamp_cnt</p>
+<div class="figure">
+<img alt="timestamp_cnt_measure_control.png" src="timestamp_cnt_measure_control.png" />
+</div>
+<p>Das Modul zählt mit der von freqdiv geteilten Systemfrequenz. Somit wird zu
+jedem Abtastzeitpunkt der Zählerwert internal_timestamp_out, der der
+Zeitstempel eines Messdatensatzes wird, inkrementiert.</p>
+</div>
+<div class="section" id="freqdiv">
+<h3><a class="toc-backref" href="#id17">2.3.5&nbsp;&nbsp;&nbsp;freqdiv</a></h3>
+<div class="figure">
+<img alt="freqdiv_measure_control.png" src="freqdiv_measure_control.png" />
+</div>
+<p>Dieser Zähler bestimmt die Frequenz, in der die digitalen Messeingänge
+abgetastet werden sollen. Der Systemtakt wird geteilt durch 16, da diese Zeit
+benötigt wird, um einen Messdatensatz in den RAM zu schreiben.</p>
+</div>
+</div>
+<div class="section" id="manager">
+<h2><a class="toc-backref" href="#id18">2.4&nbsp;&nbsp;&nbsp;manager</a></h2>
+<img alt="manager_topbox.png" src="manager_topbox.png" />
+<p>Beschreibung zu manager:</p>
+<p>Der Manager regelt das Zusammenspiel der Komponenten mega_control, ram_control
+und measure_control. Aus den einzelnen Statussignale werden Steuersignale für
+die Komponenten generiert. So bestimmt der manager das Verhalten des
+Logikanalysators.</p>
+<img alt="manager_internal.png" src="manager_internal.png" />
+<p>master_reset wird erzeugt durch den mit zwei hintereinander geschalteten D-Flip-Flops synchronisierten externen Reset ext_reset oder durch reset_cmd.</p>
+<p>measure_stop wird gesetzt durch A_limit_reached oder eine steigende Flanke an stop_measure_cmd; zurückgesetzt durch eine steigende Flanke von start_measure_cmd.</p>
+<p>measure_start wird gesetzt durch eine steigende Flanke von start_measure_cmd und zurückgesetzt durch measure_complete.</p>
+<p>send_data wird gesetzt bei einer steigenden Flanke von send_cmd und zurückgesetzt durch send_complete oder nicht send_cmd.</p>
+<p>ram_read wird erzeugt aus send_data und nicht measure_start.</p>
+<p>A_rst entsteht aus der steigenden Flanke von measure_start oder der Kombination aus steigender Flanke von send_data und nicht measure_start.</p>
+<p>M_int wird gesetzt bei steigender Flanke von A_limit_reached und nicht ram_read und zurückgesetzt durch die steigende Flanke von send_cmd.</p>
+<p>Der Eingang error_contr_reg wird noch nicht ausgewertet.</p>
+<div class="section" id="rising-edge-detector">
+<h3><a class="toc-backref" href="#id19">2.4.1&nbsp;&nbsp;&nbsp;rising_edge_detector</a></h3>
+<img alt="rising_edge_detector.png" src="rising_edge_detector.png" />
+<p>Der rising_edge_detector gibt am Ausgang rise_o für einen Takt lang einen
+high-Pegel aus, wenn am Eingang d_i eine steigende Flanke (Wechsel von
+low-Pegel auf high-Pegel) erkannt wird.</p>
+</div>
+</div>
+<div class="section" id="status-register">
+<h2><a class="toc-backref" href="#id20">2.5&nbsp;&nbsp;&nbsp;status_register</a></h2>
+<img alt="status_register_topbox.png" src="status_register_topbox.png" />
+<p>Beschreibung zu status_register:</p>
+<p>Im status_register sind einzelne Statussignale (bisher nur measure_start) zu
+einem Register zusammengefasst. Der Inhalt des Registers kann von mega_control
+an den Mikrocontroller weitergereicht werden.</p>
+</div>
+</div>
+<div class="section" id="hardware-entwicklungsumgebung">
+<h1><a class="toc-backref" href="#id21">3&nbsp;&nbsp;&nbsp;Hardware Entwicklungsumgebung</a></h1>
+<p>Altera MAX II EPM240 Core Board</p>
+<p>Um unseren sythetisierten vhdl-Code testen zu können, haben wir am Anfang ein
+Entwicklungsboard verwendet, auf dem sich der gleiche CPLD wie auf der
+TPLE-Hardware befindet. Auf dieser Platine sind alle Pins des CPLD auf
+Stiftleisten herausgeführt. So können erste Tests einfach gemacht werden, da
+die Pins leicht zugänglich und von der Funktion beliebig belegbar sind. Über
+die JTAG-Schnittstelle kann eine neue Firmware beispielsweise mit einem
+USB-Blaster von Altera aufgespielt werden.</p>
+<div class="figure">
+<img alt="epm240_board.png" src="epm240_board.png" />
+</div>
+<p>Die Spannungsversorgung erfolgt mit 5 Volt. Ein Spannungsregler erzeugt die
+vom CPLD benötigten 3,3 Volt Betriebsspannung. Auf dem Board befindet sich ein
+Quarz mit 20 MHz zur Taktversorgung, der fest an Pin 12 mit dem CPLD verbunden
+ist sowie zwei LEDs und ein Taster, die jeweils mit einem beliebigen CPLD-Pin,
+der auf die Stiftleiste herausgeführt wurde, verbunden werden kann.</p>
+<p>Die Pinbelegung der JTAG-Schnittstelle: (Pin 1 ist markiert durch ein kleines
+Dreieck auf dem Wannenstecker)</p>
+<pre class="literal-block">
+2     4       6       8       10
+1     3       5       7       9
+</pre>
+<pre class="literal-block">
+Pin   Signal
+1     TCK
+2     GND
+3     TDO
+4     VCC (Target)
+5     TMS
+6     -
+7     -
+8     -
+9     TDI
+10    GND
+</pre>
+<p>Das Board haben wir gekauft bei:  <a class="reference external" href="http://www.canton-electronics.com/altera-max-ii-epm240-core-board-fpga-cpld-development-kits-jtag-usb-blaster-p-375.html">http://www.canton-electronics.com/altera-max-ii-epm240-core-board-fpga-cpld-development-kits-jtag-usb-blaster-p-375.html</a></p>
+<p><strong>Altera DE1 Testumgebung</strong></p>
+<p>XXX to do
+<a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/TestumgebungAlterade1">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/TestumgebungAlterade1</a></p>
+<p><strong>CPLD Tools Software</strong></p>
+<p>XXX to do
+<a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/CpldToolsSoftware">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/CpldToolsSoftware</a></p>
+<ul class="simple">
+<li>Quartus II Web Edition (inkl. Modelsim), v13.0sp1</li>
+<li>Ubuntu 12.04 LTS
+Anleitung von Prof. Beckmann:
+<a class="reference external" href="http://www.hs-augsburg.de/~beckmanf/dokuwiki/doku.php?id=ubuntu_virtual_cae_system">http://www.hs-augsburg.de/~beckmanf/dokuwiki/doku.php?id=ubuntu_virtual_cae_system</a></li>
+<li>Altera USB Blaster</li>
+<li>qfsm: Automaten für VHDL
+<a class="reference external" href="http://sourceforge.net/projects/qfsm">http://sourceforge.net/projects/qfsm</a></li>
+<li><a class="reference external" href="http://sourceforge.net/projects/timingeditor/">http://sourceforge.net/projects/timingeditor/</a> (nur Windows)</li>
+</ul>
+</div>
+<div class="section" id="mikrocontroller">
+<h1><a class="toc-backref" href="#id22">4&nbsp;&nbsp;&nbsp;Mikrocontroller</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/LufaUsbStack">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/LufaUsbStack</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/MikrocontrollerFirmware">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/MikrocontrollerFirmware</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/MikrocontrollerFirmwareAtmel">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/MikrocontrollerFirmwareAtmel</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/OpenOcdEstickPatch">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/OpenOcdEstickPatch</a></li>
+</ul>
+</div>
+<div class="section" id="pc-software">
+<h1><a class="toc-backref" href="#id23">5&nbsp;&nbsp;&nbsp;PC Software</a></h1>
+<p>svn co <a class="reference external" href="https://io.informatik.fh-augsburg.de/svn/Logikanalysator/">https://io.informatik.fh-augsburg.de/svn/Logikanalysator/</a></p>
+<ul class="simple">
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/JtagAdapter">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/JtagAdapter</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/JtagJamStapl">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/JtagJamStapl</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerData">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerData</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrok">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrok</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrokHardware">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrokHardware</a></li>
+<li><a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrokPulseView">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/AnalyzerDataSigrokPulseView</a></li>
+</ul>
+</div>
+<div class="section" id="schluss">
+<h1><a class="toc-backref" href="#id24">6&nbsp;&nbsp;&nbsp;Schluss</a></h1>
+<ul class="simple">
+<li>Ausblick <a class="reference external" href="https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/Ausblick">https://io.informatik.fh-augsburg.de/cgi-bin/trac_Logikanalysator.cgi/wiki/Ausblick</a></li>
+</ul>
+</div>
+</div>
+</body>
+</html>

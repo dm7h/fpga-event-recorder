@@ -1,0 +1,12 @@
+Funktion				Mikrocontroller		Richtung			CPLD
+
+M_data[0]				PD0					<-->				51
+M_data[1]				PD1					<-->				50
+M_data[2]				PD2					<-->				49
+M_data[3]				PD3					<-->				48
+M_rw					PD5					--->				47
+M_clk					PC7					--->				14
+M_nib_sel				PD4					--->				42
+M_reg_sel[0]			PD6					--->				41
+M_reg_sel[1]			PD7					--->				40
+M_int					PB4					<---				39

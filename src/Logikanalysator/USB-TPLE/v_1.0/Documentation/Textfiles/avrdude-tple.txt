@@ -1,0 +1,81 @@
+
+
+
+Hardware:
+---------
+
+Lötpads für Speicher länger machen (schlecht lötbar)
+
+
+
+Verbindung AVRDUDE und JTAGICE-USB
+----------------------------------
+
+1. avrdude source runterladen und entpacken
+2. libusb runterladen und entpacken
+3. libusb kompilieren (./configure, make, make install)
+4. usb.h libusb.a libusb.o ins avrdude src verzeichnis kopieren
+5. avrdude kompilieren (./configure, make, make install)
+avrdude wurde ins Verzeichnis: /usr/local/bin/ kopiert
+
+AVRDUDE moit JTAG nutzen:
+-------------------------
+
+andz@gustl:/usr/local/bin$ ./avrdude -c jtag2 -P usb -p m32u4
+
+avrdude: jtagmkII_program_enable(): bad response to enter progmode command: RSP_ILLEGAL_JTAG_ID
+avrdude: JTAGEN fuse disabled?
+avrdude: initialization failed, rc=-1
+         Double check connections and try again, or use -F to override
+         this check.
+
+avrdude done.  Thank you.
+
+AVRDUDE mit ISP:
+----------------
+
+andz@gustl:/usr/local/bin$ ./avrdude -c jtag2isp -P usb -p m32u4
+avrdude: jtagmkII_setparm(): bad response to set parameter command: RSP_FAILED
+avrdude: jtagmkII_getsync(): ISP activation failed, trying debugWire
+avrdude: jtagmkII_setparm(): bad response to set parameter command: RSP_DEBUGWIRE_SYNC_FAILED
+avrdude: failed to sync with the JTAG ICE mkII in ISP mode
+avrdude: jtagmkII_close(): timeout/error communicating with programmer (status -1)
+
+avrdude done.  Thank you.
+
+
+Fehlersuche:
+------------
+
+Laut Datenblatt: Fuse BIt für JTAG ist gesetzt ==> sollte funktionieren
+Schaltplan überprüfut...spastialarm TDI und TDO vertauscht ... war so klar
+
+==> Schaltplan ändern!! Auch brücke zwischen USB Schirm und Masse herstellen
+
+andz@gustl:/usr/local/bin$ ./avrdude -c jtag2 -P usb -p m32u4
+
+avrdude: jtagmkII_initialize(): warning: OCDEN fuse not programmed, single-byte EEPROM updates not possible
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+avrdude: Device signature = 0x1e9587
+
+avrdude: safemode: Fuses OK
+
+avrdude done.  Thank you.
+
+
+
+Fusebitsettings für ext 48MHz Clock und USB Bootloader herausfinden:
+--------------------------------------------------------------------
+
+48MHz geht ned :( für USB nur 8 oder 16 ==> 48MHz werden intern aus 8Mhz erzeugt...(16 mit Teiler 2 möglich)
+==> vorerst auf Internen Takt (8MHz) gestellt
+
+delay.h angepasst auf 8MHz
+
+DeppDeppDepp
+------------
+
+Hardware geschrottet ==> nomml von vorn

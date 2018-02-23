@@ -1,0 +1,91 @@
+\chapter{PC-Software} \label{PC-Software}% Kapitel 8
+
+\section{Einführung} \index{PC-Software}
+
+In diesem Kapitel werden Lösungen, zur Realisierung von Steuer- und Analyseprogrammen auf dem Host-Rechner, vorgestellt. Da der Analysator noch nicht vollständig funktionsfähig ist, dient dieses Kapitel zur Unterstützung von zukünftigen Projektgruppen, welche die Arbeit fortsetzen.
+
+\section{Software zur Kommunikation mit der Hardware} \index{Betriebssystem} \index{Hot-Plug} \index{Treiber} \index{Terminal}
+
+Die einfachste Form der Kommunikation mit der Hardware ist, über die bereits implementierte, virtuelle serielle Schnittstelle. Über diese Schnittstelle können beliebige Daten byteweise zwischen den Geräten ausgetauscht werden.
+
+Die Installation des virtuellen COM-Ports unterscheidet sich in den unterschiedlichen Betriebssystemen. Wird das Gerät an einen PC mit einer aktuellen Linux-Distribution angeschlossen, so wird das Gerät vom Hot-Plug-fähigen Kernel erkannt. Durch die Festlegung der CDC-USB-Klasse \footnote{CDC: Communication Device Class} in den Deskriptoren des Gerätes, wird automatisch der entsprechende Treiber ausgewählt, und ein Gerätepfad angelegt. Danach ist das Gerät unter \texttt{/dev/ttyACM*/} ansprechbar. Der * steht hierbei für eine fortlaufende Nummer. Ist der Analysator das erste CDC-Gerät, so lautet der Gerätepfad \texttt{/dev/ttyACM0/}.
+
+Auch unter Windows (ab  Version 2000) sind Standardtreiber für die CDC-Klasse integriert. Jedoch kann das Betriebssystem den Treiber nicht vollautomatisch dem Gerät zuweisen. Nach erstmaligem Anschließen am USB-Port, fragt das Betriebssystem nach dem Speicherort für den Treiber. Dabei ist allerdings nicht der eigentliche Treiber gemeint, sonder eine Informationsdatei, in welcher die Verwendung des richtigen Treibers festgelegt ist. Diese .inf-Datei enthält dabei alle Informationen welche für die Erkennung notwendig sind (VID, PID usw.), sowie den Speicherort des Treibers. Eine .inf-Datei für das CDC-Gerät befindet sich auf dem Datenträger im Verzeichnis \texttt{/PC-Software/}.
+
+Über diese Schnittstelle kann nun im einfachsten Fall mit einem Standard-Terminal-Programm, wie zum Beispiel Minicom unter Linux, oder dem Hyperterminal unter Windows, kommuniziert werden. Die einzustellende Baud-Rate kann hier frei gewählt werden, da bei der CDC-Klasse die Synchronisation automatisch abläuft, und keine Vorgabe der Übertragungsgeschwindigkeit nötig ist. Für eine einfache Überprüfung der Datenverbindung, sollte im Gerät ein Echo implementiert werden. Dabei werden alle vom Gerät empfangenen Zeichen wieder an das Terminal zurückgesendet.
+
+\section{Steuerung über AT-ähnliche Befehle} \index{AT-Befehle}
+
+Um den Analysator nun über ein Terminal steuern zu können, müssen über die Tastatur einzugebende Befehle möglich sein. Am besten eignen sich dabei kurze Strings aus ASCII-Zeichen, welche durch einen einfachen Parser vom Gerät interpretiert werden können.
+
+Die Befehle könnten dabei ähnlich den Modem-AT-Befehlen aufgebaut sein. Diese beginnen immer mit dem einleitenden String \texttt{AT}, gefolgt von dem Befehl (zum Beispiel \texttt{D} für ``Dial'') und eventuell einem Wert (zum Beispiel die Telefonnummer). Abgeschlossen wird der Befehl durch das Senden der ASCII-Codes für Wagenrücklauf (\texttt{<CR>}: 0x0D) und Zeilenvorschub (\texttt{<LF>}: 0x0A). In einem Terminalprogramm werden diese Zeichen meist durch Drücken der ``ENTER''-Taste gesendet.
+
+\begin{lstlisting}[caption={AT-Befehl zum Wählen einer Telefonnummer}]
+ATD 0123456789<CR><LF>
+\end{lstlisting}
+
+Als Rückantwort kommt im Normalfall die Zeichenfolge \texttt{OK <CR><LF>} oder eine Fehlernummer \texttt{ERROR XX <CR><LF>}. Wird ein Wert als Rückmeldung mitgesendet, so wird dieser vor dem OK übertragen.
+
+Auf ähnliche Weise könnten nun die Steuerbefehle an den Analysator gesendet werden. Zur besseren Unterscheidung, könnten die Befehle mit dem Einleitungsstring \texttt{TA}, für Timing Analysator, beginnen. Nun kann man für alle nötigen Steuerbefehle einen kurzen String festlegen, welcher vom der Mikrocontrollersoftware interpretiert wird. Als Beispiel hier ein möglicher Befehl zum Setzen des Steuerregisters.
+
+\begin{lstlisting}[caption={AT-Befehl zum Wählen einer Telefonnummer}]
+TASCR 0xAB<CR><LF>
+\end{lstlisting}
+
+Der Befehl steht hier für ``\texttt{S}et \texttt{C}ontrol \texttt{R}egister'' und den Registerwert \texttt{0xAB}.
+
+\section{Format der Datenübertragung nach IEEE Std 1364-2001} \label{Datenübertragung} \index{IEEE Std 1364-2001} \index{Value Change Dump}
+
+Nun muss noch ein geeignetes Datenübertragunsformat für die Messdaten festgelegt werden. Die Messdaten befinden sich in einem eigenen Datenformat im Speicher des Analysators. Dieses Datenformat könnte zum Beispiel so aussehen: \texttt{<24Bit Zeitstempel><8 Messwerte>}. Diese 32-Bit könnte man nun, in vier Bytes unterteilt, an den PC Senden. Jedoch sind, für Terminal-Übertragungen, Daten im Klartext wesentlich besser geeignet als das Übermitteln von Binärdaten. 
+
+Daher gibt es mit dem Standard nach IEEE 1364-2001, dem ``Value Change Dump'', ein auf ASCII-Zeichen basierendes Format, zur Speicherung und Übermittlung von digitalen Messwerten. Ursprünglich wurde dieses Format hauptsächlich von VERILOG \footnote{Verilog: Hardwarebeschreibungssprache, ähnlich VHDL} -Simulatoren verwendet. Heute wird es, aufgrund seiner übersichtlichen Struktur, jedoch auch in anderen Bereichen eingesetzt. \cite{IEEE001}
+
+In diesem Datenformat werden die Messwerte, wie im Speicher des Analysators, mit einem Zeitstempel versehen. Dadurch ist ein Erzeugen des Datenformates aus den Speicherdaten ohne größeren Aufwand möglich. Im Dateikopf müssen zunächst einige Schlüsselwörter festgelegt werden. Diese betreffen vor allem das Format der Messwerte und das Zeitformat. Die Schlüsselwörter beginnen Immer mit einem \texttt{\$} und enden mit \texttt{\$end}.
+
+
+\begin{lstlisting}[caption={VCD-Datei mit 8 Messleitungen}]
+$date June 11, 2010 $end
+$version USB-TPLE 1.0 $end
+$comment 24Bit Timestamp, 8Bit Data $end
+$timescale 10ns $end
+$scope module logic $end
+$var wire 8 % data $end
+$upscope $end
+$enddefinitions $end
+
+#0
+b00000000 %
+#2303
+b00000010 %
+#56843
+b10000010 %
+
+\end{lstlisting}
+
+Die ersten drei Zeilen sind nicht zwingend Notwendig, aber zur Archivierung der Messdaten von Vorteil. In der vierten Zeile wird das Zeitformat festgelegt. Da der Zähler direkt mit dem 100MHz-Takt verbunden ist, ergibt sich eine zeitliche Auflösung von $\frac{1}{100MHz}=10ns$. In der fünften Zeile wird das Datenformat festgelegt. In diesem Fall ein Modul für die Logikanalyse. Mit dem Befehl \texttt{\$var wire 8 \% data \$end} wird das Datenformat festgelegt. Hier eine 8-Bit breite Datenleitung mit dem Identifizierungszeichen ``\%''. An dieser Stelle könnten zusätliche Datenleitungen festelegt werden. Diese müssen jedoch über ein anderes Indentifizierungszeichen verfügen.
+
+Nach diesen Definitionen, erfolgt nun direkt die Auflistung der Daten. Dabei wird zuerst der Zeitstempel, mit einer Vorgestellten \#, in 10ns-Schritten geschrieben. Dieser Wert kann, in dem oben erwähnten Beispiel der Daten im Speicher, direkt aus den ersten 24-Bit des Speicherinhaltes übernommen werden. Danach werden die für diesen Zeitstempel gültigen Daten geschrieben. Diese können als, mit den ASCII-Zeichen für 0 und 1 dargestellten, Bit-Werte dargestellt werden. Dabei wird den Messwerten ein ``b'' für Bitwert vor-, und das Indentifizierungszeichen ``\%`` nachgestellt.
+
+Der Vorteil dieser Art der Speicherung mit Zeitstempel ist, dass die Daten nur gespeichert werden müssen, wenn eine Veränderung des Wertes vorliegt. Im Gegensatz dazu, müssen Daten ohne Zeistempel kontinuierlich gespeichert werden, um eine zeitliche Zuordnung zu ermöglichen.
+
+Nun gibt es zwei Möglichketen wie die Daten an den Host-PC übertragen werden. Entweder werden Sie direkt bei der Erzeugung an die serielle Schnittstelle geschrieben, oder erst im Speicher des Mikrocontrollers zwischengelagert, um sie als Ganzes zu übertragen. Die zweite Methode ist jedoch durch den geringen RAM des Atmega32-U4 (1.5KByte) stark begrenzt, und wird durch den Speicher für die Messwerte (1MByte) um ein vielfaches übertroffen.
+
+\section{Software zur Verarbeitung der Logikdaten} \index{GUI} 
+
+Nun müssen die an den PC übertragenen Logikdaten weiterverarbeitet werden. Dies kann zum einen durch einen automatisierten Vorgang erfolgen, welcher in den vorhandenen Daten nach bestimmten Mustern sucht. So möchte man zum Beispiel nur den zeitlichen Abstand zwischen zwei bestimmten Signalwechseln darstellen. Dafür könnte man nun eine Interpreter für VCD-Dateien implementieren, der genau nach diesen Signalmustern sucht, und dann einfach die Differenz zwischen den Zeitstempeln anzeigt.
+
+Eine andere Möglichkeit der Analyse der Messdaten, ist die grafische Darstellung der Messwerte. Ein solches Programm ist zum Beispiel die Open-Source-Software GTKWave.
+
+\subsection{GTKWave} \index{GTKWave}
+
+GTKWave wurde als Teil des gEDA \footnote{gEDA: GPL Electronic Design Automation} entwickelt, und ermöglicht die grafische Darstellung von zeitlichen Messwertverläufen. Es basiert vollständig auf der grafischen Bibliothek GTK+, und ist plattformübergreifend sowohl für Linux als auch Windows erhältlich.
+
+Das Programm ist unter \url{http://gtkwave.sourceforge.net/} frei verfügbar. Es bietet einige Werkzeuge zur Darstellung der Messdaten, wie zum Beispiel eine Zoomfunktion des Zeitbereiches. Somit kann eine optische Analyse der gemessenen Signale durchgeführt werden. Ein großer Vorteil von GTKWave für diese Arbeit, ist die Möglichket des direkten Imports von VCD-Dateien, so dass keine zusätzliche Software zur Dateiumwandlung nötig ist.
+
+\begin{figure}[ht]
+	\includegraphics[width=1.0\textwidth]{images/GTKWave.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Screenshot einer komplexen Analyse in GTKWave, Quelle: wikimedia.org}
+	\label{pic:GTKWave}
+\end{figure}
+

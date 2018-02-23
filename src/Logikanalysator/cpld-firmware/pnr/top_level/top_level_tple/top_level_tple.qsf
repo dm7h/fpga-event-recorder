@@ -1,0 +1,161 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 32-bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 16:15:38  December 19, 2013
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		top_level_tple_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE EPM240T100C4
+set_global_assignment -name TOP_LEVEL_ENTITY top_level_tple
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:15:38  DECEMBER 19, 2013"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE TQFP
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_100 -to ce1
+set_location_assignment PIN_1 -to ce2
+set_location_assignment PIN_12 -to clk
+set_location_assignment PIN_62 -to ext_reset
+set_location_assignment PIN_16 -to io_data[7]
+set_location_assignment PIN_15 -to io_data[6]
+set_location_assignment PIN_8 -to io_data[5]
+set_location_assignment PIN_7 -to io_data[4]
+set_location_assignment PIN_6 -to io_data[3]
+set_location_assignment PIN_5 -to io_data[2]
+set_location_assignment PIN_4 -to io_data[1]
+set_location_assignment PIN_3 -to io_data[0]
+set_location_assignment PIN_2 -to io_dir
+set_location_assignment PIN_84 -to lb
+set_location_assignment PIN_14 -to M_clk
+set_location_assignment PIN_48 -to M_data[3]
+set_location_assignment PIN_49 -to M_data[2]
+set_location_assignment PIN_50 -to M_data[1]
+set_location_assignment PIN_51 -to M_data[0]
+set_location_assignment PIN_39 -to M_int
+set_location_assignment PIN_42 -to M_nib_sel
+set_location_assignment PIN_40 -to M_reg_sel[1]
+set_location_assignment PIN_41 -to M_reg_sel[0]
+set_location_assignment PIN_47 -to M_rw
+set_location_assignment PIN_82 -to oe
+set_location_assignment PIN_77 -to ram_adr[17]
+set_location_assignment PIN_78 -to ram_adr[16]
+set_location_assignment PIN_81 -to ram_adr[15]
+set_location_assignment PIN_95 -to ram_adr[14]
+set_location_assignment PIN_96 -to ram_adr[13]
+set_location_assignment PIN_97 -to ram_adr[12]
+set_location_assignment PIN_98 -to ram_adr[11]
+set_location_assignment PIN_99 -to ram_adr[10]
+set_location_assignment PIN_52 -to ram_adr[9]
+set_location_assignment PIN_53 -to ram_adr[8]
+set_location_assignment PIN_54 -to ram_adr[7]
+set_location_assignment PIN_55 -to ram_adr[6]
+set_location_assignment PIN_56 -to ram_adr[5]
+set_location_assignment PIN_72 -to ram_adr[4]
+set_location_assignment PIN_73 -to ram_adr[3]
+set_location_assignment PIN_74 -to ram_adr[2]
+set_location_assignment PIN_75 -to ram_adr[1]
+set_location_assignment PIN_76 -to ram_adr[0]
+set_location_assignment PIN_85 -to ram_data[15]
+set_location_assignment PIN_86 -to ram_data[14]
+set_location_assignment PIN_87 -to ram_data[13]
+set_location_assignment PIN_88 -to ram_data[12]
+set_location_assignment PIN_89 -to ram_data[11]
+set_location_assignment PIN_90 -to ram_data[10]
+set_location_assignment PIN_91 -to ram_data[9]
+set_location_assignment PIN_92 -to ram_data[8]
+set_location_assignment PIN_58 -to ram_data[7]
+set_location_assignment PIN_61 -to ram_data[6]
+set_location_assignment PIN_66 -to ram_data[5]
+set_location_assignment PIN_67 -to ram_data[4]
+set_location_assignment PIN_68 -to ram_data[3]
+set_location_assignment PIN_69 -to ram_data[2]
+set_location_assignment PIN_70 -to ram_data[1]
+set_location_assignment PIN_71 -to ram_data[0]
+set_location_assignment PIN_83 -to ub
+set_location_assignment PIN_57 -to we
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_location_assignment PIN_38 -to io_data[23]
+set_location_assignment PIN_37 -to io_data[22]
+set_location_assignment PIN_36 -to io_data[21]
+set_location_assignment PIN_35 -to io_data[20]
+set_location_assignment PIN_34 -to io_data[19]
+set_location_assignment PIN_33 -to io_data[18]
+set_location_assignment PIN_30 -to io_data[17]
+set_location_assignment PIN_29 -to io_data[16]
+set_location_assignment PIN_28 -to io_data[15]
+set_location_assignment PIN_27 -to io_data[14]
+set_location_assignment PIN_26 -to io_data[13]
+set_location_assignment PIN_21 -to io_data[12]
+set_location_assignment PIN_20 -to io_data[11]
+set_location_assignment PIN_19 -to io_data[10]
+set_location_assignment PIN_18 -to io_data[9]
+set_location_assignment PIN_17 -to io_data[8]
+set_global_assignment -name VHDL_FILE ../../../src/generic/cntup_modm_pre_overflow.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Measure_Control/trigger.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Measure_Control/measure_control_datapath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Measure_Control/measure_control_controlpath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Measure_Control/measure_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/timestamp_cnt.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/freqdiv.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/cntup_n_maxm_no_overflow_limit.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/cntup_modm.vhd
+set_global_assignment -name VHDL_FILE ../../../src/top_level/manager.vhd
+set_global_assignment -name VHDL_FILE ../../../src/top_level/top_level.vhd
+set_global_assignment -name VHDL_FILE ../../../src/RAM_Control/ram_write_control_datapath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/RAM_Control/ram_write_control_controlpath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/RAM_Control/ram_write_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/RAM_Control/ram_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/send_control_datapath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/send_control_controlpath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/send_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/receive_control_datapath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/receive_control_controlpath.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/receive_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/mega_control.vhd
+set_global_assignment -name VHDL_FILE ../../../src/Mega_Control/control_register.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/rising_edge_detector.vhd
+set_global_assignment -name VHDL_FILE ../../../src/generic/generic_tristate_driver.vhd
+set_global_assignment -name VHDL_FILE ../../../src/top_level/top_level_tple.vhd
+set_global_assignment -name VHDL_FILE ../../../src/top_level/status_register.vhd

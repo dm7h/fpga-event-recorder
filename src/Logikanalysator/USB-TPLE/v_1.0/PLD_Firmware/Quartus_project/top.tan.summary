@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 3.759 ns
+From           : mega_data[0]
+To             : time_counter:time_counter_impl|s_counter[21]
+From Clock     : --
+To Clock       : clk100
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 7.401 ns
+From           : time_counter:time_counter_impl|s_counter[6]
+To             : io_data[6]
+From Clock     : clk100
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -1.263 ns
+From           : mega_data[0]
+To             : time_counter:time_counter_impl|s_counter[0]
+From Clock     : --
+To Clock       : clk100
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clk100'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 221.04 MHz ( period = 4.524 ns )
+From           : time_counter:time_counter_impl|s_counter[2]
+To             : time_counter:time_counter_impl|s_counter[21]
+From Clock     : clk100
+To Clock       : clk100
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

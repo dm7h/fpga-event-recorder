@@ -1,0 +1,227 @@
+\chapter{VHDL-Design} \label{VHDL-Design}
+% Kapitel 9
+
+\section{Einführung} \index{VHDL} \index{Logikentwurf}
+
+In diesem Kapitel werden Überlegungen zur Realisierung des Logikentwurfens aufgezeigt. Sie zeigen nur eine von vielen Implementierungen auf, und sollen nur eine Basis für den Aufbau des Analysators bilden. Alle hier aufgezeigten Logikschaltungen wurden nicht mehr als VHDL-Code realisiert.
+
+Lediglich das Top-Level-Design, also die äußerste Struktur mit allen Verbindungsleitungen nach außen, ist bereits gegeben. Mit dieser Vorlage kann bereits mit der Implementierung begonnen werden, da allen physikalischen Anschlussleitungen bereits eine Netzname zugewiesen wurde.
+
+\section{Entwicklungsumgebung} \index{Altera} \index{Altera-Quartus-II} \index{Modelsim} \index{USB-Blaster}
+
+Als Entwicklungsumgebung kommt die kostenlose Web-Edition der Design-Software ``Quartus II'' von Altera zum Einsatz. Die Einschränkungen der kostenlosen Edition, wie zum Beispiel die fehlende IP-Core-Unterstützung, sind für den einfacheren Logikentwurf des CPLD nicht weiter relevant. 
+
+Die aktuelle, und auch verwendete Software, ist die Version 9.1 sowohl für Windows und auch Linux als Host-Betriebssystem. Jedoch befindet sich die Linux-Version noch in einem Beta-Stadium. Zwar hat sich in der Verwendung der Software kein unerwarteter Fehler aufgezeigt, jedoch sind einige Enschränkungen in der Linux Version zu beachten. Die größte Einschränkung ist, dass das interne Simulationstool nicht verwendet werden kann. Allerdings liefert Altera als Ersatz eine kostenlose Version des Simulationstools ``Modelsim'' mit.
+
+Die Software unterstützt auch den USB-Blaster als Programmiergerät. Dadurch kann direkt aus dem Designtool heraus der CPLD konfiguriert werden. Für den späteren Einsatz des JAM-Stapl-Players, können mit dem Programmiertool auch SVF-Dateien erstellt werden.
+
+\section{Top-Level-Design} \index{Top-Level-Design}
+
+Das Top-Level-Design, also die äußere Struktur des Logikentwurfs verknüpft alle implementierten Funktionseinheiten miteinander. In Grafik \ref{pic:TLD} ist eine solche Struktur abgebildet. Die Funktionen der einzelnen Funktionsblöcke ist in den folgenden Abschnitten genauer beschrieben.
+
+Die Pinbelegung des Bausteines wurde in der Datei \texttt{top.pin} im Verzeichnis \texttt{/PLD\_Firmware/Quartus\_project/} bereits festgelegt. Außerdem befindet sich in diesem Vertzeichnis ein Quartus-Projekt mit einem leeren Top-Level-Design, was den Einstieg in die Entwicklung erleichtert.
+
+\begin{figure}[ht]
+	\includegraphics[width=1.0\textwidth]{images/Top_Level.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{TLD eines einfachen Logikanalysators}
+	\label{pic:TLD}
+\end{figure}
+
+Der hier dargestellte Entwurf ermöglicht einen Logikanalysator mit mehreren Einstellungsmöglichkeiten. So kann sowohl die Anzahl der Messleitungen, als auch die Größe des Zeitstempels variabel eingestellt werden. Auch ist eine Triggerung auf eine bestimmte Signalkombination möglich. So kann die Messung automatisiert gestartet oder gestoppt werden. 
+
+Die Ablauf wird von einem Steuerwerk geregelt. Dieses Steuerwerk besteht aus einem Zustandsautomaten, sowie zwei Registern. Eines dieser Register enthält die Steurbefehle vom Mikrocontroller kommend, das andere ist als Statusregister für die Rückmeldung gedacht.
+
+\begin{lstlisting}[language=VHDL, caption={Entity des Top-Level-Designs}]
+--! Main Entity
+entity top is
+	port (
+		--! External Global Signals
+		clk100: in std_logic;
+		ext_reset: in std_logic;
+		--! Memory Interface
+		mem_adr: out std_logic_vector (17 downto 0);
+		mem_data: inout std_logic_vector (15 downto 0);
+		mem_oe: out std_logic;
+		mem_we: out std_logic;		
+		mem_ce1: out std_logic;
+		mem_ce2: out std_logic;
+		mem_ub: out std_logic;
+		mem_lb: out std_logic;
+		--! ATMEGA Interface
+		mega_clk: in std_logic;
+		mega_int: out std_logic;
+		mega_nib_sel: in std_logic;
+		mega_rw: in std_logic;
+		mega_reg_sel: in std_logic_vector (1 downto 0);
+		mega_data: inout std_logic_vector (3 downto 0);
+		--! IO-Ports
+		io_dir: out std_logic;
+		io_data: inout std_logic_vector (23 downto 0)	
+	);
+end top;
+\end{lstlisting}
+
+Bei dieser Entity, ist der Datenbus zum Atmega nochmals unterteilt in einen 4-Bit-Datenbus und fünf Steuerleitungen. Diese Implementierung wird in Abschnitt \ref{EntityMicro} beschrieben.
+
+\section{Trigger} \index{Trigger}
+
+\begin{floatingfigure}[r]{0.5\textwidth}
+	\includegraphics[width=0.4\textwidth]{images/Trigger.png}\\
+	\rule{0.5\linewidth}{0.5pt}
+	\caption{Blockschaltbild Trigger}
+	\label{pic:Trigger}
+\end{floatingfigure}
+
+Ein Trigger ist eine Schaltung, welche bei einer bestimmten Signalkombination, oder einem bestimmten Signalwert, einen Impuls auslöst. Mit diesem Impuls können verschiedene Ereignisse ausgelöst werden. Bei einem analogen Oszilloskop löst der Trigger zum Beispiel beim Nulldurchgang des Signales aus, und setzt den Elektronenstrahl wieder an den linken Bildschirmrand. Dadurch entsteht ein stabiles Bild eines periodischen Signals. Bei einem Logikanalysator mit Bildschrimdarstellung kann auf eine bestimmte Signalkombination getriggert werden, um ein stabiles Bild einer periodischen Signalfolge zu erzeugen.
+
+Der hier beschriebene Trigger hat allerdings eine etwas andere Aufgabe. Hier werden keine periodischen Signale auf einem Bildschirm dargestellt, sondern Signale über einen längeren Zeitraum aufgezeichnet. Deshalb hat der Trigger hier die Aufgabe, den Beginn und das Ende des Speichervorgangs auszulösen.
+
+Dies geschieht im einfachsten Fall durch ein Signal, welches für den Aufnahmezeitraum auf logisch 1 gesetzt wird. Das Signal könnte auch gepulst sein, also jeweils für Start und Stopp einen kurzen Impuls ausgeben. Möglich wären auch zwei getrennte Leitungen für Start und Stop.
+
+Der in Abbildung \ref{pic:Trigger} dargestellte Trigger ist eine wesentlich komplexere Ausbaustufe. Hierbei wird auf eine bestimmte Signalkombination aus allen 24 Messleitungen verglichen. Dafür enthält dieser Trigger zwei Schieberegister und einen Vergleicher. In das erste Schieberegister wird über die Leitung \texttt{M\_in} eine Signalmaske geladen. Möchte man zum Beispiel nur auf die unteren acht Messleitungen triggern, so lädt man hier \texttt{0x0000FF} als Maske. Im zweiten Register wird der eigentliche Triggerwert geladen. Für ein wechselndes 1-0 Muster müsste hier \texttt{0x555555} gesetzt werden. Liegt nun ein passendes Signalmuster an (zum Beipsiel \texttt{0x251B55}), so gibt der Trigger einen Impuls an das Steuerwerk weiter, welches dann alle weiteren Schritte durchführt. 
+
+\section{Speicherschnittstelle} \index{Speicherschnittstelle}
+
+Die Speicherschnittstelle stellt die Verbindung zwischen der Logik des Analysators und dem externen Speicherbus dar. Da diese Schaltung einen Übergang von der synchronen, internen Schaltung und dem asynchronen, externen Speicher bildet, sind hier einige Details zu beachten. So muss gewährleistet werden, dass die Adressleitungen alle gültig sind, der Speicherbaustein bereits den entsprechenden Speicherabschnitt ausgewählt hat und die Daten am Datenbus anliegen, bevor dem Speicherbaustein das Signal zum Schreiben gegeben wird. 
+
+Dies wird dadurch gewährleistet, dass die einzelnen Schritte in je einem eigenen Takt durchgeführt werden, wobei der Takt länger andauern muss, als die maximale Zugriffszeit des externen Speichers.
+
+\subsection{Multiplexer} \index{Multiplexer}
+
+\begin{floatingfigure}[r]{0.5\textwidth}
+	\includegraphics[width=0.4\textwidth]{images/Speichermultiplexer.png}\\
+	\rule{0.5\linewidth}{0.5pt}
+	\caption{Blockschaltbild Datenbus-Multiplexer}
+	\label{pic:Multiplexer}
+\end{floatingfigure}
+
+Der Multiplexer für die Messdaten wird benötigt, da die Datenwortbreite des Speichers mit 16 Bit geringer ist als die Breite der Messwerde und des Zeitstempels. Deshalb muss der Multiplexer diese Signale in mehrere Worte unterteilen. 
+
+Die maximal benötigte Speicherbreite sind 32 Bit Zeitstempel und 24 Bit Messdaten. Für das Ablegen der vorliegenden 56 Bit sind also vier Speichervorgänge nötig. Die nicht benötigten 8 Bit am Ende des Speichervorgans, können entweder auf 0 belassen werden, oder für andere Zwecke, wie zum Beispiel einen Messwertzähler, verwendet werden.
+
+Der Speichervorgang benötigt nun also mehrere Takte. Da sich innerhalb dieser Takte der Messwert ändern kann, muss dieser vorher in einem Messwertregister zwischengespeichert werden. Für die Steuerung des Multiplexers sind zwei Leitungen nötig, um einen der vier möglichen Wege auszuwählen (\texttt{S\_A} und \texttt{S\_B}).
+
+\subsection{Tristate-Treiber} \index{Tristate}
+
+Der Datenbus zum Speicher ist als bidirektionaler Bus ausgelegt. Es werden also die selben Datenleitungen sowohl für das Senden, als auch für das Empfangen verwendet. Um hier nun einen Konflikt zu vermeiden, muss die Speicherschnittstelle (Master) dem Speicher (Slave) die Erlaubnis zum Senden von Daten geben. Dabei muss die Schnittstelle so konzipiert werden, dass sie selbst in diesem Moment nicht über den Datenbus sendet, da dies zum Konflikt führen würde.
+
+Dies wird durch die Verwendung einer Steuerleitung ($\overline{WE}$) und eines Tristate-Treibers ermöglicht. Dieser schaltet, wenn der Bus vom Speicher belegt wird, den Datenausgang der Speicherschnittstelle hochohmig. Dadurch wird verhindert, dass sich beide Sendetreiber gegenseitig stören.
+
+\subsection{Adresszähler} \index{Adresszähler}
+
+\begin{floatingfigure}[hr]{0.4\textwidth}
+	\includegraphics[width=0.2\textwidth]{images/Adresszaehler.png}\\
+	\rule{0.4\linewidth}{0.5pt}
+	\caption{Blockschaltbild Adresszähler}
+	\label{pic:Adresszaehler}
+\end{floatingfigure}
+
+Der Adresszähler ist als einfacher Zähler mit 19 Bit Breite konzipiert. Da der Zähler sowohl im Speicher- als auch im Lesemmodus nur immer von 0 nach oben zählen muss, ist auch keine rückläuftige Zählrichtung vorgesehen. Er verfügt als Eingänge lediglich über ein Reset-Signal, zur Rücksetzung auf 0, und den eigentlichen Zählimpuls. Dieser Zählimpuls wird vom Steuerwerk ausgelöst, wenn der vorherige Lese- oder Speichervorgang abgeschlossen wurde. 
+
+Auf der Ausgansseite hat der Zähler einen 18-Bit breiten Adressbus, welcher direkt in die Speicherbausteine geführt wird. Die 19. Adressleitung wurde in die beiden Chip-Enable-Signale $\overline{CE1}$ und $\overline{CE2}$ aufgeteilt. Dies führt zu einem Wechsel der Speicherbausteine, sobald die 19. Adressleitung auf 1 gesetzt wird.
+
+Für die Signalisierung eines Überlaufs ist eine Carry-Out Leitung vorgesehn. Diese zeigt dann dann an, dass der Speicher voll ist. Falls der Analysator nur mit einem Speicherbaustein bestückt ist, ist darauf zu achten, das Carry-Signal schon beim Setzen der 19. Adressleitung auszugeben.
+
+\section{Schnittstelle zum Mikrocontroller} \label{EntityMicro} \index{Mikrocontroller}
+
+\begin{floatingfigure}[hr]{0.7\textwidth}
+	\includegraphics[width=0.6\textwidth]{images/Mikrocontroller_CPLD.png}\\
+	\rule{0.7\linewidth}{0.5pt}
+	\caption{Blockschaltbild der Schnittstelle zum Mikrocontroller}
+	\label{pic:Timer}
+\end{floatingfigure}
+
+Die Schnittstelle zwischen Mikrocontroller und CPLD ist wesentlich komplexer als die Speicherschnittstelle. Das Hauptproblem ist, dass die Schnittstelle nicht asynchron arbeitet, sondern synchron, allerdings mit zwei unterschiedlichen Taktdomänen. Während der CPLD mit einem Takt von 100MHz arbeitet, verwendet der Mikrocontroller einen Takt von 8MHz. 
+
+Deshalb müssen die Signale einsynchronisiert werden. Dies kann über einen synchronisierten FIFO-Puffer \footnote{FIFO: First In - First Out dt.: Erster rein - Erster raus}, bestehend aus mehreren Flip-Flops, erfolgen. Dadurch bleiben die beiden Taktdomänen getrennt, und können sich nicht durch unterschiedliche Taktflanken gegenseitig stören.
+
+Eine andere Möglichkeit wäre es, den gesamten CPLD, während des Zugriffs durch den Mikrocontroller, mit einem externen Takt laufen zu lassen. Dieser Takt könnte vom Mikrocontroller gesteuert werden. Bei der Wahl des Taktes wäre dann nur noch auf die Signallaufzeiten zwischen den Bausteinen zu achten.
+
+Hardwaretechnisch verfügt die Schnittstelle über einen 8-Bit breiten bidirektionalen Datenbus, sowie über eine Taktleitung vom Mikrocontroller kommend, und eine Interruptleitung vom CPLD kommend.
+
+Um nun ein einfaches Protokoll zu implementieren, kann nun die Datenleitung nochmals unterteilt werden. Siehe Tabelle \ref{tab:Mic_dir}.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Signalname	& Breite in Bit	& Richtung \\
+\hline \hline
+Daten		& 4		& Mikrocontroller $\Leftrightarrow$ CPLD  \\
+\hline
+M\_nib\_sel	& 1		& Mikrocontroller $\Rightarrow$ CPLD  \\
+\hline
+M\_rw		& 1		& Mikrocontroller $\Rightarrow$ CPLD  \\
+\hline
+M\_reg\_sel	& 2		& Mikrocontroller $\Rightarrow$ CPLD  \\
+\hline
+M\_clk		& 1		& Mikrocontroller $\Rightarrow$ CPLD  \\
+\hline
+M\_int		& 1		& Mikrocontroller $\Leftarrow$ CPLD  \\
+\hline
+\end{tabular}
+\caption{Datenleitungen zwischen Mikrocontroller und CPLD}
+\label{tab:Mic_dir}
+\end{table}
+
+Da die Daten Byteweise übertragen werden sollen, ist das Signal \texttt{M\_nib\_sel} nötig. Es wählt, aus welches Nibble \footnote{Nibble: 4-Bit-breites Datenwort} des Bytes gerade am 4-Bit breiten Datenbus anliegt. Mit der Steuerleitung \texttt{M\_rw} wird gewählt, ob gerade auf die Register geschrieben wird, oder von Ihnen gelesen. Mit den \texttt{M\_reg\_sel}-Leitungen wird ausgewählt, welches Register gerade am Datenbus anliegt. Zum Lesen können hier das Statusregister, sowie das obere oder untere Byte des Datenbuses zum Speicher, ausgewählt werden. Im Schreibmodus kann hier nur das Steuerregister angewählt werden.
+
+Für die Synchronisation der beiden Bausteine ist die Taktleitung \texttt{M\_clk} vorhanden. Mit der Steuerleitung \texttt{M\_int} kann der CPLD im Mikrocontroller einen Interrupt auslösen. Damit wird im Mikrocontroller zum Beispiel angezeigt, dass Daten zur Abholung bereit liegen.
+
+\section{Timer} \index{Timer} \index{Zähler}
+
+\begin{floatingfigure}[hr]{0.4\textwidth}
+	\includegraphics[width=0.3\textwidth]{images/Timer.png}\\
+	\rule{0.4\linewidth}{0.5pt}
+	\caption{Blockschaltbild Timer}
+	\label{pic:Timer}
+\end{floatingfigure}
+
+Der Timer besteht aus einem 32-Bit-Zähler, welcher immer mit dem genauen 100MHz Systemtakt nach oben zählt. Aktiviert wird er vom Steuerwerik über die Leitung \texttt{Z\_cnt} und zurückgesetzt über die Leitung \texttt{Z\_rst}. Soll nun ein Zählerwert als Zeitstempel in den Speicher geschrieben werden, so wird über das Signal \texttt{Z\_set} der aktuelle Zählerwert in das Zählerregister abgelegt. Nun kann dieser Wert in den Speicher geschrieben werde, währen der Zähler im Hintergrund weiter mit dem Systemtakt nach oben zählt.
+
+Kommt es zu einem Zählerüberlauf, so geht das Carry Signal auf 1. Wann dieser Überlauf stattfindet, kann durch das Eingangssignal \texttt{Z\_set\_c} festgelegt werden. Damit wird ein Multiplexer gesteuert, welcher eine der 32 Zählerleitungen, als Carry auswählt. Dies kann zum Beispiel dafür verwendet werden, wenn nur ein 16-Bit Zeitstempel verwendet wird, um Speicherplatz zu sparen.
+
+\section{Steuerwerk} \index{Steuerwerk}
+
+Das Steuerwerk ist für die Abläufe in dem Analysator zuständig. Es sollte als synchroner Automat konzipert werden. Als Ausgänge verfügt das Steuerwerk über sämtliche Steuerleitungen der einzelnen Komponenten, die Steuerleitungen nach Außen, sowie das Statusregister als Rückmeldung.
+
+Seine Zustandswechsel vollzieht das Steuerwerk basierend auf den Daten die am Steuerregister anliegen und an den Rückmeldungen der komponenten. Dazu zählen zum Beispiel die Carry-Leitung des Adresszählers, welche dem Steuerwerk signalisiert, dass das Speicherende erreicht wurde. 
+
+\subsection{Befehlssatzstruktur} \index{Befehlssatz}
+
+Eine vollständige Befehlssatzstruktur ist nocht nicht vorhanden. Jedoch wurden einige Überlegungen getätigt, wie der Analysator möglichst universell durch die 8-Bit breiten Befehle gesteuert werden kann.
+
+In Tabelle \ref{tab:Befehlssatz} ist eine Auswahl an Befehlen mt einer möglichen Codierung aufgelistet. Dabei stehen die vier höherwertigen Bytes für den Befehl, und die vier Niederwertigsten für den Wert.
+
+\begin{table}[h] 
+\begin{tabular}{|l|l|l|}
+\hline
+Befehl			& Bitmuster 		& Kurzbeschreibung\\
+\hline \hline
+Moduswahl		& \texttt{0 000 TMMM}	& T: Mit/Ohne Trigger, MMM: Modus  \\
+\hline
+Maske Trigger		& \texttt{0 001 ----}	& Folgenden 3 Byte setzen Maske  \\
+\hline
+Vergleichswert Trigger	& \texttt{0 010 ----}	& Folgenden 3 Byte setzen Triggerwert \\
+\hline
+Start			& \texttt{0 100 ----}	& Beginne Messung  \\
+\hline
+Stop			& \texttt{0 101 ----}	& Beende Messung  \\
+\hline
+lese Speicher		& \texttt{0 110 ----}	& Gib alle Daten aus Speicher aus  \\
+\hline
+Reset			& \texttt{0 111 ----}	& Alle Komponenten rücksetzen  \\
+\hline
+\end{tabular}
+\caption{Beispielhafte Befehlstrukur}
+\label{tab:Befehlssatz}
+\end{table}
+
+Neben diesen Grundfunktionen sind auch noch viele weitere Befehle denkbar. Für den Befehl ``Moduswahl'' können verschiedenen Messmethoden definiert werden. Zum Beispiel kontinuierlich oder getriggert, Größe des Zeitstempels oder Anzahl der Messleitungen.
+
+\begin{figure}[ht]
+	\includegraphics[width=1.0\textwidth]{images/Steuerwerk.png}\\
+	\rule{\linewidth}{0.5pt}
+	\caption{Blockschaltbild Steuerwerk}
+	\label{pic:Steuerwerk}
+\end{figure}

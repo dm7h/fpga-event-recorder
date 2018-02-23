@@ -1,0 +1,69 @@
+
+\documentclass
+[
+a4paper,
+german,
+%twoside,
+openright,                    % Kap.beginn immer rechts! (fkt. nur bei report, nicht bei article)
+10pt                          % ersatzweise 12pt, wenn mehr Seiten entstehen sollen
+%dvips
+]
+{report}
+%\documentclass[a4paper,10pt]{report} %report = Diplomarbeit, article = Normal
+%\usepackage[latin9]{inputenc}
+%\usepackage[ngerman]{babel} 	%Deutsch
+%\usepackage[T1]{fontenc}	%Deutscher Zeilenumbruch
+%\usepackage{graphicx}
+
+\input{header/header}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\include{chapters/Titelblatt}
+
+\begin{abstract} % Zusammenfassung
+
+\noindent
+Diese Arbeit handelt von der Entwicklung der Plattform für ein universelles, rekonfigurierbares und freies USB Gerät, zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen.
+
+\noindent
+Hauptaufgabe des Gerätes ist es, exakte Timing-Analysen an Mikrocontrollern oder ähnlichem durchzuführen. So kann zum Beispiel die Dauer eines Prozesses extern gemessen werden, ohne dass durch die Messung die Laufzeit beeinflusst wird.
+
+\noindent
+Kerstück des Systems ist ein konfigurierbarer Logikbaustein (CPLD) der Firma Altera, sowie ein Mikrocontroller der Firma Atmel mit USB Anbindung.
+
+\noindent
+Das gesamte Projekt, sowohl Hard- als auch Software, ist im Sinne von Open-Source frei verfügbar und kann unter der URL
+
+\begin{center}
+\begin{large}
+\url{http://sta.informatik.fh-augsburg.de}
+\end{large}
+\end{center}
+
+\noindent
+abgerufen werden. Auch ein SVN Repository mit TRAC ist unter dieser Adresse verfügbar.
+
+\end{abstract}
+
+\tableofcontents
+
+%Hier gehts los:
+\include{chapters/Kapitel_1}
+\include{chapters/Kapitel_2}
+\include{chapters/Kapitel_3}
+\include{chapters/Kapitel_4}
+\include{chapters/Kapitel_5}
+\include{chapters/Kapitel_6}
+\include{chapters/Kapitel_7}
+\include{chapters/Kapitel_8}
+\include{chapters/Kapitel_9}
+\include{chapters/Schluss}
+\include{chapters/Lizenz}
+
+\printindex
+
+
+\end{document}
