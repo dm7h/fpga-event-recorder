@@ -11,7 +11,7 @@ int main()
 		icosoc_leds(i);
 		
 		// debug print
-		printf("[%02x] Hello World!\n", i);
+		printf("[%02x] 'elo there!\n", i);
 
 		// sleep for a bit ..
 		for (int i = 0; i < 100000; i++)
