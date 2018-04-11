@@ -34,18 +34,21 @@ int main()
 {
 	
 	// main loop
-	for (uint8_t i = 0;; i++)
+	for (uint8_t i = 1;; i++)
 	{
 		icosoc_leds(i);
 		// debug print
-		int t = 't';
-		printf("%c, elo there\n", t);
-		/*
-		spiflash_end();
-		spiflash_begin();
-		spiflash_xfer(0x17);
-		spiflash_end();
-		*/
+		
+		
+		//spiflash_end();
+		//spiflash_begin();
+		
+		char c = console_getc(); //spiflash_xfer(i);
+		//spiflash_end();
+		printf("got: %c", (c != 0)? c : '.'); 
+		//spiflash_begin();
+		//spiflash_xfer(c);
+		//spiflash_end();
 		// sleep for a bit ..
 		for (int i = 0; i < 1000000; i++)
 			asm volatile ("");
