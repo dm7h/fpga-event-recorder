@@ -9,6 +9,7 @@
 \usepackage[absolute]{textpos} 	%Textboxen an absolute Position setzen
 \usepackage{setspace}						%Zeilenabstand anpassen
 \usepackage{color}							%Farbige Schrift
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{graphicx}						%Einbinden von Grafiken
 
 % Weitere packages: (Dokumentation dazu durch "latex <package>.dtx")
@@ -35,10 +36,10 @@
 %% ---------------- end of usepackages -------------
 
 %% Informationen für die PDF-Datei
-\hypersetup{pdfauthor={Max Mustermann},%
-            pdftitle={Bachelorarbeit},%
-            pdfsubject={Titel der Arbeit},%
-            pdfkeywords={Forschung, Entwicklung, Funktechnik},%
+\hypersetup{pdfauthor={Domenik Müller},%
+            pdftitle={Bachelorarbeit FPGA-Event-Recorder},%
+            pdfsubject={Design und Implementierung eines FPGA-Event-Recorders mit der freien IceStorm-Toolchain},%
+            pdfkeywords={FPGA, Open Source, IceStorm, Ice40, Lattice},%
             pdfproducer={LaTeX},%
             pdfcreator={pdfLaTeX}
 }
@@ -144,6 +145,7 @@
 %%% Kapitel sind analog zur Wordvorlage zu wählen
 \include{beispiele}   % Beispiele
 \include{analyse}     % Analyse
+\include{test}
 
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Anhang
