@@ -38,26 +38,27 @@ bool enable_data_port = false;
 
 #  include <wiringPi.h>
 
-#  define RPI_ICE_CLK      7 // PIN  7, GPIO.7
-#  define RPI_ICE_CDONE    2 // PIN 13, GPIO.2
-#  define RPI_ICE_MOSI    21 // PIN 29, GPIO.21
-#  define RPI_ICE_MISO    22 // PIN 31, GPIO.22
-#  define LOAD_FROM_FLASH 23 // PIN 33, GPIO.23
-#  define RPI_ICE_CRESET  25 // PIN 37, GPIO.25
-#  define RPI_ICE_CS      10 // PIN 24, CE0
-#  define RPI_ICE_SELECT  26 // PIN 32, GPIO.26
+#  define RPI_ICE_CLK     27 
+#  define RPI_ICE_CDONE   21 
+#  define RPI_ICE_MOSI    23 
+#  define RPI_ICE_MISO    22 
+//#  define LOAD_FROM_FLASH 28 
+#  define RPI_ICE_CRESET  25 
+#  define RPI_ICE_CS      26 
+//#  define RPI_ICE_SELECT  29 
 
-#  define RASPI_D8   8 // PIN 11, GPIO.0
-#  define RASPI_D7   9 // PIN 12, GPIO.1
-#  define RASPI_D6  15 // PIN 15, GPIO.3
-#  define RASPI_D5  16 // PIN 16, GPIO.4
-#  define RASPI_D4  12 // PIN 19, MOSI
-#  define RASPI_D3  13 // PIN 21, MISO
-#  define RASPI_D2  11 // PIN 26, CE1
-#  define RASPI_D1  10 // PIN 35, GPIO.24
-#  define RASPI_D0   6 // PIN 36, GPIO.27
-#  define RASPI_DIR  5 // PIN 38, GPIO.28
-#  define RASPI_CLK  3 // PIN 40, GPIO.29
+
+#  define RASPI_D8   8 
+#  define RASPI_D7   9 
+#  define RASPI_D6  30 
+#  define RASPI_D5  31 
+#  define RASPI_D4  12 
+#  define RASPI_D3  13 
+#  define RASPI_D2  11 
+#  define RASPI_D1  10 
+#  define RASPI_D0   6 
+#  define RASPI_DIR  5 
+#  define RASPI_CLK  3 
 
 void digitalSync(int usec_delay)
 {
@@ -113,10 +114,10 @@ void prog_bitstream(bool reset_only = false)
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	pinMode(LOAD_FROM_FLASH, OUTPUT);
+	//pinMode(LOAD_FROM_FLASH, OUTPUT);
 	pinMode(RPI_ICE_CRESET,  OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
-	pinMode(RPI_ICE_SELECT,  OUTPUT);
+	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
 	fprintf(stderr, "reset..\n");
 
@@ -127,8 +128,8 @@ void prog_bitstream(bool reset_only = false)
 	digitalWrite(RPI_ICE_CLK, HIGH);
 
 	// select SRAM programming mode
-	digitalWrite(LOAD_FROM_FLASH, LOW);
-	digitalWrite(RPI_ICE_SELECT, LOW);
+	//digitalWrite(LOAD_FROM_FLASH, LOW);
+	//digitalWrite(RPI_ICE_SELECT, LOW);
 	digitalWrite(RPI_ICE_CS, LOW);
 	digitalSync(100);
 
@@ -179,14 +180,16 @@ void prog_bitstream(bool reset_only = false)
 void spi_begin()
 {
 	digitalWrite(RPI_ICE_CS, LOW);
-	// fprintf(stderr, "SPI_BEGIN\n");
+	fprintf(stderr, "SPI_BEGIN\n");
 }
 
 void spi_end()
 {
 	digitalWrite(RPI_ICE_CS, HIGH);
-	// fprintf(stderr, "SPI_END\n");
+	fprintf(stderr, "SPI_END\n");
 }
+
+
 
 uint32_t spi_xfer(uint32_t data, int nbits = 8)
 {
@@ -207,7 +210,7 @@ uint32_t spi_xfer(uint32_t data, int nbits = 8)
 		digitalWrite(RPI_ICE_CLK, LOW);
 	}
 
-	// fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
+	fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
 	return rdata;
 }
 
@@ -285,13 +288,13 @@ void prog_flasherase()
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	pinMode(LOAD_FROM_FLASH, OUTPUT);
+	//pinMode(LOAD_FROM_FLASH, OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
-	pinMode(RPI_ICE_SELECT,  OUTPUT);
+	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
 	// connect flash to Raspi
-	digitalWrite(LOAD_FROM_FLASH, LOW);
-	digitalWrite(RPI_ICE_SELECT, HIGH);
+	//digitalWrite(LOAD_FROM_FLASH, LOW);
+	//digitalWrite(RPI_ICE_SELECT, HIGH);
 	digitalWrite(RPI_ICE_CS, HIGH);
 	digitalWrite(RPI_ICE_CLK, LOW);
 	digitalSync(100);
@@ -316,13 +319,13 @@ void prog_flashmem(int pageoffset, bool erase_first_block)
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	pinMode(LOAD_FROM_FLASH, OUTPUT);
+	//pinMode(LOAD_FROM_FLASH, OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
-	pinMode(RPI_ICE_SELECT,  OUTPUT);
+	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
 	// connect flash to Raspi
-	digitalWrite(LOAD_FROM_FLASH, LOW);
-	digitalWrite(RPI_ICE_SELECT, HIGH);
+	digitalWrite(RPI_ICE_CRESET, LOW);
+	digitalWrite(RPI_ICE_MOSI, LOW);
 	digitalWrite(RPI_ICE_CS, HIGH);
 	digitalWrite(RPI_ICE_CLK, LOW);
 	digitalSync(100);
@@ -423,13 +426,13 @@ void read_flashmem(int n)
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	pinMode(LOAD_FROM_FLASH, OUTPUT);
+	//pinMode(LOAD_FROM_FLASH, OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
-	pinMode(RPI_ICE_SELECT,  OUTPUT);
+	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
 	// connect flash to Raspi
-	digitalWrite(LOAD_FROM_FLASH, LOW);
-	digitalWrite(RPI_ICE_SELECT, HIGH);
+	//digitalWrite(LOAD_FROM_FLASH, LOW);
+	//digitalWrite(RPI_ICE_SELECT, HIGH);
 	digitalWrite(RPI_ICE_CS, HIGH);
 	digitalWrite(RPI_ICE_CLK, LOW);
 	digitalSync(100);
@@ -866,10 +869,10 @@ void reset_inout()
 		pinMode(RPI_ICE_CDONE,   INPUT);
 		pinMode(RPI_ICE_MOSI,    INPUT);
 		pinMode(RPI_ICE_MISO,    INPUT);
-		pinMode(LOAD_FROM_FLASH, INPUT);
+		//pinMode(LOAD_FROM_FLASH, INPUT);
 		pinMode(RPI_ICE_CRESET,  INPUT);
 		pinMode(RPI_ICE_CS,      INPUT);
-		pinMode(RPI_ICE_SELECT,  INPUT);
+		//pinMode(RPI_ICE_SELECT,  INPUT);
 	}
 
 	if (enable_data_port)
@@ -947,13 +950,13 @@ void help(const char *progname)
 	exit(1);
 }
 
+
 int main(int argc, char **argv)
 {
 	int opt, n = -1, t = -1;
 	int pageoffset = 0;
 	char mode = 0;
 
-	/*
 	while ((opt = getopt(argc, argv, "RbEpfeF:TBw:r:c:vzZt:O:V:")) != -1)
 	{
 		switch (opt)
@@ -1112,34 +1115,12 @@ int main(int argc, char **argv)
 		read_dbgvcd(n);
 		reset_inout();
 	}
-	*/
-	
-	enable_data_port= true;
-	wiringPiSetup();
-	reset_inout();
-
-	while(1) 
-	{
-		link_sync(t);
-		send_word(0x100 + 2);
-		send_word(0xd00);
-		link_sync(t);
-		
-		digitalSync(10000);
-		reset_inout();
-		read_endpoint(2,t);
-		reset_inout();
-
-
-
-	}
-
-	reset_inout();
 
 	if (verbose)
 		fprintf(stderr, "\n");
 
-
 	return got_error ? 1 : 0;
 }
+
+
 

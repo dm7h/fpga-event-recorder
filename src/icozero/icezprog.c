@@ -35,13 +35,13 @@
 void spi_begin()
 {
 	digitalWrite(CFG_SS, LOW);
-	// fprintf(stderr, "SPI_BEGIN\n");
+	//fprintf(stderr, "SPI_BEGIN\n");
 }
 
 void spi_end()
 {
 	digitalWrite(CFG_SS, HIGH);
-	// fprintf(stderr, "SPI_END\n");
+	//fprintf(stderr, "SPI_END\n");
 }
 
 void uwait_barrier_sync(int n)
@@ -73,7 +73,7 @@ uint32_t spi_xfer(uint32_t data, int nbits)
 		digitalWrite(CFG_SCK, LOW);
 	}
 
-	// fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
+	//fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
 	return rdata;
 }
 
