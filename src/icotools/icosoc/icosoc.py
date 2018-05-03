@@ -72,10 +72,12 @@ def setboard(boardname):
 
     elif boardname == "icezero":
         pmod_locs = [
-            "139 137 135 130 141 138 136 134".split(),
+            "139 137 135 130 141 138 136 134".split(), # fake internal pins
+            #"139 137 135 130 141 138 136 134".split(), # orig
             "56 48 45 43 55 47 44 42".split(),
             "26 29 28 52 41 39 38 37".split(),
             "21 20 8 7 1 144 143 142".split(),
+            "112 113 79 0 0 0 0 0".split(),
         ]
         board_package = "tq144:4k"
 
@@ -1132,8 +1134,8 @@ set_io SPI_FLASH_MISO 67
 
 set_io RASPI_11 115
 set_io RASPI_12 114
-set_io RASPI_15 113
-set_io RASPI_16 112
+set_io RASPI_15 73
+set_io RASPI_16 74
 set_io RASPI_19 90
 set_io RASPI_21 87
 set_io RASPI_26 78
@@ -1186,7 +1188,7 @@ set_io SRAM_LB  81
 set_io SRAM_UB  75
 
 ## wut
-set_io HRAM_CK   74
+# set_io HRAM_CK   74
 # set_io HRAM_RWDS P8  # SRAM_A18
 # set_io HRAM_DQ0  T2  # SRAM_D0
 # set_io HRAM_DQ1  R3  # SRAM_D1
