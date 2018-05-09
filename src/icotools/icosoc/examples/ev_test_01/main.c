@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "icosoc.h"
 
-
+/*
 static int console_getc()
 {
 	while (1) {
@@ -28,14 +28,16 @@ static uint8_t spiflash_xfer(uint8_t value)
 	return *(volatile uint32_t*)0x20000008;
 }
 
-
+*/
 
 int main()
 {
 	
 	printf("reading conf data .. \r\n");
 	uint8_t conf_buffer[4];
-
+	
+	icosoc_leds(0xaa);
+	icosoc_ser0_write("ELO\r\n", 5);
 	//for (unit8_t i = 0; i < 4; i++)
 	//{
 		icosoc_ser0_read(&conf_buffer, 4);

@@ -72,8 +72,7 @@ def setboard(boardname):
 
     elif boardname == "icezero":
         pmod_locs = [
-            "139 137 135 130 141 138 136 134".split(), # fake internal pins
-            #"139 137 135 130 141 138 136 134".split(), # orig
+            "139 137 135 130 141 138 136 134".split(), 
             "56 48 45 43 55 47 44 42".split(),
             "26 29 28 52 41 39 38 37".split(),
             "21 20 8 7 1 144 143 142".split(),
@@ -1224,7 +1223,7 @@ if board == "icezero":
 
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("ifeq ($(shell bash -c 'type -p icoprog'),)")
-icosoc_mk["10-top"].append("SSH_RASPI ?= ssh pi@raspi")
+icosoc_mk["10-top"].append("SSH_RASPI ?= ssh pi@zero-one")
 icosoc_mk["10-top"].append("else")
 icosoc_mk["10-top"].append("SSH_RASPI ?= sh -c")
 icosoc_mk["10-top"].append("endif")
