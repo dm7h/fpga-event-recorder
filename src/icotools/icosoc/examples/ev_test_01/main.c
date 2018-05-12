@@ -40,7 +40,7 @@ int main()
 	icosoc_ser0_write("ELO\r\n", 5);
 	//for (unit8_t i = 0; i < 4; i++)
 	//{
-		icosoc_ser0_read(&conf_buffer, 4);
+	//	icosoc_ser0_read(&conf_buffer, 4);
 	//}
 
 	printf("got %x \r\n", *(uint32_t *) conf_buffer);

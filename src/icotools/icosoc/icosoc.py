@@ -1128,8 +1128,8 @@ set_io LED3 94
 
 set_io SPI_FLASH_CS   71
 set_io SPI_FLASH_SCLK 70
-set_io SPI_FLASH_MOSI 68
-set_io SPI_FLASH_MISO 67
+set_io SPI_FLASH_MOSI 67
+set_io SPI_FLASH_MISO 68
 
 set_io RASPI_11 115
 set_io RASPI_12 114
