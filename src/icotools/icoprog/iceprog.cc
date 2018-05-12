@@ -180,13 +180,13 @@ void prog_bitstream(bool reset_only = false)
 void spi_begin()
 {
 	digitalWrite(RPI_ICE_CS, LOW);
-	fprintf(stderr, "SPI_BEGIN\n");
+	//fprintf(stderr, "SPI_BEGIN\n");
 }
 
 void spi_end()
 {
 	digitalWrite(RPI_ICE_CS, HIGH);
-	fprintf(stderr, "SPI_END\n");
+	//fprintf(stderr, "SPI_END\n");
 }
 
 
@@ -210,7 +210,7 @@ uint32_t spi_xfer(uint32_t data, int nbits = 8)
 		digitalWrite(RPI_ICE_CLK, LOW);
 	}
 
-	fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
+	//fprintf(stderr, "SPI:%d %02x %02x\n", nbits, data, rdata);
 	return rdata;
 }
 
@@ -319,7 +319,7 @@ void prog_flashmem(int pageoffset, bool erase_first_block)
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	//pinMode(LOAD_FROM_FLASH, OUTPUT);
+	pinMode(RPI_ICE_CRESET, OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
 	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
