@@ -1215,14 +1215,17 @@ if enable_flashpmem:
 else:
     icosoc_mk["10-top"].append("LDSCRIPT ?= %s/common/riscv_orig.ld" % basedir)
 
-socprog_cmd_0 = "'icoprog -p'"
-socprog_cmd_1 = ""
+socprog_cmd   = "icoprog"
+socprog_opt_0 = "-p'" # flash
+socprog_opt_1 = "-r" # reboot
+
 if board == "icezero":
-    socprog_cmd_0 = "'icezprog -'"
-    socprog_cmd_1 = "'icezprog ..'"
+    socprog_cmd   = "icozctl"
+    socprog_opt_0 = "-p" # flash
+    socprog_opt_1 = "-b" # reboot
 
 icosoc_mk["10-top"].append("")
-icosoc_mk["10-top"].append("ifeq ($(shell bash -c 'type -p icoprog'),)")
+icosoc_mk["10-top"].append("ifeq ($(shell bash -c 'type -p %s'),)" %(socprog_cmd))
 icosoc_mk["10-top"].append("SSH_RASPI ?= ssh pi@zero-one")
 icosoc_mk["10-top"].append("else")
 icosoc_mk["10-top"].append("SSH_RASPI ?= sh -c")
@@ -1263,45 +1266,45 @@ icosoc_mk["10-top"].append("\t@echo \"   make testbench_novcd\"")
 icosoc_mk["10-top"].append("\t@echo \"\"")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("prog_sram: icosoc.bin")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s < icosoc.bin" %(socprog_cmd_0))
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s" %(socprog_cmd_1))
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -p' < icosoc.bin"
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) icozctl -b"
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("prog_flash: icosoc.bin appimage.hex")
 icosoc_mk["10-top"].append("\tpython3 %s/common/flashbin.py" % basedir)
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -f' < icosoc.bin")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -O8 -f' < appimage_lo.bin")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -O16 -f' < appimage_hi.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f' < icosoc.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O8 -f' < appimage_lo.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O16 -f' < appimage_hi.bin")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("reset_halt:")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -R'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -R'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("reset_flash:")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\tdd if=/dev/zero bs=1K count=64 | $(SSH_RASPI) 'icoprog -f'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\tdd if=/dev/zero bs=1K count=64 | $(SSH_RASPI) 'icozctl -f'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("reset_boot:")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -b'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -Zr2'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -Zr2'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("run: icosoc.bin appimage.hex")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s < icosoc.bin" %(socprog_cmd_0))
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s" %(socprog_cmd_1))
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -zZc2' < appimage.hex")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f' < icosoc.bin"
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'" 
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("softrun: appimage.hex")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s < icosoc.bin" %(socprog_cmd_0))
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) %s" %(socprog_cmd_1))
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -zZc2' < appimage.hex")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f'  < icosoc.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("console:")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icoprog || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icoprog -c2'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -c2'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("debug:")
 icosoc_mk["10-top"].append("\tgrep '// debug_.*->' icosoc.v")
