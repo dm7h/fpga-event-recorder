@@ -37,14 +37,14 @@ bool enable_data_port = false;
 // --------------------------------------------------------------------------------------------
 
 #  include <wiringPi.h>
-
-#  define RPI_ICE_CLK     27 
+			// 26 <-> 27!!
+#  define RPI_ICE_CLK     26 
 #  define RPI_ICE_CDONE   21 
 #  define RPI_ICE_MOSI    23 
 #  define RPI_ICE_MISO    22 
 //#  define LOAD_FROM_FLASH 28 
 #  define RPI_ICE_CRESET  25 
-#  define RPI_ICE_CS      26 
+#  define RPI_ICE_CS      27 
 //#  define RPI_ICE_SELECT  29 
 
 
@@ -80,9 +80,12 @@ int last_recv_rep = 0;
 void fpga_reset()
 {
 	pinMode(RPI_ICE_CRESET,  OUTPUT);
+	pinMode(RPI_ICE_CS,      OUTPUT);
+	digitalWrite(RPI_ICE_CS, HIGH);	
 	digitalWrite(RPI_ICE_CRESET, LOW);
 	digitalSync(2000);
 	digitalWrite(RPI_ICE_CRESET, HIGH);
+	pinMode(RPI_ICE_CRESET, INPUT);
 	digitalSync(500000);
 	if (digitalRead(RPI_ICE_CDONE) != HIGH) {
 		fprintf(stderr, "Warning: cdone is low\n");
@@ -420,19 +423,19 @@ void prog_flashmem(int pageoffset, bool erase_first_block)
 	spi_end();
 }
 
-void read_flashmem(int n)
+void read_flashmem(int offset, int n)
 {
 	assert(enable_prog_port);
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
 	pinMode(RPI_ICE_MOSI,    OUTPUT);
-	//pinMode(LOAD_FROM_FLASH, OUTPUT);
+	pinMode(RPI_ICE_CRESET, OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
 	//pinMode(RPI_ICE_SELECT,  OUTPUT);
 
 	// connect flash to Raspi
-	//digitalWrite(LOAD_FROM_FLASH, LOW);
-	//digitalWrite(RPI_ICE_SELECT, HIGH);
+	digitalWrite(RPI_ICE_CRESET, LOW);
+	digitalWrite(RPI_ICE_MOSI, LOW);
 	digitalWrite(RPI_ICE_CS, HIGH);
 	digitalWrite(RPI_ICE_CLK, LOW);
 	digitalSync(100);
@@ -454,10 +457,10 @@ void read_flashmem(int n)
 	if (n > 0)
 		fprintf(stderr, "reading %.2fkB..\n", double(n) / 1024);
 
-	for (int addr = 0; addr < n; addr += 256) {
+	for (int addr = offset; (addr - offset) < n; addr += 256) {
 		uint8_t buffer[256];
-		flash_read(addr, buffer, std::min(256, n - addr));
-		fwrite(buffer, std::min(256, n - addr), 1, stdout);
+		flash_read(addr, buffer, std::min(256, offset + n - addr));
+		fwrite(buffer, std::min(256, offset + n - addr), 1, stdout);
 	}
 
 	// power_down
@@ -1064,7 +1067,8 @@ int main(int argc, char **argv)
 		enable_prog_port = true;
 		wiringPiSetup();
 		reset_inout();
-		read_flashmem(n);
+		//prog_bitstream(true); // reset first
+		read_flashmem(pageoffset, n);
 		reset_inout();
 	}
 
