@@ -1,5 +1,5 @@
 icozctl: icozctl.cc
-	gcc -o icozctl -Wall -Os icozctl.cc -lwiringPi -lrt -lstdc++
+	gcc -o icozctl -Wall -Os icozctl.cc -lwiringPi -lyaml-cpp -lrt -lstdc++
 
 install: icozctl
 	sudo install icozctl /usr/local/bin/

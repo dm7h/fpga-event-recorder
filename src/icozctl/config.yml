@@ -1,0 +1,24 @@
+# event configuration version
+version: 0.1
+
+# event triggers
+events: 
+  - start:
+          trigger: 0000000u
+          func: start
+
+  - stop:
+          trigger: 0000000d
+          func: stop
+
+  - event1:
+          trigger: 101xxxxxx
+
+  - event2_up:
+          trigger: uxxxxxxx
+          func: dump_begin
+
+  - event2_down:
+          trigger: dxxxxxxx
+          func: dump_end,stop
+

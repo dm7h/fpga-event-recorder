@@ -34,6 +34,11 @@
 #include <assert.h>
 #include <vector>
 
+#include <yaml-cpp/yaml.h>
+#include <bitset>
+#include <iostream>
+
+
 bool verbose = false;
 bool got_error = false;
 
@@ -882,6 +887,82 @@ void reset_inout()
 	}
 }
 
+
+
+void run_config(char* config_file)
+{
+ 
+	// coded events
+	std::vector<uint64_t> events; 
+	
+	YAML::Node config = YAML::LoadFile(config_file);
+	if (config["version"]) {
+		fprintf(stdout, "Reading config file (version: %s) ...\n", config["version"].as<std::string>().c_str());
+	
+	}
+
+	if (config["events"] ) {
+		YAML::const_iterator it = config["events"].begin();
+		for ( uint8_t id = 0; it != config["events"].end(); it++) {
+			YAML::Node ev = *it;
+			if (ev.size() == 1) {
+				YAML::const_iterator ev_it = ev.begin();
+				// event name, must always exist
+				std::string ev_name = ev_it->first.as<std::string>(); 
+				if (verbose)
+					fprintf(stdout, "==Event %d==\n name: %s\n", id, ev_name.c_str());
+				// event trigger, must also exist
+				std::string ev_trigger = ev_it->second["trigger"].as<std::string>();
+				if (verbose)	
+					fprintf(stdout, "trigger: %s\n", ev_trigger.c_str());
+				
+				uint8_t ev_flag = 0;	
+				if (ev_it->second["func"]) {
+					// event func, if it exists
+					std::string ev_func = ev_it->second["func"].as<std::string>();
+					if (verbose)	
+						fprintf(stdout, "func: %s\n", ev_func.c_str());
+					if (ev_func.find("start") != std::string::npos)
+						ev_flag |= 1;
+					else if (ev_func.find("stop") != std::string::npos)
+						ev_flag |= 2;
+					if (ev_func.find("dump_begin") != std::string::npos)
+						ev_flag |= 4;
+					else if (ev_func.find("dump_end") != std::string::npos)
+						ev_flag |= 8;
+				}
+		
+				uint64_t enc = 0;
+				enc |= ((uint64_t) id ) << 56;
+				enc |= ((uint64_t) ev_flag) << 48;	
+				
+				for (unsigned int i = 0; i < 16; i++) {
+					uint8_t trigger_flag = 7; // 7 = X = don't care
+					if (i <= ev_trigger.size() - 1) {
+					       switch(ev_trigger[i]) {
+						       case '0': trigger_flag = 0; break;
+						       case '1': trigger_flag = 1; break;
+						       case 'u': trigger_flag = 2; break;
+						       case 'd': trigger_flag = 3; break;
+					       }
+
+					}
+				       	//std::cout << ev_trigger[i] << ":" << std::bitset<64>(((uint64_t) trigger_flag) << ((15 - i) * 3)) << std::endl;	
+					enc |= ((uint64_t) trigger_flag) << ((15 - i) * 3);
+				}		
+				
+				if (verbose)
+					std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
+				id++;
+			}		
+
+		}
+	}
+
+
+}
+
+
 void help(const char *progname)
 {
 	fprintf(stderr, "\n");
@@ -941,8 +1022,9 @@ int main(int argc, char **argv)
 	int opt, n = -1, t = -1;
 	int pageoffset = 0;
 	char mode = 0;
+	char *config_file;
 
-	while ((opt = getopt(argc, argv, "RbEpfeF:TBw:r:c:vzZt:O:V:")) != -1)
+	while ((opt = getopt(argc, argv, "RbEpfeFC:TBw:r:c:vzZt:O:V:")) != -1)
 	{
 		switch (opt)
 		{
@@ -953,6 +1035,8 @@ int main(int argc, char **argv)
 		case 'F':
 			n = atoi(optarg);
 			// fall through
+		case 'C':
+			config_file = optarg; 
 
 		case 'E':
 		case 'R':
@@ -968,8 +1052,6 @@ int main(int argc, char **argv)
 			break;
 
 		case 'v':
-			if (verbose)
-				ftdi_verbose = true;
 			verbose = true;
 			break;
 
@@ -1050,6 +1132,15 @@ int main(int argc, char **argv)
 		wiringPiSetup();
 		reset_inout();
 		read_flashmem(n);
+		reset_inout();
+	}
+
+	if (mode == 'C') {
+
+		enable_prog_port = true;
+		wiringPiSetup();
+		reset_inout();
+		run_config(config_file);
 		reset_inout();
 	}
 
