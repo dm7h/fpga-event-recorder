@@ -48,7 +48,8 @@ bool enable_prog_port = false;
 bool enable_data_port = false;
 
 
-#  include <wiringPi.h>
+#include <wiringPi.h>
+#include <wiringPiSPI.h>
 
 #  define RPI_ICE_CLK     27 
 #  define RPI_ICE_CDONE   21 
@@ -468,392 +469,25 @@ void epsilon_sleep()
 
 void send_word(int v)
 {
-	assert(enable_data_port);
-	if (current_send_recv_mode != 's')
-	{
-		digitalWrite(RASPI_DIR, HIGH);
-		epsilon_sleep();
-
-		pinMode(RASPI_D8, OUTPUT);
-		pinMode(RASPI_D7, OUTPUT);
-		pinMode(RASPI_D6, OUTPUT);
-		pinMode(RASPI_D5, OUTPUT);
-		pinMode(RASPI_D4, OUTPUT);
-		pinMode(RASPI_D3, OUTPUT);
-		pinMode(RASPI_D2, OUTPUT);
-		pinMode(RASPI_D1, OUTPUT);
-		pinMode(RASPI_D0, OUTPUT);
-
-		current_send_recv_mode = 's';
-	}
-
-	if (verbose) {
-		last_recv_v = -1;
-		last_recv_rep = 0;
-		fprintf(stderr, "<%03x>", v);
-		fflush(stderr);
-	}
-
-	digitalWrite(RASPI_D8, (v & 0x100) ? HIGH : LOW);
-	digitalWrite(RASPI_D7, (v & 0x080) ? HIGH : LOW);
-	digitalWrite(RASPI_D6, (v & 0x040) ? HIGH : LOW);
-	digitalWrite(RASPI_D5, (v & 0x020) ? HIGH : LOW);
-	digitalWrite(RASPI_D4, (v & 0x010) ? HIGH : LOW);
-	digitalWrite(RASPI_D3, (v & 0x008) ? HIGH : LOW);
-	digitalWrite(RASPI_D2, (v & 0x004) ? HIGH : LOW);
-	digitalWrite(RASPI_D1, (v & 0x002) ? HIGH : LOW);
-	digitalWrite(RASPI_D0, (v & 0x001) ? HIGH : LOW);
-
-	epsilon_sleep();
-	digitalWrite(RASPI_CLK, HIGH);
-	epsilon_sleep();
-	digitalWrite(RASPI_CLK, LOW);
-	epsilon_sleep();
 }
 
 int recv_word(int timeout = 0)
 {
-	assert(enable_data_port);
-	if (current_send_recv_mode != 'r')
-	{
-		pinMode(RASPI_D8, INPUT);
-		pinMode(RASPI_D7, INPUT);
-		pinMode(RASPI_D6, INPUT);
-		pinMode(RASPI_D5, INPUT);
-		pinMode(RASPI_D4, INPUT);
-		pinMode(RASPI_D3, INPUT);
-		pinMode(RASPI_D2, INPUT);
-		pinMode(RASPI_D1, INPUT);
-		pinMode(RASPI_D0, INPUT);
-
-		digitalWrite(RASPI_DIR, LOW);
-		epsilon_sleep();
-
-		current_send_recv_mode = 'r';
-	}
-
-	int v = 0;
-
-	if (digitalRead(RASPI_D8) == HIGH) v |= 0x100;
-	if (digitalRead(RASPI_D7) == HIGH) v |= 0x080;
-	if (digitalRead(RASPI_D6) == HIGH) v |= 0x040;
-	if (digitalRead(RASPI_D5) == HIGH) v |= 0x020;
-	if (digitalRead(RASPI_D4) == HIGH) v |= 0x010;
-	if (digitalRead(RASPI_D3) == HIGH) v |= 0x008;
-	if (digitalRead(RASPI_D2) == HIGH) v |= 0x004;
-	if (digitalRead(RASPI_D1) == HIGH) v |= 0x002;
-	if (digitalRead(RASPI_D0) == HIGH) v |= 0x001;
-
-	epsilon_sleep();
-	digitalWrite(RASPI_CLK, HIGH);
-	epsilon_sleep();
-	digitalWrite(RASPI_CLK, LOW);
-	epsilon_sleep();
-	if (verbose)
-	{
-		if (v != last_recv_v) {
-			last_recv_v = v;
-			last_recv_rep = 0;
-		} else {
-			last_recv_rep++;
-		}
-
-		if ((v == 0x1fe || v == 0x1ff) && last_recv_rep > 0) {
-			if (last_recv_rep == 1) {
-				fprintf(stderr, "[%03x..]", v);
-				if (v == 0x1ff)
-					fprintf(stderr, "\r\n");
-				fflush(stderr);
-			}
-		} else {
-			fprintf(stderr, "[%03x]", v);
-			if (v == 0x1ff)
-				fprintf(stderr, "\r\n");
-			fflush(stderr);
-		}
-	}
-
-	if (v >= 0x100)
-		current_recv_ep = v & 0xff;
-
-	if (timeout && (v == 0x1ff || v == 0x1fe)) {
-		if (timeout == 1) {
-			fprintf(stderr, "Timeout!\n");
-			exit(1);
-		}
-		return recv_word(timeout - 1);
-	}
-
-	return v;
 }
 
 void link_sync(int trignum = -1)
 {
-	while (recv_word() != 0x1ff) { }
-
-	send_word(0x1ff);
-	send_word(0x0ff);
-
-	if (trignum >= 0)
-		send_word(trignum);
-
-	while (recv_word() == 0x1fe) { }
 }
 
 void test_link()
 {
-	link_sync();
-	send_word(0x100);
-
-	srandom(time(NULL));
-
-	for (int k = 0; k < 1000; k++)
-	{
-		int data_out[20], data_in[20], data_exp[20];
-
-		fprintf(stderr, "Round %d:\n", k);
-
-		for (int i = 0; i < 20; i++) {
-			data_out[i] = random() & 255;
-			data_exp[i] = (((data_out[i] << 5) + data_out[i]) ^ 7) & 255;
-			send_word(data_out[i]);
-		}
-
-		for (int i = 0; i < 20; i++)
-			fprintf(stderr, "%5d", data_out[i]);
-		fprintf(stderr, "\n");
-
-		for (int i = 0; i < 20; i++)
-			do {
-				data_in[i] = recv_word(64);
-			} while (data_in[i] >= 0x100 || current_recv_ep != 0);
-
-		for (int i = 0; i < 20; i++)
-			fprintf(stderr, "%5d", data_in[i]);
-		fprintf(stderr, "\n");
-
-		for (int i = 0; i < 20; i++)
-			if (data_in[i] == data_exp[i])
-				fprintf(stderr, "%5s", "ok");
-			else
-				fprintf(stderr, " E%3d", data_exp[i]);
-		fprintf(stderr, "\n");
-
-		for (int i = 0; i < 20; i++)
-			if (data_in[i] != data_exp[i]) {
-				fprintf(stderr, "Test(s) failed!\n");
-				exit(1);
-			}
-	}
-
-	fprintf(stderr, "All tests passed.\n");
 }
 
 void test_bw()
 {
-	fprintf(stderr, "Sending and receiving 1 MB of test data ..\n");
-
-	link_sync();
-	send_word(0x100);
-
-	for (int k = 0; k < 1024*1024/64; k++)
-	{
-		for (int i = 0; i < 64; i++)
-			send_word(k ^ i);
-
-		while (recv_word() != 0x1ff) { }
-	}
 }
 
-void write_endpoint(int epnum, int trignum)
-{
-	link_sync(trignum);
-	send_word(0x100 + epnum);
 
-	for (int i = 0;; i++)
-	{
-		int byte = getchar();
-		if (byte < 0 || 255 < byte)
-			break;
-		send_word(byte);
-
-		if (i % 128 == 127)
-			while (recv_word() != 0x1ff) { }
-	}
-
-	if (send_zero)
-		send_word(0);
-
-	link_sync();
-}
-
-void read_endpoint(int epnum, int trignum)
-{
-	link_sync(trignum);
-
-	bool pending_fflush = false;
-
-	for (int timeout = 0; timeout < 1000 || recv_zero; timeout++) {
-		int byte = recv_word();
-		if (current_recv_ep == epnum && byte < 0x100) {
-			if (recv_zero && byte == 0)
-				break;
-			putchar(byte);
-			pending_fflush = true;
-			timeout = 0;
-		} else if (pending_fflush) {
-			pending_fflush = false;
-			fflush(stdout);
-		}
-	}
-
-	link_sync();
-}
-
-void console_endpoint(int epnum, int trignum)
-{
-	struct termios oldkey_stdin, oldkey_stdout, newkey;
-	int is_tty = isatty(STDIN_FILENO);
-
-	link_sync(trignum);
-	send_word(0x100 + epnum);
-
-	if (is_tty) {
-		tcgetattr(STDIN_FILENO, &oldkey_stdin);
-		tcgetattr(STDOUT_FILENO, &oldkey_stdout);
-		memset(&newkey, 0, sizeof(newkey));
-		newkey.c_cflag = B9600 | CS8 | CLOCAL | CREAD;
-		newkey.c_iflag = IGNPAR;
-		newkey.c_oflag = ONLCR;
-		newkey.c_lflag = 0;
-		newkey.c_cc[VMIN]=1;
-		newkey.c_cc[VTIME]=0;
-		tcflush(STDIN_FILENO, TCIFLUSH);
-		tcflush(STDOUT_FILENO, TCIFLUSH);
-		tcsetattr(STDIN_FILENO, TCSANOW, &newkey);
-		tcsetattr(STDOUT_FILENO, TCSANOW, &newkey);
-	}
-
-	bool running = true;
-	int wrcount = 0;
-
-	while (running)
-	{
-		struct timeval timeout = { 0, 10000 };
-		int max_fd = STDIN_FILENO+1;
-		fd_set fds;
-
-		FD_ZERO(&fds);
-		FD_SET(STDIN_FILENO, &fds);
-
-		int ret = select(max_fd, &fds, NULL, NULL, &timeout);
-
-		if (ret < 0)
-			break;
-
-		if (ret > 0) {
-			char ch = 0;
-			ret = read(STDIN_FILENO, &ch, 1);
-			if (ret == 0 || ch == 3) {
-				running = false;
-				if (send_zero)
-					send_word(ch);
-				digitalSync(10000);
-			} else {
-				wrcount++;
-				send_word(ch);
-				if (wrcount < 200)
-					continue;
-			}
-		}
-
-		int stop_cnt = 0;
-		while (1) {
-			int v = recv_word();
-			if ((v == 0x1ff) || (v == 0x1fe && wrcount < 100)) {
-				if (v == 0x1ff)
-					wrcount = 0;
-				if (!running && stop_cnt < 10) {
-					stop_cnt++;
-					digitalSync(10000);
-					continue;
-				}
-				if (!running && recv_zero)
-					continue;
-				break;
-			}
-			if (current_recv_ep == epnum && v < 0x100) {
-				char ch = v;
-				if (recv_zero && ch == 0)
-					break;
-				if (ch == '\n') {
-					int rc = write(STDOUT_FILENO, "\r", 1);
-					if (rc != 1) abort();
-				}
-				int rc = write(STDOUT_FILENO, &ch, 1);
-				if (rc != 1) abort();
-				stop_cnt = 0;
-			}
-		}
-	}
-
-	if (is_tty) {
-		tcsetattr(STDIN_FILENO, TCSANOW, &oldkey_stdin);
-		tcsetattr(STDOUT_FILENO, TCSANOW, &oldkey_stdout);
-	}
-
-	link_sync();
-}
-
-void read_dbgvcd(int nbits)
-{
-	link_sync(1);
-
-	fprintf(stderr, "Waiting for trigger: ");
-	printf("$var event 1 ! clock $end\n");
-	for (int i = 0; i < nbits; i++)
-		printf("$var wire 1 n%d debug_%d $end\n", i, i);
-	printf("$enddefinitions $end\n");
-
-	int nbytes = (nbits+7) / 8;
-	int clock_cnt = 0;
-	int byte_cnt = 0;
-	bool waiting = true;
-
-	for (int timeout = 0; timeout < 1000; timeout++)
-	{
-		int byte = recv_word();
-
-		if (waiting)
-			timeout = 0;
-
-		if (current_recv_ep != 1 || byte >= 0x100)
-			continue;
-
-		if (waiting) {
-			fprintf(stderr, "Triggered.\n");
-			fprintf(stderr, "Downloading: ");
-			waiting = false;
-		}
-
-		if (byte_cnt == 0)
-			printf("#%d\n1!\n", clock_cnt);
-
-		for (int bit = 0;  8*byte_cnt + bit < nbits && bit < 8; bit++)
-			printf("b%d n%d\n", (byte >> bit) & 1, 8*byte_cnt + bit);
-
-		if (++byte_cnt == nbytes) {
-			fprintf(stderr, ".");
-			byte_cnt = 0;
-			clock_cnt++;
-		}
-
-		timeout = 0;
-	}
-
-	fprintf(stderr, "\nReceived %d cycles of debug data.\n", clock_cnt);
-	link_sync();
-}
 
 void reset_inout()
 {
@@ -865,27 +499,6 @@ void reset_inout()
 		pinMode(RPI_ICE_MISO,    INPUT);
 		pinMode(RPI_ICE_CRESET,  INPUT);
 		pinMode(RPI_ICE_CS,      INPUT);
-	}
-
-	if (enable_data_port)
-	{
-		pinMode(RASPI_D8, INPUT);
-		pinMode(RASPI_D7, INPUT);
-		pinMode(RASPI_D6, INPUT);
-		pinMode(RASPI_D5, INPUT);
-		pinMode(RASPI_D4, INPUT);
-		pinMode(RASPI_D3, INPUT);
-		pinMode(RASPI_D2, INPUT);
-		pinMode(RASPI_D1, INPUT);
-		pinMode(RASPI_D0, INPUT);
-
-		pinMode(RASPI_DIR, OUTPUT);
-		pinMode(RASPI_CLK, OUTPUT);
-
-		digitalWrite(RASPI_DIR, LOW);
-		digitalWrite(RASPI_CLK, LOW);
-
-		current_send_recv_mode = 0;
 	}
 }
 
@@ -966,132 +579,28 @@ void run_config(char* config_file)
 		}
 	}
 
+	// setup SPI
+	int fd = wiringPiSPISetup(0, 500000);
 
-	// transmit encoded events via uart
-	
-	int uart0_filestream = -1;
-	
-	uart0_filestream = open("/dev/ttyAMA0", O_RDWR | O_NOCTTY); // | O_NDELAY);		
-	if (uart0_filestream == -1)
-	{
-		fprintf(stderr, "Can't open UART for event configuration!\n");
-	}
-
-
-
-
-  	// cancel the O_NDELAY flag
-  	// (copied from minicom)
-  	int n = fcntl(uart0_filestream, F_GETFL, 0);
-  	fcntl(uart0_filestream, F_SETFL, n & ~O_NDELAY);
-
-/*
-  // CONFIGURE THE UART
-  // The flags (defined in /usr/include/termios.h - 
-  // see http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html):
-  tcgetattr(uart0_filestream, &options);
-  cfsetospeed(&options,B57600);
-  cfsetispeed(&options,B57600);
-  options.c_cflag =  (options.c_cflag & ~CSIZE) | CS8; // 8 bits
-  options.c_cflag |=  CLOCAL | CREAD;  // ignore mode status, enable rec.
-  options.c_cflag &=  ~(PARENB | PARODD | CSTOPB); // No parity, 1 stop bit
-  
-  options.c_iflag = IGNBRK;
-  options.c_iflag &= ~(IXON|IXOFF|IXANY);
-
-  options.c_oflag = 0;
-  options.c_lflag = 0;
-  tcsetattr(uart0_filestream, TCSANOW, &options); // set the options NOW
-  return 0;
-} // setup_uart
-
-
-
-*/	
-
-	struct termios options;
-	tcgetattr(uart0_filestream, &options);
-	
-	/*
-	options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;	
-	options.c_iflag = IGNPAR;
-	options.c_oflag = 0;
-	options.c_lflag = 0;
-	
-	tcflush(uart0_filestream, TCIFLUSH); //??
-	*/
-
-
-  	cfsetospeed(&options,B9600);
-  	cfsetispeed(&options,B9600);
-  	options.c_cflag =  (options.c_cflag & ~CSIZE) | CS8; // 8 bits
-  	options.c_cflag |=  CLOCAL | CREAD;  // ignore mode status, enable rec.
-  	options.c_cflag &=  ~(PARENB | PARODD | CSTOPB); // No parity, 1 stop bit
-  
-  	options.c_iflag = IGNBRK;
-  	options.c_iflag &= ~(IXON|IXOFF|IXANY);
-
-  	options.c_oflag = 0;
-  	options.c_lflag = 0;
-
-	tcsetattr(uart0_filestream, TCSANOW, &options);
-	
 	// setup SYN
 	unsigned char tx_buffer[8] = {0};
 	tx_buffer[0] = 'E';
 	tx_buffer[1] = 'L';
 	tx_buffer[2] = 'O';
-	tx_buffer[3] = '\n';
-	
-	// send SYN
-	if (uart0_filestream != -1)
-	{
-		int wr = write(uart0_filestream, &tx_buffer[0], 4);
-		if (wr < 0)
-			fprintf(stderr, "Error transmitting SYN .. \n");
-	}
 
+	
+	int ack_ok = wiringPiSPIDataRW(0, tx_buffer, 3);
+	fprintf(stdout, "spi syn return: %d", ack_ok);	
+	
 	// read ACK
-	int ack_ok = 0;
-	int patience = 5;
+	//int ack_ok = 0;
 	
-	while (true) {
-	if (uart0_filestream != -1)
-	{
-		unsigned char rx_buffer[5] = { 0 };
-		int rd = read(uart0_filestream, (void*) rx_buffer, 4);
-		if (rd < 0) {
-			fprintf(stderr, "Can't read from UART (%d: %d)!\n", patience, rd);
-			if (patience == 0) 
-				break; 
-			sleep(1);	
-			patience--;
-
-		} else if (rd == 0) {
-			fprintf(stderr, "UART ACK failed!\n");
-			break;
-		} else {
-			rx_buffer[3] = '\0';
-			if (verbose) 
-				printf("got: %s for ACK\n", rx_buffer);
-			
-			if ( rx_buffer[0] == 'E' 
-				&& rx_buffer[1] == 'L' 
-				&& rx_buffer[2] == 'O' ) 
-			{
-				ack_ok = 1;
-				break;
-			}	
-		}
-	}
-	}
-
 	// send encoded events
 	
 	if (ack_ok) 
 	{
 		uint64_t events_[16];
-		for (uint64_t i = 0; i < 16; i++) //TODO: fix size
+		for (uint64_t i = 0; i < 16; i++) 
 		{
 			uint64_t event_tr = 0x0123456789abcdef;
 			//event_tr |= (i << 15);			
@@ -1105,34 +614,11 @@ void run_config(char* config_file)
 			
 			//unsigned char byte = ((unsigned char *)(&events_))[i]; // read array byte-wise	
 			fprintf(stdout, "transmitting event %d: %016llx .. \n", i, events_[i]);
-			int wr = write(uart0_filestream, &events_[i], 8);	
-			//sleep(1);
-			int patience = 2;
-			while (false) {
-				unsigned char rx_buffer[9] = { '\0' };
-				//uint64_t rx_buffer = 0;
-				int rd = read(uart0_filestream, (void*) rx_buffer, 8);
-				if (rd > 0 ) {
-					//fprintf(stdout, "got %16llx back .. \n", rx_buffer);
-					fprintf(stdout, "got %s back .. \n", rx_buffer);
-					break;
-
-				} else {
-					if (patience <= 0)
-						break;
-					fprintf(stderr, "Can't read back from UART! (%d: %d)\n", patience, rd);
-					sleep(1);
-					patience--;
-				}
-			};
-			
+			wiringPiSPIDataRW(0, ((unsigned char*)  &events_[i]), 8);
 
 		}
 			
 	}
-
-	// release uart
-	close(uart0_filestream);
 
 }
 
@@ -1161,31 +647,9 @@ void help(const char *progname)
 	fprintf(stderr, "Reading serial flash (first N bytes):\n");
 	fprintf(stderr, "    %s -F N > data.bin\n", progname);
 	fprintf(stderr, "\n");
-	fprintf(stderr, "Testing bit-parallel link (using ep0):\n");
-	fprintf(stderr, "    %s -T\n", progname);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "Testing link bandwidth (using ep0):\n");
-	fprintf(stderr, "    %s -B\n", progname);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "Writing a file to ep N:\n");
-	fprintf(stderr, "    %s -w N < data.bin\n", progname);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "Reading a file from ep N:\n");
-	fprintf(stderr, "    %s -r N > data.bin\n", progname);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "Console at ep N:\n");
-	fprintf(stderr, "    %s -c N\n", progname);
-	fprintf(stderr, "\n");
-	fprintf(stderr, "Dumping a VCD file (from ep1, using trig1)\n");
-	fprintf(stderr, "  with a debug core with N bits width:\n");
-	fprintf(stderr, "    %s -V N > dbg_trace.vcd\n", progname);
-	fprintf(stderr, "\n");
 	fprintf(stderr, "Additional options:\n");
 	fprintf(stderr, "    -v      verbose output\n");
 	fprintf(stderr, "    -O N    offset (in 64 kB pages) for -f and -e\n");
-	fprintf(stderr, "    -z      send a terminating zero byte with -w/-c\n");
-	fprintf(stderr, "    -Z      wait for terminating zero byte in -r/-c\n");
-	fprintf(stderr, "    -t N    send trigger N before -w/-r/-c\n");
 	fprintf(stderr, "\n");
 	exit(1);
 }
@@ -1198,14 +662,10 @@ int main(int argc, char **argv)
 	char mode = 0;
 	char *config_file;
 
-	while ((opt = getopt(argc, argv, "RbEpfeFC:TBw:r:c:vzZt:O:V:")) != -1)
+	while ((opt = getopt(argc, argv, "RbEpfevF:C:O:")) != -1)
 	{
 		switch (opt)
 		{
-		case 'w':
-		case 'r':
-		case 'c':
-		case 'V':
 		case 'F':
 			n = atoi(optarg);
 			// fall through
@@ -1218,27 +678,12 @@ int main(int argc, char **argv)
 		case 'p':
 		case 'f':
 		case 'e':
-		case 'T':
-		case 'B':
 			if (mode)
 				help(argv[0]);
 			mode = opt;
 			break;
-
 		case 'v':
 			verbose = true;
-			break;
-
-		case 'z':
-			send_zero = true;
-			break;
-
-		case 'Z':
-			recv_zero = true;
-			break;
-
-		case 't':
-			t = atoi(optarg);
 			break;
 
 		case 'O':
@@ -1318,53 +763,6 @@ int main(int argc, char **argv)
 		reset_inout();
 	}
 
-	if (mode == 'T') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		test_link();
-		reset_inout();
-	}
-
-	if (mode == 'B') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		test_bw();
-		reset_inout();
-	}
-
-	if (mode == 'w') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		write_endpoint(n, t);
-		reset_inout();
-	}
-
-	if (mode == 'r') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		read_endpoint(n, t);
-		reset_inout();
-	}
-
-	if (mode == 'c') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		console_endpoint(n, t);
-		reset_inout();
-	}
-
-	if (mode == 'V') {
-		enable_data_port = true;
-		wiringPiSetup();
-		reset_inout();
-		read_dbgvcd(n);
-		reset_inout();
-	}
 
 	if (verbose)
 		fprintf(stderr, "\n");
