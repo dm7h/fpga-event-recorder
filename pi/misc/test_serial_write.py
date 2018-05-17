@@ -7,17 +7,21 @@ import serial
       
 ser = serial.Serial(
 
-port='/dev/ttyS0',
+port='/dev/ttyAMA0',
   baudrate = 9600,
   parity=serial.PARITY_NONE,
   stopbits=serial.STOPBITS_ONE,
   bytesize=serial.EIGHTBITS,
   timeout=1
 )
-counter=0
+counter=50
+
+ser.write('ELO\n');
+time.sleep(1);
 
       
 while 1:
-  ser.write('%d \n'%(counter))
+  trig = [1,2,3,4,5,6,7,8]
+  ser.write([counter])
   time.sleep(1)
   counter += 1

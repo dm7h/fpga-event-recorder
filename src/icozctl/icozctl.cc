@@ -30,9 +30,11 @@
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <termios.h>
 #include <assert.h>
 #include <vector>
+
 
 #include <yaml-cpp/yaml.h>
 #include <bitset>
@@ -895,6 +897,8 @@ void run_config(char* config_file)
 	// coded events
 	std::vector<uint64_t> events; 
 	
+	
+	// read events from config file
 	YAML::Node config = YAML::LoadFile(config_file);
 	if (config["version"]) {
 		fprintf(stdout, "Reading config file (version: %s) ...\n", config["version"].as<std::string>().c_str());
@@ -951,14 +955,184 @@ void run_config(char* config_file)
 					enc |= ((uint64_t) trigger_flag) << ((15 - i) * 3);
 				}		
 				
-				if (verbose)
+				if (verbose) {
 					std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
+					fprintf(stdout, "encoded: %16llx \n", enc);
+				}
+				events.push_back(enc);
 				id++;
 			}		
 
 		}
 	}
 
+
+	// transmit encoded events via uart
+	
+	int uart0_filestream = -1;
+	
+	uart0_filestream = open("/dev/ttyAMA0", O_RDWR | O_NOCTTY); // | O_NDELAY);		
+	if (uart0_filestream == -1)
+	{
+		fprintf(stderr, "Can't open UART for event configuration!\n");
+	}
+
+
+
+
+  	// cancel the O_NDELAY flag
+  	// (copied from minicom)
+  	int n = fcntl(uart0_filestream, F_GETFL, 0);
+  	fcntl(uart0_filestream, F_SETFL, n & ~O_NDELAY);
+
+/*
+  // CONFIGURE THE UART
+  // The flags (defined in /usr/include/termios.h - 
+  // see http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html):
+  tcgetattr(uart0_filestream, &options);
+  cfsetospeed(&options,B57600);
+  cfsetispeed(&options,B57600);
+  options.c_cflag =  (options.c_cflag & ~CSIZE) | CS8; // 8 bits
+  options.c_cflag |=  CLOCAL | CREAD;  // ignore mode status, enable rec.
+  options.c_cflag &=  ~(PARENB | PARODD | CSTOPB); // No parity, 1 stop bit
+  
+  options.c_iflag = IGNBRK;
+  options.c_iflag &= ~(IXON|IXOFF|IXANY);
+
+  options.c_oflag = 0;
+  options.c_lflag = 0;
+  tcsetattr(uart0_filestream, TCSANOW, &options); // set the options NOW
+  return 0;
+} // setup_uart
+
+
+
+*/	
+
+	struct termios options;
+	tcgetattr(uart0_filestream, &options);
+	
+	/*
+	options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;	
+	options.c_iflag = IGNPAR;
+	options.c_oflag = 0;
+	options.c_lflag = 0;
+	
+	tcflush(uart0_filestream, TCIFLUSH); //??
+	*/
+
+
+  	cfsetospeed(&options,B9600);
+  	cfsetispeed(&options,B9600);
+  	options.c_cflag =  (options.c_cflag & ~CSIZE) | CS8; // 8 bits
+  	options.c_cflag |=  CLOCAL | CREAD;  // ignore mode status, enable rec.
+  	options.c_cflag &=  ~(PARENB | PARODD | CSTOPB); // No parity, 1 stop bit
+  
+  	options.c_iflag = IGNBRK;
+  	options.c_iflag &= ~(IXON|IXOFF|IXANY);
+
+  	options.c_oflag = 0;
+  	options.c_lflag = 0;
+
+	tcsetattr(uart0_filestream, TCSANOW, &options);
+	
+	// setup SYN
+	unsigned char tx_buffer[8] = {0};
+	tx_buffer[0] = 'E';
+	tx_buffer[1] = 'L';
+	tx_buffer[2] = 'O';
+	tx_buffer[3] = '\n';
+	
+	// send SYN
+	if (uart0_filestream != -1)
+	{
+		int wr = write(uart0_filestream, &tx_buffer[0], 4);
+		if (wr < 0)
+			fprintf(stderr, "Error transmitting SYN .. \n");
+	}
+
+	// read ACK
+	int ack_ok = 0;
+	int patience = 5;
+	
+	while (true) {
+	if (uart0_filestream != -1)
+	{
+		unsigned char rx_buffer[5] = { 0 };
+		int rd = read(uart0_filestream, (void*) rx_buffer, 4);
+		if (rd < 0) {
+			fprintf(stderr, "Can't read from UART (%d: %d)!\n", patience, rd);
+			if (patience == 0) 
+				break; 
+			sleep(1);	
+			patience--;
+
+		} else if (rd == 0) {
+			fprintf(stderr, "UART ACK failed!\n");
+			break;
+		} else {
+			rx_buffer[3] = '\0';
+			if (verbose) 
+				printf("got: %s for ACK\n", rx_buffer);
+			
+			if ( rx_buffer[0] == 'E' 
+				&& rx_buffer[1] == 'L' 
+				&& rx_buffer[2] == 'O' ) 
+			{
+				ack_ok = 1;
+				break;
+			}	
+		}
+	}
+	}
+
+	// send encoded events
+	
+	if (ack_ok) 
+	{
+		uint64_t events_[16];
+		for (uint64_t i = 0; i < 16; i++) //TODO: fix size
+		{
+			uint64_t event_tr = 0x0123456789abcdef;
+			//event_tr |= (i << 15);			
+			if ( i < events.size() )
+			       event_tr = events[i];	
+			events_[i] = event_tr;
+		
+		}
+		//unsigned char* events_ptr = &events_;
+		for (int i = 0; i < (16); i++) {
+			
+			//unsigned char byte = ((unsigned char *)(&events_))[i]; // read array byte-wise	
+			fprintf(stdout, "transmitting event %d: %016llx .. \n", i, events_[i]);
+			int wr = write(uart0_filestream, &events_[i], 8);	
+			//sleep(1);
+			int patience = 2;
+			while (false) {
+				unsigned char rx_buffer[9] = { '\0' };
+				//uint64_t rx_buffer = 0;
+				int rd = read(uart0_filestream, (void*) rx_buffer, 8);
+				if (rd > 0 ) {
+					//fprintf(stdout, "got %16llx back .. \n", rx_buffer);
+					fprintf(stdout, "got %s back .. \n", rx_buffer);
+					break;
+
+				} else {
+					if (patience <= 0)
+						break;
+					fprintf(stderr, "Can't read back from UART! (%d: %d)\n", patience, rd);
+					sleep(1);
+					patience--;
+				}
+			};
+			
+
+		}
+			
+	}
+
+	// release uart
+	close(uart0_filestream);
 
 }
 
