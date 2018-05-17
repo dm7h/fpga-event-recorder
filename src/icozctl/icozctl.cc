@@ -945,9 +945,9 @@ void run_config(char* config_file)
 					if (i <= ev_trigger.size() - 1) {
 					       switch(ev_trigger[i]) {
 						       case '0': trigger_flag = 0; break;
-						       case '1': trigger_flag = 1; break;
-						       case 'u': trigger_flag = 2; break;
-						       case 'd': trigger_flag = 3; break;
+						       case '1': trigger_flag = 3; break;
+						       case 'u': trigger_flag = 1; break;
+						       case 'd': trigger_flag = 2; break;
 					       }
 
 					}
