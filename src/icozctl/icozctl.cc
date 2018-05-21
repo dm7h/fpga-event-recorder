@@ -35,10 +35,18 @@
 #include <assert.h>
 #include <vector>
 
+// SPI (spidev)
+#include <sys/ioctl.h>
+#include <linux/types.h>
+#include <linux/spi/spidev.h>
 
+// YAML parsing
 #include <yaml-cpp/yaml.h>
 #include <bitset>
 #include <iostream>
+
+// wiringPi for GPIO control
+#include <wiringPi.h>
 
 
 bool verbose = false;
@@ -48,8 +56,7 @@ bool enable_prog_port = false;
 bool enable_data_port = false;
 
 
-#include <wiringPi.h>
-#include <wiringPiSPI.h>
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
 #  define RPI_ICE_CLK     27 
 #  define RPI_ICE_CDONE   21 
@@ -394,6 +401,9 @@ void prog_flashmem(int pageoffset, bool erase_first_block)
 			flash_write(addr + pageoffset * 0x10000, &prog_data[addr], n);
 			ms_timer += flash_wait();
 
+			// short cut (TODO: remove!)
+			goto written_ok;
+
 			flash_read(addr + pageoffset * 0x10000, buffer, n);
 
 			if (!memcmp(buffer, &prog_data[addr], n)) {
@@ -473,6 +483,7 @@ void send_word(int v)
 
 int recv_word(int timeout = 0)
 {
+	return -1;
 }
 
 void link_sync(int trignum = -1)
@@ -501,6 +512,8 @@ void reset_inout()
 		pinMode(RPI_ICE_CS,      INPUT);
 	}
 }
+
+
 
 
 
@@ -569,8 +582,8 @@ void run_config(char* config_file)
 				}		
 				
 				if (verbose) {
-					std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
-					fprintf(stdout, "encoded: %16llx \n", enc);
+					//std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
+					fprintf(stdout, "encoded: %016llx \n", enc);
 				}
 				events.push_back(enc);
 				id++;
@@ -580,46 +593,127 @@ void run_config(char* config_file)
 	}
 
 	// setup SPI
-	int fd = wiringPiSPISetup(0, 500000);
 
-	// setup SYN
-	unsigned char tx_buffer[8] = {0};
-	tx_buffer[0] = 'E';
-	tx_buffer[1] = 'L';
-	tx_buffer[2] = 'O';
 
-	
-	int ack_ok = wiringPiSPIDataRW(0, tx_buffer, 3);
-	fprintf(stdout, "spi syn return: %d", ack_ok);	
-	
-	// read ACK
-	//int ack_ok = 0;
-	
-	// send encoded events
-	
-	if (ack_ok) 
-	{
-		uint64_t events_[16];
-		for (uint64_t i = 0; i < 16; i++) 
-		{
-			uint64_t event_tr = 0x0123456789abcdef;
-			//event_tr |= (i << 15);			
-			if ( i < events.size() )
-			       event_tr = events[i];	
-			events_[i] = event_tr;
+	int ret;
+	int fd;
+	uint8_t mode = 1;
+	uint8_t bits = 8;
+	uint16_t delay = 0;
+	uint32_t speed = 3000000;
+
+	fd = open("/dev/spidev0.0", O_RDWR);
+	if (fd < 0)
+		fprintf(stderr,"Can't open SPI device\n");
+
+	/*
+	 * spi mode
+	 */
+	ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
+	if (ret == -1)
+		fprintf(stderr,"Can't set spi mode\n");
+
+	ret = ioctl(fd, SPI_IOC_RD_MODE, &mode);
+	if (ret == -1)
+		fprintf(stderr,"can't get spi mode\n");
+
+	/*
+	 * bits per word
+	 */
+	ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &bits);
+	if (ret == -1)
+		fprintf(stderr,"can't set bits per word\n");
+
+	ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &bits);
+	if (ret == -1)
+		fprintf(stderr,"can't get bits per word\n");
+
+	/*
+	 * max speed hz
+	 */
+	ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed);
+	if (ret == -1)
+		fprintf(stderr,"can't set max speed hz\n");
+
+	ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &speed);
+	if (ret == -1)
+		fprintf(stderr,"can't get max speed hz\n");
+
+	//ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, 0);	
+
+	fprintf(stdout, "\n===\nSPI Configuration:\nspi mode: %d\n", mode);
+	fprintf(stdout, "bits per word: %d\n", bits);
+	fprintf(stdout, "max speed: %d Hz (%d KHz)\n", speed, speed/1000);
+
+
+	for (int i = 0; i < events.size(); i++) {
 		
-		}
-		//unsigned char* events_ptr = &events_;
-		for (int i = 0; i < (16); i++) {
-			
-			//unsigned char byte = ((unsigned char *)(&events_))[i]; // read array byte-wise	
-			fprintf(stdout, "transmitting event %d: %016llx .. \n", i, events_[i]);
-			wiringPiSPIDataRW(0, ((unsigned char*)  &events_[i]), 8);
+		fprintf(stdout, "---\nSPI: sending event %d: %16llx\n", i, events[i]);
+		
+		// receive buffer
+		uint8_t rx[12] = {0, };
+		
+		// single bytes of current event
+		uint8_t *ev_ptr = (uint8_t *) &(events[i]);
+		
 
+		// setup transmit buffer with trigger config command
+		uint8_t tx[4] = { 0x01, 0x00, 0x00, 0x00};
+		
+
+		struct spi_ioc_transfer tr = {
+			tx_buf : (unsigned long) tx,
+			rx_buf : (unsigned long) rx,
+			len : ARRAY_SIZE(tx),
+			speed_hz : speed,
+			delay_usecs : delay,
+			bits_per_word : bits
+		};
+
+		
+		// send command
+		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
+		if (ret < 1)
+			fprintf(stderr, "can't send spi message");
+
+		
+		// send first 4 bytes (and change endianess) 
+		tr.rx_buf = (unsigned long) &(rx[4]);
+		for (int h = 0; h < 4; h++) 
+			tx[h] = ev_ptr[h];
+		tr.tx_buf = (unsigned long) tx;
+
+		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
+		if (ret < 1)
+			fprintf(stderr, "can't send spi message");
+
+
+
+		// send last 4 bytes
+		tr.rx_buf = (unsigned long) &(rx[8]);
+		for (int h = 0; h < 4; h++) 
+			tx[h] = ev_ptr[4+h];
+		tr.tx_buf = (unsigned long) tx;
+
+		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
+		if (ret < 1)
+			fprintf(stderr, "can't send spi message");
+
+
+
+		// show what we got back
+		fprintf(stdout, "SPI: returned:");
+
+		for (ret = 0; ret < ARRAY_SIZE(rx); ret++) {
+			if (!(ret % 12))
+				puts("");
+			printf("%.2X ", rx[ret]);
 		}
-			
+		puts("");	
+
 	}
 
+	close(fd);
 }
 
 
@@ -657,7 +751,7 @@ void help(const char *progname)
 
 int main(int argc, char **argv)
 {
-	int opt, n = -1, t = -1;
+	int opt, n = -1;
 	int pageoffset = 0;
 	char mode = 0;
 	char *config_file;
