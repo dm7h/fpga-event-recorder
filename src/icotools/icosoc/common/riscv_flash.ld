@@ -13,6 +13,7 @@ SECTIONS
   . = 0x00010000;
   .text.sram : {
     *(.text.sram)
+    *(.text.main)
   }
   text_sram_end = .;
 

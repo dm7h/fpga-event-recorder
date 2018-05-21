@@ -76,7 +76,7 @@ def setboard(boardname):
             "56 48 45 43 55 47 44 42".split(),
             "26 29 28 52 41 39 38 37".split(),
             "21 20 8 7 1 144 143 142".split(),
-            "112 113 79 0 0 0 0 0".split(),
+            #"112 113 79 0 0 0 0 0".split(),
         ]
         board_package = "tq144:4k"
 
@@ -88,6 +88,16 @@ def make_pins(pname):
     used_board = True
 
     ploc = None
+    
+    allowed_signals = ['CLKIN']
+    if pname in allowed_signals:
+        return [pname]
+    
+    additional_pnames = "PI_CE0 PI_SCLK PI_MOSI PI_MISO".split()
+    additional_plocs = "85 79 90 87".split()
+    
+    if pname in additional_pnames:
+        ploc = additional_plocs[additional_pnames.index(pname)]
 
     # set board to icoboard if none is given in the config
     if board == "":
@@ -445,6 +455,45 @@ icosoc_v["30-sramif"].append("""
     assign HRAM_CK = 0;
 """)
 
+
+icosoc_v["30-uart"].append("""
+    // -------------------------------
+    wire tx_req;
+    wire tx_ready;
+    wire [7:0] tx_data;
+    wire rx_req;
+    wire rx_ready;
+    wire [7:0] rx_data;
+    wire reset_;
+    //sync_reset u_sync_reset(
+      //  .clk(clk),
+        //.reset_in_(!GRESET),
+        //.reset_out_(reset_)
+    //);
+    uart_rx #(.BAUD(115200)) u_uart_rx (
+        .clk (clk),
+        .reset_(resetn),
+        .rx_req(rx_req),
+        .rx_ready(rx_ready),
+        .rx_data(rx_data),
+        .uart_rx(RX)
+    );
+    // The uart_tx baud rate is slightly higher than 115200.
+    // This is to avoid dropping bytes when the PC sends data at a rate that's a bit faster
+    // than 115200. 
+    // In a normal design, one typically wouldn't use immediate loopback, so 115200 would be the 
+    // right value.
+    uart_tx #(.BAUD(115200)) u_uart_tx (
+        .clk (clk),
+        .reset_(resetn),
+        .tx_req(tx_req),
+        .tx_ready(tx_ready),
+        .tx_data(tx_data),
+        .uart_tx(TX)
+    );
+""")
+
+'''
 icosoc_v["30-raspif"].append("""
     // -------------------------------
     // RasPi Interface
@@ -567,6 +616,7 @@ icosoc_v["30-raspif"].append("""
     assign send_ep0_valid = recv_ep0_valid;
     assign recv_ep0_ready = send_ep0_ready;
 """)
+'''
 
 icosoc_v["40-cpu"].append("""
     // -------------------------------
@@ -846,10 +896,10 @@ icosoc_v["70-bus"].append("""
 """)
 
 icosoc_v["72-bus"].append("""
-        if (send_ep2_ready)
-            send_ep2_valid <= 0;
+        if (tx_ready)
+            tx_req <= 0;
 
-        recv_ep2_ready <= 0;
+        rx_ready <= 0;
 
         if (!resetn) begin
             LED1 <= 0;
@@ -860,9 +910,9 @@ icosoc_v["72-bus"].append("""
             spiflash_sclk <= 1;
             spiflash_mosi <= 0;
 
-            send_ep2_valid <= 0;
             spiflash_state <= 0;
         end else
+        
         if (mem_valid && !mem_ready) begin
             (* parallel_case *)
             case (1)
@@ -959,15 +1009,17 @@ icosoc_v["76-bus"].append("""
                 end
                 (mem_addr & 32'hF000_0000) == 32'h3000_0000: begin
                     if (mem_wstrb) begin
-                        if (send_ep2_ready || !send_ep2_valid) begin
-                            send_ep2_valid <= 1;
-                            send_ep2_data <= mem_wdata;
+                        LED2 <= 1;
+                        if (tx_ready || !tx_req) begin
+                            tx_req <= 1;
+                            tx_data <= mem_wdata;
                             mem_ready <= 1;
                         end
                     end else begin
-                        if (recv_ep2_valid && !recv_ep2_ready) begin
-                            recv_ep2_ready <= 1;
-                            mem_rdata <= recv_ep2_data;
+                        if (rx_req && !rx_ready) begin
+                            rx_ready <= 1;
+                            LED2 <= 1;
+                            mem_rdata <= rx_data;
                         end else begin
                             mem_rdata <= ~0;
                         end
@@ -991,11 +1043,11 @@ icosoc_v["78-bus"].append("""
 """)
 
 icosoc_v["10-moddecl"].append("module icosoc (")
-icosoc_v["10-moddecl"].append("    input CLKIN,")
-icosoc_v["10-moddecl"].append("    output reg LED1, LED2, LED3,")
+icosoc_v["10-moddecl"].append("    input CLKIN, RX,")
+icosoc_v["10-moddecl"].append("    output reg LED1, LED2, LED3, TX,")
 icosoc_v["10-moddecl"].append("")
 
-iowires |= set("CLKIN LED1 LED2 LED3".split())
+iowires |= set("CLKIN RX LED1 LED2 LED3 TX".split())
 
 icosoc_v["12-iopins"].append("")
 
@@ -1009,7 +1061,20 @@ iowires.add("SPI_FLASH_CS")
 iowires.add("SPI_FLASH_SCLK")
 iowires.add("SPI_FLASH_MOSI")
 iowires.add("SPI_FLASH_MISO")
+'''
+icosoc_v["15-moddecl"].append("    inout PI_CE0,")
+icosoc_v["15-moddecl"].append("    inout PI_SCLK,")
+icosoc_v["15-moddecl"].append("    output PI_MOSI,")
+icosoc_v["15-moddecl"].append("    input  PI_MISO,")
+icosoc_v["15-moddecl"].append("")
 
+iowires.add("PI_CE0")
+iowires.add("PI__SCLK")
+iowires.add("PI_MOSI")
+iowires.add("PI_MISO")
+'''
+
+'''
 icosoc_v["15-moddecl"].append("    // RasPi Interface: 9 Data Lines (cmds have MSB set)")
 icosoc_v["15-moddecl"].append("    inout RASPI_11, RASPI_12, RASPI_15, RASPI_16, RASPI_19, RASPI_21, RASPI_26, RASPI_35, RASPI_36,")
 icosoc_v["15-moddecl"].append("")
@@ -1018,6 +1083,7 @@ icosoc_v["15-moddecl"].append("    input RASPI_38, RASPI_40,")
 icosoc_v["15-moddecl"].append("")
 
 iowires |= set("RASPI_11 RASPI_12 RASPI_15 RASPI_16 RASPI_19 RASPI_21 RASPI_26 RASPI_35 RASPI_36 RASPI_38 RASPI_40".split())
+'''
 
 icosoc_v["15-moddecl"].append("    // SRAM and HRAM Interface")
 icosoc_v["15-moddecl"].append("    output SRAM_A0, SRAM_A1, SRAM_A2, SRAM_A3, SRAM_A4, SRAM_A5, SRAM_A6, SRAM_A7,")
@@ -1126,22 +1192,25 @@ set_io LED1 110
 set_io LED2 93
 set_io LED3 94
 
+set_io RX 113
+set_io TX 112
+
 set_io SPI_FLASH_CS   71
 set_io SPI_FLASH_SCLK 70
 set_io SPI_FLASH_MOSI 67
 set_io SPI_FLASH_MISO 68
 
-set_io RASPI_11 115
-set_io RASPI_12 114
-set_io RASPI_15 73
-set_io RASPI_16 74
-set_io RASPI_19 90
-set_io RASPI_21 87
-set_io RASPI_26 78
-set_io RASPI_35 85
-set_io RASPI_36 88
-set_io RASPI_38 99
-set_io RASPI_40 101
+#set_io RASPI_11 115
+#set_io RASPI_12 114
+#set_io RASPI_15 73
+#set_io RASPI_16 74
+#set_io RASPI_19 90
+#set_io RASPI_21 87
+#set_io RASPI_26 78
+#set_io RASPI_35 85
+#set_io RASPI_36 88
+#set_io RASPI_38 99
+#set_io RASPI_40 101
 
 set_io SRAM_A0  34
 set_io SRAM_A1  33
@@ -1273,9 +1342,18 @@ icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("prog_flash: icosoc.bin appimage.hex")
 icosoc_mk["10-top"].append("\tpython3 %s/common/flashbin.py" % basedir)
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icezprog -' < icosoc.bin")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f' < icosoc.bin")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O8 -f' < appimage_lo.bin")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O16 -f' < appimage_hi.bin")
+icosoc_mk["10-top"].append("")
+icosoc_mk["10-top"].append("prog_app: appimage.hex")
+icosoc_mk["10-top"].append("\tpython3 %s/common/flashbin.py" % basedir)
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O8 -f' < appimage_lo.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -O16 -f' < appimage_hi.bin")
+icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("reset_halt:")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
@@ -1288,23 +1366,23 @@ icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("reset_boot:")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -Zr2'")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -Zr2'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("run: icosoc.bin appimage.hex")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f' < icosoc.bin")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("softrun: appimage.hex")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f'  < icosoc.bin")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -f'  < icosoc.bin")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -b'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -zZc2' < appimage.hex")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("console:")
 icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'killall -9 icozctl || true'")
-icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -c2'")
+#icosoc_mk["10-top"].append("\t$(SSH_RASPI) 'icozctl -c2'")
 icosoc_mk["10-top"].append("")
 icosoc_mk["10-top"].append("debug:")
 icosoc_mk["10-top"].append("\tgrep '// debug_.*->' icosoc.v")
@@ -1317,11 +1395,14 @@ icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/picorv32.v" % 
 icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/icosoc_crossclkfifo.v" % basedir)
 icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/icosoc_debugger.v" % basedir)
 icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/icosoc_flashmem.v" % basedir)
-icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/icosoc_raspif.v" % basedir)
+#icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/icosoc_raspif.v" % basedir)
+icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/uart_rx.v" % basedir)
+icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/uart_tx.v" % basedir)
+icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/sync_dd_c.v" % basedir)
 icosoc_ys["50-synthesis"].append("synth_ice40 -top icosoc -blif icosoc.blif")
 
 icosoc_mk["50-synthesis"].append("icosoc.blif: icosoc.v icosoc.ys firmware_seed.hex")
-icosoc_mk["50-synthesis"].append("\tyosys -l icosoc.log -v3 icosoc.ys")
+icosoc_mk["50-synthesis"].append("\tyosys -l icosoc.log -v1 icosoc.ys")
 
 icosoc_mk["50-synthesis"].append("icosoc.asc: icosoc.blif icosoc.pcf")
 icosoc_mk["50-synthesis"].append("\tset -x; for seed in 1234 2345 3456 4567 5678 6789 7890; do \\")
@@ -1341,7 +1422,10 @@ tbfiles.add("%s/common/picorv32.v" % basedir)
 tbfiles.add("%s/common/icosoc_crossclkfifo.v" % basedir)
 tbfiles.add("%s/common/icosoc_debugger.v" % basedir)
 tbfiles.add("%s/common/icosoc_flashmem.v" % basedir)
-tbfiles.add("%s/common/icosoc_raspif.v" % basedir)
+#tbfiles.add("%s/common/icosoc_raspif.v" % basedir)
+tbfiles.add("%s/common/uart_rx.v" % basedir)
+tbfiles.add("%s/common/uart_tx.v" % basedir)
+tbfiles.add("%s/common/sync_dd_c.v" % basedir)
 tbfiles.add("%s/common/sim_sram.v" % basedir)
 tbfiles.add("%s/common/sim_spiflash.v" % basedir)
 tbfiles |= modvlog
@@ -1450,7 +1534,9 @@ testbench["30-inst"].append("")
 testbench["90-footer"].append("""
     assign CLKIN = clk;
 
-    wire [8:0] raspi_din;
+"""
+'''
+wire [8:0] raspi_din;
     reg [8:0] raspi_dout = 9'b z_zzzz_zzzz;
     reg raspi_clk = 0;
     reg raspi_dir = 0;
@@ -1490,7 +1576,8 @@ testbench["90-footer"].append("""
 
     reg [7:0] raspi_current_ep;
     reg [8:0] raspi_current_word;
-
+'''
+"""
     event appimage_ready;
 
     initial begin
@@ -1503,13 +1590,13 @@ testbench["90-footer"].append("""
 
         $display("-- Printing console messages --");
         forever begin
-            raspi_recv_word(raspi_current_word);
+            /*raspi_recv_word(raspi_current_word);
             if (raspi_current_word[8]) begin
                 raspi_current_ep = raspi_current_word[7:0];
             end else if (raspi_current_ep == 2) begin
                 $write("%c", raspi_current_word[7:0]);
                 $fflush();
-            end
+            end*/
         end
     end
 
