@@ -117,7 +117,7 @@ int main()
 	spiflash_xfer(0xab);
 	spiflash_end();
 
-//#if 0
+#if 0
 	console_puts("Flash ID:");
 	spiflash_begin();
 	spiflash_xfer(0x9f);
@@ -146,7 +146,7 @@ int main()
 	for (char *p = (void*)0x40000000; *p >= 32 && *p < 127; p++)
 		console_putc(*p);
 	console_putc('\n');
-//#endif
+#endif
 
 	// detect verilog testbench
 	if (((*(volatile uint32_t*)0x20000000) & 0x80000000) != 0) {
@@ -155,11 +155,11 @@ int main()
 		return 0;
 	}
 
-	console_puts("Bootloader> ");
+	console_puts("\r\nBootloader> ");
 	uint8_t *memcursor = (uint8_t*)(64 * 1024);
 	int bytecount = 0;
-	console_puts("\nCUR: ");
-	console_puth32((uint32_t)memcursor);
+	//console_puts("\nCUR: ");
+	//console_puth32((uint32_t)memcursor);
 	while (1)
 	{
 		char ch = console_getc_timeout();
@@ -182,9 +182,9 @@ int main()
 			}
 
 			spiflash_end();
-			console_puts(" RUN\n");
-			console_puth32((uint32_t)memcursor);
-			console_puts(" \n");
+			console_puts(" RUN\r\n");
+			//console_puth32((uint32_t)memcursor);
+			//console_puts(" \n");
 			break;
 		}
 
@@ -199,7 +199,7 @@ int main()
 			}
 
 			if (ch == 0) {
-				console_puts("RUN\n");
+				console_puts("RUN\r\n");
 				console_puth32((uint32_t)memcursor);
 				console_puts("\n");
 				break;
