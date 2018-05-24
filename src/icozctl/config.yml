@@ -4,21 +4,21 @@ version: 0.1
 # event triggers
 events: 
   - start:
-          trigger: 0000000u
+          trigger: u
           func: start
 
   - stop:
-          trigger: 0000000d
+          trigger: d
           func: stop
 
   - event1:
-          trigger: 101xxxxxx
+          trigger: xxxxxxx101
 
   - event2_up:
-          trigger: uxxxxxxx
+          trigger: 00u
           func: dump_begin
 
   - event2_down:
-          trigger: dxxxxxxx
+          trigger: 00d
           func: dump_end,stop
 
