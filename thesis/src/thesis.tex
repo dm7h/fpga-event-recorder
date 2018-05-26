@@ -1,16 +1,44 @@
-\documentclass{wissdoc}
-%\documentclass[oneside]{wissdoc}
+
+
+%\documentclass{wissdoc}
+\documentclass[oneside]{wissdoc}
 % ----------------------------------------------------------------
 % Diplomarbeit - Hauptdokument
 % ----------------------------------------------------------------
 % wissdoc Optionen: draft, relaxed, pdf, oneside --> siehe wissdoc.cls
 % ------------------------------------------------------------------
 % Packages für Deckblatt
+
 \usepackage[absolute]{textpos} 	%Textboxen an absolute Position setzen
 \usepackage{setspace}						%Zeilenabstand anpassen
 \usepackage{color}							%Farbige Schrift
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{graphicx}						%Einbinden von Grafiken
+
+
+% bib stuff
+\usepackage[autostyle]{csquotes}
+
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sortlocale=de_DE,
+    natbib=true,
+    url=true,
+    doi=true,
+    eprint=false
+]{biblatex}
+\addbibresource{literatur.bib}
+
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkbordercolor=gray,
+    urlbordercolor=blue
+    %urlcolor=blue,
+    %linkcolor=black
+}
+
 
 % Weitere packages: (Dokumentation dazu durch "latex <package>.dtx")
 % \usepackage{varioref}
@@ -19,7 +47,24 @@
 \usepackage{subfigure}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
-\usepackage[ansinew]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[acronym,toc]{glossaries}
+
+\makeglossaries
+
+\usepackage{xparse}
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#4},text={#4\glsadd{#3}},
+    description={#6},#1
+  }
+  \makeglossaries
+  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
+\loadglsentries{glossaries}
+
+%\usepackage[footnote]{acronym}
 
 % Zeilenabstand nach Vorgabe - Falls gefordert
 %\setstretch{1,3} 
@@ -37,9 +82,9 @@
 
 %% Informationen für die PDF-Datei
 \hypersetup{pdfauthor={Domenik Müller},%
-            pdftitle={Bachelorarbeit FPGA-Event-Recorder},%
+            pdftitle={Bachelorarbeit: FPGA-Event-Recorder},%
             pdfsubject={Design und Implementierung eines FPGA-Event-Recorders mit der freien IceStorm-Toolchain},%
-            pdfkeywords={FPGA, Open Source, IceStorm, Ice40, Lattice},%
+            pdfkeywords={FPGA, Open Source, IceStorm, iCE40, Lattice},%
             pdfproducer={LaTeX},%
             pdfcreator={pdfLaTeX}
 }
@@ -80,54 +125,35 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% Index-Datei öffnen
-\ifnotdraft{\makeindex}
-%%%%%%%%%%%%%% includeonly %%%%%%%%%%%%%%%%%%%
-% Es werden nur die Teile eingebunden, die hier aufgefuehrt sind!
-%\includeonly{%
-%titelseite,%
-%erklaerung,%
-%kurzfassung,%
-%einleitung,%
-%analyse,%
-%entwurf,%
-%implemen,%
-%zusammenf%
-%}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
-%Auskommentiert, da nicht notwendig für das Praktikum
-%\ifnotdraft{
-	%%%%Vorlage
-	\include{deckblatt}  %<-- Nach Vorgabe der HS Augsburg
-	%
-	%%%% Innere Titelseite 
- 	%\include{titelseite} %<-- Vorgabe Prüfer oder frei wählbar
-	%
-	%%%%Optional - Falls von der Firma gefordert
-	%\include{sperrvermerk}
-	%
-	%%%%Pflicht
- 	%\include{erklaerung}
-	%
-	%%% Leere Seite bei zweiseitigem Druck
-	%\ifnotonesideelse{\blankpage}{}
-	%\include{kurzfassung}
-	%%% Leere Seite bei zweiseitigem Druck
-	%\ifnotonesideelse{\blankpage}{}
-%}
+% Index-Datei öffn
+\makeindex
 
+
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\include{deckblatt}  %<-- Nach Vorgabe der HS Augsburg
 
 
 %
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Verzeichnisse
 %% ++++++++++++++++++++++++++++++++++++++++++
-\pagenumbering{roman}
+
+\section*{Zusammenfassung}
+
+\ldots
+
+\section*{Abstract}
+
+This work of magnificience \ldots
+
 \ifnotdraft{
 \tableofcontents
 % Leere Seite bei zweiseitigem Druck
-\ifnotonesideelse{\blankpage}{}
+%\ifnotonesideelse{\blankpage}{}
 %\listoffigures
 %% Leere Seite bei zweiseitigem Druck
 %\ifnotonesideelse{\blankpage}{}
@@ -135,25 +161,53 @@
 %% Leere Seite bei zweiseitigem Druck
 %\ifnotonesideelse{\blankpage}{}
 }
+
+\clearpage
+
+
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Hauptteil
 %% ++++++++++++++++++++++++++++++++++++++++++
 \graphicspath{{figures/}}
 \pagenumbering{arabic}
 
+
 %%% Ab hier eigene Kapitel einfügen
 %%% Kapitel sind analog zur Wordvorlage zu wählen
-\include{beispiele}   % Beispiele
-\include{analyse}     % Analyse
-\include{test}
+\include{einfuehrung}  
+\include{design}     
+\include{implementierung}
+\include{anwendungsfall}
+\include{fazit_aussicht}
+
+
+
+
+\appendix
+
+
 
 %% ++++++++++++++++++++++++++++++++++++++++++
-%% Anhang
+%% Abkürzungsverzeichniss
 %% ++++++++++++++++++++++++++++++++++++++++++
 
-%\appendix
-%\include{anhang_a}
-%\include{anhang_b}
+
+%\printglossary[type=\acronymtype] % prints just the list of acronyms
+\printglossary[type=\acronymtype]
+\printglossary[type=main]
+
+%\addcontentsline{toc}{chapter}{\protect\numberline{}{Abk\"urzungsverzeichnis}}
+\clearpage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\clearpage
+
+\listoftables
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\clearpage
+
+
 
 \ifnotonesideelse{\cleardoublepage}{}
 
@@ -164,14 +218,21 @@
 %  mit dem Befehl \nocite werden auch nicht zitierte Referenzen abgedruckt 
 % (normalerweise nicht erwünscht)
 % \nocite{*}
-\bibliographystyle{rialpha}
+%\bibliographystyle{plain}
 %Einbinden Bibtexdatei - Direkt aus JabRef generiert
-\bibliography{literatur}
+%\bibliography{literatur}
+\printbibliography 
+
+%%% Anhänge
+\include{anhang_a}
+\include{anhang_b}
+
+
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Index (optional)
 %% ++++++++++++++++++++++++++++++++++++++++++
 %\ifnotdraft{
-%\addcontentsline{toc}{chapter}{Index}
-%\printindex            % Index, Stichwortverzeichnis
+\addcontentsline{toc}{chapter}{Index}
+\printindex            % Index, Stichwortverzeichnis
 %}
 \end{document}

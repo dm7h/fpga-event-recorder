@@ -32,7 +32,7 @@ SOURCES = thesis.tex macros.tex Makefile
 
 $(MAINFILE).dvi: $(MAINFILE).tex  \
 		wissdoc.cls $(TEXSOURCES) $(BBLFILES)
-	- makeindex -g -s thesis.ist thesis.idx
+	- makeindex -s thesis.ist thesis.idx
 	- latex $(MAINFILE)
 
 it:
@@ -44,7 +44,7 @@ it:
 
 $(BBLFILES): %.bbl: %.bib
 	- pdflatex $(MAINFILE)
-	bibtex $(MAINFILE)
+	biber $(MAINFILE)
 
 final: it bbls double index ps
 
@@ -63,7 +63,7 @@ index: $(MAINFILE).ind
 $(MAINFILE).ind: $(MAINFILE).idx $(MAINFILE).ist
 	- mv $(MAINFILE).idx $(MAINFILE).idx.orig
 	- $(SCRIPTDIR)/recodetexumlaut <$(MAINFILE).idx.orig >$(MAINFILE).idx
-	- makeindex -g -s $(MAINFILE).ist $(MAINFILE)
+	- makeindex -s $(MAINFILE).ist $(MAINFILE)
 	- mv $(MAINFILE).idx.orig $(MAINFILE).idx
 
 ps: $(MAINFILE).ps
@@ -91,6 +91,7 @@ $(MAINFILE).pdf: $(MAINFILE).tex $(TEXSOURCES)
 	- rm $(MAINFILE).aux $(MAINFILE).ind
 	- pdflatex $(MAINFILE)
 	- make bbls
+	- makeglossaries $(MAINFILE)
 	- pdflatex $(MAINFILE)
 	- $(MAKE) index
 	- pdflatex $(MAINFILE)
