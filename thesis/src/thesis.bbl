@@ -1,33 +1,254 @@
-\def\etalchar#1{$^{#1}$}
-\begin{thebibliography}{LYVCQ00}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem[{Cisc}08]{netflow}
-{Cisco Systems, Inc.}
-\newblock Introduction to {Cisco IOS NetFlow} - A Technical Overview.
-\newblock http://www.cisco.com/go/netflow, September 2008.
 
-\bibitem[CNRS98]{rfc2386}
-E.~Crawley, R.~Nair, B.~Rajagopalan und H.~Sandick.
-\newblock A Framework for QoS-based Routing in the Internet.
-\newblock RFC 2386 (Informational), IETF, August 1998.
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{ba:mueller}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=b6cfa06c6d110548dbb088a1445563f5}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Hochschule Augsburg}%
+      }
+      \strng{namehash}{b6cfa06c6d110548dbb088a1445563f5}
+      \strng{fullhash}{b6cfa06c6d110548dbb088a1445563f5}
+      \strng{bibnamehash}{b6cfa06c6d110548dbb088a1445563f5}
+      \strng{authorbibnamehash}{b6cfa06c6d110548dbb088a1445563f5}
+      \strng{authornamehash}{b6cfa06c6d110548dbb088a1445563f5}
+      \strng{authorfullhash}{b6cfa06c6d110548dbb088a1445563f5}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen}}
+      \field{type}{Bachelorarbeit}
+      \field{year}{2010}
+    \endentry
+    \entry{forum:digilent}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Digilent Forum}
+      \field{month}{5}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Advanced triggering and buffer filling}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://forum.digilentinc.com/topic/9488-advanced-triggering-and-buffer-filling
+      \endverb
+      \verb{url}
+      \verb https://forum.digilentinc.com/topic/9488-advanced-triggering-and-buffer-filling
+      \endverb
+    \endentry
+    \entry{web:blackmesa_sump2}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Black Mesa Labs}
+      \field{month}{10}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{SUMP2 {–} 96 MSPS Logic Analyzer for \textdollar22}}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb https://blackmesalabs.wordpress.com/2016/10/24/sump2-96-msps-logic-analyzer-for-22
+      \endverb
+      \verb{url}
+      \verb https://blackmesalabs.wordpress.com/2016/10/24/sump2-96-msps-logic-analyzer-for-22
+      \endverb
+    \endentry
+    \entry{web:ols}{misc}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Open Bench Logic Sniffer - DP}}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb http://dangerousprototypes.com/docs/Open_Bench_Logic_Sniffer
+      \endverb
+      \verb{url}
+      \verb http://dangerousprototypes.com/docs/Open_Bench_Logic_Sniffer
+      \endverb
+    \endentry
+    \entry{web:sigrok_ols}{misc}{}
+      \field{sortinit}{5}
+      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Openbench Logic Sniffer - sigrok}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://sigrok.org/wiki/Openbench_Logic_Sniffer
+      \endverb
+      \verb{url}
+      \verb https://sigrok.org/wiki/Openbench_Logic_Sniffer
+      \endverb
+    \endentry
+    \entry{wiki:API}{misc}{}
+      \field{sortinit}{6}
+      \field{sortinithash}{02bbed3ed82f61ae046619460488516d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Programmierschnittstelle {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Programmierschnittstelle
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Programmierschnittstelle
+      \endverb
+    \endentry
+    \entry{wiki:CPLD}{misc}{}
+      \field{sortinit}{7}
+      \field{sortinithash}{6ac7fe70cdec8cba8f65694411ce2532}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 26. May 2018]}
+      \field{title}{{Complex Programmable Logic Device {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Complex_Programmable_Logic_Device
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Complex_Programmable_Logic_Device
+      \endverb
+    \endentry
+    \entry{wiki:FPGA}{misc}{}
+      \field{sortinit}{8}
+      \field{sortinithash}{2f1b0e69e7617f99664f1cd00bb9603c}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 26. May 2018]}
+      \field{title}{{Field Programmable Gate Array {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Field_Programmable_Gate_Array
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Field_Programmable_Gate_Array
+      \endverb
+    \endentry
+    \entry{wiki:SPI}{misc}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{2999ebab86052e6d71b434385f8b4ed2}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Serial Peripheral Interface {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Serial_Peripheral_Interface
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Serial_Peripheral_Interface
+      \endverb
+    \endentry
+    \entry{wiki:UART}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 31. May 2018]}
+      \field{title}{{Universal Asynchronous Receiver Transmitter {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Universal_Asynchronous_Receiver_Transmitter
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Universal_Asynchronous_Receiver_Transmitter
+      \endverb
+    \endentry
+    \entry{wiki:Verilog}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 26. May 2018]}
+      \field{title}{{Verilog {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Verilog
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Verilog
+      \endverb
+    \endentry
+    \entry{pdf:golson}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9f0eb0bc56bebd22832777efaccf903a}{%
+           family={Golson},
+           familyi={G\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Computer History Museum}%
+      }
+      \strng{namehash}{9f0eb0bc56bebd22832777efaccf903a}
+      \strng{fullhash}{9f0eb0bc56bebd22832777efaccf903a}
+      \strng{bibnamehash}{9f0eb0bc56bebd22832777efaccf903a}
+      \strng{authorbibnamehash}{9f0eb0bc56bebd22832777efaccf903a}
+      \strng{authornamehash}{9f0eb0bc56bebd22832777efaccf903a}
+      \strng{authorfullhash}{9f0eb0bc56bebd22832777efaccf903a}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Oral History of Philip Raymond “Phil” Moorby}
+      \field{year}{2013}
+      \field{pages}{23\bibrangedash 25}
+      \range{pages}{3}
+      \verb{urlraw}
+      \verb http://archive.computerhistory.org/resources/access/text/2013/11/102746653-05-01-acc.pdf
+      \endverb
+      \verb{url}
+      \verb http://archive.computerhistory.org/resources/access/text/2013/11/102746653-05-01-acc.pdf
+      \endverb
+    \endentry
+    \entry{wiki:VHDL}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 26. May 2018]}
+      \field{title}{{Very High Speed Integrated Circuit Hardware Description Language {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Very_High_Speed_Integrated_Circuit_Hardware_Description_Language
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Very_High_Speed_Integrated_Circuit_Hardware_Description_Language
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{jackson91}
+  \missing{lakhina04a}
+  \missing{li00}
+  \missing{netflow}
+  \missing{rfc2386}
+\endrefsection
+\endinput
 
-\bibitem[Jack91]{jackson91}
-J.~Edward Jackson.
-\newblock {\em A User's Guide to Principal Components}.
-\newblock Wiley-Interscience.
-\newblock 1991.
-
-\bibitem[LPCD{\etalchar{+}}04]{lakhina04a}
-Anukool Lakhina, Konstantina Papagiannaki, Mark Crovella, Christiphe Diot,
-  Eric~D. Kolaczyk und Nina Taft.
-\newblock Structural Analysis of Network Traffic Flows.
-\newblock In {\em Proc. of International Conference on Measurements and
-  Modeling of Computer Systems (SIGMETRICS) 2004}, New York, NY, USA, Juni
-  2004.
-
-\bibitem[LYVCQ00]{li00}
-Weihua Li, H.~Henry Yue, Sergio Valle-Cervantes und S.~Joe Qin.
-\newblock Recursive PCA for adaptive process monitoring.
-\newblock {\em Journal of Process Control} 10(5), 2000, S.~471--486.
-
-\end{thebibliography}

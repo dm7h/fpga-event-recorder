@@ -1,50 +1,32 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/Arch Linux)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
-The top-level auxiliary file: thesis.aux
-A level-1 auxiliary file: deckblatt.aux
-A level-1 auxiliary file: beispiele.aux
-A level-1 auxiliary file: analyse.aux
-A level-1 auxiliary file: test.aux
-The style file: rialpha.bst
-Database file #1: literatur.bib
-You've used 5 entries,
-            2710 wiz_defined-function locations,
-            614 strings with 5493 characters,
-and the built_in function-call counts, 2153 in all, are:
-= -- 193
-> -- 131
-< -- 2
-+ -- 46
-- -- 56
-* -- 142
-:= -- 370
-add.period$ -- 16
-call.type$ -- 5
-change.case$ -- 31
-chr.to.int$ -- 5
-cite$ -- 5
-duplicate$ -- 78
-empty$ -- 146
-format.name$ -- 48
-if$ -- 431
-int.to.chr$ -- 1
-int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 30
-num.names$ -- 15
-pop$ -- 54
-preamble$ -- 1
-purify$ -- 41
-quote$ -- 0
-skip$ -- 79
-stack$ -- 0
-substring$ -- 69
-swap$ -- 13
-text.length$ -- 2
-text.prefix$ -- 2
-top$ -- 0
-type$ -- 47
-warning$ -- 0
-while$ -- 16
-width$ -- 6
-write$ -- 68
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'thesis.blg'
+[33] biber:313> INFO - === Do Mai 31, 2018, 17:58:40
+[56] Biber.pm:371> INFO - Reading 'thesis.bcf'
+[123] Biber.pm:857> INFO - Found 18 citekeys in bib section 0
+[139] Biber.pm:3976> INFO - Processing section 0
+[150] Biber.pm:4136> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[152] bibtex.pm:1500> INFO - LaTeX decoding ...
+[173] bibtex.pm:1316> INFO - Found BibTeX data source 'literatur.bib'
+[181] Utils.pm:193> WARN - month field 'May' in entry 'forum:digilent' is not an integer - this will probably not sort properly.
+[182] Utils.pm:193> WARN - month field 'Oct' in entry 'web:blackmesa_sump2' is not an integer - this will probably not sort properly.
+[184] Utils.pm:193> WARN - month field 'Jun' in entry 'web:ols' is not an integer - this will probably not sort properly.
+[185] Utils.pm:193> WARN - month field 'May' in entry 'web:sigrok_ols' is not an integer - this will probably not sort properly.
+[187] Utils.pm:193> WARN - month field 'May' in entry 'wiki:API' is not an integer - this will probably not sort properly.
+[189] Utils.pm:193> WARN - month field 'May' in entry 'wiki:CPLD' is not an integer - this will probably not sort properly.
+[190] Utils.pm:193> WARN - month field 'May' in entry 'wiki:FPGA' is not an integer - this will probably not sort properly.
+[191] Utils.pm:193> WARN - month field 'May' in entry 'wiki:SPI' is not an integer - this will probably not sort properly.
+[192] Utils.pm:193> WARN - month field 'May' in entry 'wiki:UART' is not an integer - this will probably not sort properly.
+[193] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Verilog' is not an integer - this will probably not sort properly.
+[197] Utils.pm:193> WARN - month field 'May' in entry 'wiki:VHDL' is not an integer - this will probably not sort properly.
+[198] Utils.pm:193> WARN - I didn't find a database entry for 'li00' (section 0)
+[198] Utils.pm:193> WARN - I didn't find a database entry for 'jackson91' (section 0)
+[198] Utils.pm:193> WARN - I didn't find a database entry for 'lakhina04a' (section 0)
+[198] Utils.pm:193> WARN - I didn't find a database entry for 'netflow' (section 0)
+[198] Utils.pm:193> WARN - I didn't find a database entry for 'rfc2386' (section 0)
+[215] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[215] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[215] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de_DE'
+[215] Biber.pm:3810> INFO - No sort tailoring available for locale 'de_DE'
+[234] bbl.pm:617> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[239] bbl.pm:720> INFO - Output to thesis.bbl
+[239] Biber.pm:110> INFO - WARNINGS: 16

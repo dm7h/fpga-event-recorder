@@ -599,6 +599,7 @@ void run_config(char* config_file)
 	int fd;
 	uint8_t mode = 1;
 	uint8_t bits = 8;
+	uint8_t lsb = 1;
 	uint16_t delay = 0;
 	uint32_t speed = 3000000;
 
@@ -610,9 +611,6 @@ void run_config(char* config_file)
 	 * spi mode
 	 */
 	ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
-	if (ret == -1)
-		fprintf(stderr,"Can't set spi mode\n");
-
 	ret = ioctl(fd, SPI_IOC_RD_MODE, &mode);
 	if (ret == -1)
 		fprintf(stderr,"can't get spi mode\n");
@@ -621,9 +619,6 @@ void run_config(char* config_file)
 	 * bits per word
 	 */
 	ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &bits);
-	if (ret == -1)
-		fprintf(stderr,"can't set bits per word\n");
-
 	ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &bits);
 	if (ret == -1)
 		fprintf(stderr,"can't get bits per word\n");
@@ -632,33 +627,34 @@ void run_config(char* config_file)
 	 * max speed hz
 	 */
 	ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed);
-	if (ret == -1)
-		fprintf(stderr,"can't set max speed hz\n");
-
 	ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &speed);
 	if (ret == -1)
 		fprintf(stderr,"can't get max speed hz\n");
 
-	//ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, 0);	
+	// LSB_FIRST
+	ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, &lsb);	
+	ret = ioctl(fd, SPI_IOC_RD_LSB_FIRST, &lsb);
+	if (ret == -1)
+		fprintf(stderr,"can't get LSB_FIRST\n");
 
 	fprintf(stdout, "\n===\nSPI Configuration:\nspi mode: %d\n", mode);
-	fprintf(stdout, "bits per word: %d\n", bits);
+	fprintf(stdout, "bits per word: %d (LSB_FIRST: %d)\n", bits, lsb);
 	fprintf(stdout, "max speed: %d Hz (%d KHz)\n", speed, speed/1000);
 
 
 	for (int i = 0; i < events.size(); i++) {
 		
-		fprintf(stdout, "---\nSPI: sending event %d: %16llx\n", i, events[i]);
+		fprintf(stdout, "---\nSPI: sending event %d: %016llx\n", i, events[i]);
 		
 		// receive buffer
-		uint8_t rx[12] = {0, };
+		uint8_t rx[16] = {0, };
 		
 		// single bytes of current event
 		uint8_t *ev_ptr = (uint8_t *) &(events[i]);
 		
 
 		// setup transmit buffer with trigger config command
-		uint8_t tx[4] = { 0x01, 0x00, 0x00, 0x00};
+		uint8_t tx[4] = { 0, 0, 0, 1};
 		
 
 		struct spi_ioc_transfer tr = {
@@ -675,12 +671,13 @@ void run_config(char* config_file)
 		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
 		if (ret < 1)
 			fprintf(stderr, "can't send spi message");
-
 		
-		// send first 4 bytes (and change endianess) 
+		//usleep(1000);
+		
+		// send first 4 bytes (swapped endianess) 
 		tr.rx_buf = (unsigned long) &(rx[4]);
 		for (int h = 0; h < 4; h++) 
-			tx[h] = ev_ptr[h];
+			tx[h] = ev_ptr[7-h];
 		tr.tx_buf = (unsigned long) tx;
 
 		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
@@ -692,7 +689,17 @@ void run_config(char* config_file)
 		// send last 4 bytes
 		tr.rx_buf = (unsigned long) &(rx[8]);
 		for (int h = 0; h < 4; h++) 
-			tx[h] = ev_ptr[4+h];
+			tx[h] = ev_ptr[3-h];
+		tr.tx_buf = (unsigned long) tx;
+
+		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
+		if (ret < 1)
+			fprintf(stderr, "can't send spi message");
+
+		
+		// send trailing 0 word
+		tr.rx_buf = (unsigned long) &(rx[12]);
+		memset(tx, 0, sizeof(tx));
 		tr.tx_buf = (unsigned long) tx;
 
 		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
@@ -700,18 +707,43 @@ void run_config(char* config_file)
 			fprintf(stderr, "can't send spi message");
 
 
-
 		// show what we got back
 		fprintf(stdout, "SPI: returned:");
 
 		for (ret = 0; ret < ARRAY_SIZE(rx); ret++) {
-			if (!(ret % 12))
+			if (!(ret % 16))
 				puts("");
 			printf("%.2X ", rx[ret]);
 		}
-		puts("");	
+		puts("");
+		
+		usleep(100000);	
 
 	}
+
+	while (true) 
+	{
+		// receive buffer
+		uint8_t rx[4] = {0, };
+		
+		// setup transmit buffer with trigger config command
+		uint8_t tx[4] = { 0, 0, 0, 0};
+		
+
+		struct spi_ioc_transfer tr = {
+			tx_buf : (unsigned long) tx,
+			rx_buf : (unsigned long) rx,
+			len : ARRAY_SIZE(tx),
+			speed_hz : speed,
+			delay_usecs : delay,
+			bits_per_word : bits
+		};
+
+		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
+		printf("%.2x %.2x %.2x %.2x\r\n", rx[0], rx[1], rx[2], rx[3]);
+		usleep(100000);	
+	}
+
 
 	close(fd);
 }

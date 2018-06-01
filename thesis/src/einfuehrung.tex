@@ -1,0 +1,77 @@
+\chapter{Einführung}
+
+\label{ch:Einfuehrung}
+
+Mikrocontroller werden heute in Gebrauchsgegenständen aller Art verbaut und werden den Anforderungen entsprechend immer leistungsstärker und damit vor allem auch schneller. Selbst einfache Mikrocontroller arbeiten oft mit einer Geschwindigkeit im mehrstelligen Megaherz Bereich (sprich: mehrere Millionen Takte pro Sekunde). Dementsprechend werden für die Entwicklung von Mikrocontroller-Systemen (und digitalen Systemen im allgemeinen) Werkzeuge benötigt, mit denen Signale mit hoher zeilticher Auflösung erfasst und analysiert werden können.\\
+%Diese Aufgabe erfüllen im allgemeinen Oszilloskope (bei der Erfassung von analogen Signalen) und Logikanalysatoren (bei der Erfassung von digitalen Signalen, wenn also nur zwischen einem logischen "1" und "0"-Pegel unterschieden wird).
+
+Diese Aufgabe wird meist von einem Logikanalysator erfüllt, der die an den Eingängen anliegenden Spannungen mit einer festen Frequenz erfasst und die Daten dann z.B. an einen PC überträgt, an dem sie ausgewertet werden können.\
+ 
+In der vorliegenden Arbeit wird eine Spezialfrom eines Logikanalysators entworfen, bei der ein Teil der Auswertung bereits auf dem Logikanalysator durchgeführt wird. Dies wird erreicht in dem das Eingangssignal auf bestimmte - vom Benutzer definierte - Signaländerungen untersucht und dementsprechend gefiltert wird.       
+
+
+\section{Zielsetzung}
+\label{ch:Einfuehrung:Zielsetzung}
+
+%Grundvoraussetzung für die Aufnahme aussagekräftiger Signaldaten ist die kontinuierliche Erfassung des Eingangssignals bei gleichbleibendem Zeitabstand. 
+Für die Implementierung des Event-Recorders wurden folgende technische Ziele angestrebt:
+\begin{itemize}
+\item Es soll der logische Pegel von 8 bis 16 Eingangs-Pins abgefragt werden und die Eingangsdaten sollen mit einem stabilen Zeitstempel versehen werden.
+\item Die zeitliche Auflösung der Aufnahme soll im Megaherz-Bereich liegen
+\item Bestimmte Eingangskombinationen sollen in Textform definiert, und bei der Aufnahme als Events erkannt werden
+\item Zur Steuerung der Aufnahme soll ein Kommandozeilentool zur Verfügung stehen, mit dem auch die aufgenommenen Daten in Textform abgespeichert werden können.
+\end{itemize} 
+
+\clearpage
+
+\section{Motivation}
+\label{ch:Einfuehrung:Motivation}
+
+Die Arbeit schließt thematisch an die Bachelorarbeit ``Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen'' von Andreas Müller und einer darauf folgenden Projektarbeit an.\\
+In der Bachelorarbeit wurde eine Hardware-Platine namens ``USB-TPLE'' mit USB-Schnittstelle, einem \acrshort{CPLD}-Chip von Altera und einem Atmega Mikrocontroller für die selbe Zielzetzung entworfen, und mit der Software-Implementierung begonnen\cite{ba:mueller}.\\  
+Im nachfolgenden Semester-Projekt ``Logikanalysator mit AVR Mega32U4 und Altera MAX CPLD'' im Wintersemester 2013/14 wurde die Software-Implementierung ausgebaut und eine funktionsfähige Konfiguration für den CPLD-Chip entwickelt.\\
+
+Im folgenden wird allerdings ein anderer Ansatz für die Umsetzung verfolgt:
+\begin{description}
+\item[Verwendung von käuflich verfügbarer Hardware] \hfill \\
+Anstatt der selbst entworfenen Platine soll aus Gründen der Vefügbarkeit und um die Einstiegshürde für Benutzer zu verringern ein käuflich erwerbbares Produkt verwendet werden.\\
+Die Verwendung käuflicher Hardware soll außerdem die Gesamt-Komplexität des Projekts reduzieren einen stärkeren Fokus auf Grundfunktionalität ermöglichen.
+\item[Verwendung eines FPGAs] \hfill \\
+Um größere Flexibiltät bei der Implementierung zu ermöglichen wird ein \gls{FPGA} anstatt des \gls{CPLD} verwendet (eine detailliertere Erklärung findet sich im Kapitel \nameref{ch:Design}).
+\end{description}
+
+Neben Verfügbarkeit und Flexibiliät des Designs soll vor allem ein weiterer Grundsatz bei der Implementierung verfolgt werden:
+\begin{description}
+\item[Open-Source Software und Hardware] \hfill \\
+Bereits die Arbeit von Andreas Müller wurde unter einer Open-Source-Lizenz veröffentlicht und es wurden alle Projekt-Quellen und Ressourcen (einschließlich des Hardwaredesigns) öffentlich vefügbar gemacht.\\
+Dieser Ansatz soll hier weiter verfolgt werden, dementsprechend werden alle im Rahmen dieser Arbeit entstandenen Dokumente unter der LGPL3-Lizenz veröffentlicht (siehe Anhang \ref{ch:GPL}).\\
+Ausserdem steht mit dem Projekt ``IceStorm'' erstmals auch eine Open-Source Software-Toolchain zur Programmierung von FPGA-Chips zur Verfügung, wodurch eine vollständige Open-Source Implementierung möglich wird. (In der vorliegenen Arbeit mit Ausnahme der proprietären Komponenenten des Raspberry Pi Zero).     
+\end{description}
+
+
+Es ist eine Vielzahl von kommerziellen Logikanalysatoren am Markt verfügbar, allerdings bieten selbst sehr flexible Geräte wie z.B. die Discovery Serie von Digilent nicht die gewünschte Funktionalität der Event-Filterung zur Erfassugszeit mit der Möglichkeit die so gewonnenen Daten in einen Text- bzw. Kommandozeilen-basierten Workflow einzubetten \footnote{Geräte der Discovery-Serie können durch eine \acrshort{API} z.B. in Python geskriptet werden, eine kontinuierliche ``Event-Erkennung'' scheint aber nicht ohne weiteres möglich (siehe z.B. folgender Foreneintrag\cite{forum:digilent}) }. 
+
+Davon abgesehen gibt es auch einige Open-Source Logikanalysatoren. Für diese Arbeit relevant sind hier vor allem:
+\begin{description}
+	\item \textbf{SUMP2} ist eine \gls{Verilog}-basierte Logikanalysator-Implementierung mit UART-Schnittstelle für die Datenübertragung und einer zugehörigen - in Python implementierten - grafischen Benutzeroberfläche. Es existieren angepasste Varianten von SUMP2 die ohne weitere Modifikationen auf dem auch in dieser Arbeit verwendeten iCE40-FPGA-Chip lauffähig sind\cite{web:blackmesa_sump2}.  
+	\item \textbf{Open Bench Logic Sniffer} ist ein Open-Source Hardware-Produkt das auf einem Xilinx Spartan 3E FPGA basiert und eine weiterentwickelte Variante von SUMP2 verwendet. Die ``Demon core'' betitelte Weiterentwicklung ist insbesondere deshalb interessant, da mit ihr ausgefeiltere Triggerbedingungen definiert werden können, und so z.B. zeitliche und logische Abläufe von Eingangssignalen als Trigger abgebildet werden können. Hierauf soll im Kaptiel \nameref{ch:Aussicht} noch einmal eingegangen werden.
+\end{description}
+
+Das verwendete SUMP2 Datenübertragungsformat wird zum Teil auch von anderen Anwendungen unterützt, so kann zum Beispiel der Java-Client Jawi\cite{web:ols} oder Pulseview\cite{web:sigrok_ols} als grafische Benutzeroberfläche verwendet werden.\\ 
+Beide Varianten verwenden zur Datenübertragung eine serielle Schnittstelle (\acrshort{UART}), die zumindest bei Verwendung von traditionellen Baud-Raten die Übertragungsgeschwindigkeit stark einschränkt. Ebenso sind beide Varianten konzeptionell für die Aufnahme relativ kurzer Sampling-Zeiten ausgelegt und unterstützen wie die kommerziellen Produkte keine Event-Filterung zum Erfassungszeitpunkt.  
+
+Eine Anpassung des SUMP2 Projektes wurde in Erwägung gezogen, aber aufgrund der zum Teil recht hohen Code-Komplexität und der strukturellen Unterschiede nicht durchgeführt.
+
+
+\section{Aufbau der Arbeit}
+\label{ch:Einfuehrung:Aufbau}
+
+Im folgenen Kapitel \nameref{ch:Design} werden zunächst die nötigen technischen Grundlagen für die Umsetzung des Projekts besprochen, anschließend wird auf getroffene Desginentscheidungen bei der Auswahl der Hardware und Software eingegangen, und ein kurzes Implementierungs-Beispiel mit der IceStorm-Toolchain erläutert.
+Das Kaptiel \nameref{ch:Implementierung} beschreibt di nötigen Anpassungen bestehender Software und die Entwicklung neuer Softwarekomponenenten bei der Durchführung des Projektes.
+Im Kapitel \nameref{ch:Anwendungsfall} wird die Benutzung des Event-Recorder anhand eines konkreten Beispiels besprochen.
+Es folgt ein \nameref{ch:Fazit} in dem der Status des Projekts und die Umsetzung rekapituliert werden und abschließend wird im Kapitel \nameref{ch:Aussicht} auf Optimierungsmöglichkeiten und weiteres Vorgehen eingegangen.
+
+
+
+
+

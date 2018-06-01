@@ -2,8 +2,7 @@
 #include <stdint.h>
 #include "icosoc.h"
 
-#define  MAX_EVENT_TRIGGERS 16
-
+#define MAX_EVENTS 16
 
 int console_getc(void)
 {
@@ -46,131 +45,83 @@ __attribute__ ((section (".text.sram"))) int main(void)
 {
 	
 	printf("EvR 0.1\r\n");
+
+	// test fifo
+	uint64_t fifo0 = ~0;
+	icosoc_tr0_set_fifo(fifo0);
+	fifo0 = 0x0102030405060708;
+	icosoc_tr0_set_fifo(fifo0);
 	
-	// general purpose gpios ;)
+	fifo0 = icosoc_tr0_get_fifo();
+	printf("fifo0: 0x%016llx\r\n", fifo0);
+	
+	fifo0 = icosoc_tr0_get_fifo();
+	printf("fifo0: 0x%016llx\r\n", fifo0);	
+	
+	fifo0 = icosoc_tr0_get_fifo();
+	printf("fifo0: 0x%016llx\r\n", fifo0);
+	
+	// reset counter after boot
+	uint64_t counter;
+	icosoc_tr0_set_counter(0);
+	counter = icosoc_tr0_get_counter();
+	printf("counter @ 0x%016llx\r\n", counter);
+
+
+	// setup debug and general purpose gpios as output
 	icosoc_gpio_dir(0xffff);
 
 	// leds: status: up
 	icosoc_leds(0x01);
 	
-	// setup uart buffers
-	uint8_t r_buffer[8] = { 0 }; // 8 byte 
-	uint8_t t_buffer[8] = { 0 };
-	uint64_t rbuf2[16] = { 0 };
 	
-	uint8_t sram[100] = "HALLO SRAM, WO BIST DU?!";
+	// setup events array 
+	uint64_t events[MAX_EVENTS] = { ~0 };
 
-	uint64_t events[16] = {
-		0x0001000002ffffff, 
-		0x0102000003ffffff, 
-		0x020020ffffffffff, 
-		0x03045fffffffffff, 
-		0x040a7fffffffffff, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF, 
-		0xFFFFFFFFFFFFFFFF 
-	};
-
-	// event trigger configuration 
-	uint64_t event_trigger_config[MAX_EVENT_TRIGGERS];
-
-	//console_getc();
-
-	// wait for new configuration (with timeout)
-	
-	uint32_t stat = 0xAA, ch, ch_last = 0x01020304;
-
-	/* gpio toggle "benchmark"	
-	for (uint8_t i = 0; ; i++) {
-		stat = ~stat;
-		icosoc_gpio_set(stat);
-		printf("stat: %08lx\r\n", stat);
-		//waitn(100000);
-	}
-	*/
-	
+	// main loop	
+	uint32_t cmd, event[2], event_count = 0;	
 	
 	for (uint8_t i = 0; ; i++) {
 		
-		icosoc_spi0_xfer(0x010203+i);
-		//stat = ~stat;
-		//icosoc_gpio_set(stat);
-		//if (ch != ch_last)
-			//printf("spi0: got %08lx | status: %lx \r\n", ch, stat);
-		//ch_last = ch;
-	
-	}
+		cmd = icosoc_spi0_xfer(0);
 		
-	 /*	
-	uint32_t conf = icosoc_tr0_get_config();
-
-	printf("got %lx back from trigger0 module \r\n", conf);
-
-	uint32_t trig, trig_old, cnt1, cnt2;
-	//uint64_t counter;
-	
-	uint8_t stat = 0;
-	// main loop
-	for (uint8_t i = 1; ; i++)
-	{
-		icosoc_leds(i);
+		//printf("spi0: command: %08lx\r\n", cmd);
 		
-		char buffer[100];
-		int buffer_len;
-
-		trig_old = trig;
-		trig = icosoc_tr0_get_trig();	
-		
-		if (trig != trig_old)
+		switch (cmd) 
 		{
-			cnt1 = icosoc_tr0_get_cnt1();
-			cnt2 = icosoc_tr0_get_cnt2();
-			buffer_len = snprintf(buffer, 100, "[%032lx] %lx\r\n", cnt1, trig);
-			printf(buffer);
-	
-			for (int j = 0; j < 16; j++) {
-				if (~events[j] == 0) continue;
-				uint8_t id = events[j] >> 56;
-				uint8_t flag = events[j] >> 48;
-				uint8_t trigger[16] = { 0 };
-				uint8_t match[16];
-				for (int k = 0; k < 16; k++) {
-					trigger[k] = events[j] >> ((15 - k) * 3) & 7;
-					uint8_t bit = (trig >> (15 - k)) & 1;
-					uint8_t bit_old = (trig_old >> (15 - k)) & 1;
-					match[k] = 0;
-					if (trigger[k] == 7) match[k] = 1;
-					if (trigger[k] == 0 && ~bit && ~bit_old) match[k] = 1; //0
-					if (trigger[k] == 3 && bit && bit_old) match[k] = 1; //1
-					if (trigger[k] == 2 && bit && ~bit_old) match[k] = 1; //down
-					if (trigger[k] == 1 && ~bit && bit_old) match[k] = 1; //up
+			case 1:
+				
+				// receive new event
+				event[0] = icosoc_spi0_xfer(cmd);
+				event[1] = icosoc_spi0_xfer(event[0]);
+				icosoc_spi0_xfer(event[1]);
+			
+				uint32_t event_id = (event[0] >> 24) & 0xFF;	
+				
+				if (event_id < MAX_EVENTS) 
+				{
+					uint64_t event64 = event[0]; 
+					events[event_id] = (event64 << 32 ) | event[1];
+				       	icosoc_tr0_set_trigger((uint8_t) event_id, event64);
+					event64 = icosoc_tr0_get_trigger((uint8_t) event_id);	
+					printf("spi0: got new event configuration %d: %016llx\r\n", event_id, events[event_id]);
+				} 
+				else
+				{
+					printf("spi0: got invalid event id for tirgger configuration!\r\n");
 				}
-				for (int i = 0; i < 16; i++) {
-					buffer_len = snprintf(buffer, 100, "[%d:%d],", trigger[i], match[i]);
-					printf(buffer);
-						
-				}
-				buffer_len = snprintf(buffer, 100, "\r\n");
-				printf(buffer);
+				
+				break;
 
-				//icosoc_ser0_write(buffer, buffer_len);
-			}
+			default:
+				fifo0 = icosoc_tr0_get_fifo();
+				if (fifo0  != 0 )
+					printf("fifo0: 0x%016llx\r\n", fifo0);		
+				break;
 		}
-		
+	
 	}
-	*/
+		
 }
 
-/*
-int main(void) {
-	return run();
-};
-*/
+

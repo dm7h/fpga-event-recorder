@@ -47,7 +47,7 @@
 \fi
 %\RequirePackage{german}[1998/07/08] % alte Rechtschreibung (>=V2.5e von german.sty)
 \usepackage[T1]{fontenc}      % T1-encoded fonts: auch Wörter mit Umlauten trennen
-\usepackage[ansinew]{inputenc} % Eingabe nach ISO 8859-1 (Latin1)
+\usepackage[utf8]{inputenc} % Eingabe nach ISO 8859-1 (Latin1)
 
 \usepackage[ngerman]{babel}
                              % siehe Emacs: iso-accents-mode
