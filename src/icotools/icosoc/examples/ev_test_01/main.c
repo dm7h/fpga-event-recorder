@@ -45,6 +45,7 @@ __attribute__ ((section (".text.sram"))) int main(void)
 {
 	
 	printf("EvR 0.1\r\n");
+	icosoc_tr0_set_status(1);
 
 	// test fifo
 	uint64_t fifo0 = ~0;
@@ -68,13 +69,28 @@ __attribute__ ((section (".text.sram"))) int main(void)
 	printf("counter @ 0x%016llx\r\n", counter);
 
 
+
 	// setup debug and general purpose gpios as output
 	icosoc_gpio_dir(0xffff);
 
 	// leds: status: up
 	icosoc_leds(0x01);
-	
-	
+
+		
+	uint32_t io, io_old = 0;
+	for (uint8_t u = 0; ; u++) {
+		io = icosoc_tr0_get_io();
+		fifo0 = icosoc_tr0_get_fifo();
+		if (io != io_old ) { 
+		       	printf("io change: %08lx\r\n", io);
+			io_old = io;
+		} else if (fifo0 != 0) {
+			printf("fifo change: %016llx\r\n", fifo0);
+		}
+
+	}
+
+
 	// setup events array 
 	uint64_t events[MAX_EVENTS] = { ~0 };
 

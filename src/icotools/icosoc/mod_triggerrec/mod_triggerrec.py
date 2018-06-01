@@ -38,13 +38,13 @@ static inline uint64_t icosoc_@name@_get_trigger(uint8_t id) {
 }
 
 static inline void icosoc_@name@_set_fifo(uint64_t fifo_in) {
-    *(volatile uint32_t*)(0x20000012 + @addr@ * 0x10000) = (fifo_in >> 32);
-    *(volatile uint32_t*)(0x20000012 + @addr@ * 0x10000) = fifo_in;
+    *(volatile uint32_t*)(0x2000000c + @addr@ * 0x10000) = (fifo_in >> 32);
+    *(volatile uint32_t*)(0x2000000c + @addr@ * 0x10000) = fifo_in;
 }
 
 static inline uint64_t icosoc_@name@_get_fifo() {
-    uint64_t ret = *(volatile uint32_t*)(0x20000012 + @addr@ * 0x10000);
-    ret = (ret << 32) | *(volatile uint32_t*)(0x20000012 + @addr@ * 0x10000);
+    uint64_t ret = *(volatile uint32_t*)(0x2000000c + @addr@ * 0x10000);
+    ret = (ret << 32) | *(volatile uint32_t*)(0x2000000c + @addr@ * 0x10000);
     return ret;
 
 }
