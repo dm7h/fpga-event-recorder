@@ -5,68 +5,74 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Zielsetzung}{1}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Motivation}{1}{section.1.2}
+\contentsline {section}{\numberline {1.2}Motivation}{2}{section.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Design}{2}{chapter.2}
+\contentsline {section}{\numberline {1.3}Aufbau der Arbeit}{3}{section.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Design-\"Uberblick: Ben\"otigte Hard- und Software-Komponenten}{2}{section.2.1}
+\contentsline {chapter}{\numberline {2}Design}{4}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Auswahl der Hardware}{2}{section.2.2}
+\contentsline {section}{\numberline {2.1}Technische Grundlagen}{4}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Auswhal der Software-Toolchain}{2}{section.2.3}
+\contentsline {section}{\numberline {2.2}Ben\IeC {\"o}tigte Hard- und Software-Komponenten}{5}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{2}{section.2.4}
+\contentsline {section}{\numberline {2.3}Auswahl der Software-Toolchain}{6}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Implementierung}{3}{chapter.3}
+\contentsline {section}{\numberline {2.4}Auswahl der Hardware}{7}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Portierung des Tools zum Flashen des Bitstreams (icoprog)}{3}{section.3.1}
+\contentsline {section}{\numberline {2.5}Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{8}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Portierung und n\"otige Anpassungen des Verilog-SoCs (icosoc)}{3}{section.3.2}
+\contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{3}{section.3.3}
+\contentsline {section}{\numberline {3.1}Portierung des Tools zum Flashen des Bitstreams (icoprog)}{10}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Bus-Schnittstelle}{3}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.2}Portierung und n\"otige Anpassungen des Verilog-SoCs (icosoc)}{11}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Triggerlogik}{3}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{12}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{3}{section.3.4}
+\contentsline {subsection}{\numberline {3.3.1}Bus-Schnittstelle}{12}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Zusammenf\"uhrung der Module als Icosoc-Projekt}{3}{section.3.5}
+\contentsline {subsection}{\numberline {3.3.2}Triggerlogik}{12}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Anwendungsfall: Jitter-Analyse eines Software-generierten Clock-Signals}{4}{chapter.4}
+\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{13}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Einrichten des Projekts}{4}{section.4.1}
+\contentsline {section}{\numberline {3.5}Zusammenf\"uhrung der Module als Icosoc-Projekt}{14}{section.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Konfiguration der Event-Trigger}{4}{section.4.2}
+\contentsline {section}{\numberline {3.6}Implementierung des textbasierten Benutzerinterfaces}{14}{section.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Durchf\"uhren der Event-Aufnahme}{4}{section.4.3}
+\contentsline {chapter}{\numberline {4}Anwendungsfall: Jitter-Analyse eines Software-generierten Clock-Signals}{15}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Analyse der Ergebnisse}{4}{section.4.4}
+\contentsline {section}{\numberline {4.1}Einrichten des Projekts}{15}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Fazit}{5}{chapter.5}
+\contentsline {section}{\numberline {4.2}Konfiguration der Event-Trigger}{15}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Aussicht}{6}{chapter.6}
+\contentsline {section}{\numberline {4.3}Durchf\"uhren der Event-Aufnahme}{16}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Akronyme}{7}{section*.4}
+\contentsline {section}{\numberline {4.4}Analyse der Ergebnisse}{16}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Glossar}{8}{section*.6}
+\contentsline {chapter}{\numberline {5}Fazit}{17}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Abbildungsverzeichnis}{9}{appendix*.8}
+\contentsline {chapter}{\numberline {6}Aussicht}{18}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Tabellenverzeichnis}{10}{appendix*.9}
+\contentsline {chapter}{Abk\IeC {\"u}rzungen}{19}{section*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatur}{11}{appendix*.9}
+\contentsline {chapter}{Glossar}{20}{section*.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Pinbelegung}{12}{appendix.A}
+\contentsline {chapter}{Abbildungsverzeichnis}{21}{appendix*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Tex Beispiele}{12}{section.A.1}
+\contentsline {chapter}{Tabellenverzeichnis}{22}{appendix*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.1}Zitieren}{12}{subsection.A.1.1}
+\contentsline {chapter}{Literatur}{23}{appendix*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.2}Ein Bild skaliert}{12}{subsection.A.1.2}
+\contentsline {chapter}{\numberline {A}Pinbelegung}{24}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.3}Zwei Bilder nebeneinander oder untereinander}{12}{subsection.A.1.3}
+\contentsline {section}{\numberline {A.1}Tex Beispiele}{24}{section.A.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Tabellen}{12}{section.A.2}
+\contentsline {subsection}{\numberline {A.1.1}Zitieren}{24}{subsection.A.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}GPL}{14}{appendix.B}
+\contentsline {subsection}{\numberline {A.1.2}Ein Bild skaliert}{24}{subsection.A.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1.3}Zwei Bilder nebeneinander oder untereinander}{24}{subsection.A.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Tabellen}{24}{section.A.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}GPL}{26}{appendix.B}

@@ -144,11 +144,15 @@
 
 \section*{Zusammenfassung}
 
-\ldots
+In der vorliegenden Arbeit wird der Entwurf und die Implementierung eines FPGA-basierten Event-Recorders mithilfe der Open-Source-Toolchain IceStorm beschrieben. Ähnlich wie bei einem Logikanalysator werden digitale Signaländerungen an den Eingängen erfasst, allerdings werden die Eingangssignale nicht wie bei einem Logikanalysator kontinuierlich übertragen, sondern werden bereits zur Erfassungszeit nach relevanten Eingangskombinationen gefiltert. Ein Filterung nach vordefinierten Events bietet sich vor allem für Timinganalysen bei relativ geringer Signaldichte an und kann die zeitliche Auflösung der untersuchten Signale verbessern.
+Die Implementierung des Event-Recorders erfolgt auf einem Raspberry Pi Zero mit IceZero FPGA-Shield und wird vollständig mit den von der IceStorm-Toolchain zur Verfügung gestellten Open-Source-Tools und Komponenten umgesetzt.   
 
 \section*{Abstract}
 
-This work of magnificience \ldots
+The work in hand describes the design and implementation of a FPGA based event recorder using the open source toolchain IceStorm. 
+Similar to a logic analyzer it records logic level signal changes, but in contrast to a logic analyzer it does not provide a continuous stream of the input signals. Instead the signals are filtered at capture time to match only relevant input combinations. Using predefined events to filter the input stream is especially suitable for timing analysis of signals with low event density and can improve the timing resolution of the analyzed signals.
+The implementation of the event recorder is done on a Raspberry Pi Zero with a IceZero FPGA shield and is realized completely with the tools and components provided by the open source toolchain IceStorm.   
+
 
 \ifnotdraft{
 \tableofcontents
@@ -193,7 +197,7 @@ This work of magnificience \ldots
 
 
 %\printglossary[type=\acronymtype] % prints just the list of acronyms
-\printglossary[type=\acronymtype]
+\printglossary[type=\acronymtype,title={Abkürzungen}]
 \printglossary[type=main]
 
 %\addcontentsline{toc}{chapter}{\protect\numberline{}{Abk\"urzungsverzeichnis}}

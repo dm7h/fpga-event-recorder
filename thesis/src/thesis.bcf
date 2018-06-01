@@ -1924,17 +1924,24 @@
     <bcf:datasource type="file" datatype="bibtex">literatur.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">pdf:golson</bcf:citekey>
-    <bcf:citekey order="2">wiki:CPLD</bcf:citekey>
-    <bcf:citekey order="3">wiki:FPGA</bcf:citekey>
-    <bcf:citekey order="4">wiki:Verilog</bcf:citekey>
-    <bcf:citekey order="5">pdf:golson</bcf:citekey>
-    <bcf:citekey order="6">wiki:VHDL</bcf:citekey>
-    <bcf:citekey order="7">li00</bcf:citekey>
-    <bcf:citekey order="7">jackson91</bcf:citekey>
-    <bcf:citekey order="7">lakhina04a</bcf:citekey>
-    <bcf:citekey order="7">netflow</bcf:citekey>
-    <bcf:citekey order="7">rfc2386</bcf:citekey>
+    <bcf:citekey order="1">ba:mueller</bcf:citekey>
+    <bcf:citekey order="2">forum:digilent</bcf:citekey>
+    <bcf:citekey order="3">web:blackmesa_sump2</bcf:citekey>
+    <bcf:citekey order="4">web:ols</bcf:citekey>
+    <bcf:citekey order="5">web:sigrok_ols</bcf:citekey>
+    <bcf:citekey order="6">wiki:API</bcf:citekey>
+    <bcf:citekey order="7">wiki:CPLD</bcf:citekey>
+    <bcf:citekey order="8">wiki:FPGA</bcf:citekey>
+    <bcf:citekey order="9">wiki:SPI</bcf:citekey>
+    <bcf:citekey order="10">wiki:UART</bcf:citekey>
+    <bcf:citekey order="11">wiki:Verilog</bcf:citekey>
+    <bcf:citekey order="12">pdf:golson</bcf:citekey>
+    <bcf:citekey order="13">wiki:VHDL</bcf:citekey>
+    <bcf:citekey order="14">li00</bcf:citekey>
+    <bcf:citekey order="14">jackson91</bcf:citekey>
+    <bcf:citekey order="14">lakhina04a</bcf:citekey>
+    <bcf:citekey order="14">netflow</bcf:citekey>
+    <bcf:citekey order="14">rfc2386</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
