@@ -22,3 +22,46 @@ events:
           trigger: 00d
           func: dump_end,stop
 
+  - start:
+          trigger: u
+          func: start
+
+  - stop:
+          trigger: d
+          func: stop
+
+  - event1:
+          trigger: xxxxxxx101
+
+  - event2_up:
+          trigger: 00u
+          func: dump_begin
+
+  - event2_down:
+          trigger: 00d
+          func: dump_end,stop
+
+  - start:
+          trigger: u
+          func: start
+
+  - stop:
+          trigger: d
+          func: stop
+
+  - event1:
+          trigger: xxxxxxx101
+
+  - event2_up:
+          trigger: 00u
+          func: dump_begin
+
+  - event2_down:
+          trigger: 00d
+          func: dump_end,stop
+
+  - start:
+          trigger: u
+          func: start
+
+

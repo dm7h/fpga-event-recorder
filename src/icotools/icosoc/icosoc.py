@@ -1402,7 +1402,7 @@ icosoc_ys["10-readvlog"].append("read_verilog -D ICOSOC %s/common/sync_dd_c.v" %
 icosoc_ys["50-synthesis"].append("synth_ice40 -top icosoc -blif icosoc.blif")
 
 icosoc_mk["50-synthesis"].append("icosoc.blif: icosoc.v icosoc.ys firmware_seed.hex")
-icosoc_mk["50-synthesis"].append("\tyosys -l icosoc.log -v1 icosoc.ys")
+icosoc_mk["50-synthesis"].append("\tyosys -l icosoc.log -v2 icosoc.ys")
 
 icosoc_mk["50-synthesis"].append("icosoc.asc: icosoc.blif icosoc.pcf")
 icosoc_mk["50-synthesis"].append("\tset -x; for seed in 1234 2345 3456 4567 5678 6789 7890; do \\")
