@@ -14,6 +14,7 @@ SECTIONS
   .text.sram : {
     *(.text.sram)
     *(.text.main)
+    *(.text.buffer)
   }
   text_sram_end = .;
 

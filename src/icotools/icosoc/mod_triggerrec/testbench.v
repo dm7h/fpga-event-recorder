@@ -18,6 +18,10 @@ module testbench;
 		for ( n = 0; n <= 12; n = n +1) begin
 			$dumpvars(1, uut.events_fifo.memory[n]);
 		end
+		for ( n = 0; n <= 15; n = n +1) begin
+			$dumpvars(1, uut.trig[n]);
+		end
+		
 		/*
 		for ( n = 0; n <= 1; n = n +1) begin
 			$dumpvars(1, uut.io_in_buf[n]);
@@ -110,19 +114,20 @@ module testbench;
 		// restart counter
 		ctrl_write('h4, 'h01); 
 		repeat (10) @(posedge clk);
-		
+	
+			
 		// check trigger registers
 		for (n = 0; n <= 15; n = n+1) begin 
 			
 			// set test trigger
-			ctrl_write('h100 + (n << 2), 'h0001FFFF + (n << 24)); // upper bytes
+			ctrl_write('h100 + (n << 2), 'h00010000 + (n << 24)); // upper bytes
 			repeat (2) @(posedge clk);
 			ctrl_write('h100 + (n << 2), 'hEFFFFFFF); // lower bytes
 			repeat (4) @(posedge clk);
 		
 			// get test trigger
 			ctrl_read('h100 + (n << 2));	
-			$display("Trigger[%02d]: \t%s : %x (upper bytes)", n, (ctrl_rdat == 'h0001FFFF + (n << 24))? "OK" : "NOK", ctrl_rdat);	
+			$display("Trigger[%02d]: \t%s : %x (upper bytes)", n, (ctrl_rdat == 'h00010000 + (n << 24))? "OK" : "NOK", ctrl_rdat);	
 			repeat (4) @(posedge clk);
 			ctrl_read('h100 + (n << 2));	
 			$display("Trigger[%02d]: \t%s : %x (lower bytes)", n, (ctrl_rdat == 'hEFFFFFFF)? "OK" : "NOK", ctrl_rdat);	
@@ -130,6 +135,12 @@ module testbench;
 		
 		end
 		
+
+		// set test trigger
+		ctrl_write('h100 + 0, 'h00013FFF + (n << 24)); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 1, 'h7FFFBFFF); // lower bytes
+		repeat (4) @(posedge clk);	
 
 		repeat (10) @(posedge clk);
 
@@ -148,11 +159,11 @@ module testbench;
 
 		// simulate gpio pin change
 		// this must work at clk frequency!!	
-		IO <= 'hFF;
+		IO <= 'h7F01;
 		@(posedge clk);
-		IO <= 'ha5;
+		IO <= 'hBF20;
 		@(posedge clk);
-		IO <= 'h5a;
+		IO <= 'h005a;
 		@(posedge clk);
 		IO <= 0;
 		

@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.89 (w)1999-2018 BSI
-[*] Mon May 28 20:20:02 2018
+[*] Sun Jun  3 18:22:19 2018
 [*]
 [dumpfile] "/home/dmin7/code/fpga-event-recorder/src/icotools/icosoc/mod_triggerrec/testbench.vcd"
-[dumpfile_mtime] "Mon May 28 20:19:56 2018"
-[dumpfile_size] 341367
+[dumpfile_mtime] "Sun Jun  3 18:21:56 2018"
+[dumpfile_size] 351382
 [savefile] "/home/dmin7/code/fpga-event-recorder/src/icotools/icosoc/mod_triggerrec/testbench.gtkw"
-[timestart] 34280
-[size] 1920 1200
-[pos] -1 -1
-*-12.000000 45840 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 27000
+[size] 1680 1050
+[pos] -364 -16
+*-12.000000 11300 11300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [treeopen] testbench.uut.
 [sst_width] 254
 [signals_width] 221
 [sst_expanded] 1
-[sst_vpaned_height] 381
+[sst_vpaned_height] 609
 @28
 testbench.uut.clk_fast
 testbench.uut.clk
@@ -80,9 +80,7 @@ testbench.uut.\triggers[28][31:0]
 testbench.uut.\triggers[29][31:0]
 testbench.uut.\triggers[30][31:0]
 testbench.uut.\triggers[31][31:0]
-@23
 testbench.uut.events_fifo.in_data[63:0]
-@22
 testbench.uut.events_fifo.out_data[63:0]
 @28
 testbench.uut.events_fifo.in_clk
@@ -103,5 +101,16 @@ testbench.uut.events_fifo.\memory[9][63:0]
 testbench.uut.events_fifo.\memory[10][63:0]
 testbench.uut.events_fifo.\memory[11][63:0]
 testbench.uut.events_fifo.\memory[12][63:0]
+testbench.uut.IO[15:0]
+testbench.uut.io_buf1[15:0]
+testbench.uut.io_buf2[15:0]
+@28
+testbench.uut.\trig[0]
+testbench.uut.\trig[1]
+testbench.uut.\trig[2]
+testbench.uut.\trig[3]
+testbench.uut.\trig[4]
+testbench.uut.\trig[5]
+testbench.uut.\trig[6]
 [pattern_trace] 1
 [pattern_trace] 0

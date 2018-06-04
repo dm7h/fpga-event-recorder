@@ -1,10 +1,10 @@
 module icosoc_mod_triggerrec #(
 	parameter integer CLOCK_FREQ_HZ = 0, // unused
-	parameter integer MAX_EVENTS = 16,
+	parameter integer MAX_EVENTS = 8,
 	parameter integer IO_LENGTH = 16
 ) (
 	input clk,
-	input clk_fast,
+	input clk_fast, // this should be at least twice as fast as clk
 	input resetn,
 
 	// bus
@@ -27,14 +27,38 @@ module icosoc_mod_triggerrec #(
 	reg [2:0] ctrl_state;
 
 	// status register (running, stopped etc.)
-	reg [31:0] status;
+	reg [31:0] status, status_in;
+	reg status_wr;
 
 	// register array holding the event trigger configurations
 	reg [31:0] triggers [0:(MAX_EVENTS << 1) - 1];
 	reg [31:0] triggers_in, triggers_out;
 	reg triggers_wr, triggers_rd;
 	reg [4:0] triggers_addr;
-	integer i, ii, iii;
+	integer i;
+	
+	/* example trigger trig1
+	wire [15:0] io1_xmask = io_buf1 | triggers[0][15:0];
+	wire [15:0] io_mask = triggers[0][15:0];
+	wire [15:0] io2_xmask = io_buf2 | triggers[0][15:0];
+	wire [15:0] io1_match = io1_xmask ~^ triggers[1][15:0];
+	wire [15:0] io2_match = io2_xmask ~^ triggers[1][31:16];
+	wire trig1 = &{io1_match, io2_match};
+	*/
+
+	
+	wire trig [0:MAX_EVENTS-1];
+	genvar ii;
+	generate 
+	for (ii = 0; ii < (MAX_EVENTS-1); ii=ii+1) begin 
+		assign trig[ii] = &triggers[(ii << 1)][15:0]? 0 :  // all 0xFF's? -> trigger not active 
+					//   AND REDUCTION( xmask (don't care) XNOR  match )
+					&{ (io_buf2 | triggers[(ii << 1)][15:0]) ~^ triggers[(ii << 1)+1][31:16], // match buf2 (last input)
+	       			    	(io_buf1 | triggers[(ii << 1)][15:0]) ~^ triggers[(ii << 1)+1][15:0]}; // match buf1 (current input)
+
+	end
+	endgenerate 
+	
 
 	reg [63:0] counter, counter_in;
 	reg [31:0] counter_buf;
@@ -56,14 +80,23 @@ module icosoc_mod_triggerrec #(
 
 	SB_IO #(
 		.PIN_TYPE(6'b 0000_01),
-		.PULLUP(1'b 1)
+		.PULLUP(1'b0) // b1 = pullup; b0 = floating
 	) ios [IO_LENGTH-1:0] (
 		.PACKAGE_PIN(IO),
 		.D_IN_0(io_in)
 	);
 
+	// initialize triggers array
 	initial $readmemh("../../mod_triggerrec/bram_triggers_template.hex", triggers);
+	
+	/* 
+	 * keep the read and write logic of the triggers array as 
+	 * simple as possible to ensure it gets synthesized as BRAM 
+	 * and not as FFs 
+	 * (that makes the bus logic slightly more complicated)
+	 */
 
+	// read trigger
 	always @(posedge clk) begin
 		if (!resetn)
 			triggers_out <= 0;
@@ -71,28 +104,35 @@ module icosoc_mod_triggerrec #(
 			triggers_out <= triggers[triggers_addr];
 	end
 
+	// write trigger
 	always @(posedge clk) begin
 		if (triggers_wr) 
 			triggers[triggers_addr] <= triggers_in;
 	end
 
 
+	// bus communication
 	always @(posedge clk) begin
 		
 		// reset
 		if (!resetn) begin
 		       counter_in <= 0;
-		       status <= 0;
 		       ctrl_state <= 0;
 		       data_in <= 0;
 		       triggers_in <= 0;
+
+		       /* WARNING: don't try to initialize the triggers array
+		        * with a for-loop: the array will be synthesized as FFs 
+			* instead of BRAM!
+	       		* .. use $readmem instead (see above) */ 	
+		       
 		       // initialize trigger array with 0xFF's
 		       //for (i = 0; i < (MAX_EVENTS << 1) ; i = i + 1)
 			 //      triggers[i] <= ~32'h0;
 	       	end else;	
 		
 		
-		// bus communication
+		// defaults
 		ctrl_rdat <= 'bx;
 		ctrl_done <= 0;
 		pop_out <= 0;
@@ -109,8 +149,10 @@ module icosoc_mod_triggerrec #(
 				ctrl_done <= 1;
 				
 				// write status register
-				if (ctrl_addr == 4)
-					status <= ctrl_wdat;
+				if (ctrl_addr == 4) begin
+					status_in <= ctrl_wdat;
+					status_wr <= 1;
+				end
 
 				// (re)set counter
 				if (ctrl_addr == 8) begin
@@ -190,29 +232,60 @@ module icosoc_mod_triggerrec #(
 	end	
 	
 	// trigger logic
-	always @(posedge clk) begin
+	always @(posedge clk_fast) begin
+		
+		if (!resetn) begin
+			status <= 0;
+			counter <= 0;
+		end
+
 		// defaults:
-		shift_in_fast <= 0; //shift_rise; // generate fast pulse for slow shift_in	
+		shift_in_fast <= shift_rise; // generate fast pulse for slow shift_in	
 		
 		// slow shift_in rising detection
 		shift_reg <= {shift_reg[1:0], shift_in};
 		
 		// TODO: signals to synchronize:
-		// status
 		// counter_wr
+		// status_wr
 
-		// stop counter when paused
+		// if running ..
 		if (status[0]) begin 
 			counter <= counter + 1;
+			
+			// if "dump" mode ..
+			if (status[1]) begin 
+				// trigger on all input changes
+				if ((io_buf2 != io_buf1)) begin
+					data_in_fast <= { io_buf1, 1'b0, counter[46:0] };
+					shift_in_fast <= 1;
+				end	
+			// else event detection ..
+			end else begin
+				for (i = 0; i < (MAX_EVENTS-1); i=i+1) begin
+					if (trig[i]) begin
+						data_in_fast <= { io_buf1, 1'b1, counter[46:0] };
+						shift_in_fast <= 1;
+						// apply trigger commands
+						/**/
+						if (triggers[i << 1][16])
+							status[0] <= 1;
+						else if (triggers[i << 1][17])
+							status[0] <= 0;
+						if (triggers[i << 1][18])
+							status[1] <= 1;
+						else if (triggers[i << 1][19])
+							status[1] = 0;
+						/**/
+					end
 
-			// trigger on all input changes
-			if ((io_buf1 != io_in) && (io_in != 0)) begin
-				data_in_fast <= { ~io_in, counter[47:0] };
-				shift_in_fast <= 1;
-			end	
+				end
+			end
 		end
 		if (counter_wr)
 			counter <= counter_in;
+		if (status_wr)
+			status <= status_in;
 		
 		io_buf1 <= io_in;
 	       	io_buf2 <= io_buf1;	
@@ -223,8 +296,8 @@ module icosoc_mod_triggerrec #(
 		.WIDTH(64),
 		.DEPTH(128)
 	) events_fifo (
-		.in_clk(clk),
-		.in_shift(shift_sel),
+		.in_clk(clk_fast),
+		.in_shift(shift_in_fast),
 		.in_data(data_sel),
 		.in_nempty(nempty_in),
 

@@ -1009,7 +1009,6 @@ icosoc_v["76-bus"].append("""
                 end
                 (mem_addr & 32'hF000_0000) == 32'h3000_0000: begin
                     if (mem_wstrb) begin
-                        LED2 <= 1;
                         if (tx_ready || !tx_req) begin
                             tx_req <= 1;
                             tx_data <= mem_wdata;
@@ -1018,7 +1017,6 @@ icosoc_v["76-bus"].append("""
                     end else begin
                         if (rx_req && !rx_ready) begin
                             rx_ready <= 1;
-                            LED2 <= 1;
                             mem_rdata <= rx_data;
                         end else begin
                             mem_rdata <= ~0;

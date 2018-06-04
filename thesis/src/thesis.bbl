@@ -19,6 +19,21 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
+    \entry{wiki:echtzeit}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 1. Jun. 2018]}
+      \field{title}{{Echtzeit {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Echtzeit
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Echtzeit
+      \endverb
+    \endentry
     \entry{ba:mueller}{thesis}{}
       \name{author}{1}{}{%
         {{hash=b6cfa06c6d110548dbb088a1445563f5}{%
@@ -36,8 +51,8 @@
       \strng{authorbibnamehash}{b6cfa06c6d110548dbb088a1445563f5}
       \strng{authornamehash}{b6cfa06c6d110548dbb088a1445563f5}
       \strng{authorfullhash}{b6cfa06c6d110548dbb088a1445563f5}
-      \field{sortinit}{1}
-      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen}}
@@ -45,8 +60,8 @@
       \field{year}{2010}
     \endentry
     \entry{forum:digilent}{misc}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Digilent Forum}
       \field{month}{5}
@@ -61,8 +76,8 @@
       \endverb
     \endentry
     \entry{web:blackmesa_sump2}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Black Mesa Labs}
       \field{month}{10}
@@ -77,8 +92,8 @@
       \endverb
     \endentry
     \entry{web:ols}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{sortinit}{5}
+      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
       \field{labeltitlesource}{title}
       \field{month}{6}
       \field{note}{[Online; accessed 31. May 2018]}
@@ -92,8 +107,8 @@
       \endverb
     \endentry
     \entry{web:sigrok_ols}{misc}{}
-      \field{sortinit}{5}
-      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
+      \field{sortinit}{6}
+      \field{sortinithash}{02bbed3ed82f61ae046619460488516d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 31. May 2018]}
@@ -107,8 +122,8 @@
       \endverb
     \endentry
     \entry{wiki:API}{misc}{}
-      \field{sortinit}{6}
-      \field{sortinithash}{02bbed3ed82f61ae046619460488516d}
+      \field{sortinit}{7}
+      \field{sortinithash}{6ac7fe70cdec8cba8f65694411ce2532}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 31. May 2018]}
@@ -122,8 +137,8 @@
       \endverb
     \endentry
     \entry{wiki:CPLD}{misc}{}
-      \field{sortinit}{7}
-      \field{sortinithash}{6ac7fe70cdec8cba8f65694411ce2532}
+      \field{sortinit}{8}
+      \field{sortinithash}{2f1b0e69e7617f99664f1cd00bb9603c}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -137,8 +152,8 @@
       \endverb
     \endentry
     \entry{wiki:FPGA}{misc}{}
-      \field{sortinit}{8}
-      \field{sortinithash}{2f1b0e69e7617f99664f1cd00bb9603c}
+      \field{sortinit}{9}
+      \field{sortinithash}{2999ebab86052e6d71b434385f8b4ed2}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -152,8 +167,8 @@
       \endverb
     \endentry
     \entry{wiki:SPI}{misc}{}
-      \field{sortinit}{9}
-      \field{sortinithash}{2999ebab86052e6d71b434385f8b4ed2}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 31. May 2018]}
