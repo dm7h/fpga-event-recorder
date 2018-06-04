@@ -4,7 +4,7 @@
  *
  *  Copyright (C) 2018  Domenik Müller
  *  
- *  ---
+ *  
  *
  *  Heavily based on the icoprog (https://github.com/cliffordwolf/icotools/tree/master/icoprog)
  *
@@ -33,6 +33,11 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <assert.h>
+
+// ctrl-c handler
+#include <signal.h>
+
+// vector
 #include <vector>
 
 // SPI (spidev)
@@ -53,7 +58,6 @@ bool verbose = false;
 bool got_error = false;
 
 bool enable_prog_port = false;
-bool enable_data_port = false;
 
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
@@ -65,18 +69,6 @@ bool enable_data_port = false;
 #  define RPI_ICE_CRESET  25 
 #  define RPI_ICE_CS      26 
 
-
-#  define RASPI_D8   8 
-#  define RASPI_D7   9 
-#  define RASPI_D6  30 
-#  define RASPI_D5  31 
-#  define RASPI_D4  12 
-#  define RASPI_D3  13 
-#  define RASPI_D2  11 
-#  define RASPI_D1  10 
-#  define RASPI_D0   6 
-#  define RASPI_DIR  5 
-#  define RASPI_CLK  3 
 
 void digitalSync(int usec_delay)
 {
@@ -515,16 +507,89 @@ void reset_inout()
 
 
 
+int ret;
+int fd;
+uint8_t spi_mode = 1;
+uint8_t spi_bits = 8;
+uint8_t spi_lsb = 1;
+uint16_t spi_delay = 0;
+uint32_t spi_speed = 2000000;
 
+/* initialize SPI connection */
+void spi_init(void)
+{
+	/* already initialized? */
+	if (fd > 0) return;
 
+	/* open the device */
+	fd = open("/dev/spidev0.0", O_RDWR);
+	if (fd < 0)
+		fprintf(stderr,"Can't open SPI device\n");
+
+	/* set config options */
+
+	// mode
+	ret = ioctl(fd, SPI_IOC_WR_MODE, &spi_mode);
+	ret = ioctl(fd, SPI_IOC_RD_MODE, &spi_mode);
+	if (ret == -1)
+		fprintf(stderr,"can't get spi mode\n");
+
+	// bits per word
+	ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &spi_bits);
+	ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &spi_bits);
+	if (ret == -1)
+		fprintf(stderr,"can't get bits per word\n");
+
+	// max speed hz
+	ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &spi_speed);
+	ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &spi_speed);
+	if (ret == -1)
+		fprintf(stderr,"can't get max speed hz\n");
+
+	// lsb first
+	ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, &spi_lsb);	
+	ret = ioctl(fd, SPI_IOC_RD_LSB_FIRST, &spi_lsb);
+	if (ret == -1)
+		fprintf(stderr,"can't get LSB_FIRST\n");
+
+	/* print configuration */
+	fprintf(stdout, "\n===\nSPI Configuration:\nspi mode: %d\n", spi_mode);
+	fprintf(stdout, "bits per word: %d (LSB_FIRST: %d)\n", spi_bits, spi_lsb);
+	fprintf(stdout, "max speed: %d Hz (%d KHz)\n", spi_speed, spi_speed/1000);
+	
+
+}
+
+/* bi-directional SPI transfer */
+void spi_xfer(uint8_t* tx, uint8_t* rx)
+{
+
+	// set up transfer struct
+	struct spi_ioc_transfer tr = {
+		tx_buf : (unsigned long) tx,
+		rx_buf : (unsigned long) rx,
+		len : ARRAY_SIZE(tx),
+		speed_hz : spi_speed,
+		delay_usecs : spi_delay,
+		bits_per_word : spi_bits
+	};	
+
+	// send it and check for error
+	ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
+	if (ret < 1)
+		fprintf(stderr, "can't send spi message");
+
+}
+
+/* read config from config file and send it via SPI */
 void run_config(char* config_file)
 {
  
-	// coded events
+	// encoded events
 	std::vector<uint64_t> events; 
 	
 	
-	// read events from config file
+	/* read events from config file */
 	YAML::Node config = YAML::LoadFile(config_file);
 	if (config["version"]) {
 		fprintf(stdout, "Reading config file (version: %s) ...\n", config["version"].as<std::string>().c_str());
@@ -537,10 +602,12 @@ void run_config(char* config_file)
 			YAML::Node ev = *it;
 			if (ev.size() == 1) {
 				YAML::const_iterator ev_it = ev.begin();
+				
 				// event name, must always exist
 				std::string ev_name = ev_it->first.as<std::string>(); 
 				if (verbose)
 					fprintf(stdout, "==Event %d==\n name: %s\n", id, ev_name.c_str());
+				
 				// event trigger, must also exist
 				std::string ev_trigger = ev_it->second["trigger"].as<std::string>();
 				if (verbose)	
@@ -567,22 +634,44 @@ void run_config(char* config_file)
 				enc |= ((uint64_t) ev_flag) << 48;	
 				
 				for (unsigned int i = 0; i < 16; i++) {
-					uint8_t trigger_flag = 7; // 7 = X = don't care
+					uint8_t trigger_flag[3] = {1,1,1}; // don't care
 					if (i <= ev_trigger.size() - 1) {
 					       switch(ev_trigger[i]) {
-						       case '0': trigger_flag = 0; break;
-						       case '1': trigger_flag = 3; break;
-						       case 'u': trigger_flag = 1; break;
-						       case 'd': trigger_flag = 2; break;
-					       }
+						       case '0': 
+							       trigger_flag[0] = 0; 
+							       trigger_flag[1] = 0; 
+							       trigger_flag[2] = 0; 
+							       break;
+						       case '1': 
+					       		       trigger_flag[0] = 0; 
+							       trigger_flag[1] = 1; 
+							       trigger_flag[2] = 1; 
+							       break;
+							case 'u':
+							       trigger_flag[0] = 0; 
+							       trigger_flag[1] = 0; 
+							       trigger_flag[2] = 1; 
+							       break;
+						 
+						       case 'd': 
+					       		       trigger_flag[0] = 0; 
+							       trigger_flag[1] = 1; 
+							       trigger_flag[2] = 0; 
+							       break;
+						}
 
 					}
 				       	//std::cout << ev_trigger[i] << ":" << std::bitset<64>(((uint64_t) trigger_flag) << ((15 - i) * 3)) << std::endl;	
-					enc |= ((uint64_t) trigger_flag) << ((15 - i) * 3);
+					// xmask
+					enc |= ((uint64_t) trigger_flag[0]) << (47 - i);
+					// match last input
+					enc |= ((uint64_t) trigger_flag[1]) << (31 - i);
+					// match current input
+					enc |= ((uint64_t) trigger_flag[2]) << (15 - i);
 				}		
 				
 				if (verbose) {
-					//std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
+					std::cout << "encoded: " << std::bitset<64>(enc) << std::endl;	
 					fprintf(stdout, "encoded: %016llx \n", enc);
 				}
 				events.push_back(enc);
@@ -592,56 +681,7 @@ void run_config(char* config_file)
 		}
 	}
 
-	// setup SPI
-
-
-	int ret;
-	int fd;
-	uint8_t mode = 1;
-	uint8_t bits = 8;
-	uint8_t lsb = 1;
-	uint16_t delay = 0;
-	uint32_t speed = 3000000;
-
-	fd = open("/dev/spidev0.0", O_RDWR);
-	if (fd < 0)
-		fprintf(stderr,"Can't open SPI device\n");
-
-	/*
-	 * spi mode
-	 */
-	ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
-	ret = ioctl(fd, SPI_IOC_RD_MODE, &mode);
-	if (ret == -1)
-		fprintf(stderr,"can't get spi mode\n");
-
-	/*
-	 * bits per word
-	 */
-	ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &bits);
-	ret = ioctl(fd, SPI_IOC_RD_BITS_PER_WORD, &bits);
-	if (ret == -1)
-		fprintf(stderr,"can't get bits per word\n");
-
-	/*
-	 * max speed hz
-	 */
-	ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed);
-	ret = ioctl(fd, SPI_IOC_RD_MAX_SPEED_HZ, &speed);
-	if (ret == -1)
-		fprintf(stderr,"can't get max speed hz\n");
-
-	// LSB_FIRST
-	ret = ioctl(fd, SPI_IOC_WR_LSB_FIRST, &lsb);	
-	ret = ioctl(fd, SPI_IOC_RD_LSB_FIRST, &lsb);
-	if (ret == -1)
-		fprintf(stderr,"can't get LSB_FIRST\n");
-
-	fprintf(stdout, "\n===\nSPI Configuration:\nspi mode: %d\n", mode);
-	fprintf(stdout, "bits per word: %d (LSB_FIRST: %d)\n", bits, lsb);
-	fprintf(stdout, "max speed: %d Hz (%d KHz)\n", speed, speed/1000);
-
-
+	/* send encoded event configs */
 	for (int i = 0; i < events.size(); i++) {
 		
 		fprintf(stdout, "---\nSPI: sending event %d: %016llx\n", i, events[i]);
@@ -656,55 +696,29 @@ void run_config(char* config_file)
 		// setup transmit buffer with trigger config command
 		uint8_t tx[4] = { 0, 0, 0, 1};
 		
-
-		struct spi_ioc_transfer tr = {
-			tx_buf : (unsigned long) tx,
-			rx_buf : (unsigned long) rx,
-			len : ARRAY_SIZE(tx),
-			speed_hz : speed,
-			delay_usecs : delay,
-			bits_per_word : bits
-		};
-
 		
 		// send command
-		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
-		if (ret < 1)
-			fprintf(stderr, "can't send spi message");
-		
-		//usleep(1000);
+		spi_xfer(tx, rx);
+
 		
 		// send first 4 bytes (swapped endianess) 
-		tr.rx_buf = (unsigned long) &(rx[4]);
 		for (int h = 0; h < 4; h++) 
 			tx[h] = ev_ptr[7-h];
-		tr.tx_buf = (unsigned long) tx;
 
-		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
-		if (ret < 1)
-			fprintf(stderr, "can't send spi message");
+		spi_xfer(tx, &(rx[4]));
 
 
-
-		// send last 4 bytes
-		tr.rx_buf = (unsigned long) &(rx[8]);
+		// send last 4 bytes (swapped endianess)
 		for (int h = 0; h < 4; h++) 
 			tx[h] = ev_ptr[3-h];
-		tr.tx_buf = (unsigned long) tx;
 
-		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
-		if (ret < 1)
-			fprintf(stderr, "can't send spi message");
+		spi_xfer(tx, &(rx[8]));
 
 		
 		// send trailing 0 word
-		tr.rx_buf = (unsigned long) &(rx[12]);
 		memset(tx, 0, sizeof(tx));
-		tr.tx_buf = (unsigned long) tx;
 
-		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
-		if (ret < 1)
-			fprintf(stderr, "can't send spi message");
+		spi_xfer(tx, &(rx[12]));
 
 
 		// show what we got back
@@ -717,37 +731,155 @@ void run_config(char* config_file)
 		}
 		puts("");
 		
+		// icosoc will print the results on the debug uart
+		// give it some time to process ..	
 		usleep(100000);	
 
 	}
 
-	while (true) 
-	{
-		// receive buffer
-		uint8_t rx[4] = {0, };
-		
-		// setup transmit buffer with trigger config command
-		uint8_t tx[4] = { 0, 0, 0, 0};
-		
-
-		struct spi_ioc_transfer tr = {
-			tx_buf : (unsigned long) tx,
-			rx_buf : (unsigned long) rx,
-			len : ARRAY_SIZE(tx),
-			speed_hz : speed,
-			delay_usecs : delay,
-			bits_per_word : bits
-		};
-
-		ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);	
-		printf("%.2x %.2x %.2x %.2x\r\n", rx[0], rx[1], rx[2], rx[3]);
-		usleep(100000);	
-	}
-
-
-	close(fd);
 }
 
+
+/* prepare recording */
+void spi_prepare_rec(void)
+{
+	if (verbose) fprintf(stdout, "resetting counter and clearing fifos .");	
+	
+	// send reset command
+	uint8_t rx[4], tx[4] = {0,0,0,2};
+	for (int i = 0; i < 4; i++) {
+		spi_xfer(tx,rx);
+	}
+	
+	// wait for 0xFF signaling all buffer entries have been cleared
+	while (rx[0] != 0xFF) {
+		spi_xfer(tx,rx);
+		if (verbose) fprintf(stdout, ".");
+		usleep(100000);
+	}
+	if (verbose) fprintf(stdout, ".\n");
+	
+	// catch trailing 0xFF's if any ..
+	for (int i = 0; i < 16; i++) {
+		spi_xfer(tx,rx);
+		usleep(100000);
+	}
+}
+
+
+/* stop recording */
+
+void spi_stop_rec(void)
+{
+	if (verbose) fprintf(stdout, "stopping recording .");	
+	
+	// send reset command
+	uint8_t rx[4], tx[4] = {0,0,0,3};
+	for (int i = 0; i < 4; i++) {
+		spi_xfer(tx,rx);
+	}	
+}
+
+
+/* 
+ * receive events via SPI and save them to a .vcd file 
+ * 
+ * https://github.com/rickyrockrat/la2vcd2/blob/master/la2vcd_lib.c
+ * was used as a reference for the .vcd part
+ */
+
+static volatile int loop = 1;
+
+void intHandler(int d) 
+{
+	loop = 0;
+}
+
+
+void spi_record(char* out_file)
+{
+	
+	FILE* fout = fopen(out_file, "w");
+	if (fout == NULL) {
+		fprintf(stderr, "Can't open output file: %s\n", out_file);
+		return;
+	}
+
+	char buf[100];	
+	
+	time_t t = time (NULL);
+	strftime (buf, sizeof (buf), "%b %d, %Y  %H:%M:%S", localtime (& t));
+
+	fprintf(fout, "$date\n");
+	fprintf(fout, "    %s\n", buf);
+	fprintf(fout, "$end\n");
+	fprintf(fout, "$version\n");
+	fprintf(fout, "    TOOL: EvR v0.1\n");
+	fprintf(fout, "$end\n");
+	fprintf(fout, "$timescale\n");
+	fprintf(fout, "   %d ns\n", 10); // 20 mhz = 50ns 
+	fprintf(fout, "$end\n");
+	fprintf(fout, "$scope module %s $end\n", "inputs");
+
+	//fprintf(fout, "$var wire 16 # input $end\n"); 
+
+	for (int i = 0; i < 16; i++) {
+		fprintf(fout, "$var wire 1 %c input_%d $end\n", (char) i + 33, i); 
+	}
+
+	fprintf(fout, "$upscope $end\n");
+	fprintf(fout, "$enddefinitions $end\n");	
+	fprintf(fout, "$dumpvars\n");	
+	//fprintf(fout, "bxxxxxxxxxxxxxxxx #\n");	
+	
+	fflush(fout);
+
+	// receive buffer
+	uint8_t rx[8];
+	
+	// setup transmit buffer with data retreive command
+	uint8_t tx[4] = { 0 };
+		
+	
+	while (loop) 
+	{
+		// clear rx buffer
+		memset(rx, 0, sizeof(rx));
+
+		// send it	
+		spi_xfer(tx, rx);
+		spi_xfer(tx, &(rx[4]));
+
+		// print results if we got some
+		if ((rx[7] > 0) || (rx[6] > 0) || (rx[5] > 0) || (rx[4] > 0 ) || (rx[3] > 0) || (rx[2] > 0)) {
+			for (int i = 0; i < 8; i++)
+				printf("%.2x ", rx[i]);
+			uint64_t ts =  rx[7] + (rx[6] << 8) + (rx[5] << 16); 
+			ts |= (uint64_t) rx[4] << 24; 
+			ts |= (uint64_t) rx[3] << 32; 
+			ts |= (uint64_t) rx[2] << 40;
+			fprintf(fout, "#%llu\n", ts);
+			printf(" #%llu\n", ts);
+			for (int i = 0; i < 16; i++)
+				fprintf(fout, "%d%c\n", (((rx[0] << 8) + rx[1]) & (1 << i))? 1 : 0, (char) i + 33);
+			//fprintf(fout, "%s #\n", std::bitset<16>((rx[0] << 8) + rx[1]).to_string().c_str()); 
+
+		}
+		usleep(100000);	
+	}
+
+	printf("rec done\n");
+	fclose(fout);
+
+
+
+}
+
+/* close SPI */
+void spi_close(void)
+{
+	close(fd);
+}
 
 void help(const char *progname)
 {
@@ -783,34 +915,48 @@ void help(const char *progname)
 
 int main(int argc, char **argv)
 {
+	
+	/* signal handler for ctrl-c */
+	signal(SIGINT, intHandler);
+
+	/* parsing options */	
 	int opt, n = -1;
 	int pageoffset = 0;
+	int reset_counter = 0;
 	char mode = 0;
 	char *config_file;
+	char *out_file;
 
-	while ((opt = getopt(argc, argv, "RbEpfevF:C:O:")) != -1)
+
+	while ((opt = getopt(argc, argv, "RbErpfevF:c:o:O:")) != -1)
 	{
 		switch (opt)
 		{
 		case 'F':
 			n = atoi(optarg);
 			// fall through
-		case 'C':
+		case 'c':
 			config_file = optarg; 
-
+		case 'o':
+			out_file = optarg;
 		case 'E':
 		case 'R':
 		case 'b':
 		case 'p':
 		case 'f':
 		case 'e':
-			if (mode)
-				help(argv[0]);
+			// don't complain when multiple modes are set
+			// ignore all but the last one
+			//if (mode)
+				//help(argv[0]);
 			mode = opt;
 			break;
 		case 'v':
 			verbose = true;
 			break;
+
+		case 'r':
+			reset_counter = true;
 
 		case 'O':
 			pageoffset = atoi(optarg);
@@ -880,13 +1026,23 @@ int main(int argc, char **argv)
 		reset_inout();
 	}
 
-	if (mode == 'C') {
+	if (mode == 'c') {
 
-		enable_prog_port = true;
-		wiringPiSetup();
-		reset_inout();
+		//enable_prog_port = true;
+		//wiringPiSetup();
+		//reset_inout();
+		spi_init();
 		run_config(config_file);
-		reset_inout();
+		spi_close();
+		//reset_inout();
+	}
+	if (mode == 'o') {
+		spi_init();
+		if (config_file) run_config(config_file);
+		spi_prepare_rec();
+		spi_record(out_file);
+		spi_stop_rec();
+		spi_close();
 	}
 
 
