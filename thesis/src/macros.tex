@@ -18,7 +18,7 @@
 % Leere Seite ohne Seitennummer, wird aber gezaehlt
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\leereseite}{% Leerseite ohne Seitennummer, nächste Seite rechts (wenn 2-seitig)
+\newcommand{\leereseite}{% Leerseite ohne Seitennummer, nÃ¤chste Seite rechts (wenn 2-seitig)
  \clearpage{\pagestyle{empty}\cleardoublepage}
 }
 
@@ -39,7 +39,7 @@
 \newcolumntype{G}{>{\columncolor[gray]{0.9}}c} % helleres Grau
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Anführungszeichen oben und unten
+% AnfÃ¼hrungszeichen oben und unten
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\anf}[1]{"`{#1}"'}
 
@@ -58,7 +58,7 @@
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Gauß-Klammern
+% GauÃŸ-Klammern
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\ceil}[1]{\lceil{#1}\rceil}
 \newcommand{\floor}[1]{\lfloor{#1}\rfloor}
@@ -69,7 +69,7 @@
 \def\avg{\mathop{\mathgroup\symoperators avg}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-% Wortabkürzungen
+% WortabkÃ¼rzungen
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\zB{z.\,B.\ }
 \def\dh{d.\,h.\ }
@@ -105,7 +105,7 @@
 \end{figure}%
 }
 \let\Abbps\Abbildungps
-%% Graphik, Angabe der Position, frei wählbares Argument für includegraphics
+%% Graphik, Angabe der Position, frei wÃ¤hlbares Argument fÃ¼r includegraphics
 %% 5 Argumente: Position, Optionen, Datei, Label, Unterschrift
 \newcommand{\Abbildungpf}[5]{%
 \begin{figure}[#1]%
@@ -119,10 +119,10 @@
 \let\Abbpf\Abbildungpf
 
 %%
-% Anmerkung: \resizebox{x}{y}{box} skaliert die box auf Breite x und Höhe y,
-%            ist x oder y ein !, dann wird das usprüngliche 
-%            Seitenverhältnis beibehalten.
-%            \rescalebox funktioniert ähnlich, nur das dort ein Faktor
+% Anmerkung: \resizebox{x}{y}{box} skaliert die box auf Breite x und HÃ¶he y,
+%            ist x oder y ein !, dann wird das usprÃ¼ngliche 
+%            SeitenverhÃ¤ltnis beibehalten.
+%            \rescalebox funktioniert Ã¤hnlich, nur das dort ein Faktor
 %            statt einer Dimension angegeben wird.
 %%
 % \Abbps{Position}{Breite in Bruchteilen der Textbreite}{Dateiname}{Label}{Bildunterschrift}
@@ -130,6 +130,47 @@
 
 \newcommand{\refAbb}[1]{%
 s.~Abbildung \ref{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% listings: YAML
+%%%%%%%%%%%%%%%%%%%%
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\makeatletter
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+  keywords={true,false,null,y,n},
+  keywordstyle=\color{darkgray}\bfseries,
+  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
+  sensitive=false,
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\YAMLvaluestyle\ttfamily,
+  moredelim=[l][\color{orange}]{\&},
+  moredelim=[l][\color{magenta}]{*},
+  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+  morestring=[b]',
+  morestring=[b]",
+  literate =    {---}{{\ProcessThreeDashes}}3
+                {>}{{\textcolor{red}\textgreater}}1     
+                {|}{{\textcolor{red}\textbar}}1 
+                {\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
+
+
 
 %%%%%%%%%%%%%%%%%%%%
 %% end of macros.tex

@@ -1,19 +1,46 @@
 
-
+% wissdoc Optionen: draft, relaxed, pdf, oneside --> siehe wissdoc.cls
 %\documentclass{wissdoc}
 \documentclass[oneside]{wissdoc}
-% ----------------------------------------------------------------
-% Diplomarbeit - Hauptdokument
-% ----------------------------------------------------------------
-% wissdoc Optionen: draft, relaxed, pdf, oneside --> siehe wissdoc.cls
-% ------------------------------------------------------------------
-% Packages für Deckblatt
 
+
+% Packages für Deckblatt (u.a.)
 \usepackage[absolute]{textpos} 	%Textboxen an absolute Position setzen
 \usepackage{setspace}						%Zeilenabstand anpassen
 \usepackage{color}							%Farbige Schrift
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{graphicx}						%Einbinden von Grafiken
+\usepackage{subfigure}
+\usepackage{caption}
+
+% language / input
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{listings}
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+\newcommand\YAMLkeystyle{\color{black}\bfseries}
+\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
+
+
+% glossaries
+\usepackage{url}
+\usepackage[acronym,toc]{glossaries}
+
+\makeglossaries
+
+\usepackage{xparse}
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#4},text={#4\glsadd{#3}},
+    description={#6},#1
+  }
+  \makeglossaries
+  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
+\loadglsentries{glossaries}
 
 
 % bib stuff
@@ -40,29 +67,6 @@
 }
 
 
-% Weitere packages: (Dokumentation dazu durch "latex <package>.dtx")
-% \usepackage{varioref}
-% \usepackage{verbatim}
-% \usepackage{float}    %z.B. \floatstyle{ruled}\restylefloat{figure}
-\usepackage{subfigure}
-\usepackage[ngerman]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{url}
-\usepackage[acronym,toc]{glossaries}
-
-\makeglossaries
-
-\usepackage{xparse}
-\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
-  \newglossaryentry{gls-#3}{name={#4},text={#4\glsadd{#3}},
-    description={#6},#1
-  }
-  \makeglossaries
-  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
-}
-
-\loadglsentries{glossaries}
 
 %\usepackage[footnote]{acronym}
 

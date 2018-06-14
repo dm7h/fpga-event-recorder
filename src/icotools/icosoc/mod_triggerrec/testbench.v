@@ -12,16 +12,22 @@ module testbench;
 	initial begin
 		$dumpfile("testbench.vcd");
 		$dumpvars(0, testbench);
-		for ( n = 0; n <= 31; n = n +1) begin
+		
+			
+		for ( n = 0; n < 8; n = n +1) begin
 			$dumpvars(1, uut.triggers[n]);
 		end
-		for ( n = 0; n <= 12; n = n +1) begin
+		
+		for ( n = 0; n < 8; n = n +1) begin
 			$dumpvars(1, uut.events_fifo.memory[n]);
 		end
-		for ( n = 0; n <= 15; n = n +1) begin
+		
+		/*	
+		for ( n = 0; n < 8; n = n +1) begin
 			$dumpvars(1, uut.trig[n]);
 		end
-		
+		*/
+
 		/*
 		for ( n = 0; n <= 1; n = n +1) begin
 			$dumpvars(1, uut.io_in_buf[n]);
@@ -58,6 +64,14 @@ module testbench;
 		while (!ctrl_done) @(posedge clk);
 		ctrl_rd <= 0;
 	end endtask
+	
+	task read_fifo; begin
+		// read fifo out
+		ctrl_read('hc);	
+		ctrl_read('hc);	
+		repeat (10) @(posedge clk);
+	end endtask
+	
 
 	icosoc_mod_triggerrec uut (
 		.clk      (clk      ),
@@ -74,9 +88,10 @@ module testbench;
 	);
 
 	initial begin
+		
 		@(posedge resetn);
 		IO <= 0;
-		$readmemh("bram_triggers_template.hex", uut.triggers);
+		$readmemh("bram_F0s.hex", uut.triggers);
 		
 		repeat (10) @(posedge clk);
 		$display("===\nChecking registers read/write:");
@@ -112,12 +127,12 @@ module testbench;
 		repeat (10) @(posedge clk);
 
 		// restart counter
-		ctrl_write('h4, 'h01); 
-		repeat (10) @(posedge clk);
+		//ctrl_write('h4, 'h01); 
+		//repeat (10) @(posedge clk);
 	
 			
 		// check trigger registers
-		for (n = 0; n <= 15; n = n+1) begin 
+		for (n = 0; n <= 7; n = n+1) begin 
 			
 			// set test trigger
 			ctrl_write('h100 + (n << 2), 'h00010000 + (n << 24)); // upper bytes
@@ -136,11 +151,43 @@ module testbench;
 		end
 		
 
-		// set test trigger
-		ctrl_write('h100 + 0, 'h00013FFF + (n << 24)); // upper bytes
+		// event 0
+		ctrl_write('h100 + 0, 'h0003fffe); // upper bytes
 		repeat (2) @(posedge clk);
-		ctrl_write('h100 + 1, 'h7FFFBFFF); // lower bytes
+		ctrl_write('h100 + 0, 'hfffeffff); // lower bytes
+		repeat (4) @(posedge clk);
+
+		// event 1
+		ctrl_write('h100 + 1 << 2, 'h0101FFFe); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 1 << 2, 'hFFFfFFFe); // lower bytes
 		repeat (4) @(posedge clk);	
+
+		// event 2
+		ctrl_write('h100 + 2 << 2, 'h0200fffc); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 2 << 2, 'hbfffdffff); // lower bytes
+		repeat (4) @(posedge clk);	
+
+		// event 3
+		ctrl_write('h100 + 3 << 2, 'h0307fffa); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 3 << 2, 'hfffbffff); // lower bytes
+		repeat (4) @(posedge clk);	
+
+		// event 4
+		ctrl_write('h100 + 4 << 2, 'h0401fffa); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 4 << 2, 'hfffffffb); // lower bytes
+		repeat (4) @(posedge clk);	
+
+		// event 5
+		ctrl_write('h100 + 5 << 2, 'h0500fff0); // upper bytes
+		repeat (2) @(posedge clk);
+		ctrl_write('h100 + 5 << 2, 'hfffdfffe); // lower bytes
+		repeat (4) @(posedge clk);	
+
+
 
 		repeat (10) @(posedge clk);
 
@@ -158,44 +205,42 @@ module testbench;
 
 
 		// simulate gpio pin change
-		// this must work at clk frequency!!	
-		IO <= 'h7F01;
+		// this must work at clk frequency!	
+		IO <= 'h7FA4; // x
 		@(posedge clk);
-		IO <= 'hBF20;
+		IO <= 'h7F01; // start
+		@(posedge clk);		
+		IO <= 'h0001; // x 
+		repeat(20) @(posedge clk);
+		IO <= 'h0003; // clk_up
 		@(posedge clk);
-		IO <= 'h005a;
-		@(posedge clk);
-		IO <= 0;
+		IO <= 'h0001; // clk_down
+		repeat(20) @(posedge clk);
 		
+		IO <= 'hff01; // x
+		@(posedge clk);
+		IO <= 'h0005; // dump_begin
+		@(posedge clk);
+		IO <= 'hff05; // *
+		@(posedge clk);		
+		IO <= 'haa05; // * 
+		repeat(20) @(posedge clk);
+		IO <= 'h5505; // *
+		@(posedge clk);
+		IO <= 'h0001; // dump_end 
+		repeat(20) @(posedge clk);
+			
+		IO <= 'hff01; // x
+		@(posedge clk);
+		IO <= 'h0000; // end
+		@(posedge clk);
+		IO <= 'hff00; // x
+		@(posedge clk);		
+		IO <= 0; // x		
 		repeat (20) @(posedge clk);
 		
-		// read fifo out
-		ctrl_read('hc);	
-		ctrl_read('hc);	
-		repeat (10) @(posedge clk);
+		repeat (10) read_fifo();
 
-	
-		// read fifo out
-		ctrl_read('hc);	
-		ctrl_read('hc);	
-		repeat (10) @(posedge clk);
-
-	
-		// read fifo out
-		ctrl_read('hc);	
-		ctrl_read('hc);	
-		repeat (10) @(posedge clk);
-
-	
-		// read fifo out
-		ctrl_read('hc);	
-		ctrl_read('hc);	
-		repeat (10) @(posedge clk);
-
-		// read fifo out
-		ctrl_read('hc);	
-		ctrl_read('hc);	
-		repeat (10) @(posedge clk);
 
 		$finish;
 	end

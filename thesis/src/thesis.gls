@@ -1,25 +1,39 @@
 \glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
 \begin{theglossary}\glossaryheader
+\glsgroupheading{glssymbols}\relax \glsresetentrylist %
+\glossentry{gls-I2C}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{9}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{A}\relax \glsresetentrylist %
 \glossentry{gls-API}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{C}\relax \glsresetentrylist %
 \glossentry{gls-CPLD}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{gls-FPGA}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{7}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
+\glsgroupheading{G}\relax \glsresetentrylist %
+\glossentry{gls-GPIO}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
+\glsgroupheading{P}\relax \glsresetentrylist %
+\glossentry{gls-PLL}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{S}\relax \glsresetentrylist %
 \glossentry{gls-SPI}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{9}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{U}\relax \glsresetentrylist %
 \glossentry{gls-UART}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{19}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{8}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{27}}}\glsgroupskip
 \glsgroupheading{V}\relax \glsresetentrylist %
 \glossentry{Verilog}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{3}}}%
 \glossentry{gls-VHDL}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{19}}}%
+		\setentrycounter[]{page}\glsnumberformat{27}}}%
 \end{theglossary}\glossarypostamble
