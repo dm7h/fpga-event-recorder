@@ -13,10 +13,10 @@ example.blif: example.v
 	yosys -p 'synth_ice40 -blif example.blif' example.v
 
 example.asc: example.blif example.pcf
-	arachne-pnr -d 8k -p example.pcf -o example.asc example.blif
+	arachne-pnr -d 8k -P tq144:4k -p example.pcf -o example.asc example.blif
 
 example.bin: example.asc
-	icetime -d hx8k -c 100 example.asc
+	icetime -d hx8k -P tq144:4k -c 100 example.asc
 	icepack example.asc example.bin
 
 example_sram: example.bin

@@ -1,4 +1,4 @@
-set_io clk R9
-set_io led1 C8
-set_io led2 F7
-set_io led3 K9
+set_io clk 49
+set_io led1 110
+set_io led2 93
+set_io led3 94
