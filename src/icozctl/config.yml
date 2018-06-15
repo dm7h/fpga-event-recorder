@@ -19,24 +19,27 @@ version: 0.1
 #       dump_begin:     trigger on signal changes
 #       dump_end:       stop triggering on all signal changes      
 
+
 # event triggers
 events: 
   - start:
-          trigger: u
-          func: start
+          trigger: xxu
+          function: start
 
   - stop:
-          trigger: xxxxxxxd
-          func: stop
+          trigger: xxd
+          function: stop
 
-  - event1:
-          trigger: 0000000000000001
+  - dump_s:
+          trigger: xx1u
+          function: dump_begin 
 
-  - event2_up:
-          trigger: 00u
-          func: dump_begin
+  - dump_e:
+          trigger: xx1d
+          function: dump_end
 
-  - event2_down:
-          trigger: 00d
-          func: dump_end,stop
+  - event_1:
+          trigger: xx0u
 
+  - clk_up:
+          trigger: xx0d
