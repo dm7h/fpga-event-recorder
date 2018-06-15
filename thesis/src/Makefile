@@ -43,7 +43,7 @@ it:
 #             latex $(MAINFILE)
 
 $(BBLFILES): %.bbl: %.bib
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 	biber $(MAINFILE)
 
 final: it bbls double index ps
@@ -80,21 +80,21 @@ $(MAINFILE).ps:	$(MAINFILE).dvi
 # ghostscript 6.50
 finalpdf: pdf
 	- thumbpdf $(MAINFILE)
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 
 pdf:    $(MAINFILE).pdf  $(MAINFILE).ind
 
 onepdf: 
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 
 $(MAINFILE).pdf: $(MAINFILE).tex $(TEXSOURCES)
 	- rm $(MAINFILE).aux $(MAINFILE).ind
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 	- make bbls
 	- makeglossaries $(MAINFILE)
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 	- $(MAKE) index
-	- pdflatex $(MAINFILE)
+	- pdflatex -shell-escape $(MAINFILE)
 
 
 bbls: $(BBLFILES)

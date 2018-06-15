@@ -1,21 +1,21 @@
 [*]
-[*] GTKWave Analyzer v3.3.89 (w)1999-2018 BSI
-[*] Sun Jun  3 18:22:19 2018
+[*] GTKWave Analyzer v3.3.90 (w)1999-2018 BSI
+[*] Mon Jun 11 09:56:49 2018
 [*]
 [dumpfile] "/home/dmin7/code/fpga-event-recorder/src/icotools/icosoc/mod_triggerrec/testbench.vcd"
-[dumpfile_mtime] "Sun Jun  3 18:21:56 2018"
-[dumpfile_size] 351382
+[dumpfile_mtime] "Mon Jun 11 09:54:47 2018"
+[dumpfile_size] 444282
 [savefile] "/home/dmin7/code/fpga-event-recorder/src/icotools/icosoc/mod_triggerrec/testbench.gtkw"
-[timestart] 27000
+[timestart] 0
 [size] 1680 1050
-[pos] -364 -16
-*-12.000000 11300 11300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -388 -16
+*-14.000000 50779 11300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [treeopen] testbench.uut.
 [sst_width] 254
 [signals_width] 221
 [sst_expanded] 1
-[sst_vpaned_height] 609
+[sst_vpaned_height] 471
 @28
 testbench.uut.clk_fast
 testbench.uut.clk
@@ -59,27 +59,6 @@ testbench.uut.\triggers[7][31:0]
 testbench.uut.\triggers[8][31:0]
 testbench.uut.\triggers[9][31:0]
 testbench.uut.\triggers[10][31:0]
-testbench.uut.\triggers[11][31:0]
-testbench.uut.\triggers[12][31:0]
-testbench.uut.\triggers[13][31:0]
-testbench.uut.\triggers[14][31:0]
-testbench.uut.\triggers[15][31:0]
-testbench.uut.\triggers[16][31:0]
-testbench.uut.\triggers[17][31:0]
-testbench.uut.\triggers[18][31:0]
-testbench.uut.\triggers[19][31:0]
-testbench.uut.\triggers[20][31:0]
-testbench.uut.\triggers[21][31:0]
-testbench.uut.\triggers[22][31:0]
-testbench.uut.\triggers[23][31:0]
-testbench.uut.\triggers[24][31:0]
-testbench.uut.\triggers[25][31:0]
-testbench.uut.\triggers[26][31:0]
-testbench.uut.\triggers[27][31:0]
-testbench.uut.\triggers[28][31:0]
-testbench.uut.\triggers[29][31:0]
-testbench.uut.\triggers[30][31:0]
-testbench.uut.\triggers[31][31:0]
 testbench.uut.events_fifo.in_data[63:0]
 testbench.uut.events_fifo.out_data[63:0]
 @28
@@ -96,21 +75,37 @@ testbench.uut.events_fifo.\memory[4][63:0]
 testbench.uut.events_fifo.\memory[5][63:0]
 testbench.uut.events_fifo.\memory[6][63:0]
 testbench.uut.events_fifo.\memory[7][63:0]
-testbench.uut.events_fifo.\memory[8][63:0]
-testbench.uut.events_fifo.\memory[9][63:0]
-testbench.uut.events_fifo.\memory[10][63:0]
-testbench.uut.events_fifo.\memory[11][63:0]
-testbench.uut.events_fifo.\memory[12][63:0]
 testbench.uut.IO[15:0]
 testbench.uut.io_buf1[15:0]
 testbench.uut.io_buf2[15:0]
+testbench.uut.status[31:0]
 @28
-testbench.uut.\trig[0]
-testbench.uut.\trig[1]
-testbench.uut.\trig[2]
-testbench.uut.\trig[3]
-testbench.uut.\trig[4]
-testbench.uut.\trig[5]
-testbench.uut.\trig[6]
+testbench.uut.status_wr
+testbench.uut.trig1
+testbench.uut.trig2
+testbench.uut.trig3
+@29
+testbench.uut.trig4
+@22
+testbench.uut.t1_io_mask[15:0]
+testbench.uut.t1_io1_xmask[15:0]
+testbench.uut.t1_io2_xmask[15:0]
+testbench.uut.t1_io1_match[15:0]
+testbench.uut.t1_io2_match[15:0]
+testbench.uut.t2_io_mask[15:0]
+testbench.uut.t2_io1_xmask[15:0]
+testbench.uut.t2_io2_xmask[15:0]
+testbench.uut.t2_io1_match[15:0]
+testbench.uut.t2_io2_match[15:0]
+testbench.uut.t3_io1_match[15:0]
+testbench.uut.t3_io1_xmask[15:0]
+testbench.uut.t3_io2_match[15:0]
+testbench.uut.t3_io2_xmask[15:0]
+testbench.uut.t3_io_mask[15:0]
+testbench.uut.t4_io1_match[15:0]
+testbench.uut.t4_io1_xmask[15:0]
+testbench.uut.t4_io2_match[15:0]
+testbench.uut.t4_io2_xmask[15:0]
+testbench.uut.t4_io_mask[15:0]
 [pattern_trace] 1
 [pattern_trace] 0

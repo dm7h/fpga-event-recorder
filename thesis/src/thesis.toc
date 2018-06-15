@@ -3,76 +3,110 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Einf\IeC {\"u}hrung}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}Zielsetzung}{2}{section.1.1}
+\contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Motivation}{2}{section.1.2}
+\contentsline {section}{\numberline {1.2}Abgrenzung von bestehenden L\IeC {\"o}sungen zur Logikanalyse}{3}{section.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Aufbau der Arbeit}{3}{section.1.3}
+\contentsline {section}{\numberline {1.3}Zielsetzung}{3}{section.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Design}{4}{chapter.2}
+\contentsline {section}{\numberline {1.4}Aufbau der Arbeit}{4}{section.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Technische Grundlagen}{4}{section.2.1}
+\contentsline {chapter}{\numberline {2}Design}{5}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Ben\IeC {\"o}tigte Hard- und Software-Komponenten}{5}{section.2.2}
+\contentsline {section}{\numberline {2.1}Theoretische Grundlagen}{5}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Auswahl der Software-Toolchain}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.1.1}Zeit- und wertdiskrete digitale Signale}{5}{subsection.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Auswahl der Hardware}{7}{section.2.4}
+\contentsline {subsection}{\numberline {2.1.2}Definition ``Event''}{6}{subsection.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{8}{section.2.5}
+\contentsline {section}{\numberline {2.2}\IeC {\"U}berblick der ben\IeC {\"o}tigten Hard- und Software-Komponenten}{8}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
+\contentsline {subsection}{\numberline {2.2.1}Datenerfassung: FPGA}{8}{subsection.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Portierung des Tools zum Flashen des Bitstreams (icoprog)}{10}{section.3.1}
+\contentsline {subsection}{\numberline {2.2.2}Datenzwischenspeicher: SRAM}{9}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Portierung und n\"otige Anpassungen des Verilog-SoCs (icosoc)}{11}{section.3.2}
+\contentsline {subsection}{\numberline {2.2.3}Daten\IeC {\"u}bertragung: SPI}{9}{subsection.2.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{12}{section.3.3}
+\contentsline {subsection}{\numberline {2.2.4}Steuerung der Aufnahme und sequentielle Programmabl\IeC {\"a}ufe}{10}{subsection.2.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Bus-Schnittstelle}{12}{subsection.3.3.1}
+\contentsline {section}{\numberline {2.3}Auswahl der Software-Toolchain: IceStorm}{11}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Triggerlogik}{12}{subsection.3.3.2}
+\contentsline {section}{\numberline {2.4}Auswahl der Hardware}{12}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{13}{section.3.4}
+\contentsline {subsection}{\numberline {2.4.1}IceZero FPGA-Shield (iCE40HX4K)}{12}{subsection.2.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Zusammenf\"uhrung der Module als Icosoc-Projekt}{14}{section.3.5}
+\contentsline {subsection}{\numberline {2.4.2}Raspberry Pi Zero W}{12}{subsection.2.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.6}Implementierung des textbasierten Benutzerinterfaces}{14}{section.3.6}
+\contentsline {section}{\numberline {2.5}Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{13}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Anwendungsfall: Jitter-Analyse eines Software-generierten Clock-Signals}{15}{chapter.4}
+\contentsline {chapter}{\numberline {3}Implementierung}{14}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Einrichten des Projekts}{15}{section.4.1}
+\contentsline {section}{\numberline {3.1}Portierung des Tools zum Flashen des Bitstreams (icoprog)}{15}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Konfiguration der Event-Trigger}{15}{section.4.2}
+\contentsline {section}{\numberline {3.2}Portierung und n\"otige Anpassungen des Verilog-SoCs (icosoc)}{16}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Durchf\"uhren der Event-Aufnahme}{16}{section.4.3}
+\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{17}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Analyse der Ergebnisse}{16}{section.4.4}
+\contentsline {subsection}{\numberline {3.3.1}Bus-Schnittstelle}{17}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Fazit}{17}{chapter.5}
+\contentsline {subsection}{\numberline {3.3.2}Triggerlogik}{17}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Aussicht}{18}{chapter.6}
+\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{18}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Abk\IeC {\"u}rzungen}{19}{section*.4}
+\contentsline {section}{\numberline {3.5}Zusammenf\"uhrung der Module als Icosoc-Projekt}{19}{section.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Glossar}{20}{section*.6}
+\contentsline {section}{\numberline {3.6}Implementierung des textbasierten Benutzerinterfaces}{19}{section.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Abbildungsverzeichnis}{21}{appendix*.8}
+\contentsline {chapter}{\numberline {4}Anwendungsfall: Jitter-Analyse von Software-generierten MIDI-Clock Signalen}{20}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Tabellenverzeichnis}{22}{appendix*.9}
+\contentsline {section}{\numberline {4.1}Test-Setup: USB-Midi mit Teensy LC}{21}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatur}{23}{appendix*.9}
+\contentsline {section}{\numberline {4.2}Einrichten des Projekts}{22}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Pinbelegung}{24}{appendix.A}
+\contentsline {section}{\numberline {4.3}Konfiguration der Event-Trigger}{23}{section.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Tex Beispiele}{24}{section.A.1}
+\contentsline {section}{\numberline {4.4}Durchf\IeC {\"u}hren der Event-Aufnahme}{23}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.1}Zitieren}{24}{subsection.A.1.1}
+\contentsline {section}{\numberline {4.5}Analyse der Ergebnisse}{24}{section.4.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.2}Ein Bild skaliert}{24}{subsection.A.1.2}
+\contentsline {subsection}{\numberline {4.5.1}Software MIDI-Clock: Python-Implementierung}{25}{subsection.4.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1.3}Zwei Bilder nebeneinander oder untereinander}{24}{subsection.A.1.3}
+\contentsline {subsection}{\numberline {4.5.2}Software MIDI-Clock: Renoise und Reaper}{26}{subsection.4.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}Tabellen}{24}{section.A.2}
+\contentsline {subsection}{\numberline {4.5.3}Hardware MIDI-Clock: Midipal}{27}{subsection.4.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}GPL}{26}{appendix.B}
+\contentsline {chapter}{\numberline {5}Fazit}{29}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Aussicht}{30}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Abk\IeC {\"u}rzungen}{31}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Glossar}{32}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Abbildungsverzeichnis}{33}{appendix*.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Tabellenverzeichnis}{34}{appendix*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatur}{35}{appendix*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Material}{37}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}PMOD-Pinbelegung des IceZero-Boards}{37}{section.A.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Pinverbindungen Raspberry Pi und FPGA-Shield}{38}{section.A.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.3}CD}{39}{section.A.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Lizenz}{40}{appendix.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.1}Creative Commons Attribution-ShareAlike 4.0 International}{40}{section.B.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.2}Creative Commons Legal Code}{40}{section.B.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {B.2.1}Attribution-ShareAlike 3.0 Unported}{40}{subsection.B.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.2.1.1}\emph {License}}{40}{subsubsection.B.2.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {B.2.1.2}Creative Commons Notice}{46}{subsubsection.B.2.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {B.3}ISC-Lizenz}{47}{section.B.3}

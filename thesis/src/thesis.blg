@@ -1,33 +1,33 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
 [1] Config.pm:305> INFO - Logfile is 'thesis.blg'
-[38] biber:313> INFO - === Fr Jun  1, 2018, 13:18:10
-[61] Biber.pm:371> INFO - Reading 'thesis.bcf'
-[131] Biber.pm:857> INFO - Found 19 citekeys in bib section 0
-[146] Biber.pm:3976> INFO - Processing section 0
-[159] Biber.pm:4136> INFO - Looking for bibtex format file 'literatur.bib' for section 0
-[161] bibtex.pm:1500> INFO - LaTeX decoding ...
-[179] bibtex.pm:1316> INFO - Found BibTeX data source 'literatur.bib'
-[182] Utils.pm:193> WARN - month field 'May' in entry 'wiki:echtzeit' is not an integer - this will probably not sort properly.
-[188] Utils.pm:193> WARN - month field 'May' in entry 'forum:digilent' is not an integer - this will probably not sort properly.
-[189] Utils.pm:193> WARN - month field 'Oct' in entry 'web:blackmesa_sump2' is not an integer - this will probably not sort properly.
-[191] Utils.pm:193> WARN - month field 'Jun' in entry 'web:ols' is not an integer - this will probably not sort properly.
-[192] Utils.pm:193> WARN - month field 'May' in entry 'web:sigrok_ols' is not an integer - this will probably not sort properly.
-[193] Utils.pm:193> WARN - month field 'May' in entry 'wiki:API' is not an integer - this will probably not sort properly.
-[193] Utils.pm:193> WARN - month field 'May' in entry 'wiki:CPLD' is not an integer - this will probably not sort properly.
-[194] Utils.pm:193> WARN - month field 'May' in entry 'wiki:FPGA' is not an integer - this will probably not sort properly.
-[195] Utils.pm:193> WARN - month field 'May' in entry 'wiki:SPI' is not an integer - this will probably not sort properly.
-[196] Utils.pm:193> WARN - month field 'May' in entry 'wiki:UART' is not an integer - this will probably not sort properly.
-[196] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Verilog' is not an integer - this will probably not sort properly.
-[205] Utils.pm:193> WARN - month field 'May' in entry 'wiki:VHDL' is not an integer - this will probably not sort properly.
-[205] Utils.pm:193> WARN - I didn't find a database entry for 'li00' (section 0)
-[206] Utils.pm:193> WARN - I didn't find a database entry for 'jackson91' (section 0)
-[206] Utils.pm:193> WARN - I didn't find a database entry for 'lakhina04a' (section 0)
-[206] Utils.pm:193> WARN - I didn't find a database entry for 'netflow' (section 0)
-[206] Utils.pm:193> WARN - I didn't find a database entry for 'rfc2386' (section 0)
-[223] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[223] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[223] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de_DE'
-[223] Biber.pm:3810> INFO - No sort tailoring available for locale 'de_DE'
-[242] bbl.pm:617> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[245] bbl.pm:720> INFO - Output to thesis.bbl
-[246] Biber.pm:110> INFO - WARNINGS: 17
+[34] biber:313> INFO - === Fr Jun 15, 2018, 00:48:10
+[57] Biber.pm:371> INFO - Reading 'thesis.bcf'
+[128] Biber.pm:857> INFO - Found 20 citekeys in bib section 0
+[144] Biber.pm:3976> INFO - Processing section 0
+[157] Biber.pm:4136> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[158] bibtex.pm:1500> INFO - LaTeX decoding ...
+[182] bibtex.pm:1316> INFO - Found BibTeX data source 'literatur.bib'
+[186] Utils.pm:193> WARN - month field 'May' in entry 'wiki:echtzeit' is not an integer - this will probably not sort properly.
+[193] Utils.pm:193> WARN - month field 'May' in entry 'forum:digilent' is not an integer - this will probably not sort properly.
+[194] Utils.pm:193> WARN - month field 'Oct' in entry 'web:blackmesa_sump2' is not an integer - this will probably not sort properly.
+[195] Utils.pm:193> WARN - month field 'Jun' in entry 'web:ols' is not an integer - this will probably not sort properly.
+[196] Utils.pm:193> WARN - month field 'May' in entry 'web:sigrok_ols' is not an integer - this will probably not sort properly.
+[197] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Digitalsignal' is not an integer - this will probably not sort properly.
+[198] Utils.pm:193> WARN - month field 'May' in entry 'wiki:PLD' is not an integer - this will probably not sort properly.
+[201] Utils.pm:193> WARN - month field 'May' in entry 'wiki:UART' is not an integer - this will probably not sort properly.
+[202] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:I2C' is not an integer - this will probably not sort properly.
+[203] Utils.pm:193> WARN - month field 'May' in entry 'wiki:SPI' is not an integer - this will probably not sort properly.
+[203] Utils.pm:193> WARN - month field 'May' in entry 'wiki:API' is not an integer - this will probably not sort properly.
+[204] Utils.pm:193> WARN - month field 'May' in entry 'wiki:CPLD' is not an integer - this will probably not sort properly.
+[205] Utils.pm:193> WARN - month field 'May' in entry 'wiki:FPGA' is not an integer - this will probably not sort properly.
+[205] Utils.pm:193> WARN - month field 'May' in entry 'wiki:GPIO' is not an integer - this will probably not sort properly.
+[206] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:PLL' is not an integer - this will probably not sort properly.
+[207] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Verilog' is not an integer - this will probably not sort properly.
+[211] Utils.pm:193> WARN - month field 'May' in entry 'wiki:VHDL' is not an integer - this will probably not sort properly.
+[233] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[234] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[234] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de_DE'
+[234] Biber.pm:3810> INFO - No sort tailoring available for locale 'de_DE'
+[249] bbl.pm:617> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[256] bbl.pm:720> INFO - Output to thesis.bbl
+[257] Biber.pm:110> INFO - WARNINGS: 17

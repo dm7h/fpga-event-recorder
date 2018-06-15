@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+git clone https://github.com/dm7h/icozctl
+\PYG{n+nb}{cd} icozctl
+sudo make install
+\end{Verbatim}

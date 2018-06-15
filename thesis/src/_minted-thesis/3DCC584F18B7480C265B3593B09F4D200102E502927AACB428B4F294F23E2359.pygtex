@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} MIDI CLOCK TEMPO (beats per minute)}
+\PYG{n}{BPM} \PYG{o}{=} \PYG{l+m+mi}{80}
+
+\PYG{c+c1}{\PYGZsh{} define clock messages}
+\PYG{n}{clock\PYGZus{}start} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mh}{0xFA}\PYG{p}{]}
+\PYG{n}{clock\PYGZus{}tick}  \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mh}{0xF8}\PYG{p}{]}
+\PYG{n}{clock\PYGZus{}stop}  \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mh}{0xFC}\PYG{p}{]}
+\PYG{p}{[}\PYG{o}{...}\PYG{p}{]}
+    \PYG{c+c1}{\PYGZsh{} calculate clock period}
+    \PYG{n}{clock\PYGZus{}period} \PYG{o}{=} \PYG{l+m+mi}{60} \PYG{o}{/} \PYG{p}{(}\PYG{n}{BPM} \PYG{o}{*} \PYG{l+m+mi}{24}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} send start byte}
+    \PYG{n}{midiout}\PYG{o}{.}\PYG{n}{send\PYGZus{}message}\PYG{p}{(}\PYG{n}{clock\PYGZus{}start}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} run}
+    \PYG{k}{while} \PYG{p}{(}\PYG{n+nb+bp}{True}\PYG{p}{):}
+        \PYG{n}{midiout}\PYG{o}{.}\PYG{n}{send\PYGZus{}message}\PYG{p}{(}\PYG{n}{clock\PYGZus{}tick}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{clock\PYGZus{}period}\PYG{p}{)}
+\end{Verbatim}

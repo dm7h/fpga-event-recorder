@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{[...]}
+\PYG{c+c1}{// midi clock start handler (0xFA)}
+\PYG{k+kt}{void} \PYG{n}{onStart}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{n}{digitalWrite}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{HIGH}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// midi clock tick handler (0xF8)}
+\PYG{k+kt}{void} \PYG{n}{onClock}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{digitalWrite}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{HIGH}\PYG{p}{);}
+    \PYG{n}{digitalWrite}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{LOW}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// midi clock stop handler (0xFC)}
+\PYG{k+kt}{void} \PYG{n}{onStop}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{n}{digitalWrite}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{LOW}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{setup}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{c+c1}{// pin setup}
+  \PYG{p}{[...]}
+  \PYG{c+c1}{// register midi handlers}
+  \PYG{n}{usbMIDI}\PYG{p}{.}\PYG{n}{setHandleStart}\PYG{p}{(}\PYG{n}{onStart}\PYG{p}{);}
+  \PYG{n}{usbMIDI}\PYG{p}{.}\PYG{n}{setHandleStop}\PYG{p}{(}\PYG{n}{onStop}\PYG{p}{);}
+  \PYG{n}{usbMIDI}\PYG{p}{.}\PYG{n}{setHandleClock}\PYG{p}{(}\PYG{n}{onClock}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{loop}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+  \PYG{n}{usbMIDI}\PYG{p}{.}\PYG{n}{read}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

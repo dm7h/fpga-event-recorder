@@ -19,8 +19,7 @@ version: 0.1
 #       dump_begin:     trigger on signal changes
 #       dump_end:       stop triggering on all signal changes      
 
-
-# event triggers
+# event configuration
 events: 
   - start:
           trigger: xxu
