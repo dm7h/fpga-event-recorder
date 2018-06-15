@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} event configuration}
+\PYG{l+lScalar+lScalarPlain}{events}\PYG{p+pIndicator}{:}
+  \PYG{p+pIndicator}{\PYGZhy{}} \PYG{l+lScalar+lScalarPlain}{start}\PYG{p+pIndicator}{:}
+          \PYG{l+lScalar+lScalarPlain}{trigger}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{u}
+          \PYG{l+lScalar+lScalarPlain}{funcion}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{start}
+
+  \PYG{p+pIndicator}{\PYGZhy{}} \PYG{l+lScalar+lScalarPlain}{stop}\PYG{p+pIndicator}{:}
+          \PYG{l+lScalar+lScalarPlain}{trigger}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{d}
+          \PYG{l+lScalar+lScalarPlain}{function}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{stop}
+
+  \PYG{p+pIndicator}{\PYGZhy{}} \PYG{l+lScalar+lScalarPlain}{clk\PYGZus{}up}\PYG{p+pIndicator}{:}
+          \PYG{l+lScalar+lScalarPlain}{trigger}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1u}
+
+  \PYG{p+pIndicator}{\PYGZhy{}} \PYG{l+lScalar+lScalarPlain}{clk\PYGZus{}down}\PYG{p+pIndicator}{:}
+          \PYG{l+lScalar+lScalarPlain}{trigger}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1d}
+\end{Verbatim}

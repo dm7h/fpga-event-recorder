@@ -1,30 +1,35 @@
 \chapter{Material}
 \label{ch:Material}
 \enlargethispage{120cm}
-\section{iCE40 PMOD-Pinbelegung}
+\section{PMOD-Pinbelegung des IceZero-Boards}
 
-\begin{figure}[h!]
+Bei der Pin-Belegung wurde das selbe Schema wie beim GPIO-Modul des IcoSoc verwendet. Die Numerierung läuft dementsprechend von rechts nach links und für die einzelnen PMOD-Header ``zeilenweise'' von oben nach unten.
+
+\begin{figure}[h]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 		\includegraphics[width=0.80\textwidth]{../figures/ice40_pmod_pins_01.png}
-		\caption[]{Pinbelegung der PMOD-Header des icezero-Board (Quelle: Eigene Abbildung)}
+		\caption[Pinbelegung der PMOD-Header des IceZero-Boards]{Pinbelegung der PMOD-Header des IceZero-Boards (Quelle: Eigene Abbildung)}
 	\label{fig:ice40_pmod_pins}
 \end{figure}
 
 \begin{table}[h]
 \centering
-
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lllllllllllll}
 \cline{1-6} \cline{8-13}
 \multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_11} & \multicolumn{1}{l|}{pin\_10} & \multicolumn{1}{l|}{pin\_9}  & \multicolumn{1}{l|}{pin\_8}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_3} & \multicolumn{1}{l|}{pin\_2} & \multicolumn{1}{l|}{pin\_1} & \multicolumn{1}{l|}{pin\_0} \\ \cline{1-6} \cline{8-13} 
 \multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_15} & \multicolumn{1}{l|}{pin\_14} & \multicolumn{1}{l|}{pin\_13} & \multicolumn{1}{l|}{pin\_12} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_7} & \multicolumn{1}{l|}{pin\_6} & \multicolumn{1}{l|}{pin\_5} & \multicolumn{1}{l|}{pin\_4} \\ \cline{1-6} \cline{8-13} 
 \multicolumn{6}{c}{PMOD - P4}                                                                                                                                                                                                                            &                       & \multicolumn{6}{c}{PMOD - P3}                                                                                                                                                                                                                      
 \end{tabular}
+}
 \caption{Pinbelegung der PMOD-Header des Icezero-Boards}
 \label{tbl:PMOD-Pins}
 \end{table}
 
+
 \clearpage
+\begin{landscape}
 
 \section{Pinverbindungen Raspberry Pi und FPGA-Shield}
 
@@ -59,7 +64,40 @@
                               &                                 & \cellcolor[HTML]{000000}{\color[HTML]{FFFFFF} GND} & 39                        & 40                        & GPIO.29                                            & 29                               &                               \\ \hline
 \end{tabular}
 \end{table}
+\end{landscape}
+
+\clearpage
 
 \section{CD}
+Die beiliegende CD enthält den Inhalt des Github-Repositories 
+\begin{lstlisting}[language=bash]
+https://github.com/dm7h/fpga-event-recorder
+\end{lstlisting}
+zum Zeitpunkt der Abgabe.
 
+Folgende Tabelle entält einen Überblick über die Inhalte des Repositories:
+\begin{table}[h]
+\centering
 
+\begin{tabular}{|p{1cm}|p{3cm}|p{10cm}|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Verz. & Unterverzeichnis                & Inhaltsbeschreibung                                                                                                                                                                                                                                                                                                      \\ \hline
+doc/        & ref/                            & iCE40 Manuals und relevante Hardwaredokumentation                                                                                                                                                                                                                                                                        \\ \hline
+thesis/     &                                 & Finale Version der Bachelorarbeit als PDF                                                                                                                                                                                                                                                             \\ \hline
+thesis/     & src/                            & Latex-Sourcen der Bachelorarbeit                                                                                                                                                                                                                                                              \\ \hline
+src/        &                                 &                                                                                                                                                                                                                                                                                                                          \\ \hline
+            & Logikanalysator/                & Dateien des Semesterprojekts ``Logikanalysator mit AVR Mega32U4 und Altera MAX CPLD''  inkl. Dateien der Bachelorarbeit von Andreas Müller (USB-TPLE)  
+															     \\ \hline
+            & icotools/                       & Portierung des icotools Projekts für das IceZero-Board. Original-Repository: https://github.com/cliffordwolf/icotools. Relevant sind hier vor allem die Unterverzeichnisse ``icosoc'' und ``icoprog'' 
+\\ \hline
+            & icozctl/                        & Fork des icoprog-Tools (icotools/icoporg) mit zusätzlichen Funktionen zur Steuerung des Event-Recorders                                                                                                                                                                                                                  \\ \hline
+            & icozero/                        & Vom IcoSoc unabhängiges Beispiel-Projekt für das IceZero-Board mit leichten Modifikationen (nicht projekt-relevant)                                                                                                                                                                                                      \\ \hline
+            & picosoc/                        & Portierung des PicoSoc-Projekts auf das IceZero-Board (nicht direkt projekt-relevant). PicoSoc ist eine minimale Variante des IcoSocs. Original-Repository: https://github.com/cliffordwolf/picorv32/tree/master/picosoc                                                    \\ \hline
+            & sump2/                          & SUMP2 Variante für das IceZero-Board (nicht für die Icestorm-Toolchain)                                                                                                                                                                                                                                                  \\ \hline
+            & sump2\_pipistrello\_ ftdi\_fifo/ & SUMP2 Vairante für das Pipistrello-Board bei dem der Versuch unternommen wurde den UART durch einen FTDI-Fifo zu ersetzen, um einen Höheren Datenduchsatz zu ermöglichen. Quelle: http://forum.gadgetfactory.net/topic/1748-open-bench-logic-sniffer-with-64mb-capture-buffer/ \\ \hline
+            & demon-core-import/              & SUMP2 Weiterenwicklung für den Open Bench Logic Sniffer. Quelle: https://github.com/jhol/demon-core-import                                                                                                                                                                     \\ \hline
+\end{tabular}
+\caption{Überblick über den Inhalt des Git-Repositories}
+\label{tbl:git_repo}
+\end{table}

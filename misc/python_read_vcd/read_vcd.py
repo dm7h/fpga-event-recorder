@@ -14,7 +14,7 @@ except ImportError:
     raise ImportError("This script needs Verilog_VCD (you can use 'pip install Verliog_VCD' to install it)")
 
 # parse example file
-vcd = Verilog_VCD.parse_vcd('reaper_4.vcd')
+vcd = Verilog_VCD.parse_vcd('python_midi_clock.vcd')
 
 # get the first time value
 last = vcd["!"]["tv"][0][0]
@@ -53,7 +53,7 @@ print(deltas_series.dt.components)
 print(deltas_series.describe())
 
 # plot a histogramm
-(deltas_series/pd.Timedelta(milliseconds = 1)).hist(density=1, bins=100, color="skyblue")
+(deltas_series/pd.Timedelta(milliseconds = 1)).hist(bins=100, color="skyblue")
 
 # show mean and 0
 mean = deltas_series.mean()/pd.Timedelta(milliseconds = 1)
@@ -61,9 +61,11 @@ plt.axvline(mean, color='k', linestyle='dashed', linewidth=1)
 plt.axvline(0, color='red', linewidth=2)
 
 # prettify
-plt.xlabel('deviation (in ms)')
-plt.ylabel('probability')
-
+fontsize = 24
+plt.xlabel('Abweichung vom erwarteten Wert (in Millisekunden) [Samples: %d]' % deltas_series.count(), fontsize=fontsize)
+plt.ylabel('Häufigkeit', fontsize=fontsize)
+plt.yticks(fontsize=fontsize)
+plt.xticks(fontsize=fontsize)
 # show it
 plt.show()
 

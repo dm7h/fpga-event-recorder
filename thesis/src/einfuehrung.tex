@@ -11,27 +11,16 @@ Ein Beispiel wären die Ausgänge eines Mikrocontrollers, bei dem bewusst bestim
 
 \clearpage
 
-\section{Zielsetzung}
-\label{ch:Einfuehrung:Zielsetzung}
-
-%Grundvoraussetzung für die Aufnahme aussagekräftiger Signaldaten ist die kontinuierliche Erfassung des Eingangssignals bei gleichbleibendem Zeitabstand. 
-Für die Implementierung des Event-Recorders wurden folgende technische Ziele angestrebt:
-\begin{itemize}
-\item Es soll der logische Pegel von 8 bis 16 Eingangs-Pins abgefragt werden und die Eingangsdaten sollen mit einem stabilen Zeitstempel versehen werden.
-\item Die zeitliche Auflösung der Aufnahme soll im Megaherz-Bereich liegen
-\item Bestimmte Eingangskombinationen sollen in Textform definiert, und bei der Aufnahme als Events erkannt werden
-\item Zur Steuerung der Aufnahme soll ein Kommandozeilentool zur Verfügung stehen, mit dem auch die aufgenommenen Daten in Textform abgespeichert werden können.
-\end{itemize} 
 
 
 \section{Motivation}
 \label{ch:Einfuehrung:Motivation}
 
-Die Arbeit schließt thematisch an die Bachelorarbeit ``Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen'' von Andreas Müller und einer darauf folgenden Projektarbeit an.\\
+Die vorliegende Arbeit schließt thematisch an die Bachelorarbeit ``Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen'' von Andreas Müller und einer darauf folgenden Projektarbeit an.\\
 In der Bachelorarbeit wurde eine Hardware-Platine namens ``USB-TPLE'' mit USB-Schnittstelle, einem \acrshort{CPLD}-Chip von Altera und einem Atmega Mikrocontroller für die selbe Zielsetzung entworfen, und mit der Software-Implementierung begonnen\cite{ba:mueller}.\\  
 Im nachfolgenden Semester-Projekt ``Logikanalysator mit AVR Mega32U4 und Altera MAX CPLD'' im Wintersemester 2013/14 wurde die Software-Implementierung ausgebaut und eine funktionsfähige Konfiguration für den CPLD-Chip entwickelt.\\
 
-Im folgenden wird allerdings ein anderer Ansatz für die Umsetzung verfolgt:
+Im Folgenden wird allerdings ein anderer Ansatz für die Umsetzung verfolgt:
 \begin{description}
 \item[Verwendung von käuflich verfügbarer Hardware] \hfill \\
 Anstatt der selbst entworfenen Platine soll aus Gründen der Vefügbarkeit und um die Einstiegshürde für Benutzer zu verringern ein käuflich erwerbbares Produkt verwendet werden.\\
@@ -44,19 +33,21 @@ Neben Verfügbarkeit und Flexibilität des Designs soll vor allem ein weiterer G
 \begin{description}
 \item[Verwendung von Open-Source Software und Hardware] \hfill \\
 Bereits die Arbeit von Andreas Müller wurde unter einer Open-Source-Lizenz veröffentlicht und es wurden alle Projekt-Quellen und Ressourcen (einschließlich des Hardwaredesigns) öffentlich verfügbar gemacht.\\
-Dieser Ansatz soll hier weiter verfolgt werden, dementsprechend werden alle im Rahmen dieser Arbeit entstandenen Dokumente unter der LGPL3-Lizenz veröffentlicht (siehe Anhang \ref{ch:GPL}).\\
+Dieser Ansatz soll hier weiter verfolgt werden, dementsprechend steht der im Rahmen dieser Arbeit entstandene Quelltext (wie große Teile der IceStorm-Toolchain) unter der \nameref{Lizenz:ISC} zur Verfügung. Die Bachelorarbeit selbst wird unter \nameref{Lizenz:CC} Lizenz veröffentlicht.\\
 Ausserdem steht mit dem Projekt ``IceStorm'' erstmals auch eine Open-Source Software-Toolchain zur Programmierung von FPGA-Chips zur Verfügung, wodurch eine vollständige Open-Source Implementierung möglich wird. (In der vorliegenden Arbeit mit Ausnahme der proprietären Komponenten des Raspberry Pi Zero).
 \end{description}
-In Kombination mit der preisgünstigen Hardware bietet die IceStorm-Toolchain eine interessante Alternative zu den Angeboten der großen FPGA-Hersteller wie Xilinx oder Intel (ehemalig Altera), insbesondere für Lehrzwecke und kleinere Projekte.
+In Kombination mit der preisgünstigen\footnote{Der Preis des verwendeten IceZero-Boards lag zum Zeitpunkt der Erstellung der Arbeit zum Beipiel bei ca. 40€, das zur Programmierung verwendete Raspberry Pi Zero W bei unter 15€} Hardware bietet die IceStorm-Toolchain eine interessante Alternative zu den Angeboten der großen FPGA-Hersteller wie Xilinx oder Intel (ehemalig Altera), insbesondere für Lehrzwecke und kleinere Projekte.
+
+\clearpage 
  
 \section{Abgrenzung von bestehenden Lösungen zur Logikanalyse}
 
-Es ist eine Vielzahl von kommerziellen Logikanalysatoren am Markt verfügbar. Allerdings bieten selbst sehr flexible Geräte wie zum Beispiel die Discovery Serie von Digilent nicht die gewünschte Funktionalität der Event-Filterung zur Erfassungszeit mit der Möglichkeit die so gewonnenen Daten in einen Text- bzw. Kommandozeilen-basierten Workflow einzubetten \footnote{Geräte der Discovery-Serie können durch eine \acrshort{API} z.B. in Python geskriptet werden, eine kontinuierliche ``Event-Erkennung'' scheint aber nicht ohne weiteres möglich (siehe z.B. folgender Foreneintrag\cite{forum:digilent}) }. 
+Es ist eine Vielzahl von kommerziellen Logikanalysatoren am Markt verfügbar. Allerdings bieten selbst flexible Geräte wie zum Beispiel die Discovery Serie von Digilent nicht die gewünschte Funktionalität der Event-Filterung zur Erfassungszeit und die Möglichkeit die so gewonnenen Daten in einen Text- bzw. Kommandozeilen-basierten Workflow einzubetten \footnote{Geräte der Discovery-Serie können durch eine \acrshort{API} z.B. in Python geskriptet werden, eine kontinuierliche ``Event-Erkennung'' scheint aber nicht ohne weiteres möglich (siehe z.B. folgender Foreneintrag\cite{forum:digilent}) }. 
 
 Von kommerziellen Produkten abgesehen gibt es auch einige Open-Source Logikanalysatoren. Für diese Arbeit relevant sind hier vor allem:
 \begin{description}
 	\item \textbf{SUMP2} ist eine \gls{Verilog}-basierte Logikanalysator-Implementierung mit einer zugehörigen - in Python implementierten - grafischen Benutzeroberfläche. Es existieren angepasste Varianten von SUMP2 die ohne weitere Modifikationen auf dem auch in dieser Arbeit verwendeten iCE40-FPGA-Chip lauffähig sind\cite{web:blackmesa_sump2}.  
-	\item \textbf{Open Bench Logic Sniffer} ist ein Open-Source Hardware-Produkt das auf einem Xilinx Spartan 3E FPGA basiert und eine weiterentwickelte Variante von SUMP2 verwendet. Die ``Demon core'' betitelte Weiterentwicklung ist insbesondere deshalb interessant, da mit ihr detailliertere Triggerbedingungen definiert werden können, und so zum Beispiel zeitliche und logische Abläufe von Eingangssignalen als Trigger abgebildet werden können. Hierauf soll im Kaptiel \nameref{ch:Aussicht} noch einmal eingegangen werden.
+	\item \textbf{Open Bench Logic Sniffer} ist ein Open-Source Hardware-Produkt das auf einem Xilinx Spartan 3E FPGA basiert und eine weiterentwickelte Variante von SUMP2 verwendet. Die ``Demon core'' betitelte Weiterentwicklung ist unter anderem deshalb interessant, da mit ihr detailliertere Triggerbedingungen definiert werden können, und so zum Beispiel zeitliche und logische Abläufe von Eingangssignalen als Trigger abgebildet werden können. Hierauf soll im Kaptiel \nameref{ch:Aussicht} noch einmal eingegangen werden.
 \end{description}
 
 Das verwendete SUMP2 Datenübertragungsformat wird zum Teil auch von anderen Anwendungen unterstützt, so kann zum Beispiel der Java-Client Jawi\cite{web:ols} oder Pulseview\cite{web:sigrok_ols} (ein Qt-Frontend der libsigrok-Biliothek) als grafische Benutzeroberfläche verwendet werden.\\ 
@@ -64,6 +55,17 @@ Beide Varianten verwenden zur Datenübertragung eine serielle Schnittstelle (\ac
 
 Eine Anpassung des SUMP2 Projektes wurde in Erwägung gezogen, aber aufgrund der zum Teil recht hohen Code-Komplexität und der strukturellen Unterschiede nicht durchgeführt.
 
+\section{Zielsetzung}
+\label{ch:Einfuehrung:Zielsetzung}
+
+%Grundvoraussetzung für die Aufnahme aussagekräftiger Signaldaten ist die kontinuierliche Erfassung des Eingangssignals bei gleichbleibendem Zeitabstand. 
+Für die Implementierung des Event-Recorders wurden folgende technische Ziele angestrebt:
+\begin{itemize}
+\item Es soll der logische Pegel von 8 bis 16 Eingangs-Pins abgefragt werden und die Eingangsdaten sollen mit einem stabilen Zeitstempel versehen werden.
+\item Die zeitliche Auflösung der Aufnahme soll im Megaherz-Bereich liegen
+\item Bestimmte Eingangskombinationen sollen in Textform definiert, und bei der Aufnahme als Events erkannt werden
+\item Zur Steuerung der Aufnahme soll ein Kommandozeilentool zur Verfügung stehen, mit dem auch die aufgenommenen Daten in Textform abgespeichert werden können.
+\end{itemize} 
 
 \section{Aufbau der Arbeit}
 \label{ch:Einfuehrung:Aufbau}

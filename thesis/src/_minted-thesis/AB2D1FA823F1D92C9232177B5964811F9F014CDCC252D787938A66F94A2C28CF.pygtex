@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+git clone git@github.com:cliffordwolf/picorv32.git
+\PYG{n+nb}{cd} picorv32
+make download\PYGZhy{}tools
+make \PYGZhy{}j\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}}\PYG{o}{(}nproc\PYG{o}{)} build\PYGZhy{}tools
+\end{Verbatim}

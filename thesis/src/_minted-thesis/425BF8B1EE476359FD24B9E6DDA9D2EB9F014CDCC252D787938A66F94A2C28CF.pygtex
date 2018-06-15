@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+icozctl \PYGZhy{}c config.yml \PYGZhy{}o midi\PYGZus{}clock.vcd
+\end{Verbatim}

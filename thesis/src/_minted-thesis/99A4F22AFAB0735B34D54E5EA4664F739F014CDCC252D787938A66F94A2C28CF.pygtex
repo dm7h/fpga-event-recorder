@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{cd} ..
+git clone https://github.com/dm7h/icozsoc.git
+\end{Verbatim}

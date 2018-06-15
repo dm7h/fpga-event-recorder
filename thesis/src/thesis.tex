@@ -7,11 +7,13 @@
 % Packages für Deckblatt (u.a.)
 \usepackage[absolute]{textpos} 	%Textboxen an absolute Position setzen
 \usepackage{setspace}						%Zeilenabstand anpassen
-\usepackage{color}							%Farbige Schrift
+%\usepackage{color}							%Farbige Schrift
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
 \usepackage{graphicx}						%Einbinden von Grafiken
 \usepackage{subfigure}
 \usepackage{caption}
+\usepackage{rotating}
+\usepackage{lscape}
 
 % language / input
 \usepackage[ngerman]{babel}
@@ -19,10 +21,16 @@
 \usepackage[utf8]{inputenc}
 
 
+% listings for code
 \usepackage{listings}
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 \newcommand\YAMLkeystyle{\color{black}\bfseries}
 \newcommand\YAMLvaluestyle{\color{blue}\mdseries}
+\lstset{basicstyle=\ttfamily} % fixed-width font
+\lstset{tabsize=4}
+
+% also minted for code
+\usepackage{minted}
 
 
 % glossaries
@@ -66,6 +74,12 @@
     %linkcolor=black
 }
 
+% license
+\usepackage[
+    type={CC},
+    modifier={by-sa},
+    version={3.0},
+]{doclicense}
 
 
 %\usepackage[footnote]{acronym}

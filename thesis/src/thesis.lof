@@ -5,7 +5,21 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Blockdiagramm des verwendeten iCE40 FPGAs}}{7}{figure.caption.5}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Blockdiagramm des verwendeten iCE40 FPGAs}}{8}{figure.caption.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Darstellung eines aufgenommenen Midi-Clock-Signals mit Pulseview}}{24}{figure.caption.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Histogramm der Python-generierten MIDI-Clock}}{25}{figure.caption.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Histogramm der MIDI-Clock des Musikprogramms Renoise}}{26}{figure.caption.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Histogramm der MIDI-Clock des Musikprogramms Reaper}}{27}{figure.caption.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Histogramm einer Mikrocontroller-generierten Hardware-MIDI-Clock}}{28}{figure.caption.10}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -13,8 +27,6 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Pinbelegung der PMOD-Header des IceZero-Boards}}{37}{figure.caption.18}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }

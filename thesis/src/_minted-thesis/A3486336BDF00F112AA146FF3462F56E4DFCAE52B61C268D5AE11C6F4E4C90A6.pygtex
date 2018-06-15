@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{count}                        \PYG{l+m+mi}{86}
+\PYG{n}{mean}     \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000125}
+\PYG{n}{std}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000026}
+\PYG{n}{min}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000053}
+\PYG{l+m+mi}{25}\PYG{o}{\PYGZpc{}}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000109}
+\PYG{l+m+mi}{50}\PYG{o}{\PYGZpc{}}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000117}
+\PYG{l+m+mi}{75}\PYG{o}{\PYGZpc{}}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000131}
+\PYG{n}{max}      \PYG{l+m+mi}{0} \PYG{n}{days} \PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mo}{00}\PYG{o}{:}\PYG{l+m+mf}{00.000227}
+\end{Verbatim}

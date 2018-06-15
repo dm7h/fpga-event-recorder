@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{np\PYGZus{}deltas} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{deltas}\PYG{p}{)}
+\PYG{n}{expected\PYGZus{}delta} \PYG{o}{=} \PYG{l+m+mi}{31250000} \PYG{c+c1}{\PYGZsh{} expected clock period in nanoseconds}
+\PYG{n}{np\PYGZus{}deltas} \PYG{o}{\PYGZhy{}=} \PYG{n}{expected\PYGZus{}delta}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{deltas\PYGZus{}series}\PYG{o}{.}\PYG{n}{describe}\PYG{p}{())}
+\end{Verbatim}

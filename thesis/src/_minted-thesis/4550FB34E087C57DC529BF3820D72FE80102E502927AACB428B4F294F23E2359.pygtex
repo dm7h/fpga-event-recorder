@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{Verilog\PYGZus{}VCD}
+\PYG{n}{vcd} \PYG{o}{=} \PYG{n}{Verilog\PYGZus{}VCD}\PYG{o}{.}\PYG{n}{parse\PYGZus{}vcd}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}midi\PYGZus{}clock.vcd\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
