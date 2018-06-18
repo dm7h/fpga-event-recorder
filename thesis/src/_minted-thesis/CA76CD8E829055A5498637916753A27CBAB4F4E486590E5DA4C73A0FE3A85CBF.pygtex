@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{set\PYGZus{}io} \PYG{n+no}{CLKIN} \PYG{l+m+mh}{49} \PYG{c+c1}{// icoboard: R9}
+
+\PYG{n}{set\PYGZus{}io} \PYG{n+no}{LED1} \PYG{l+m+mh}{110} \PYG{c+c1}{// C8}
+\PYG{n}{set\PYGZus{}io} \PYG{n+no}{LED2} \PYG{l+m+mh}{93}  \PYG{c+c1}{// F7}
+\PYG{n}{set\PYGZus{}io} \PYG{n+no}{LED3} \PYG{l+m+mh}{94}  \PYG{c+c1}{// K9}
+\end{Verbatim}

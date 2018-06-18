@@ -7,7 +7,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {table}{\numberline {2.1}{\ignorespaces Beispielhafte Darstellung eines aufgenommenen Events mit 16-Bit Zeitstempel\relax }}{6}{table.caption.4}
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.2}{\ignorespaces Hardware-Spezifikationen des verwendeten iCE40HX4K-Chips (vgl. \cite {doc:datasheet})\relax }}{12}{table.caption.6}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -17,10 +17,20 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.1}{\ignorespaces Pinbelegung der PMOD-Header des Icezero-Boards\relax }}{37}{table.caption.19}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.2}{\ignorespaces Pinbelegung\relax }}{38}{table.caption.20}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Pinbelegung der PMOD-Header des Icezero-Boards\relax }}{42}{table.caption.21}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.3}{\ignorespaces \IeC {\"U}berblick \IeC {\"u}ber den Inhalt des Git-Repositories\relax }}{39}{table.caption.21}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Pinverbindungen Raspberry Pi und IceZero FPGA-Shield\relax }}{43}{table.caption.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.3}{\ignorespaces Pinbelegung PMOD-P1\relax }}{44}{table.caption.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.4}{\ignorespaces Pinbelegung PMOD-P2\relax }}{44}{table.caption.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.5}{\ignorespaces Pinbelegung PMOD-P3\relax }}{44}{table.caption.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.6}{\ignorespaces Pinbelegung PMOD-P4\relax }}{44}{table.caption.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.7}{\ignorespaces \IeC {\"U}berblick \IeC {\"u}ber den Inhalt des Git-Repositories\relax }}{45}{table.caption.27}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }

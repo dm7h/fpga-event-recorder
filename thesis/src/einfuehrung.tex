@@ -3,11 +3,11 @@
 \label{ch:Einfuehrung}
 
 Mikrocontroller werden heute in Gebrauchsgegenständen aller Art verbaut und werden den Anforderungen entsprechend immer leistungsstärker und damit unter anderem auch schneller. Selbst einfache Mikrocontroller arbeiten oft mit einer Geschwindigkeit im mehrstelligen Megaherz Bereich (sprich: mehrere Millionen Takte pro Sekunde). Im Unterschied zu klassischen PC-Systemen werden an Mikrocontroller oft Echtzeit-Anforderungen gestellt, das heißt Ergebnisse müssen zuverlässig innerhalb einer vorbestimmten Zeitspanne geliefert werden\cite{wiki:echtzeit}. Dabei wird auch die Hardware von Mikrocontrollern zunehmend komplexer und es werden vermehrt Mehrprozessor-Systeme verwendet, die angepasste und mitunter unübersichtlichere Programmiertechniken erfordern.\\ 
-Dementsprechend werden für die Entwicklung von Mikrocontroller-Systemen (aber auch von digitalen Systemen im allgemeinen) Werkzeuge benötigt, mit denen Signale mit hoher zeitlicher Auflösung erfasst und analysiert werden können.\\
-Ergänzend zu Simulations- und Software-gestützten Verfahren wird diese Aufgabe meist von Logikanalysatoren erfüllt, die die an den Eingängen anliegenden Spannungen mit einer festen Frequenz erfassen und die Daten dann zum Beispiel an einen PC übertragen, an dem sie ausgewertet werden können.\\
-In der vorliegenden Arbeit wird eine spezielle Form von Logikanalysator entworfen, bei der ein Teil der Auswertung bereits auf dem Logikanalysator durchgeführt wird. Das Eingangssignal wird auf bestimmte - vom Benutzer definierte - Signaländerungen untersucht und nur relevante Signaländerungen (``Events'') werden an den Benutzer weitergereicht.\\
-Dieses Vorgehen bietet sich vor allem dann an, wenn der Signalverlauf grundsätzlich bekannt ist und der Fokus der Analyse auf den exakten zeitlichen Abbildung des erwarteten Signalverlaugs liegt.\\
-Ein Beispiel wären die Ausgänge eines Mikrocontrollers, bei dem bewusst bestimmte Kombinationen gesetzt werden um den Start und das Ende von Funktionen im Quellcode zu signalisieren. Da das Setzen von GPIO-Pins meist in einem einzigen CPU-Takt ausgeführt werden kann, können so zuverlässige Aussagen zur Laufzeit von Funktionen, oder bei periodischer Ausführung auch zur zeitlichen Fluktuation der Funktionsausführung (``Jitter-Analyse'') getroffen werden.
+Um Echtzeit-Anforderung erfüllen zu können werden für die Entwicklung von Mikrocontroller-Systemen (aber auch von digitalen Systemen im allgemeinen) Werkzeuge benötigt, mit denen Signale mit hoher zeitlicher Auflösung erfasst und analysiert werden können.\\
+Diese Aufgabe wird unter anderem von Logikanalysatoren erfüllt, die die an den Eingängen anliegenden Spannungen mit einer festen Frequenz erfassen und die Daten dann zum Beispiel an einen PC übertragen, an dem sie ausgewertet werden können.\\
+In der vorliegenden Arbeit wird eine spezielle Form von Logikanalysator entworfen, bei der ein Teil der Auswertung bereits zur Erfassungszeit durchgeführt wird. Das Eingangssignal wird auf bestimmte - vom Benutzer definierte - Signaländerungen untersucht und nur relevante Signaländerungen (``Events'') werden an den Benutzer weitergereicht.\\
+Dieses Vorgehen bietet sich vor allem dann an, wenn der Signalverlauf grundsätzlich bekannt ist und der Fokus der Analyse auf der exakten zeitlichen Abbildung des erwarteten Signalverlaufs liegt.\\
+Ein Beispiel wären die Ausgänge eines Mikrocontrollers, bei dem bestimmte Kombinationen gesetzt werden um den Start und das Ende von Funktionen im Quellcode zu signalisieren. Da das Setzen von GPIO-Pins meist in einem einzigen CPU-Takt ausgeführt werden kann, können so zuverlässige Aussagen zur Laufzeit von Funktionen, oder bei periodischer Ausführung auch zur zeitlichen Fluktuation der Funktionsausführung (``Jitter-Analyse'') getroffen werden.
 
 \clearpage
 
@@ -16,20 +16,20 @@ Ein Beispiel wären die Ausgänge eines Mikrocontrollers, bei dem bewusst bestim
 \section{Motivation}
 \label{ch:Einfuehrung:Motivation}
 
-Die vorliegende Arbeit schließt thematisch an die Bachelorarbeit ``Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen'' von Andreas Müller und einer darauf folgenden Projektarbeit an.\\
+Die vorliegende Arbeit schließt thematisch an die Bachelorarbeit ``Ein universales, rekonfigurierbares und freies USB-Gerät zur Timing-, Protokoll-, Logik- und Eventanalyse von digitalen Signalen'' von Andreas Müller (2010) und einer darauf folgenden, an der Hochschule Augsburg durchgeführten, Projektarbeit im Wintersemester 2013/14 an.\\
 In der Bachelorarbeit wurde eine Hardware-Platine namens ``USB-TPLE'' mit USB-Schnittstelle, einem \acrshort{CPLD}-Chip von Altera und einem Atmega Mikrocontroller für die selbe Zielsetzung entworfen, und mit der Software-Implementierung begonnen\cite{ba:mueller}.\\  
-Im nachfolgenden Semester-Projekt ``Logikanalysator mit AVR Mega32U4 und Altera MAX CPLD'' im Wintersemester 2013/14 wurde die Software-Implementierung ausgebaut und eine funktionsfähige Konfiguration für den CPLD-Chip entwickelt.\\
+Im nachfolgenden Semester-Projekt ``Logikanalysator mit AVR Mega32U4 und Altera MAX CPLD'' wurde die Software-Implementierung ausgebaut und eine erste funktionsfähige Konfiguration für den CPLD-Chip entwickelt.\\
 
-Im Folgenden wird allerdings ein anderer Ansatz für die Umsetzung verfolgt:
+Im Folgenden soll ein anderer Ansatz für die Umsetzung verfolgt werden:
 \begin{description}
 \item[Verwendung von käuflich verfügbarer Hardware] \hfill \\
-Anstatt der selbst entworfenen Platine soll aus Gründen der Vefügbarkeit und um die Einstiegshürde für Benutzer zu verringern ein käuflich erwerbbares Produkt verwendet werden.\\
-Die Verwendung käuflicher Hardware soll außerdem die Gesamt-Komplexität des Projekts reduzieren einen stärkeren Fokus auf Grundfunktionalität ermöglichen.
+Anstatt der selbst entworfenen Platine soll aus Gründen der Vefügbarkeit und um die Einstiegshürde für Benutzer zu verringern ein käuflich erwerbbares Produkt verwendet werden.
+
 \item[Verwendung eines FPGAs] \hfill \\
-Um größere Flexibilität bei der Implementierung zu ermöglichen wird ein \gls{FPGA} anstatt des \gls{CPLD} verwendet (eine detailliertere Erklärung findet sich im Kapitel \nameref{ch:Design}).
+Um größere Flexibilität bei der Implementierung zu ermöglichen wird ein \gls{FPGA} anstatt des \gls{CPLD} verwendet (eine detailliertere Erklärung findet sich im Kapitel ``\nameref{ch:Design}'').
 \end{description}
 
-Neben Verfügbarkeit und Flexibilität des Designs soll vor allem ein weiterer Grundsatz bei der Implementierung verfolgt werden:
+Neben Verfügbarkeit und Flexibilität des Designs wird vor allem ein weiterer Grundsatz bei der Implementierung verfolgt:
 \begin{description}
 \item[Verwendung von Open-Source Software und Hardware] \hfill \\
 Bereits die Arbeit von Andreas Müller wurde unter einer Open-Source-Lizenz veröffentlicht und es wurden alle Projekt-Quellen und Ressourcen (einschließlich des Hardwaredesigns) öffentlich verfügbar gemacht.\\
@@ -42,15 +42,15 @@ In Kombination mit der preisgünstigen\footnote{Der Preis des verwendeten IceZer
  
 \section{Abgrenzung von bestehenden Lösungen zur Logikanalyse}
 
-Es ist eine Vielzahl von kommerziellen Logikanalysatoren am Markt verfügbar. Allerdings bieten selbst flexible Geräte wie zum Beispiel die Discovery Serie von Digilent nicht die gewünschte Funktionalität der Event-Filterung zur Erfassungszeit und die Möglichkeit die so gewonnenen Daten in einen Text- bzw. Kommandozeilen-basierten Workflow einzubetten \footnote{Geräte der Discovery-Serie können durch eine \acrshort{API} z.B. in Python geskriptet werden, eine kontinuierliche ``Event-Erkennung'' scheint aber nicht ohne weiteres möglich (siehe z.B. folgender Foreneintrag\cite{forum:digilent}) }. 
+Es ist eine Vielzahl von kommerziellen Logikanalysatoren am Markt verfügbar. Allerdings bieten selbst flexible Geräte wie zum Beispiel die Discovery Serie von Digilent nicht die gewünschte Funktionalität der Event-Filterung zur Erfassungszeit und die Möglichkeit die so gewonnenen Daten in einen Text- bzw. Kommandozeilen-basierten Workflow einzubetten \footnote{Geräte der Discovery-Serie können durch eine \acrshort{API} z.B. in Python geskriptet werden, eine kontinuierliche ``Event-Erkennung'' ist aber nicht ohne Eeiteres möglich (siehe z.B. folgender Foreneintrag\cite{forum:digilent}) }. 
 
 Von kommerziellen Produkten abgesehen gibt es auch einige Open-Source Logikanalysatoren. Für diese Arbeit relevant sind hier vor allem:
 \begin{description}
 	\item \textbf{SUMP2} ist eine \gls{Verilog}-basierte Logikanalysator-Implementierung mit einer zugehörigen - in Python implementierten - grafischen Benutzeroberfläche. Es existieren angepasste Varianten von SUMP2 die ohne weitere Modifikationen auf dem auch in dieser Arbeit verwendeten iCE40-FPGA-Chip lauffähig sind\cite{web:blackmesa_sump2}.  
-	\item \textbf{Open Bench Logic Sniffer} ist ein Open-Source Hardware-Produkt das auf einem Xilinx Spartan 3E FPGA basiert und eine weiterentwickelte Variante von SUMP2 verwendet. Die ``Demon core'' betitelte Weiterentwicklung ist unter anderem deshalb interessant, da mit ihr detailliertere Triggerbedingungen definiert werden können, und so zum Beispiel zeitliche und logische Abläufe von Eingangssignalen als Trigger abgebildet werden können. Hierauf soll im Kaptiel \nameref{ch:Aussicht} noch einmal eingegangen werden.
+	\item \textbf{Open Bench Logic Sniffer} ist ein Open-Source Hardware-Produkt das auf einem Xilinx Spartan 3E FPGA basiert und eine weiterentwickelte Variante von SUMP2 verwendet. Die ``Demon core'' betitelte Weiterentwicklung ist unter anderem deshalb interessant, da mit ihr komplexere Triggerbedingungen definiert werden können, und so zum Beispiel zeitliche und logische Abläufe von Eingangssignalen als Trigger abgebildet werden können. Hierauf soll im Kaptiel ``\nameref{ch:Aussicht}'' noch einmal eingegangen werden.
 \end{description}
 
-Das verwendete SUMP2 Datenübertragungsformat wird zum Teil auch von anderen Anwendungen unterstützt, so kann zum Beispiel der Java-Client Jawi\cite{web:ols} oder Pulseview\cite{web:sigrok_ols} (ein Qt-Frontend der libsigrok-Biliothek) als grafische Benutzeroberfläche verwendet werden.\\ 
+Das verwendete SUMP2 Datenübertragungsformat wird zum Teil auch von anderen Anwendungen unterstützt, so kann zum Beispiel der Java-Client JaWi\cite{web:ols} oder Pulseview\cite{web:sigrok_ols} (ein Qt-Frontend der libsigrok-Biliothek) als grafische Benutzeroberfläche verwendet werden.\\ 
 Beide Varianten verwenden zur Datenübertragung eine serielle Schnittstelle (\acrshort{UART}), die - zumindest bei Verwendung von geläufigen Baud-Raten - die Übertragungsgeschwindigkeit stark einschränkt. Ebenso sind beide Varianten konzeptionell für die Aufnahme festgelegter und relativ kurzer Sampling-Zeiten ausgelegt und unterstützen --- wie die kommerziellen Produkte --- keine Event-Filterung zur Erfassungszeit.  
 
 Eine Anpassung des SUMP2 Projektes wurde in Erwägung gezogen, aber aufgrund der zum Teil recht hohen Code-Komplexität und der strukturellen Unterschiede nicht durchgeführt.
@@ -62,7 +62,7 @@ Eine Anpassung des SUMP2 Projektes wurde in Erwägung gezogen, aber aufgrund der
 Für die Implementierung des Event-Recorders wurden folgende technische Ziele angestrebt:
 \begin{itemize}
 \item Es soll der logische Pegel von 8 bis 16 Eingangs-Pins abgefragt werden und die Eingangsdaten sollen mit einem stabilen Zeitstempel versehen werden.
-\item Die zeitliche Auflösung der Aufnahme soll im Megaherz-Bereich liegen
+\item Die zeitliche Auflösung der Aufnahme soll im mehrstelligen Megaherz-Bereich liegen
 \item Bestimmte Eingangskombinationen sollen in Textform definiert, und bei der Aufnahme als Events erkannt werden
 \item Zur Steuerung der Aufnahme soll ein Kommandozeilentool zur Verfügung stehen, mit dem auch die aufgenommenen Daten in Textform abgespeichert werden können.
 \end{itemize} 
@@ -70,11 +70,10 @@ Für die Implementierung des Event-Recorders wurden folgende technische Ziele an
 \section{Aufbau der Arbeit}
 \label{ch:Einfuehrung:Aufbau}
 
-Im folgenen Kapitel \nameref{ch:Design} werden zunächst die nötigen technischen Grundlagen für die Umsetzung des Projekts besprochen, anschließend wird auf getroffene Desginentscheidungen bei der Auswahl der Hardware und Software eingegangen, und ein kurzes Implementierungs-Beispiel mit der IceStorm-Toolchain erläutert.
-Das Kaptiel \nameref{ch:Implementierung} beschreibt di nötigen Anpassungen bestehender Software und die Entwicklung neuer Softwarekomponenenten bei der Durchführung des Projektes.
-Im Kapitel \nameref{ch:Anwendungsfall} wird die Benutzung des Event-Recorder anhand eines konkreten Beispiels besprochen.
-Es folgt ein \nameref{ch:Fazit} in dem der Status des Projekts und die Umsetzung rekapituliert werden und abschließend wird im Kapitel \nameref{ch:Aussicht} auf Optimierungsmöglichkeiten und weiteres Vorgehen eingegangen.
-
+Im folgenen Kapitel ``\nameref{ch:Design}'' werden zunächst die nötigen technischen Grundlagen für die Umsetzung des Projekts besprochen, anschließend wird auf getroffene Desginentscheidungen bei der Auswahl der Hardware und Software eingegangen, und ein kurzes Implementierungs-Beispiel mit der IceStorm-Toolchain erläutert.
+Das Kaptiel ``\nameref{ch:Implementierung}'' beschreibt die nötigen Anpassungen bestehender Software und die Entwicklung neuer Softwarekomponenenten bei der Durchführung des Projekts.
+Im Kapitel ``\nameref{ch:Anwendungsfall}'' wird die Benutzung des Event-Recorder und die Analyse der aufgenommenen Daten anhand eines konkreten Beispiels besprochen.
+Es folgt ein ``\nameref{ch:Fazit}'' in dem der Status des Projekts und die Umsetzung rekapituliert werden und abschließend wird im Kapitel ``\nameref{ch:Aussicht}'' auf weiteres Vorgehen und Optimierungsmöglichkeiten eingegangen.
 
 
 

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// Alle GPIO Pins als Ausgang verwenden}
+\PYG{n}{icosoc\PYGZus{}gpios\PYGZus{}dir}\PYG{p}{(}\PYG{l+m+mh}{0xffff}\PYG{p}{);}
+
+\PYG{c+c1}{// Ersten Pin auf \PYGZsq{}1\PYGZsq{} setzen}
+\PYG{n}{icosoc\PYGZus{}gpios\PYGZus{}set}\PYG{p}{(}\PYG{l+m+mh}{0x0001}\PYG{p}{);}
+\end{Verbatim}

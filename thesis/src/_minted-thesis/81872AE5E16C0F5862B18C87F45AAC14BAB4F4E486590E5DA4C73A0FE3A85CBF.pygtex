@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{always} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+	\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{ctrl\PYGZus{}done}\PYG{p}{)} \PYG{k}{begin}
+		\PYG{c+c1}{// write from bus to local register associated with address 4}
+		\PYG{k}{if} \PYG{p}{(}\PYG{o}{|}\PYG{n}{ctrl\PYGZus{}wr}\PYG{p}{)} \PYG{k}{begin}
+			\PYG{n}{ctrl\PYGZus{}done} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{1}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{ctrl\PYGZus{}addr} \PYG{o}{==} \PYG{l+m+mh}{4}\PYG{p}{)} \PYG{k}{begin}
+				\PYG{n}{local\PYGZus{}register} \PYG{o}{\PYGZlt{}=} \PYG{n}{ctrl\PYGZus{}wdat}\PYG{p}{;}
+			\PYG{k}{end}
+		\PYG{k}{end}
+		\PYG{c+c1}{// read from local registers to bus}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{ctrl\PYGZus{}rd}\PYG{p}{)} \PYG{k}{begin}
+			\PYG{n}{ctrl\PYGZus{}done} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{1}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{ctrl\PYGZus{}addr} \PYG{o}{==} \PYG{l+m+mh}{4}\PYG{p}{)} \PYG{n}{ctrl\PYGZus{}rdat} \PYG{o}{\PYGZlt{}=} \PYG{n}{local\PYGZus{}register}\PYG{p}{;}
+		\PYG{k}{end}
+	\PYG{k}{end}
+\PYG{k}{end}
+\end{Verbatim}

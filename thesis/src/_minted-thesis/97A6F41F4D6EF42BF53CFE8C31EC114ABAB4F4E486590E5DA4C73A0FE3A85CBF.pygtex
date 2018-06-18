@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+		\PYG{c+c1}{// test write to status register (address 0x04)}
+		\PYG{n}{ctrl\PYGZus{}write}\PYG{p}{(}\PYG{l+m+mh}{\PYGZsq{}h4}\PYG{p}{,} \PYG{l+m+mh}{\PYGZsq{}h01}\PYG{p}{);}
+		\PYG{k}{repeat} \PYG{p}{(}\PYG{l+m+mh}{2}\PYG{p}{)} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{);}
+
+		\PYG{c+c1}{// read status register}
+		\PYG{n}{ctrl\PYGZus{}read}\PYG{p}{(}\PYG{l+m+mh}{\PYGZsq{}h4}\PYG{p}{);}
+		\PYG{k}{repeat} \PYG{p}{(}\PYG{l+m+mh}{2}\PYG{p}{)} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{);}
+
+		\PYG{n+nb}{\PYGZdl{}display}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Status: \PYGZpc{}s\PYGZdq{}}\PYG{p}{,} \PYG{p}{(}\PYG{n}{ctrl\PYGZus{}rdat} \PYG{o}{==} \PYG{l+m+mh}{\PYGZsq{}h01}\PYG{p}{)}\PYG{o}{?} \PYG{l+s}{\PYGZdq{}OK\PYGZdq{}} \PYG{o}{:} \PYG{l+s}{\PYGZdq{}Not OK\PYGZdq{}}\PYG{p}{);}                                                    \PYG{c+c1}{//\PYGZdl{}}
+\end{Verbatim}

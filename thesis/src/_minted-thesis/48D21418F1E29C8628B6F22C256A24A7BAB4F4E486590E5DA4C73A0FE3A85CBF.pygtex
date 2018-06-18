@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// gpio input}
+\PYG{k+kt}{wire} \PYG{p}{[}\PYG{n+no}{IO\PYGZus{}LENGTH}\PYG{o}{\PYGZhy{}}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{io\PYGZus{}in}\PYG{p}{;}
+\end{Verbatim}

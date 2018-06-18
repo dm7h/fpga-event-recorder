@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{if} \PYG{n}{board} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}icezero\PYGZdq{}}\PYG{p}{:}
+    \PYG{n}{icosoc\PYGZus{}pcf}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}10\PYGZhy{}std\PYGZdq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    set\PYGZus{}io CLKIN 49 // icoboard: R9}
+
+\PYG{l+s+s2}{    set\PYGZus{}io LED1 110 // C8}
+\PYG{l+s+s2}{    set\PYGZus{}io LED2 93  // F7}
+\PYG{l+s+s2}{    set\PYGZus{}io LED3 94  // K9}
+\PYG{l+s+s2}{[...]}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

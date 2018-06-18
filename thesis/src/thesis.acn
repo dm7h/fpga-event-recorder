@@ -7,6 +7,7 @@
 \glossaryentry{PLL?\glossentry{PLL}|glsseeformat[Glossary:]{gls-PLL}}{Z}
 \glossaryentry{$\text {I}^2$C?\glossentry{I2C}|glsseeformat[Glossary:]{gls-I2C}}{Z}
 \glossaryentry{GPIO?\glossentry{GPIO}|glsseeformat[Glossary:]{gls-GPIO}}{Z}
+\glossaryentry{VCD?\glossentry{VCD}|glsseeformat[Glossary:]{gls-VCD}}{Z}
 \glossaryentry{CPLD?\glossentry{CPLD}|setentrycounter[]{page}\glsnumberformat}{2}
 \glossaryentry{FPGA?\glossentry{FPGA}|setentrycounter[]{page}\glsnumberformat}{2}
 \glossaryentry{CPLD?\glossentry{CPLD}|setentrycounter[]{page}\glsnumberformat}{2}
@@ -25,14 +26,17 @@
 \glossaryentry{SPI?\glossentry{SPI}|setentrycounter[]{page}\glsnumberformat}{10}
 \glossaryentry{SPI?\glossentry{SPI}|setentrycounter[]{page}\glsnumberformat}{10}
 \glossaryentry{GPIO?\glossentry{GPIO}|setentrycounter[]{page}\glsnumberformat}{10}
-\glossaryentry{MIDI?\glossentry{MIDI}|setentrycounter[]{page}\glsnumberformat}{20}
-\glossaryentry{UART?\glossentry{UART}|setentrycounter[]{page}\glsnumberformat}{20}
-\glossaryentry{$\text {I}^2$C?\glossentry{I2C}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{API?\glossentry{API}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{CPLD?\glossentry{CPLD}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{FPGA?\glossentry{FPGA}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{GPIO?\glossentry{GPIO}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{PLL?\glossentry{PLL}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{SPI?\glossentry{SPI}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{UART?\glossentry{UART}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{VHDL?\glossentry{VHDL}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{VHDL?\glossentry{VHDL}|setentrycounter[]{page}\glsnumberformat}{11}
+\glossaryentry{MIDI?\glossentry{MIDI}|setentrycounter[]{page}\glsnumberformat}{24}
+\glossaryentry{UART?\glossentry{UART}|setentrycounter[]{page}\glsnumberformat}{24}
+\glossaryentry{VCD?\glossentry{VCD}|setentrycounter[]{page}\glsnumberformat}{27}
+\glossaryentry{$\text {I}^2$C?\glossentry{I2C}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{API?\glossentry{API}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{CPLD?\glossentry{CPLD}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{FPGA?\glossentry{FPGA}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{GPIO?\glossentry{GPIO}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{PLL?\glossentry{PLL}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{SPI?\glossentry{SPI}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{UART?\glossentry{UART}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{VCD?\glossentry{VCD}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{VHDL?\glossentry{VHDL}|setentrycounter[]{page}\glsnumberformat}{35}

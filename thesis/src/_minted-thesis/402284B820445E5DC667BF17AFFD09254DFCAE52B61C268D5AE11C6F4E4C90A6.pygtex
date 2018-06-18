@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{static} \PYG{k+kr}{inline} \PYG{k+kt}{uint32\PYGZus{}t} \PYG{n}{icosoc\PYGZus{}}\PYG{err}{@}\PYG{n}{name}\PYG{err}{@}\PYG{n}{\PYGZus{}get}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{o}{*}\PYG{p}{(}\PYG{k}{volatile} \PYG{k+kt}{uint32\PYGZus{}t}\PYG{o}{*}\PYG{p}{)(}\PYG{l+m+mh}{0x20000000} \PYG{o}{+} \PYG{err}{@}\PYG{n}{addr}\PYG{err}{@} \PYG{o}{*} \PYG{l+m+mh}{0x10000}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -6,12 +6,16 @@
 \glossaryentry{UART?\glossentry{gls-UART}|setentrycounter[]{page}\glsnumberformat}{9}
 \glossaryentry{$\text {I}^2$C?\glossentry{gls-I2C}|setentrycounter[]{page}\glsnumberformat}{10}
 \glossaryentry{SPI?\glossentry{gls-SPI}|setentrycounter[]{page}\glsnumberformat}{10}
-\glossaryentry{$\text {I}^2$C?\glossentry{gls-I2C}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{API?\glossentry{gls-API}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{CPLD?\glossentry{gls-CPLD}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{FPGA?\glossentry{gls-FPGA}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{GPIO?\glossentry{gls-GPIO}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{PLL?\glossentry{gls-PLL}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{SPI?\glossentry{gls-SPI}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{UART?\glossentry{gls-UART}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{VHDL?\glossentry{gls-VHDL}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{Reverse Engineering?\glossentry{Reverse-Engineering}|setentrycounter[]{page}\glsnumberformat}{11}
+\glossaryentry{Verilog?\glossentry{Verilog}|setentrycounter[]{page}\glsnumberformat}{11}
+\glossaryentry{Pmod?\glossentry{PMOD}|setentrycounter[]{page}\glsnumberformat}{12}
+\glossaryentry{$\text {I}^2$C?\glossentry{gls-I2C}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{API?\glossentry{gls-API}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{CPLD?\glossentry{gls-CPLD}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{FPGA?\glossentry{gls-FPGA}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{GPIO?\glossentry{gls-GPIO}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{PLL?\glossentry{gls-PLL}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{SPI?\glossentry{gls-SPI}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{UART?\glossentry{gls-UART}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{VCD?\glossentry{gls-VCD}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{VHDL?\glossentry{gls-VHDL}|setentrycounter[]{page}\glsnumberformat}{35}

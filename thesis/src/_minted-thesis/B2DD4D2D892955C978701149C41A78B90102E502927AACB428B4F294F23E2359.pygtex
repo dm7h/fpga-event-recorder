@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{make\PYGZus{}pins}\PYG{p}{(}\PYG{n}{pname}\PYG{p}{):}
+    \PYG{p}{[}\PYG{o}{...}\PYG{p}{]}
+    \PYG{n}{allowed\PYGZus{}signals} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}CLKIN\PYGZsq{}}\PYG{p}{]}
+    \PYG{k}{if} \PYG{n}{pname} \PYG{o+ow}{in} \PYG{n}{allowed\PYGZus{}signals}\PYG{p}{:}
+        \PYG{k}{return} \PYG{p}{[}\PYG{n}{pname}\PYG{p}{]}
+    \PYG{p}{[}\PYG{o}{...}\PYG{p}{]}
+\end{Verbatim}

@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./common
+./common/firmware.c
+./common/firmware.S
+./common/icosoc\PYGZus{}debugger.v
+./common/icosoc\PYGZus{}raspif.v
+./common/picorv32.v
+./common/riscv\PYGZus{}flash.ld
+\PYG{o}{[}...\PYG{o}{]}
+./examples
+./examples/event\PYGZus{}recorder
+./examples/hello\PYGZus{}world
+\PYG{o}{[}...\PYG{o}{]}
+./mod\PYGZus{}gpio
+./mod\PYGZus{}rs232
+./mod\PYGZus{}spi
+\PYG{o}{[}...\PYG{o}{]}
+./README
+./icosoc.py
+\PYG{l+s+se}{\PYGZbs{}e}nd\PYG{o}{\PYGZob{}}bash\PYG{o}{\PYGZcb{}}
+
+
+
+\PYG{l+s+se}{\PYGZbs{}c}learpage
+
+
+\PYG{l+s+se}{\PYGZbs{}s}ection\PYG{o}{\PYGZob{}}Implementierung des Event\PYGZhy{}Recorder Moduls\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}l}abel\PYG{o}{\PYGZob{}}ch:Implementierung:sec:Event\PYGZhy{}Recorder\PYG{o}{\PYGZcb{}}
+
+
+\PYG{l+s+se}{\PYGZbs{}s}ubsection\PYG{o}{\PYGZob{}}Bus\PYGZhy{}Schnittstelle\PYG{o}{\PYGZcb{}}
+
+
+\PYG{l+s+se}{\PYGZbs{}s}ubsection\PYG{o}{\PYGZob{}}Triggerlogik\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}c}learpage
+
+\PYG{l+s+se}{\PYGZbs{}s}ection\PYG{o}{\PYGZob{}}Implementierung eines SPI\PYGZhy{}Slave\PYGZhy{}Moduls\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}l}abel\PYG{o}{\PYGZob{}}ch:Implementierung:sec:SPI\PYGZhy{}Slave\PYG{o}{\PYGZcb{}}
+
+Bla fasel\PYG{l+s+se}{\PYGZbs{}l}dots
+\PYG{l+s+se}{\PYGZbs{}c}learpage
+\PYG{l+s+se}{\PYGZbs{}s}ection\PYG{o}{\PYGZob{}}Zusammenf\PYG{l+s+se}{\PYGZbs{}\PYGZdq{}}uhrung der Module als Icosoc\PYGZhy{}Projekt\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}l}abel\PYG{o}{\PYGZob{}}ch:Implementierung:sec:Icosoc\PYGZhy{}Projekt\PYG{o}{\PYGZcb{}}
+
+\PYG{l+s+se}{\PYGZbs{}s}ection\PYG{o}{\PYGZob{}}Implementierung des textbasierten Benutzerinterfaces\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}l}abel\PYG{o}{\PYGZob{}}ch:Implementierung:sec:Benutzerinterface\PYG{o}{\PYGZcb{}}
+\PYG{l+s+se}{\PYGZbs{}c}learpage
+\end{Verbatim}

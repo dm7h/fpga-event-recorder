@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{task} \PYG{n}{ctrl\PYGZus{}write}\PYG{p}{(}\PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{addr}\PYG{p}{,} \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{31}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data}\PYG{p}{);} \PYG{k}{begin}
+		\PYG{n}{ctrl\PYGZus{}wr} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{1}\PYG{p}{;}
+		\PYG{n}{ctrl\PYGZus{}rd} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{0}\PYG{p}{;}
+		\PYG{n}{ctrl\PYGZus{}addr} \PYG{o}{\PYGZlt{}=} \PYG{n}{addr}\PYG{p}{;}
+		\PYG{n}{ctrl\PYGZus{}wdat} \PYG{o}{\PYGZlt{}=} \PYG{n}{data}\PYG{p}{;}
+		\PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{);}
+		\PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{ctrl\PYGZus{}done}\PYG{p}{)} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{);}
+		\PYG{n}{ctrl\PYGZus{}wr} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{0}\PYG{p}{;}
+	\PYG{k}{end} \PYG{k}{endtask}
+
+	\PYG{k}{task} \PYG{n}{ctrl\PYGZus{}read}\PYG{p}{(}\PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{15}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{addr}\PYG{p}{);} \PYG{k}{begin}
+		\PYG{p}{[...]}
+	\PYG{k}{end} \PYG{k}{endtask}
+\end{Verbatim}

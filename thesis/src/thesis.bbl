@@ -160,6 +160,12 @@
       \field{labeltitlesource}{title}
       \field{title}{iCE40 LP/HX Family Data Sheet}
       \field{year}{2017}
+      \verb{urlraw}
+      \verb http://www.latticesemi.com/view_document?document_id=49312
+      \endverb
+      \verb{url}
+      \verb http://www.latticesemi.com/view_document?document_id=49312
+      \endverb
     \endentry
     \entry{wiki:UART}{misc}{}
       \field{sortinit}{1}
@@ -206,9 +212,345 @@
       \verb https://de.wikipedia.org/wiki/Serial_Peripheral_Interface
       \endverb
     \endentry
-    \entry{wiki:API}{misc}{}
+    \entry{web:IceStorm}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=1ad2f7e98b23682c3e9b4d44e3cc850b}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={Clifford},
+           giveni={C\bibinitperiod}}}%
+        {{hash=109b3d5e8181b22a8fa27f46f43289fb}{%
+           family={Lasser},
+           familyi={L\bibinitperiod},
+           given={Mathias},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{938a81a01edf242b9871e36186d26098}
+      \strng{fullhash}{938a81a01edf242b9871e36186d26098}
+      \strng{bibnamehash}{938a81a01edf242b9871e36186d26098}
+      \strng{authorbibnamehash}{938a81a01edf242b9871e36186d26098}
+      \strng{authornamehash}{938a81a01edf242b9871e36186d26098}
+      \strng{authorfullhash}{938a81a01edf242b9871e36186d26098}
       \field{sortinit}{1}
       \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 6. Jun. 2018]}
+      \field{title}{{Project IceStorm}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb http://www.clifford.at/icestorm
+      \endverb
+      \verb{url}
+      \verb http://www.clifford.at/icestorm
+      \endverb
+    \endentry
+    \entry{web:yodl}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{forflo/yodl}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/forflo/yodl
+      \endverb
+      \verb{url}
+      \verb https://github.com/forflo/yodl
+      \endverb
+    \endentry
+    \entry{web:iverilog}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{Icarus Verilog}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb http://iverilog.icarus.com
+      \endverb
+      \verb{url}
+      \verb http://iverilog.icarus.com
+      \endverb
+    \endentry
+    \entry{web:gtkwave}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{GTKWave}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb http://gtkwave.sourceforge.net
+      \endverb
+      \verb{url}
+      \verb http://gtkwave.sourceforge.net
+      \endverb
+    \endentry
+    \entry{web:yosys}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{YosysHQ/yosys}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/YosysHQ/yosys
+      \endverb
+      \verb{url}
+      \verb https://github.com/YosysHQ/yosys
+      \endverb
+    \endentry
+    \entry{web:arachne_pnr}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{cseed/arachne-pnr}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/cseed/arachne-pnr
+      \endverb
+      \verb{url}
+      \verb https://github.com/cseed/arachne-pnr
+      \endverb
+    \endentry
+    \entry{web:icestorm_tools}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{cliffordwolf/icestorm}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/cliffordwolf/icestorm
+      \endverb
+      \verb{url}
+      \verb https://github.com/cliffordwolf/icestorm
+      \endverb
+    \endentry
+    \entry{web:trenz_icezero}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c22669929e5d4437fb3065b17600e7e2}{%
+           family={GmbH},
+           familyi={G\bibinitperiod},
+           given={Trenz\bibnamedelima Electronic},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{fullhash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{bibnamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authorbibnamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authornamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authorfullhash}{c22669929e5d4437fb3065b17600e7e2}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Trenz Electronic GmbH Online Shop (DE)}
+      \field{month}{6}
+      \field{note}{[Online; accessed 17. Jun. 2018]}
+      \field{title}{{IceZero mit Lattice ICE40HX}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://shop.trenz-electronic.de/de/TE0876-02-IceZero-mit-Lattice-ICE40HX?path=Trenz_Electronic/Modules_and_Module_Carriers/3.05x6.5/TE0876/Reference_Design
+      \endverb
+      \verb{url}
+      \verb https://shop.trenz-electronic.de/de/TE0876-02-IceZero-mit-Lattice-ICE40HX?path=Trenz_Electronic/Modules_and_Module_Carriers/3.05x6.5/TE0876/Reference_Design
+      \endverb
+    \endentry
+    \entry{web:trenz_icoboard}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=c22669929e5d4437fb3065b17600e7e2}{%
+           family={GmbH},
+           familyi={G\bibinitperiod},
+           given={Trenz\bibnamedelima Electronic},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{fullhash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{bibnamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authorbibnamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authornamehash}{c22669929e5d4437fb3065b17600e7e2}
+      \strng{authorfullhash}{c22669929e5d4437fb3065b17600e7e2}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Trenz Electronic GmbH Online Shop (DE)}
+      \field{month}{6}
+      \field{note}{[Online; accessed 17. Jun. 2018]}
+      \field{title}{{icoBoard Version 1.1 mit 8 MBit SRAM}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://shop.trenz-electronic.de/de/TE0887-03M-icoBoard-Version-1.1-mit-8-MBit-SRAM?c=459
+      \endverb
+      \verb{url}
+      \verb https://shop.trenz-electronic.de/de/TE0887-03M-icoBoard-Version-1.1-mit-8-MBit-SRAM?c=459
+      \endverb
+    \endentry
+    \entry{doc:schematic}{manual}{}
+      \list{organization}{1}{%
+        {Lattice Semiconductor Corp.}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{title}{SCH-TE0876-01}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb http://www.trenz-electronic.de/fileadmin/docs/Trenz_Electronic/Modules_and_Module_Carriers/3.05x6.5/TE0876/REV01/Documents/SCH-TE0876-01.PDF
+      \endverb
+      \verb{url}
+      \verb http://www.trenz-electronic.de/fileadmin/docs/Trenz_Electronic/Modules_and_Module_Carriers/3.05x6.5/TE0876/REV01/Documents/SCH-TE0876-01.PDF
+      \endverb
+    \endentry
+    \entry{web:lawrie_fork}{misc}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 17. Jun. 2018]}
+      \field{title}{{lawrie/icotools}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/lawrie/icotools
+      \endverb
+      \verb{url}
+      \verb https://github.com/lawrie/icotools
+      \endverb
+    \endentry
+    \entry{doc:tec_lib}{manual}{}
+      \list{organization}{1}{%
+        {Lattice Semiconductor Corp.}%
+      }
+      \field{sortinit}{2}
+      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{labeltitlesource}{title}
+      \field{title}{SiliconBlue ICE Technology Library}
+      \verb{urlraw}
+      \verb http://www.latticesemi.com/-/media/LatticeSemi/Documents/TechnicalBriefs/iCETechnologyLibrary.ashx?document_id=44572
+      \endverb
+      \verb{url}
+      \verb http://www.latticesemi.com/-/media/LatticeSemi/Documents/TechnicalBriefs/iCETechnologyLibrary.ashx?document_id=44572
+      \endverb
+    \endentry
+    \entry{wiki:MIDI}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{MIDI - Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/MIDI
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/MIDI
+      \endverb
+    \endentry
+    \entry{wiki:MIDI_clock}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{MIDI beat clock - Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/MIDI_beat_clock
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/MIDI_beat_clock
+      \endverb
+    \endentry
+    \entry{web:pulseview}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{PulseView - sigrok}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://sigrok.org/wiki/PulseView
+      \endverb
+      \verb{url}
+      \verb https://sigrok.org/wiki/PulseView
+      \endverb
+    \endentry
+    \entry{web:verilog_vcd}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{zylin/Verilog{$\_$}VCD}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/zylin/Verilog_VCD
+      \endverb
+      \verb{url}
+      \verb https://github.com/zylin/Verilog_VCD
+      \endverb
+    \endentry
+    \entry{ma:falke}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=4a7ea3ee5ae6e95f6827d1be1f6c7736}{%
+           family={Falke},
+           familyi={F\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Hochschule Hamburg}%
+      }
+      \strng{namehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \strng{fullhash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \strng{bibnamehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \strng{authorbibnamehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \strng{authornamehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \strng{authorfullhash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Dreidimensionale Lokalisierbarkeit und Differenzierbarkeit von Hörereignissen}}
+      \field{type}{Masterarbeit}
+      \field{year}{2016}
+    \endentry
+    \entry{web:midipal}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{Mutable Instruments {$\vert$} MIDIpal - User manual}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://mutable-instruments.net/archive/midipal/manual
+      \endverb
+      \verb{url}
+      \verb https://mutable-instruments.net/archive/midipal/manual
+      \endverb
+    \endentry
+    \entry{wiki:API}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 31. May 2018]}
@@ -222,8 +564,8 @@
       \endverb
     \endentry
     \entry{wiki:CPLD}{misc}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -237,8 +579,8 @@
       \endverb
     \endentry
     \entry{wiki:FPGA}{misc}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -252,8 +594,8 @@
       \endverb
     \endentry
     \entry{wiki:GPIO}{misc}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 7. Jun. 2018]}
@@ -267,8 +609,8 @@
       \endverb
     \endentry
     \entry{wiki:PLL}{misc}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{6}
       \field{note}{[Online; accessed 6. Jun. 2018]}
@@ -281,9 +623,39 @@
       \verb https://de.wikipedia.org/wiki/Phasenregelschleife
       \endverb
     \endentry
+    \entry{wiki:reverse_eng}{misc}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{note}{[Online; accessed 16. Jun. 2018]}
+      \field{title}{{Reverse Engineering {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Reverse_Engineering
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Reverse_Engineering
+      \endverb
+    \endentry
+    \entry{wiki:VCD}{misc}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{Value Change Dump {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
+      \endverb
+    \endentry
     \entry{wiki:Verilog}{misc}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -313,8 +685,8 @@
       \strng{authorbibnamehash}{9f0eb0bc56bebd22832777efaccf903a}
       \strng{authornamehash}{9f0eb0bc56bebd22832777efaccf903a}
       \strng{authorfullhash}{9f0eb0bc56bebd22832777efaccf903a}
-      \field{sortinit}{2}
-      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Oral History of Philip Raymond “Phil” Moorby}
@@ -329,8 +701,8 @@
       \endverb
     \endentry
     \entry{wiki:VHDL}{misc}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{0aa614ace9f3a40ef5a67e7f7a184048}
+      \field{sortinit}{5}
+      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}

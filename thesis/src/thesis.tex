@@ -14,6 +14,8 @@
 \usepackage{caption}
 \usepackage{rotating}
 \usepackage{lscape}
+\usepackage{multirow}
+
 
 % language / input
 \usepackage[ngerman]{babel}
@@ -162,14 +164,14 @@
 
 \section*{Zusammenfassung}
 
-In der vorliegenden Arbeit wird der Entwurf und die Implementierung eines FPGA-basierten Event-Recorders mithilfe der Open-Source-Toolchain IceStorm beschrieben. Ähnlich wie bei einem Logikanalysator werden digitale Signaländerungen an den Eingängen erfasst, allerdings werden die Eingangssignale nicht wie bei einem Logikanalysator kontinuierlich übertragen, sondern werden bereits zur Erfassungszeit nach relevanten Eingangskombinationen gefiltert. Ein Filterung nach vordefinierten Events bietet sich vor allem für Timinganalysen bei relativ geringer Signaldichte an und kann die zeitliche Auflösung der untersuchten Signale verbessern.
-Die Implementierung des Event-Recorders erfolgt auf einem Raspberry Pi Zero mit IceZero FPGA-Shield und wird vollständig mit den von der IceStorm-Toolchain zur Verfügung gestellten Open-Source-Tools und Komponenten umgesetzt.   
+In der vorliegenden Arbeit wird der Entwurf und die Implementierung eines FPGA-basierten Event-Recorders mithilfe der Open-Source-Toolchain IceStorm beschrieben. Ähnlich wie bei einem Logikanalysator werden digitale Signale an den Eingängen erfasst, allerdings wird der Signalzustand an den Eingängen nicht wie bei einem Logikanalysator kontinuierlich übertragen, sondern es wird bereits zur Erfassungszeit nach relevanten Signaländerungen und Eingangskombinationen gefiltert. Eine Filterung nach benutzerdefinierten Events bietet sich vor allem für die Analyse von bekannten Signalen an, deren Ablauf mit möglichst hoher zeitlicher Auflösung abgebildet werden soll.
+Die Implementierung des Event-Recorders erfolgt auf einem Raspberry Pi Zero mit einem Lattice iCE40-basierten FPGA-Shield und wird vollständig mit den von der IceStorm-Toolchain zur Verfügung gestellten Open-Source-Tools und Komponenten umgesetzt.   
 
 \section*{Abstract}
 
 The work in hand describes the design and implementation of a FPGA based event recorder using the open source toolchain IceStorm. 
-Similar to a logic analyzer it records logic level signal changes, but in contrast to a logic analyzer it does not provide a continuous stream of the input signals. Instead the signals are filtered at capture time to match only relevant input combinations. Using predefined events to filter the input stream is especially suitable for timing analysis of signals with low event density and can improve the timing resolution of the analyzed signals.
-The implementation of the event recorder is done on a Raspberry Pi Zero with a IceZero FPGA shield and is realized completely with the tools and components provided by the open source toolchain IceStorm.   
+Similar to a logic analyzer it records logic level input signals, but in contrast to a logic analyzer it does not provide a continuous stream of the input signal state. Instead the signals are filtered at capture time to match only relevant input combinations and signal changes. Using predefined events to filter the input stream is especially suitable for the analysis of known signals that are to be captured and examined at high temporal resolution.
+The implementation of the event recorder is done on a Raspberry Pi Zero with a Lattice iCE40-based FPGA shield and is realized completely with the tools and components provided by the open source toolchain IceStorm.   
 
 
 \ifnotdraft{
@@ -257,4 +259,14 @@ The implementation of the event recorder is done on a Raspberry Pi Zero with a I
 \addcontentsline{toc}{chapter}{Index}
 \printindex            % Index, Stichwortverzeichnis
 %}
+
+\clearpage
+\chapter*{Erklärung zum Abschlussbericht}
+Hiermit versichere ich, die eingereichte Abschlussarbeit selbständig verfasst und keine andere als die von mir angegebenen Quellen und Hilfsmittel benutzt zu haben. Wörtlich oder inhaltlich verwendete Quellen wurden entsprechend den anerkannten Regeln wissenschaftlichen Arbeitens zitiert. Ich erkläre weiterhin, dass die vorliegende Arbeit noch nicht anderweitig als Abschlussarbeit eingereicht wurde. Das Merkblatt zum Täuschungsverbot im Prüfungsverfahren der Hochschule Augsburg habe ich gelesen und zur Kenntnis genommen. Ich versichere, dass die von mir abgegebene Arbeit keinerlei Plagiate, Texte oder Bilder umfasst, die durch von mir beauftragte Dritte erstellt wurden.
+
+\vspace{4cm}
+
+\hspace{2cm} Ort, Datum \hfill Unterschrift \hspace{2cm}
+
+
 \end{document}

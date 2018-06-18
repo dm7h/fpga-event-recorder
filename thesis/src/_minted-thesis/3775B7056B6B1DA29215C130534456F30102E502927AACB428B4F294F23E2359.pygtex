@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{board} \PYG{n}{icoboard}
+\PYG{n}{mod} \PYG{n}{gpio} \PYG{n}{gpios}
+    \PYG{n}{address} \PYG{l+m+mi}{2}
+    \PYG{n}{connect} \PYG{n}{IO} \PYG{n}{pmod2} \PYG{n}{pmod1}
+\end{Verbatim}
