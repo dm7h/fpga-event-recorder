@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} event recorder}
+\PYG{n}{board} \PYG{n}{icezero}
+
+\PYG{c+c1}{\PYGZsh{} load appimage from flash}
+\PYG{n}{flashpmem}
+
+\PYG{c+c1}{\PYGZsh{} capture input}
+\PYG{n}{mod} \PYG{n}{triggerrec} \PYG{n}{tr0}
+  \PYG{n}{address} \PYG{l+m+mi}{2}
+  \PYG{n}{connect} \PYG{n}{clk\PYGZus{}fast} \PYG{n}{CLKIN}
+  \PYG{n}{connect} \PYG{n}{IO} \PYG{n}{pmod4} \PYG{n}{pmod3}
+
+\PYG{c+c1}{\PYGZsh{} spi slave}
+\PYG{n}{mod} \PYG{n}{spi\PYGZus{}slave} \PYG{n}{spi0}
+  \PYG{n}{address} \PYG{l+m+mi}{1}
+  \PYG{n}{connect} \PYG{n}{cs} \PYG{n}{PI\PYGZus{}CE0}
+  \PYG{n}{connect} \PYG{n}{miso} \PYG{n}{PI\PYGZus{}MISO}
+  \PYG{n}{connect} \PYG{n}{mosi} \PYG{n}{PI\PYGZus{}MOSI}
+  \PYG{n}{connect} \PYG{n}{sclk} \PYG{n}{PI\PYGZus{}SCLK}
+\end{Verbatim}

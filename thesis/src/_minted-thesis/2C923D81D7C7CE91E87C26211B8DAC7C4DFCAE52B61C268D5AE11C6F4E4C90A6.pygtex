@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{\PYGZus{}\PYGZus{}attribute\PYGZus{}\PYGZus{}} \PYG{p}{((}\PYG{n}{section} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}.text.sram\PYGZdq{}}\PYG{p}{)))} \PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\end{Verbatim}

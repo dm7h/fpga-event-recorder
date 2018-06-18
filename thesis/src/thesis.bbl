@@ -447,6 +447,37 @@
       \verb http://www.latticesemi.com/-/media/LatticeSemi/Documents/TechnicalBriefs/iCETechnologyLibrary.ashx?document_id=44572
       \endverb
     \endentry
+    \entry{web:mikro_fifo}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{FIFO {–} Mikrocontroller.net}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://www.mikrocontroller.net/articles/FIFO
+      \endverb
+      \verb{url}
+      \verb https://www.mikrocontroller.net/articles/FIFO
+      \endverb
+    \endentry
+    \entry{web:sump2_trigger}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 19. Jun. 2018]}
+      \field{title}{{jhol/demon-core-import}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/jhol/demon-core-import/blob/master/trigger.v
+      \endverb
+      \verb{url}
+      \verb https://github.com/jhol/demon-core-import/blob/master/trigger.v
+      \endverb
+    \endentry
     \entry{wiki:MIDI}{misc}{}
       \field{sortinit}{3}
       \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
@@ -548,21 +579,6 @@
       \verb https://mutable-instruments.net/archive/midipal/manual
       \endverb
     \endentry
-    \entry{wiki:API}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
-      \field{labeltitlesource}{title}
-      \field{month}{5}
-      \field{note}{[Online; accessed 31. May 2018]}
-      \field{title}{{Programmierschnittstelle {–} Wikipedia}}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb https://de.wikipedia.org/wiki/Programmierschnittstelle
-      \endverb
-      \verb{url}
-      \verb https://de.wikipedia.org/wiki/Programmierschnittstelle
-      \endverb
-    \endentry
     \entry{wiki:CPLD}{misc}{}
       \field{sortinit}{4}
       \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
@@ -593,36 +609,6 @@
       \verb https://de.wikipedia.org/wiki/Field_Programmable_Gate_Array
       \endverb
     \endentry
-    \entry{wiki:GPIO}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
-      \field{labeltitlesource}{title}
-      \field{month}{5}
-      \field{note}{[Online; accessed 7. Jun. 2018]}
-      \field{title}{{Allzweckeingabe/-ausgabe {–} Wikipedia}}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb https://de.wikipedia.org/wiki/Allzweckeingabe/-ausgabe
-      \endverb
-      \verb{url}
-      \verb https://de.wikipedia.org/wiki/Allzweckeingabe/-ausgabe
-      \endverb
-    \endentry
-    \entry{wiki:PLL}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
-      \field{labeltitlesource}{title}
-      \field{month}{6}
-      \field{note}{[Online; accessed 6. Jun. 2018]}
-      \field{title}{{Phasenregelschleife {–} Wikipedia}}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb https://de.wikipedia.org/wiki/Phasenregelschleife
-      \endverb
-      \verb{url}
-      \verb https://de.wikipedia.org/wiki/Phasenregelschleife
-      \endverb
-    \endentry
     \entry{wiki:reverse_eng}{misc}{}
       \field{sortinit}{4}
       \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
@@ -636,21 +622,6 @@
       \endverb
       \verb{url}
       \verb https://de.wikipedia.org/wiki/Reverse_Engineering
-      \endverb
-    \endentry
-    \entry{wiki:VCD}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
-      \field{labeltitlesource}{title}
-      \field{month}{6}
-      \field{note}{[Online; accessed 18. Jun. 2018]}
-      \field{title}{{Value Change Dump {–} Wikipedia}}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
-      \endverb
-      \verb{url}
-      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
       \endverb
     \endentry
     \entry{wiki:Verilog}{misc}{}
@@ -698,21 +669,6 @@
       \endverb
       \verb{url}
       \verb http://archive.computerhistory.org/resources/access/text/2013/11/102746653-05-01-acc.pdf
-      \endverb
-    \endentry
-    \entry{wiki:VHDL}{misc}{}
-      \field{sortinit}{5}
-      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
-      \field{labeltitlesource}{title}
-      \field{month}{5}
-      \field{note}{[Online; accessed 26. May 2018]}
-      \field{title}{{Very High Speed Integrated Circuit Hardware Description Language {–} Wikipedia}}
-      \field{year}{2018}
-      \verb{urlraw}
-      \verb https://de.wikipedia.org/wiki/Very_High_Speed_Integrated_Circuit_Hardware_Description_Language
-      \endverb
-      \verb{url}
-      \verb https://de.wikipedia.org/wiki/Very_High_Speed_Integrated_Circuit_Hardware_Description_Language
       \endverb
     \endentry
   \enddatalist

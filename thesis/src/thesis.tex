@@ -170,7 +170,7 @@ Die Implementierung des Event-Recorders erfolgt auf einem Raspberry Pi Zero mit 
 \section*{Abstract}
 
 The work in hand describes the design and implementation of a FPGA based event recorder using the open source toolchain IceStorm. 
-Similar to a logic analyzer it records logic level input signals, but in contrast to a logic analyzer it does not provide a continuous stream of the input signal state. Instead the signals are filtered at capture time to match only relevant input combinations and signal changes. Using predefined events to filter the input stream is especially suitable for the analysis of known signals that are to be captured and examined at high temporal resolution.
+Similar to a logic analyzer it records logic level input signals, but in contrast to a logic analyzer it does not provide a continuous stream of the signal state. Instead the signals are filtered at capture time to match only relevant input combinations and signal changes. Using predefined events to filter the input stream is especially suitable for the analysis of known signals that are to be captured and examined at high temporal resolution.
 The implementation of the event recorder is done on a Raspberry Pi Zero with a Lattice iCE40-based FPGA shield and is realized completely with the tools and components provided by the open source toolchain IceStorm.   
 
 
@@ -256,8 +256,8 @@ The implementation of the event recorder is done on a Raspberry Pi Zero with a L
 %% Index (optional)
 %% ++++++++++++++++++++++++++++++++++++++++++
 %\ifnotdraft{
-\addcontentsline{toc}{chapter}{Index}
-\printindex            % Index, Stichwortverzeichnis
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex            % Index, Stichwortverzeichnis
 %}
 
 \clearpage

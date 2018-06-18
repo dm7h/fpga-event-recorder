@@ -1,50 +1,47 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
 [0] Config.pm:305> INFO - Logfile is 'thesis.blg'
-[33] biber:313> INFO - === Mo Jun 18, 2018, 16:02:25
-[61] Biber.pm:371> INFO - Reading 'thesis.bcf'
-[138] Biber.pm:857> INFO - Found 40 citekeys in bib section 0
-[155] Biber.pm:3976> INFO - Processing section 0
-[168] Biber.pm:4136> INFO - Looking for bibtex format file 'literatur.bib' for section 0
-[170] bibtex.pm:1500> INFO - LaTeX decoding ...
-[223] bibtex.pm:1316> INFO - Found BibTeX data source 'literatur.bib'
-[228] Utils.pm:193> WARN - month field 'May' in entry 'wiki:echtzeit' is not an integer - this will probably not sort properly.
-[235] Utils.pm:193> WARN - month field 'May' in entry 'forum:digilent' is not an integer - this will probably not sort properly.
-[236] Utils.pm:193> WARN - month field 'Oct' in entry 'web:blackmesa_sump2' is not an integer - this will probably not sort properly.
-[237] Utils.pm:193> WARN - month field 'Jun' in entry 'web:ols' is not an integer - this will probably not sort properly.
-[238] Utils.pm:193> WARN - month field 'May' in entry 'web:sigrok_ols' is not an integer - this will probably not sort properly.
-[239] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Digitalsignal' is not an integer - this will probably not sort properly.
-[244] Utils.pm:193> WARN - month field 'May' in entry 'wiki:PLD' is not an integer - this will probably not sort properly.
-[252] Utils.pm:193> WARN - month field 'May' in entry 'wiki:UART' is not an integer - this will probably not sort properly.
-[253] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:I2C' is not an integer - this will probably not sort properly.
-[254] Utils.pm:193> WARN - month field 'May' in entry 'wiki:SPI' is not an integer - this will probably not sort properly.
-[255] Utils.pm:193> WARN - month field 'May' in entry 'web:IceStorm' is not an integer - this will probably not sort properly.
-[263] Utils.pm:193> WARN - month field 'Jun' in entry 'web:yodl' is not an integer - this will probably not sort properly.
-[265] Utils.pm:193> WARN - month field 'Jun' in entry 'web:iverilog' is not an integer - this will probably not sort properly.
-[266] Utils.pm:193> WARN - month field 'Jun' in entry 'web:gtkwave' is not an integer - this will probably not sort properly.
-[266] Utils.pm:193> WARN - month field 'Jun' in entry 'web:yosys' is not an integer - this will probably not sort properly.
-[267] Utils.pm:193> WARN - month field 'Jun' in entry 'web:arachne_pnr' is not an integer - this will probably not sort properly.
-[268] Utils.pm:193> WARN - month field 'Jun' in entry 'web:icestorm_tools' is not an integer - this will probably not sort properly.
-[273] Utils.pm:193> WARN - month field 'Jun' in entry 'web:trenz_icezero' is not an integer - this will probably not sort properly.
-[278] Utils.pm:193> WARN - month field 'Jun' in entry 'web:trenz_icoboard' is not an integer - this will probably not sort properly.
-[286] Utils.pm:193> WARN - month field 'Jun' in entry 'web:lawrie_fork' is not an integer - this will probably not sort properly.
-[288] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:MIDI' is not an integer - this will probably not sort properly.
-[290] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:MIDI_clock' is not an integer - this will probably not sort properly.
-[291] Utils.pm:193> WARN - month field 'May' in entry 'web:pulseview' is not an integer - this will probably not sort properly.
-[295] Utils.pm:193> WARN - month field 'Jun' in entry 'web:verilog_vcd' is not an integer - this will probably not sort properly.
-[307] Utils.pm:193> WARN - month field 'Jun' in entry 'web:midipal' is not an integer - this will probably not sort properly.
-[308] Utils.pm:193> WARN - month field 'May' in entry 'wiki:API' is not an integer - this will probably not sort properly.
-[309] Utils.pm:193> WARN - month field 'May' in entry 'wiki:CPLD' is not an integer - this will probably not sort properly.
-[309] Utils.pm:193> WARN - month field 'May' in entry 'wiki:FPGA' is not an integer - this will probably not sort properly.
-[310] Utils.pm:193> WARN - month field 'May' in entry 'wiki:GPIO' is not an integer - this will probably not sort properly.
-[311] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:PLL' is not an integer - this will probably not sort properly.
-[312] Utils.pm:193> WARN - month field 'May' in entry 'wiki:reverse_eng' is not an integer - this will probably not sort properly.
-[313] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:VCD' is not an integer - this will probably not sort properly.
-[313] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Verilog' is not an integer - this will probably not sort properly.
-[318] Utils.pm:193> WARN - month field 'May' in entry 'wiki:VHDL' is not an integer - this will probably not sort properly.
-[352] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[353] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[353] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de_DE'
-[353] Biber.pm:3810> INFO - No sort tailoring available for locale 'de_DE'
-[387] bbl.pm:617> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
-[395] bbl.pm:720> INFO - Output to thesis.bbl
-[395] Biber.pm:110> INFO - WARNINGS: 34
+[41] biber:313> INFO - === Di Jun 19, 2018, 01:07:39
+[67] Biber.pm:371> INFO - Reading 'thesis.bcf'
+[144] Biber.pm:857> INFO - Found 37 citekeys in bib section 0
+[161] Biber.pm:3976> INFO - Processing section 0
+[176] Biber.pm:4136> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[178] bibtex.pm:1500> INFO - LaTeX decoding ...
+[237] bibtex.pm:1316> INFO - Found BibTeX data source 'literatur.bib'
+[242] Utils.pm:193> WARN - month field 'May' in entry 'wiki:echtzeit' is not an integer - this will probably not sort properly.
+[253] Utils.pm:193> WARN - month field 'May' in entry 'forum:digilent' is not an integer - this will probably not sort properly.
+[254] Utils.pm:193> WARN - month field 'Oct' in entry 'web:blackmesa_sump2' is not an integer - this will probably not sort properly.
+[255] Utils.pm:193> WARN - month field 'Jun' in entry 'web:ols' is not an integer - this will probably not sort properly.
+[256] Utils.pm:193> WARN - month field 'May' in entry 'web:sigrok_ols' is not an integer - this will probably not sort properly.
+[257] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Digitalsignal' is not an integer - this will probably not sort properly.
+[257] Utils.pm:193> WARN - month field 'May' in entry 'wiki:PLD' is not an integer - this will probably not sort properly.
+[259] Utils.pm:193> WARN - month field 'May' in entry 'wiki:UART' is not an integer - this will probably not sort properly.
+[259] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:I2C' is not an integer - this will probably not sort properly.
+[260] Utils.pm:193> WARN - month field 'May' in entry 'wiki:SPI' is not an integer - this will probably not sort properly.
+[261] Utils.pm:193> WARN - month field 'May' in entry 'web:IceStorm' is not an integer - this will probably not sort properly.
+[271] Utils.pm:193> WARN - month field 'Jun' in entry 'web:yodl' is not an integer - this will probably not sort properly.
+[272] Utils.pm:193> WARN - month field 'Jun' in entry 'web:iverilog' is not an integer - this will probably not sort properly.
+[273] Utils.pm:193> WARN - month field 'Jun' in entry 'web:gtkwave' is not an integer - this will probably not sort properly.
+[274] Utils.pm:193> WARN - month field 'Jun' in entry 'web:yosys' is not an integer - this will probably not sort properly.
+[274] Utils.pm:193> WARN - month field 'Jun' in entry 'web:arachne_pnr' is not an integer - this will probably not sort properly.
+[275] Utils.pm:193> WARN - month field 'Jun' in entry 'web:icestorm_tools' is not an integer - this will probably not sort properly.
+[286] Utils.pm:193> WARN - month field 'Jun' in entry 'web:trenz_icezero' is not an integer - this will probably not sort properly.
+[291] Utils.pm:193> WARN - month field 'Jun' in entry 'web:trenz_icoboard' is not an integer - this will probably not sort properly.
+[292] Utils.pm:193> WARN - month field 'Jun' in entry 'web:lawrie_fork' is not an integer - this will probably not sort properly.
+[293] Utils.pm:193> WARN - month field 'Jun' in entry 'web:mikro_fifo' is not an integer - this will probably not sort properly.
+[294] Utils.pm:193> WARN - month field 'Jun' in entry 'web:sump2_trigger' is not an integer - this will probably not sort properly.
+[295] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:MIDI' is not an integer - this will probably not sort properly.
+[296] Utils.pm:193> WARN - month field 'Jun' in entry 'wiki:MIDI_clock' is not an integer - this will probably not sort properly.
+[297] Utils.pm:193> WARN - month field 'May' in entry 'web:pulseview' is not an integer - this will probably not sort properly.
+[299] Utils.pm:193> WARN - month field 'Jun' in entry 'web:verilog_vcd' is not an integer - this will probably not sort properly.
+[306] Utils.pm:193> WARN - month field 'Jun' in entry 'web:midipal' is not an integer - this will probably not sort properly.
+[307] Utils.pm:193> WARN - month field 'May' in entry 'wiki:CPLD' is not an integer - this will probably not sort properly.
+[308] Utils.pm:193> WARN - month field 'May' in entry 'wiki:FPGA' is not an integer - this will probably not sort properly.
+[308] Utils.pm:193> WARN - month field 'May' in entry 'wiki:reverse_eng' is not an integer - this will probably not sort properly.
+[310] Utils.pm:193> WARN - month field 'May' in entry 'wiki:Verilog' is not an integer - this will probably not sort properly.
+[354] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[354] UCollate.pm:68> INFO - Overriding locale 'de_DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[354] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'de_DE'
+[354] Biber.pm:3810> INFO - No sort tailoring available for locale 'de_DE'
+[391] bbl.pm:617> INFO - Writing 'thesis.bbl' with encoding 'UTF-8'
+[407] bbl.pm:720> INFO - Output to thesis.bbl
+[409] Biber.pm:110> INFO - WARNINGS: 31

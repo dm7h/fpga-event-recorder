@@ -11,7 +11,11 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Beispielhafter Event-Trigger\relax }}{25}{table.caption.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.2}{\ignorespaces Bin\IeC {\"a}rkodierung des Beispiel-Triggers\relax }}{26}{table.caption.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {3.3}{\ignorespaces Beispielhafte Event-Erkennung auf Basis von Bin\IeC {\"a}roperationen\relax }}{26}{table.caption.10}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -19,18 +23,20 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.1}{\ignorespaces Pinbelegung der PMOD-Header des Icezero-Boards\relax }}{42}{table.caption.21}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.2}{\ignorespaces Pinverbindungen Raspberry Pi und IceZero FPGA-Shield\relax }}{43}{table.caption.22}
+\contentsline {table}{\numberline {A.1}{\ignorespaces Pinbelegung der Pmod-Header des Icezero-Boards\relax }}{45}{table.caption.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.3}{\ignorespaces Pinbelegung PMOD-P1\relax }}{44}{table.caption.23}
+\contentsline {table}{\numberline {A.2}{\ignorespaces Pinverbindungen Raspberry Pi und IceZero FPGA-Shield\relax }}{46}{table.caption.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.4}{\ignorespaces Pinbelegung PMOD-P2\relax }}{44}{table.caption.24}
+\contentsline {table}{\numberline {A.3}{\ignorespaces Pinbelegung Pmod-P1\relax }}{47}{table.caption.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.5}{\ignorespaces Pinbelegung PMOD-P3\relax }}{44}{table.caption.25}
+\contentsline {table}{\numberline {A.4}{\ignorespaces Pinbelegung Pmod-P2\relax }}{47}{table.caption.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.6}{\ignorespaces Pinbelegung PMOD-P4\relax }}{44}{table.caption.26}
+\contentsline {table}{\numberline {A.5}{\ignorespaces Pinbelegung Pmod-P3\relax }}{47}{table.caption.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A.7}{\ignorespaces \IeC {\"U}berblick \IeC {\"u}ber den Inhalt des Git-Repositories\relax }}{45}{table.caption.27}
+\contentsline {table}{\numberline {A.6}{\ignorespaces Pinbelegung Pmod-P4\relax }}{47}{table.caption.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A.7}{\ignorespaces \IeC {\"U}berblick \IeC {\"u}ber den Inhalt des Git-Repositories\relax }}{48}{table.caption.30}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }

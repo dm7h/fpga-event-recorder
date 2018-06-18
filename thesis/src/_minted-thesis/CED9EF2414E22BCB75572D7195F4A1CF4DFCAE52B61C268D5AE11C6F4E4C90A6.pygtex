@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}define BUFFER\PYGZus{}SIZE 8192}
+
+\PYG{n}{\PYGZus{}\PYGZus{}attribute\PYGZus{}\PYGZus{}} \PYG{p}{((}\PYG{n}{section} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}.text.buffer\PYGZdq{}}\PYG{p}{)))} \PYG{k}{struct} \PYG{n}{Buffer} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{uint64\PYGZus{}t} \PYG{n}{data}\PYG{p}{[}\PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{];}
+  \PYG{k+kt}{uint64\PYGZus{}t} \PYG{n}{read}\PYG{p}{;}  \PYG{c+c1}{// always points to the oldest entry}
+  \PYG{k+kt}{uint64\PYGZus{}t} \PYG{n}{write}\PYG{p}{;} \PYG{c+c1}{// always point to a empty entry}
+\PYG{p}{\PYGZcb{}} \PYG{n}{buffer} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZob{}\PYGZcb{},} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

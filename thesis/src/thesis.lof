@@ -13,22 +13,22 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Darstellung eines aufgenommenen Midi-Clock-Signals mit Pulseview}}{28}{figure.caption.8}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Darstellung eines aufgenommenen Midi-Clock-Signals mit Pulseview}}{31}{figure.caption.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Histogramm der Python-generierten MIDI-Clock}}{30}{figure.caption.9}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Histogramm der Python-generierten MIDI-Clock}}{33}{figure.caption.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Histogramm der MIDI-Clock des Musik-Programms Renoise}}{31}{figure.caption.10}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Histogramm der MIDI-Clock des Musik-Programms Renoise}}{34}{figure.caption.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Histogramm der MIDI-Clock des Musik-Programms Reaper}}{31}{figure.caption.11}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Histogramm der MIDI-Clock des Musik-Programms Reaper}}{34}{figure.caption.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Histogramm einer Mikrocontroller-generierten Hardware-MIDI-Clock}}{32}{figure.caption.12}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Histogramm einer Mikrocontroller-generierten Hardware-MIDI-Clock}}{35}{figure.caption.15}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {A.1}{\ignorespaces Pinbelegung der PMOD-Header des IceZero-Boards}}{42}{figure.caption.20}
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Pinbelegung der Pmod-Header des IceZero-Boards}}{45}{figure.caption.23}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }

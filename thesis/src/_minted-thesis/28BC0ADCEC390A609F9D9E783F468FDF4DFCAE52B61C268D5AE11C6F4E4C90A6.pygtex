@@ -1,0 +1,62 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{\PYGZus{}\PYGZus{}attribute\PYGZus{}\PYGZus{}} \PYG{p}{((}\PYG{n}{section} \PYG{p}{(}\PYG{l+s}{\PYGZdq{}.text.sram\PYGZdq{}}\PYG{p}{)))} \PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+
+	\PYG{c+cm}{/* status:}
+\PYG{c+cm}{	 * 0: not running}
+\PYG{c+cm}{         * 1: running with event detection}
+\PYG{c+cm}{         * 2: running in \PYGZdq{}dump\PYGZdq{} mode}
+\PYG{c+cm}{         */}
+	\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{status} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+	\PYG{k}{while} \PYG{p}{(}\PYG{n+nb}{true}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{// push events from BRAM buffer to SRAM buffer}
+		\PYG{n}{event} \PYG{o}{=} \PYG{n}{icosoc\PYGZus{}tr0\PYGZus{}get\PYGZus{}fifo}\PYG{p}{();}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{event} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{c+c1}{// event detection}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{t} \PYG{o}{\PYGZlt{}} \PYG{n}{MAX\PYGZus{}EVENTS}\PYG{p}{;} \PYG{n}{t}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{match}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+					\PYG{c+c1}{// apply event function}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{function}\PYG{p}{)}
+						\PYG{n}{status} \PYG{o}{=} \PYG{n}{function}\PYG{p}{;}
+
+					\PYG{c+c1}{// push into SRAM buffer}
+					\PYG{k}{if} \PYG{p}{((}\PYG{n}{status} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{||} \PYG{n}{function}\PYG{p}{)}
+						\PYG{n}{BufferIn}\PYG{p}{(}\PYG{n}{event}\PYG{p}{);}
+				\PYG{p}{\PYGZcb{}}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{c+c1}{// always add the event in dump mode}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{status} \PYG{o}{==} \PYG{l+m+mi}{3}\PYG{p}{)}
+				\PYG{n}{BufferIn}\PYG{p}{(}\PYG{n}{event}\PYG{p}{);}
+
+			\PYG{k}{continue}\PYG{p}{;} \PYG{c+c1}{// continue until we got all events}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{c+c1}{// BRAM fifo is empty (or SRAM buffer is full) ..}
+		\PYG{n}{cmd} \PYG{o}{=} \PYG{n}{icosoc\PYGZus{}spi0\PYGZus{}xfer}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+
+		\PYG{c+c1}{// SPI commands}
+		\PYG{k}{switch} \PYG{p}{(}\PYG{n}{cmd}\PYG{p}{)}
+		\PYG{p}{\PYGZob{}}
+			\PYG{k}{case} \PYG{l+m+mi}{1}\PYG{o}{:}
+				\PYG{c+c1}{// receive new event configuration}
+				\PYG{p}{[...]}
+
+			\PYG{k}{case} \PYG{l+m+mi}{2}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{o}{:}
+				\PYG{c+c1}{// reset counter, start/start stop}
+				\PYG{c+c1}{// recording / dump, etc}
+				\PYG{p}{[...]}
+
+			\PYG{k}{default}\PYG{o}{:}
+				\PYG{c+c1}{// send data}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{BufferOut}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{event}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+					\PYG{n}{icosoc\PYGZus{}spi0\PYGZus{}xfer}\PYG{p}{(}\PYG{n}{event}\PYG{p}{);}
+				\PYG{p}{\PYGZcb{}}
+				\PYG{k}{break}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{Es} \PYG{n}{werden} \PYG{n}{also} \PYG{n}{in} \PYG{n}{immer} \PYG{n}{erst} \PYG{n}{alle} \PYG{n}{Events} \PYG{n}{aus} \PYG{n}{dem} \PYG{n}{BRAM}\PYG{o}{\PYGZhy{}}\PYG{n}{Puffer} \PYG{n}{abgeholt} \PYG{o}{\PYGZhy{}\PYGZhy{}} \PYG{n}{und} \PYG{n}{dabei} \PYG{n}{die} \PYG{n}{Event}\PYG{o}{\PYGZhy{}}\PYG{n}{Erkennung} \PYG{n}{durchgeführt} \PYG{n}{wenn} \PYG{n}{diese} \PYG{n}{aktiviert} \PYG{n}{ist}\PYG{p}{.} \PYG{n}{Falls} \PYG{n}{ein} \PYG{n}{Event} \PYG{n}{erkannt} \PYG{n}{wurde} \PYG{n}{oder} \PYG{n}{der} \PYG{l+s}{\PYGZdq{}Dump\PYGZdq{}}\PYG{o}{\PYGZhy{}}\PYG{n}{Modus} \PYG{n}{aktiv} \PYG{n}{ist} \PYG{n}{wird} \PYG{n}{das} \PYG{n}{Event} \PYG{n}{im} \PYG{n}{SRAM}\PYG{o}{\PYGZhy{}}\PYG{n}{Puffer} \PYG{n}{abgelegt}\PYG{p}{.}\PYG{err}{\PYGZbs{}}\PYGZbs{}
+\PYG{n}{Wenn} \PYG{n}{keine} \PYG{n}{Daten} \PYG{n}{im} \PYG{n}{BRAM}\PYG{o}{\PYGZhy{}}\PYG{n}{Puffer} \PYG{n}{liegen} \PYG{n}{wird} \PYG{n}{ein} \PYG{n}{SPI}\PYG{o}{\PYGZhy{}}\PYG{n}{Transfer} \PYG{n}{initiiert}\PYG{p}{,} \PYG{n}{der} \PYG{n}{vom} \PYG{n}{Raspberry} \PYG{n}{Pi} \PYG{n}{einen} \PYG{err}{``}\PYG{n}{Befehl}\PYG{err}{\PYGZsq{}\PYGZsq{}} \PYG{n}{angefordert}\PYG{p}{.} \PYG{n}{Dies} \PYG{n}{kann} \PYG{n}{ein} \PYG{n}{Kontrollbefehl} \PYG{n}{zum} \PYG{n}{Starten} \PYG{n}{oder} \PYG{n}{Stoppen} \PYG{n}{der} \PYG{n}{Aufnahme} \PYG{n}{sein}\PYG{p}{,} \PYG{n}{oder} \PYG{n}{eine} \PYG{n}{neue} \PYG{n}{Event}\PYG{o}{\PYGZhy{}}\PYG{n}{Definition} \PYG{n}{oder} \PYG{n}{aber} \PYG{n}{ein} \PYG{n}{Befehl} \PYG{n}{zum} \PYG{n}{Abholen} \PYG{n}{der} \PYG{n}{gespeicherten} \PYG{n}{Daten} \PYG{o}{\PYGZhy{}\PYGZhy{}} \PYG{n}{in} \PYG{n}{diesem} \PYG{n}{Fall} \PYG{n}{wird} \PYG{n}{ein} \PYG{n}{Event} \PYG{n}{aus} \PYG{n}{dem} \PYG{n}{SRAM}\PYG{o}{\PYGZhy{}}\PYG{n}{Puffer} \PYG{n}{entnommen} \PYG{n}{und} \PYG{n}{per} \PYG{n}{SPI} \PYG{n}{an} \PYG{n}{das} \PYG{n}{Raspberry} \PYG{n}{Pi} \PYG{err}{ü}\PYG{n}{bertragen}\PYG{p}{.}
+\end{Verbatim}

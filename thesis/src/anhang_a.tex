@@ -1,19 +1,19 @@
 \chapter{Material}
 \label{ch:Material}
 \enlargethispage{120cm}
-\section{PMOD-Pinbelegung für die Event-Aufnahme}
+\section{Pmod-Pinbelegung für die Event-Aufnahme}
 \label{sec:pmod_pins}
-Für die Event-Aufnahme sind die PMOD-Header P3 und P4 als Eingänge konfiguriert.
+Für die Event-Aufnahme sind die Pmod-Header P3 und P4 als Eingänge konfiguriert.
 
 \begin{figure}[h]
 	\centering
 	\captionsetup{justification=centering,margin=2cm}
 		\includegraphics[width=0.80\textwidth]{../figures/ice40_pmod_pins_01.png}
-		\caption[Pinbelegung der PMOD-Header des IceZero-Boards]{Pinbelegung der PMOD-Header des IceZero-Boards}
+		\caption[Pinbelegung der Pmod-Header des IceZero-Boards]{Pinbelegung der Pmod-Header des IceZero-Boards}
 	\label{fig:ice40_pmod_pins}
 \end{figure}
 
-Bei der Pin-Belegung wurde das selbe Schema wie beim GPIO-Modul des IcoSoc verwendet. Die Numerierung läuft dementsprechend von rechts nach links und für die einzelnen PMOD-Header ``zeilenweise'' von oben nach unten.\\
+Bei der Pin-Belegung wurde das selbe Schema wie beim GPIO-Modul des IcoSoc verwendet. Die Numerierung läuft dementsprechend von rechts nach links und für die einzelnen Pmod-Header ``zeilenweise'' von oben nach unten.\\
 Für die Zuordnung der Signalnamen (und der zugehörigen VCD-Symbole) bei der Ausgabe im CSV- oder VCD-Format kann folgende Tabelle verwendet werden:
 
 \begin{table}[h]
@@ -26,18 +26,18 @@ Für die Zuordnung der Signalnamen (und der zugehörigen VCD-Symbole) bei der Au
 \multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_11} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_10} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_9}  & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_8}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_3} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_2} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_1} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_0} \\ \cline{1-6} \cline{8-13} 
 \multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_15} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_14} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_13} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_12} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_7} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_6} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_5} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}pin\_4} \\ \cline{1-6} \cline{8-13} 
                                                    & \multicolumn{1}{l|}{}                                                   & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}0}       & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}/}       & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}.}       & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}-}       & \multicolumn{1}{c}{}  &                                                   & \multicolumn{1}{c|}{}                                                   & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}(}      & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}'}      & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\&}     & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\%}     \\ \cline{3-6} \cline{10-13} 
-\multicolumn{6}{c}{PMOD - P4}                                                                                                                                                                                                                                                                                                                            &                       & \multicolumn{6}{c}{PMOD - P3}                                                                                                                                                                                                                                                                                                                      
+\multicolumn{6}{c}{Pmod - P4}                                                                                                                                                                                                                                                                                                                            &                       & \multicolumn{6}{c}{Pmod - P3}                                                                                                                                                                                                                                                                                                                      
 \end{tabular}
 
 %\begin{tabular}{lllllllllllll}
 %\cline{1-6} \cline{8-13}
 %\multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_11} & \multicolumn{1}{l|}{pin\_10} & \multicolumn{1}{l|}{pin\_9}  & \multicolumn{1}{l|}{pin\_8}  & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_3} & \multicolumn{1}{l|}{pin\_2} & \multicolumn{1}{l|}{pin\_1} & \multicolumn{1}{l|}{pin\_0} \\ \cline{1-6} \cline{8-13} 
 %\multicolumn{1}{|l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_15} & \multicolumn{1}{l|}{pin\_14} & \multicolumn{1}{l|}{pin\_13} & \multicolumn{1}{l|}{pin\_12} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{DF2727}3.3V} & \multicolumn{1}{l|}{\cellcolor[HTML]{343434}{\color[HTML]{FFFFFF} GND}} & \multicolumn{1}{l|}{pin\_7} & \multicolumn{1}{l|}{pin\_6} & \multicolumn{1}{l|}{pin\_5} & \multicolumn{1}{l|}{pin\_4} \\ \cline{1-6} \cline{8-13} 
-%\multicolumn{6}{c}{PMOD - P4}                                                                                                                                                                                                                            &                       & \multicolumn{6}{c}{PMOD - P3}                                                                                                                                                                                                                      
+%\multicolumn{6}{c}{Pmod - P4}                                                                                                                                                                                                                            &                       & \multicolumn{6}{c}{Pmod - P3}                                                                                                                                                                                                                      
 %\end{tabular}
 }
-\caption{Pinbelegung der PMOD-Header des Icezero-Boards}
-\label{tbl:PMOD-Pins}
+\caption{Pinbelegung der Pmod-Header des Icezero-Boards}
+\label{tbl:Pmod-Pins}
 \end{table}
 
 
@@ -84,13 +84,13 @@ CONFIG\_RESET                    & 66                            & CFG\_RST\_1  
 \end{landscape}
 
 \clearpage
-\section{Detaillierte Pinbelegung aller PMOD-Header}
+\section{Detaillierte Pinbelegung aller Pmod-Header}
 \label{sec:pmod_all}
 
-%PMOD1
+%Pmod1
 \begin{table}[H]
 \centering
-\caption{Pinbelegung PMOD-P1}
+\caption{Pinbelegung Pmod-P1}
 \label{tbl:pmod1}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
@@ -100,14 +100,14 @@ GPIO\_PIN\_7                      & GPIO\_PIN\_5                     & GPIO\_PIN
 \cellcolor[HTML]{C0C0C0}pmod1\_10 & \cellcolor[HTML]{C0C0C0}pmod1\_9 & \cellcolor[HTML]{C0C0C0}pmod1\_8 & \cellcolor[HTML]{C0C0C0}pmod1\_7 & IcoSoc Name   \\ \hline
 GPIO\_PIN\_6                      & GPIO\_PIN\_4                     & GPIO\_PIN\_2                     & GPIO\_PIN\_0                     & IceZero Name  \\ \hline
 \cellcolor[HTML]{EFEFEF}134       & \cellcolor[HTML]{EFEFEF}136      & \cellcolor[HTML]{EFEFEF}138      & \cellcolor[HTML]{EFEFEF}141      & iCE40 PCF Pin \\ \hline
-\multicolumn{5}{|c|}{PMOD P1}                                                                                                                              \\ \hline
+\multicolumn{5}{|c|}{Pmod P1}                                                                                                                              \\ \hline
 \end{tabular}
 \end{table}
 
-%PMOD2
+%Pmod2
 \begin{table}[H]
 \centering
-\caption{Pinbelegung PMOD-P2}
+\caption{Pinbelegung Pmod-P2}
 \label{tbl:pmod2}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
@@ -117,15 +117,15 @@ GPIO\_PIN\_15                     & GPIO\_PIN\_13                    & GPIO\_PIN
 \cellcolor[HTML]{C0C0C0}pmod2\_10 & \cellcolor[HTML]{C0C0C0}pmod2\_9 & \cellcolor[HTML]{C0C0C0}pmod2\_8 & \cellcolor[HTML]{C0C0C0}pmod2\_7 & IcoSoc Name   \\ \hline
 GPIO\_PIN\_14                     & GPIO\_PIN\_12                    & GPIO\_PIN\_10                    & GPIO\_PIN\_8                     & IceZero Name  \\ \hline
 \cellcolor[HTML]{EFEFEF}42        & \cellcolor[HTML]{EFEFEF}44       & \cellcolor[HTML]{EFEFEF}47       & \cellcolor[HTML]{EFEFEF}55       & iCE40 PCF Pin \\ \hline
-\multicolumn{5}{|c|}{PMOD P2}                                                                                                                              \\ \hline
+\multicolumn{5}{|c|}{Pmod P2}                                                                                                                              \\ \hline
 \end{tabular}
 \end{table}
 
-%PMOD3
+%Pmod3
 
 \begin{table}[H]
 \centering
-\caption{Pinbelegung PMOD-P3}
+\caption{Pinbelegung Pmod-P3}
 \label{tbl:pmod3}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
@@ -135,15 +135,15 @@ GPIO\_PIN\_31                     & GPIO\_PIN\_30                    & GPIO\_PIN
 \cellcolor[HTML]{C0C0C0}pmod3\_10 & \cellcolor[HTML]{C0C0C0}pmod3\_9 & \cellcolor[HTML]{C0C0C0}pmod3\_8 & \cellcolor[HTML]{C0C0C0}pmod3\_7 & IcoSoc Name   \\ \hline
 GPIO\_PIN\_19                     & GPIO\_PIN\_18                    & GPIO\_PIN\_17                    & GPIO\_PIN\_16                    & IceZero Name  \\ \hline
 \cellcolor[HTML]{EFEFEF}37        & \cellcolor[HTML]{EFEFEF}38       & \cellcolor[HTML]{EFEFEF}39       & \cellcolor[HTML]{EFEFEF}41       & iCE40 PCF Pin \\ \hline
-\multicolumn{5}{|c|}{PMOD P3}                                                                                                                              \\ \hline
+\multicolumn{5}{|c|}{Pmod P3}                                                                                                                              \\ \hline
 \end{tabular}
 \end{table}
 
-%PMOD4
+%Pmod4
 
 \begin{table}[H]
 \centering
-\caption{Pinbelegung PMOD-P4}
+\caption{Pinbelegung Pmod-P4}
 \label{tbl:pmod4}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
@@ -153,7 +153,7 @@ GPIO\_PIN\_27                     & GPIO\_PIN\_26                    & GPIO\_PIN
 \cellcolor[HTML]{C0C0C0}pmod4\_10 & \cellcolor[HTML]{C0C0C0}pmod4\_9 & \cellcolor[HTML]{C0C0C0}pmod4\_8 & \cellcolor[HTML]{C0C0C0}pmod4\_7 & IcoSoc Name  \\ \hline
 GPIO\_PIN\_23                     & GPIO\_PIN\_22                    & GPIO\_PIN\_21                    & GPIO\_PIN\_20                    & IceZero Name \\ \hline
 \cellcolor[HTML]{EFEFEF}142       & \cellcolor[HTML]{EFEFEF}143      & \cellcolor[HTML]{EFEFEF}144      & \cellcolor[HTML]{EFEFEF}1        & iCE40 PCF Pin      \\ \hline
-\multicolumn{5}{|c|}{PMOD P4}                                                                                                                             \\ \hline
+\multicolumn{5}{|c|}{Pmod P4}                                                                                                                             \\ \hline
 \end{tabular}
 \end{table}
 

@@ -40,7 +40,7 @@ Diese ``Numerierung'' wird umgesetzt, in dem der von einem Oszillator\footnote{E
 \end{table}
 
 
-Die Bit-Breite des Zählers legt zusammen mit der Geschwindigkeit des Takts die maximal mögliche Aufnahmelänge fest. Der in dieser Arbeit verwendete Zähler hat eine Breite von 46 Bit, womit sich bei einer Taktfrequenz von 100 Mhz zum Beispiel eine Laufzeit von ca. 195 Stunden ergibt\footnote{Berechnung: \(2^{46} * \frac{1}{100 Mhz} = 2^{46} * 10 ns = 195 Stunden, 28 Minuten und 7,422 Sekunden \)} (was für die meisten Anwendungsfälle mehr als ausreichend ist). 
+Die Bit-Breite des Zählers legt zusammen mit der Geschwindigkeit des Takts die maximal mögliche Aufnahmelänge fest. Der in dieser Arbeit verwendete Zähler hat eine Breite von 46 Bit, womit sich bei einer Taktfrequenz von 100 Mhz zum Beispiel eine Laufzeit von ca. 195 Stunden ergibt\footnote{Berechnung: \(2^{46} * \frac{1}{100 Mhz} = 2^{46} * 10 ns =\) 195 Stunden, 28 Minuten und 7,422 Sekunden} (was für die meisten Anwendungsfälle mehr als ausreichend ist). 
 
 
 
@@ -107,8 +107,8 @@ Nach der Erfassung müssen die Daten zwischengespeichert werden. Dabei sind vor 
 	\item Die \textbf{Geschwindigkeit} des Speichers, die meist den maximalen Datendurchsatz der Gesamtschaltung bestimmt
 	\item Die \textbf{Größe} des Speichers, die festlegt wie lange bei hohem Datendurchsatz aufgenommen werden kann 
 \end{itemize}
-Die meisten nicht-flüchtigen Speicher sind aufgrund der unzureichenden Geschwindigkeit nicht für diesen Verwendungszweck geeignet, weswegen sich die Verwendung von \acrshort{RAM}-Speicher anbietet. \\
-Bei Mikrocontrollern und kleineren FPGA-Boards werden aus Kostengründen und wegen der unkomplizierten Ansteuerung oft SRAM-Speichereinheiten verbaut. SRAM-Speicher hat meist sehr kurze Zugriffszeiten, allerdings bei einer geringen Speichergröße von wenigen MBit. Der in dieser Arbeit verwendete SRAM-Speicher hat beispielsweise eine Größe von 4 Mbit (512 KB) und könnte damit 62500 Events zwischenspeichern\footnote{Bei einer angenommenen Event-Größe von 64-Bit, und unter der Annahme dass der SRAM-Speicher ausschließlich zum Zwischenspeichern von Events verwendet wird}.\\
+Die meisten nicht-flüchtigen Speicher sind aufgrund der unzureichenden Lese- und Schreib-Geschwindigkeiten nicht für diesen Verwendungszweck geeignet, weswegen sich die Verwendung von \acrshort{RAM}-Speicher anbietet. \\
+Bei Mikrocontrollern und kleineren FPGA-Boards werden aus Kostengründen und wegen der unkomplizierten Ansteuerung oft SRAM-Speichereinheiten verbaut. SRAM-Speicher hat meist sehr kurze Zugriffszeiten, allerdings bei einer geringen Speichergröße von wenigen MBit. Der in dieser Arbeit verwendete SRAM-Speicher hat beispielsweise eine Größe von 4 Mbit (512 KB) und könnte damit maximal 62500 Events zwischenspeichern\footnote{Bei einer angenommenen Event-Größe von 64-Bit, und unter der Annahme dass der SRAM-Speicher ausschließlich zum Zwischenspeichern von Events verwendet wird}.\\
 Bei kontinuierlicher Erfassung von Eingangssignalen mit einer Abtastrate von 100 Mhz entspricht dies einer Aufnahmezeit von unter einer Millisekunde\footnote{$62500 * 10 ns = 0.625 ms$}. Da allerdings keine Eingangssignale erwartet werden, bei denen Events mit einer Frequenz von 100 Mhz auftreten und außerdem bereits bei laufender Aufnahme Events aus dem RAM-Speicher entnommen und weiter übertragen werden, kann der SRAM-Speicher trotzdem im Sinne der Aufgabenstellung als Zwischenspeicher verwendet werden.\\
 Als Alternative könnte DRAM-Speicher verwendet werden, der ein Vielfaches der Speicherkapazität bietet und damit auch längere Aufnahmen bei hoher Signaldichte ermöglichen würde. DRAM-Speicher erfordert allerdings im Vergleich zu SRAM ein kontinuierliches ``Auffrischen'' der Speicher-Inhalte durch eine Controller-Einheit und bedeutet dementsprechend deutlich mehr Aufwand und hohe Timinganforderungen bei der Implementierung.
 
@@ -135,7 +135,7 @@ Davon abgesehen wird unter Umständen noch zusätzliche Hardware- und Software-I
 
 \section{Auswahl der Software-Toolchain: IceStorm}
 
-Im Normalfall werden FPGAs mit den vom Hersteller angebotenen Software-Tools programmiert. Bei diesen Tools handelt es sich um kommerzielle Produkte bei denen zum Teil auch hohe Lizenzgebühren fällig werden. Da der Quelltext dieser Tools nicht öffentlich zugänglich ist und FPGA-Hersteller keine relevanten Informationen zur Hardwarestruktur von FPGA-Chips veröffentlichen war es für Opensource-Tools bisher nicht möglich eine Alternative zu den kommerziellen Toolchains der Hersteller zu bieten.\\
+Im Normalfall werden FPGAs mit den vom Hersteller angebotenen -- kommerziellen -- Software-Tools programmiert. Da der Quelltext dieser Tools nicht öffentlich zugänglich ist und FPGA-Hersteller keine relevanten Informationen zur Hardwarestruktur von FPGA-Chips veröffentlichen war es für Opensource-Tools bisher nicht möglich eine Alternative zu den kommerziellen Toolchains der Hersteller zu bieten.\\
 Mit der IceStorm-Toolchain wurde erstmals die Hardwarestruktur der -- relativ einfach aufgebauten -- Lattice iCE40 Produkt-Serie\footnote{Es werden nicht alle Chips der iCE40-Serie unterstützt, die verwendbaren Produktvarianten sind auf der IceStorm-Website aufgelistet\cite{web:IceStorm}} durch \gls{Reverse-Engineering} rekonstruiert, so dass ein vollständiger Arbeitsablauf für die Entwicklung von FPGA-Designs zur Verfügung steht.\\
 Der Arbeitsablauf lässt sich in mehrere grundlegende Schritte unterteilen:
 \begin{itemize}
@@ -194,8 +194,8 @@ High Current LED Drivers         &           & 0                                
 \end{table}
 
 Vom FPGA-Chip selbst abgesehen beinhaltet das IceZero-Board einen 4MBit (512KB) großen SRAM-Speicher und einen 64MBit (8MB) großen SPI-Baustein, der zur Speicherung des Bitstreams und der Konfiguration des FPGAs verwendet werden kann.
-Es ist ein 100Mhz schneller Oszillator zur Erzeugung des Systemtakts verbaut und es sind drei benutzerprogrammierbare LEDs vorhanden.
-Die vorhandenen Ein- und Ausgänge liegen an 4 \gls{PMOD}-Schnittstellen und einer 40-Pin-Buchsenleisten für den Anschluss an ein Raspberry Pi an (siehe \cite{web:trenz_icezero}). 
+Es ist ein 100 Mhz schneller Oszillator zur Erzeugung des Systemtakts verbaut und es sind drei benutzerprogrammierbare LEDs vorhanden.
+Die vorhandenen Ein- und Ausgänge liegen an 4 \gls{Pmod}-Schnittstellen und einer 40-Pin-Buchsenleisten für den Anschluss an ein Raspberry Pi an (siehe \cite{web:trenz_icezero}). 
 
 
 \subsection{Raspberry Pi Zero W}
