@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} siehe zum Beispiel: https://www.raspberrypi.org/documentation/remote\PYGZhy{}access/ssh/passwordless.md}
+\PYG{c+c1}{\PYGZsh{} Exportieren des SSH\PYGZhy{}Hosts, z.B. pi@zero oder pi@192.168.1.43:}
+\PYG{n+nb}{export} \PYG{n+nv}{SSH\PYGZus{}RASPI}\PYG{o}{=}pi@zero
+\PYG{c+c1}{\PYGZsh{} eine SSH\PYGZhy{}Verbindung sollte dann ohne Passwort\PYGZhy{}Abfrage möglich sein:}
+ssh \PYG{n+nv}{\PYGZdl{}SSH\PYGZus{}RASPI}                                                                               \PYGZdl{}
+\end{Verbatim}

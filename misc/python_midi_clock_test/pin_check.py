@@ -21,7 +21,14 @@ def run():
     # and go ..
     print("running pin test ..")
     midiout.send_message([0x90, 12, 120])
+    midiout.send_message([0x90, 1, 120])
     midiout.send_message([0x90, 3, 120])
+    midiout.send_message([0x90, 5, 120])
+    midiout.send_message([0x90, 7, 120])
+    midiout.send_message([0x90, 8, 120])
+    midiout.send_message([0x90, 6, 120])
+    midiout.send_message([0x90, 4, 120])
+    midiout.send_message([0x90, 2, 120])
 
 
 

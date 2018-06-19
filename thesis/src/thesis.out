@@ -18,49 +18,48 @@
 \BOOKMARK [1][-]{section.2.4}{2.4 Auswahl der Hardware}{chapter.2}% 18
 \BOOKMARK [2][-]{subsection.2.4.1}{2.4.1 IceZero FPGA-Shield \(iCE40HX4K\)}{section.2.4}% 19
 \BOOKMARK [2][-]{subsection.2.4.2}{2.4.2 Raspberry Pi Zero W}{section.2.4}% 20
-\BOOKMARK [1][-]{section.2.5}{2.5 Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{chapter.2}% 21
-\BOOKMARK [0][]{chapter.3}{3 Implementierung}{}% 22
-\BOOKMARK [1][-]{section.3.1}{3.1 Anpassung des Tools zum Programmieren des Bitstreams \(icoprog\)}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{3.2 Portierung und n\366tige Anpassungen des Verilog-SoCs \(IcoSoc\)}{chapter.3}% 24
-\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Struktur des IcoSoc-Projekts}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Portierung des IcoSoc-Projekts}{section.3.2}% 26
-\BOOKMARK [1][-]{section.3.3}{3.3 Implementierung des Event-Recorder Moduls}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 GPIO-Eing\344nge}{section.3.3}% 28
-\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Bus-Schnittstelle}{section.3.3}% 29
-\BOOKMARK [2][-]{subsection.3.3.3}{3.3.3 BRAM-Speicher f\374r die Event-Definitionen}{section.3.3}% 30
-\BOOKMARK [2][-]{subsection.3.3.4}{3.3.4 Erkennung von Signal\344nderungen und Events}{section.3.3}% 31
-\BOOKMARK [2][-]{subsection.3.3.5}{3.3.5 Cross-Clock BRAM-Puffer}{section.3.3}% 32
-\BOOKMARK [2][-]{subsection.3.3.6}{3.3.6 Simulation des Event-Recorder-Moduls mit iverilog}{section.3.3}% 33
-\BOOKMARK [1][-]{section.3.4}{3.4 Implementierung eines SPI-Slave-Moduls}{chapter.3}% 34
-\BOOKMARK [1][-]{section.3.5}{3.5 Zusammenf\374hrung der Module als Icosoc-Projekt}{chapter.3}% 35
-\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Projektkonfiguration}{section.3.5}% 36
-\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 SRAM-Puffer und Programmablauf}{section.3.5}% 37
-\BOOKMARK [2][-]{subsection.3.5.3}{3.5.3 Event-Erkennung}{section.3.5}% 38
-\BOOKMARK [1][-]{section.3.6}{3.6 Implementierung des textbasierten Benutzerinterfaces}{chapter.3}% 39
-\BOOKMARK [0][]{chapter.4}{4 Anwendungsfall: Jitter-Analyse von Software-generierten MIDI-Clock Signalen}{}% 40
-\BOOKMARK [1][-]{section.4.1}{4.1 Test-Setup: USB-Midi mit Teensy LC}{chapter.4}% 41
-\BOOKMARK [1][-]{section.4.2}{4.2 Einrichten des Projekts}{chapter.4}% 42
-\BOOKMARK [1][-]{section.4.3}{4.3 Konfiguration der Event-Trigger}{chapter.4}% 43
-\BOOKMARK [1][-]{section.4.4}{4.4 Vorbereiten der Hardware}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.5}{4.5 Durchf\374hren der Event-Aufnahme}{chapter.4}% 45
-\BOOKMARK [1][-]{section.4.6}{4.6 Analyse der Ergebnisse}{chapter.4}% 46
-\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 Software MIDI-Clock: Python-Implementierung}{section.4.6}% 47
-\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 Software MIDI-Clock: Renoise und Reaper}{section.4.6}% 48
-\BOOKMARK [2][-]{subsection.4.6.3}{4.6.3 Hardware MIDI-Clock: Midipal}{section.4.6}% 49
-\BOOKMARK [0][]{chapter.5}{5 Fazit}{}% 50
-\BOOKMARK [0][]{chapter.6}{6 Aussicht}{}% 51
-\BOOKMARK [0][]{section*.16}{Abk\374rzungen}{}% 52
-\BOOKMARK [0][]{section*.18}{Glossar}{}% 53
-\BOOKMARK [0][]{appendix*.20}{Abbildungsverzeichnis}{}% 54
-\BOOKMARK [0][]{appendix*.21}{Tabellenverzeichnis}{}% 55
-\BOOKMARK [0][]{appendix*.21}{Literatur}{}% 56
-\BOOKMARK [0][]{appendix.A}{A Material}{}% 57
-\BOOKMARK [1][-]{section.A.1}{A.1 Pmod-Pinbelegung f\374r die Event-Aufnahme}{appendix.A}% 58
-\BOOKMARK [1][-]{section.A.2}{A.2 Pinverbindungen Raspberry Pi und IceZero FPGA-Shield}{appendix.A}% 59
-\BOOKMARK [1][-]{section.A.3}{A.3 Detaillierte Pinbelegung aller Pmod-Header}{appendix.A}% 60
-\BOOKMARK [1][-]{section.A.4}{A.4 Inhalt der CD}{appendix.A}% 61
-\BOOKMARK [0][]{appendix.B}{B Lizenz}{}% 62
-\BOOKMARK [1][-]{section.B.1}{B.1 Creative Commons Attribution-ShareAlike 3.0 International}{appendix.B}% 63
-\BOOKMARK [1][-]{section.B.2}{B.2 Creative Commons Legal Code}{appendix.B}% 64
-\BOOKMARK [2][-]{subsection.B.2.1}{B.2.1 Attribution-ShareAlike 3.0 Unported}{section.B.2}% 65
-\BOOKMARK [1][-]{section.B.3}{B.3 ISC-Lizenz}{appendix.B}% 66
+\BOOKMARK [0][]{chapter.3}{3 Implementierung}{}% 21
+\BOOKMARK [1][-]{section.3.1}{3.1 Anpassung des Tools zum Programmieren des Bitstreams \(icoprog\)}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.2}{3.2 Portierung und n\366tige Anpassungen des Verilog-SoCs \(IcoSoc\)}{chapter.3}% 23
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Struktur des IcoSoc-Projekts}{section.3.2}% 24
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Portierung des IcoSoc-Projekts}{section.3.2}% 25
+\BOOKMARK [1][-]{section.3.3}{3.3 Implementierung des Event-Recorder Moduls}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 GPIO-Eing\344nge}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Bus-Schnittstelle}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.3}{3.3.3 BRAM-Speicher f\374r die Event-Definitionen}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.4}{3.3.4 Erkennung von Signal\344nderungen und Events}{section.3.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.5}{3.3.5 Cross-Clock BRAM-Puffer}{section.3.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.6}{3.3.6 Simulation des Event-Recorder-Moduls mit iverilog}{section.3.3}% 32
+\BOOKMARK [1][-]{section.3.4}{3.4 Implementierung eines SPI-Slave-Moduls}{chapter.3}% 33
+\BOOKMARK [1][-]{section.3.5}{3.5 Zusammenf\374hrung der Module als Icosoc-Projekt}{chapter.3}% 34
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Projektkonfiguration}{section.3.5}% 35
+\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 SRAM-Puffer und Programmablauf}{section.3.5}% 36
+\BOOKMARK [2][-]{subsection.3.5.3}{3.5.3 Event-Erkennung}{section.3.5}% 37
+\BOOKMARK [1][-]{section.3.6}{3.6 Implementierung des textbasierten Benutzerinterfaces}{chapter.3}% 38
+\BOOKMARK [0][]{chapter.4}{4 Anwendungsfall: Jitter-Analyse von Software-generierten MIDI-Clock Signalen}{}% 39
+\BOOKMARK [1][-]{section.4.1}{4.1 Test-Setup: USB-Midi mit Teensy LC}{chapter.4}% 40
+\BOOKMARK [1][-]{section.4.2}{4.2 Einrichten des Projekts}{chapter.4}% 41
+\BOOKMARK [1][-]{section.4.3}{4.3 Konfiguration der Event-Trigger}{chapter.4}% 42
+\BOOKMARK [1][-]{section.4.4}{4.4 Vorbereiten der Hardware}{chapter.4}% 43
+\BOOKMARK [1][-]{section.4.5}{4.5 Durchf\374hren der Event-Aufnahme}{chapter.4}% 44
+\BOOKMARK [1][-]{section.4.6}{4.6 Analyse der Ergebnisse}{chapter.4}% 45
+\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 Software MIDI-Clock: Python-Implementierung}{section.4.6}% 46
+\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 Software MIDI-Clock: Renoise und Reaper}{section.4.6}% 47
+\BOOKMARK [2][-]{subsection.4.6.3}{4.6.3 Hardware MIDI-Clock: Midipal}{section.4.6}% 48
+\BOOKMARK [0][]{chapter.5}{5 Fazit}{}% 49
+\BOOKMARK [0][]{chapter.6}{6 Aussicht}{}% 50
+\BOOKMARK [0][]{section*.16}{Abk\374rzungen}{}% 51
+\BOOKMARK [0][]{section*.18}{Glossar}{}% 52
+\BOOKMARK [0][]{appendix*.20}{Abbildungsverzeichnis}{}% 53
+\BOOKMARK [0][]{appendix*.21}{Tabellenverzeichnis}{}% 54
+\BOOKMARK [0][]{appendix*.21}{Literatur}{}% 55
+\BOOKMARK [0][]{appendix.A}{A Material}{}% 56
+\BOOKMARK [1][-]{section.A.1}{A.1 Pmod-Pinbelegung f\374r die Event-Aufnahme}{appendix.A}% 57
+\BOOKMARK [1][-]{section.A.2}{A.2 Pinverbindungen Raspberry Pi und IceZero FPGA-Shield}{appendix.A}% 58
+\BOOKMARK [1][-]{section.A.3}{A.3 Detaillierte Pinbelegung aller Pmod-Header}{appendix.A}% 59
+\BOOKMARK [1][-]{section.A.4}{A.4 Inhalt der CD}{appendix.A}% 60
+\BOOKMARK [0][]{appendix.B}{B Lizenz}{}% 61
+\BOOKMARK [1][-]{section.B.1}{B.1 Creative Commons Attribution-ShareAlike 3.0 International}{appendix.B}% 62
+\BOOKMARK [1][-]{section.B.2}{B.2 Creative Commons Legal Code}{appendix.B}% 63
+\BOOKMARK [2][-]{subsection.B.2.1}{B.2.1 Attribution-ShareAlike 3.0 Unported}{section.B.2}% 64
+\BOOKMARK [1][-]{section.B.3}{B.3 ISC-Lizenz}{appendix.B}% 65

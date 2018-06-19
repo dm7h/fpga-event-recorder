@@ -86,7 +86,7 @@ Der grundsätzliche Ablauf ist wie folgt:
 git clone git@github.com:cliffordwolf/picorv32.git
 cd picorv32
 make download-tools
-make -j\$(nproc) build-tools
+make -j$(nproc) build-tools                                                                 $
 \end{minted}
 
 Das Kompilieren der RISC-V {\tt gcc}-Toolchain kann je nach Rechenleistung mehrere Stunden dauern.
@@ -103,10 +103,12 @@ git clone https://github.com/dm7h/icozsoc.git
 
 \begin{minted}[breaklines]{bash}
 # siehe zum Beispiel: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
+\end{minted}
+\begin{minted}{bash}
 # Exportieren des SSH-Hosts, z.B. pi@zero oder pi@192.168.1.43:
 export SSH_RASPI=pi@zero
 # eine SSH-Verbindung sollte dann ohne Passwort-Abfrage möglich sein:
-ssh $SSH_RASPI $
+ssh $SSH_RASPI                                                                               $
 \end{minted}
 
 \item Download, Kompilieren und Installation des {\tt icozctl} Git-Projekts auf dem Raspberry Pi\\ 

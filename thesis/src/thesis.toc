@@ -39,43 +39,41 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.2}Raspberry Pi Zero W}{13}{subsection.2.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Beispiel: Von der Synthese bis zum Bitstream mit der IceStorm-Toolchain}{14}{section.2.5}
+\contentsline {chapter}{\numberline {3}Implementierung}{14}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Implementierung}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Anpassung des Tools zum Programmieren des Bitstreams (icoprog)}{14}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Anpassung des Tools zum Programmieren des Bitstreams (icoprog)}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Portierung und n\IeC {\"o}tige Anpassungen des Verilog-SoCs (IcoSoc)}{15}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Portierung und n\IeC {\"o}tige Anpassungen des Verilog-SoCs (IcoSoc)}{16}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Struktur des IcoSoc-Projekts}{15}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Struktur des IcoSoc-Projekts}{16}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Portierung des IcoSoc-Projekts}{17}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.2}Portierung des IcoSoc-Projekts}{18}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{18}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Implementierung des Event-Recorder Moduls}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}GPIO-Eing\IeC {\"a}nge}{18}{subsection.3.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}GPIO-Eing\IeC {\"a}nge}{19}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Bus-Schnittstelle}{18}{subsection.3.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Bus-Schnittstelle}{19}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}BRAM-Speicher f\IeC {\"u}r die Event-Definitionen}{19}{subsection.3.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.3}BRAM-Speicher f\IeC {\"u}r die Event-Definitionen}{20}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Erkennung von Signal\IeC {\"a}nderungen und Events}{19}{subsection.3.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.4}Erkennung von Signal\IeC {\"a}nderungen und Events}{20}{subsection.3.3.4}
+\contentsline {subsection}{\numberline {3.3.5}Cross-Clock BRAM-Puffer}{20}{subsection.3.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.5}Cross-Clock BRAM-Puffer}{21}{subsection.3.3.5}
+\contentsline {subsection}{\numberline {3.3.6}Simulation des Event-Recorder-Moduls mit iverilog}{20}{subsection.3.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.6}Simulation des Event-Recorder-Moduls mit iverilog}{21}{subsection.3.3.6}
+\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{21}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Implementierung eines SPI-Slave-Moduls}{22}{section.3.4}
+\contentsline {section}{\numberline {3.5}Zusammenf\IeC {\"u}hrung der Module als Icosoc-Projekt}{22}{section.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Zusammenf\IeC {\"u}hrung der Module als Icosoc-Projekt}{23}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Projektkonfiguration}{22}{subsection.3.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.1}Projektkonfiguration}{23}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}SRAM-Puffer und Programmablauf}{23}{subsection.3.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.2}SRAM-Puffer und Programmablauf}{24}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Event-Erkennung}{24}{subsection.3.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.3}Event-Erkennung}{25}{subsection.3.5.3}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.6}Implementierung des textbasierten Benutzerinterfaces}{26}{section.3.6}
+\contentsline {section}{\numberline {3.6}Implementierung des textbasierten Benutzerinterfaces}{25}{section.3.6}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Anwendungsfall: Jitter-Analyse von Software-generierten MIDI-Clock Signalen}{27}{chapter.4}
 \defcounter {refsection}{0}\relax 

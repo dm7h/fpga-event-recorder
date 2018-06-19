@@ -478,6 +478,53 @@
       \verb https://github.com/jhol/demon-core-import/blob/master/trigger.v
       \endverb
     \endentry
+    \entry{web:spidev_test}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 19. Jun. 2018]}
+      \field{title}{{torvalds/linux}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/torvalds/linux/blob/master/tools/spi/spidev_test.c
+      \endverb
+      \verb{url}
+      \verb https://github.com/torvalds/linux/blob/master/tools/spi/spidev_test.c
+      \endverb
+    \endentry
+    \entry{web:la2vcd2}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub}
+      \field{month}{6}
+      \field{note}{[Online; accessed 19. Jun. 2018]}
+      \field{title}{{rickyrockrat/la2vcd2}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://github.com/rickyrockrat/la2vcd2
+      \endverb
+      \verb{url}
+      \verb https://github.com/rickyrockrat/la2vcd2
+      \endverb
+    \endentry
+    \entry{wiki:VCD}{misc}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 18. Jun. 2018]}
+      \field{title}{{Value Change Dump {–} Wikipedia}}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/Value_Change_Dump
+      \endverb
+    \endentry
     \entry{wiki:MIDI}{misc}{}
       \field{sortinit}{3}
       \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
@@ -524,8 +571,8 @@
       \endverb
     \endentry
     \entry{web:verilog_vcd}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{journaltitle}{GitHub}
       \field{month}{6}
@@ -556,8 +603,8 @@
       \strng{authorbibnamehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
       \strng{authornamehash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
       \strng{authorfullhash}{4a7ea3ee5ae6e95f6827d1be1f6c7736}
-      \field{sortinit}{3}
-      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{Dreidimensionale Lokalisierbarkeit und Differenzierbarkeit von Hörereignissen}}
@@ -565,8 +612,8 @@
       \field{year}{2016}
     \endentry
     \entry{web:midipal}{misc}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{197da6d6c34c6b20ce45c4d4baace5a4}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
       \field{labeltitlesource}{title}
       \field{month}{6}
       \field{note}{[Online; accessed 18. Jun. 2018]}
@@ -577,6 +624,21 @@
       \endverb
       \verb{url}
       \verb https://mutable-instruments.net/archive/midipal/manual
+      \endverb
+    \endentry
+    \entry{web:demon_doc}{misc}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{labeltitlesource}{title}
+      \field{month}{6}
+      \field{note}{[Online; accessed 19. Jun. 2018]}
+      \field{title}{{SUMP logic analyzer Verilog Demon core documentation - DP}}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb http://dangerousprototypes.com/docs/SUMP_logic_analyzer_Verilog_Demon_core_documentation
+      \endverb
+      \verb{url}
+      \verb http://dangerousprototypes.com/docs/SUMP_logic_analyzer_Verilog_Demon_core_documentation
       \endverb
     \endentry
     \entry{wiki:CPLD}{misc}{}
@@ -625,8 +687,8 @@
       \endverb
     \endentry
     \entry{wiki:Verilog}{misc}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{sortinit}{5}
+      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
       \field{labeltitlesource}{title}
       \field{month}{5}
       \field{note}{[Online; accessed 26. May 2018]}
@@ -656,8 +718,8 @@
       \strng{authorbibnamehash}{9f0eb0bc56bebd22832777efaccf903a}
       \strng{authornamehash}{9f0eb0bc56bebd22832777efaccf903a}
       \strng{authorfullhash}{9f0eb0bc56bebd22832777efaccf903a}
-      \field{sortinit}{4}
-      \field{sortinithash}{d221becdd544034cf9082056cd6e6d2d}
+      \field{sortinit}{5}
+      \field{sortinithash}{c9df3c9fb8f555dd9201cedc5e343021}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Oral History of Philip Raymond “Phil” Moorby}

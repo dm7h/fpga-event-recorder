@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{c+c1}{// send start command}
+	\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{rx}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{],} \PYG{n}{tx}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{\PYGZcb{};}
+	\PYG{n}{spi\PYGZus{}xfer}\PYG{p}{(}\PYG{n}{tx}\PYG{p}{,}\PYG{n}{rx}\PYG{p}{);}
+\end{Verbatim}

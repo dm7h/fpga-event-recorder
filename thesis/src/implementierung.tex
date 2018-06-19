@@ -5,15 +5,15 @@ Grundlage für die Arbeit mit dem FPGA-Board ist eine Möglichkeit generierte Bi
 Auf der Produkt-Seite des Herstellers des IceZero-Boards (Trenz Electronic)\cite{web:trenz_icezero}wird für diesen Zweck auf das Git-Repository des {\tt icotools}-Projekts verwiesen, in dem sich ein einfaches Testbeispiel zur Überprüfung des SRAM-Speichers befindet -- und das C-Programm {\tt icezprog} zum Flashen des Bitstreams.\\
 Das {\tt icezprog}-Programm implementiert über direktes Ansprechen von GPIO-Pins (``bit-banging'') eine SPI-Schnittstelle zum Flash-Speicher des IceZero-Boards, und nach einem Neustart{\footnote{Der Neustart wird durch setzten des mit dem FPGA verbundenen GPIO-Pins ``CONFIG\_RESET'' ausgeführt} konfiguriert sich das FPGA selbständig mit dem Inhalt des auf dem Flash-Speicher abgelegten Bitstreams.\\
 Für die spätere Verwendung des {\tt IcoSoc}-Projekts wird allerdings noch weitere Funktionalität benötigt. Wichtig ist hier vor allem die Möglichkeit Speicherinhalte mit einem ``Offset'' in den Flash-Speicher zu schreiben, da später zusätzlich zum Bitstream auch ein ``appimage'' auf dem Flash-Speicher abgelegt wird, das den auszuführenden C-Code für den {\tt IcoSoc} enthält.\\
-Das {\tt icotools}-Projekt enthält mit dem Tool {\tt icoprog} ein Programm das (unter anderem) Offsets unterstützt und in erster Linie zum Programmieren von Bitstreams für das IcoBoard gedacht ist. IcoSoc unterstützt außerdem Debugging-Funktionalitäten die über eine eigene 8 Bit breite parallele Schnittstelle zum Raspberry Pi realisiert sind. Diese Schnittstelle kann auch verwendet werden um ein {\tt appimage} beim Start des IcoSocs direkt zu laden, ohne dass es vorher im Flash-Speicher abgelegt werden muss. Die Schnittstelle wird ebenfalls über das {\tt icoprog}-Tool angesprochen.\\
+Das {\tt icotools}-Projekt enthält mit dem Tool {\tt icoprog} ein Programm das (unter anderem) Offsets unterstützt und in erster Linie zum Programmieren von Bitstreams für das IcoBoard gedacht ist. IcoSoc unterstützt außerdem Debugging-Funktionalitäten die über eine eigene 8 Bit breite parallele Schnittstelle zum Raspberry Pi realisiert sind. Diese Schnittstelle kann auch verwendet werden um ein {\tt appimage} beim Start des IcoSocs direkt zu laden, ohne dass es vorher im Flash-Speicher abgelegt werden muss. Die parallele Schnittstelle wird ebenfalls über das {\tt icoprog}-Tool angesprochen.\\
 Um die selbe Funktionalität auch für das IceZero-Board zur Verfügung zu stellen wurde als erstes das {\tt icoprog}-Tool entsprechend angepasst. 
 
 \section{Anpassung des Tools zum Programmieren des Bitstreams (icoprog)}
 \label{ch:Implementierung:sec:icoprog}
 
-Das IcoBoard verfügt wie das IceZero-Board über einen 40-Pin-Header zum Anschluss an ein Raspberry Pi. Davon abgesehen kann das IcoBoard aber auch mit einem zusätzlichen FTDI-Interfaceboard über USB programmiert werden. Das {\tt icoprog}-Programm enthält deswegen sowohl Methoden zur Programmierung via USB als auch über die GPIO-Pins des Raspberry Pis, und noch eine zusätzliche GPIO-basierte Variante für ein anderes Board. Ursprünglich war geplant eine Konfiguration für das IceZero-Board direkt in das icoprog-Tool zu integrieren, aufgrund der ohnehin schon eher unübersichtlichen Code-Basis wurden die benötigten Komponenten aber in ein eigenes Programm namens {\tt icozctl} ausgelagert, dass dann später um Funktionen zur Steuerung der Aufnahme und Datenübertragung erweitert wurde.\\ 
-Für die Anpassung mussten einige GPIO-Pins geändert werden, da beim IceZero-Board nicht alle Pins der GPIO-Headers mit dem FPGA verbunden sind. (Das IcoBoard verwendet einen iCE40-Chip im CT256-Formfaktor, weswegen deutlich mehr Pins zur Verfügung stehen als beim IceZero-Board\cite{web:trenz_icoboard}).\\
-Davon abgesehen ist auf dem IcoBoard ein zusätzlicher MachXO2-Chip von Lattice verbaut, der (unter anderem) das SPI-Signal vom Raspberry Pi je nach gesetztem Chip-Select-Signal entweder direkt an das FPGA oder den Flash-Speicher weiterleitet. Beim IceZero-Board sind das FPGA und der Flashspeicher direkt an die gleichen GPIO-Pins des Raspberry Pis angeschlossen (inklusive Chip-Select-Signal), ein gezieltes Ansprechen der einzelnen Komponenten ist deswegen nicht möglich, und die entsprechenden Chip-Select-Signale wurden aus dem Code entfernt. 
+Das IcoBoard verfügt wie das IceZero-Board über einen 40-Pin-Header zum Anschluss an ein Raspberry Pi. Davon abgesehen kann das IcoBoard aber auch mit einem zusätzlichen FTDI-Interfaceboard über USB programmiert werden. Das {\tt icoprog}-Programm enthält deswegen sowohl Methoden zur Programmierung via USB als auch über die GPIO-Pins des Raspberry Pi's, und noch eine zusätzliche GPIO-basierte Variante für ein anderes Board. Ursprünglich war geplant eine Konfiguration für das IceZero-Board direkt in das {\tt icoprog}-Tool zu integrieren, aufgrund der ohnehin schon eher unübersichtlichen Code-Basis wurden die benötigten Komponenten aber in ein eigenes Programm namens {\tt icozctl} ausgelagert, dass dann später um Funktionen zur Steuerung der Aufnahme und Datenübertragung erweitert wurde.\\ 
+Für die Anpassung mussten einige GPIO-Pins geändert werden, da beim IceZero-Board nicht alle Pins des GPIO-Headers mit dem FPGA verbunden sind. (Das IcoBoard verwendet einen iCE40-Chip im CT256-Formfaktor, weswegen deutlich mehr Pins zur Verfügung stehen als beim IceZero-Board\cite{web:trenz_icoboard}).\\
+Davon abgesehen ist auf dem IcoBoard ein zusätzlicher MachXO2-Chip von Lattice verbaut, der (unter anderem) das SPI-Signal vom Raspberry Pi je nach gesetztem Chip-Select-Signal entweder direkt an das FPGA oder den Flash-Speicher weiterleitet. Beim IceZero-Board sind das FPGA und der Flashspeicher direkt an die gleichen GPIO-Pins des Raspberry Pi's angeschlossen (inklusive Chip-Select-Signal), ein gezieltes Ansprechen der einzelnen Komponenten ist deswegen nicht möglich, und die entsprechenden Chip-Select-Signale wurden aus dem Code entfernt. 
 Im späteren Verlauf der Implementierung wurde entschieden die parallele Schnittstelle zu entfernen, da mit ihr keine bidirektional Kommunikation mit der nötigen Geschwindigkeit realisiert werden konnte. Stattdessen wurde mit den frei-gewordenen Pins eine SPI-Schnittstelle und ein zusätzlicher UART für einfache Debug-Ausgaben umgesetzt.\\
 Ein direktes Flashen von {\tt appimages} beim Starten des IcoSoc ist dementsprechend bei aktuellem Stand nicht möglich und die erweiterten Debug-Funktionen des IcoSoc sind nicht verfügbar. 
 Davon abgesehen kann das {\tt icozctl}-Tool auf dem IceZero-Board mit der gleichen Syntax wie {\tt icoprog} für das IcoBoard verwendet werden.
@@ -46,7 +46,7 @@ Zum Überblick soll erst ein kurzer Blick auf die Verzeichnisstruktur des Projek
 ./icosoc.py
 \end{minted}
 
-Im Verzeichnis {\tt common/} befinden sich die Grundbausteine des IcoSoc-Systems. Dazu gehört die Verilog-Implementierung des PicoRV32-Prozessors und weitere grundlegende Systemkomponenten wie zum Beispiel die erwähnte Raspberry Pi Schnittstelle (``raspif'') und außerdem die nötige Firmware zum Starten des IcoSocs und zum Laden der {\tt appimages}. Zusätzlich findet sich hier auch das benötigte Linker-Skript für den C-Code der {\tt appimages}.\\
+Im Verzeichnis {\tt common/} befinden sich die Grundbausteine des IcoSoc-Systems. Dazu gehört die Verilog-Implementierung des PicoRV32-Prozessors und weitere grundlegende Systemkomponenten wie zum Beispiel die erwähnte Raspberry Pi Schnittstelle (``raspif'') und außerdem die nötige Firmware zum Starten des IcoSocs und zum Laden der {\tt appimages}. Zusätzlich findet sich hier auch das Linker-Skript für den C-Code der {\tt appimages}.\\
 Im Verzeichnis {\tt examples/} liegen verschiedene Beispiel-Projekte, unter anderem ein ausführliches ``Hello world''-Beispiel in dem die für IcoSoc-Projekte verfügbaren Komponenten vorgestellt werden --- und das in dieser Arbeit entworfene Event-Recorder Projekt.\\
 Darauf folgen die verfügbaren IcoSoc-Module jeweils in einem eigenen Unterverzeichnis.\\
 Das Modul ``mod\_gpio'' stellt zum Beispiel die Funktionalität zur Verfügung, dass im C-Code GPIO-Pins als Ausgänge definiert werden können und ihr Ausgangspegel anschließend über das Schreiben an eine bestimmte Speicheradresse gesetzt werden kann. 
@@ -150,12 +150,12 @@ always @(posedge clk) begin
 end
 \end{minted}
 
-Für die meisten Register wird eine Länge von 64 Bit verwendet. Da der Bus eine Breite von 32 Bit hat (also nur 32 Bit in einem Takt übertragen kann), wird für diese Register eine zusätzliche Zustandsvariable ({\tt ctrl\_state}) verwendet, so dass beim ersten Zugriff immer die höheren 32 Bit übertragen werden und beim zweiten Zugriff (und zweiten Zustand) die unteren 32 Bit.. 
+Für einige Register wird eine Länge von 64 Bit verwendet. Da der Bus eine Breite von 32 Bit hat (also nur 32 Bit in einem Takt übertragen kann), wird für diese Register eine zusätzliche Zustandsvariable ({\tt ctrl\_state}) verwendet, so dass beim ersten Zugriff immer die höheren 32 Bit übertragen werden und beim zweiten Zugriff (und zweiten Zustand) die unteren 32 Bit. 
 
 \subsection{BRAM-Speicher für die Event-Definitionen}
 
 Da aus dem Verilog-Modul ein direkter Zugriff auf die Event-Definitionen und -Trigger möglich sein soll werden diese in einem Register-Array abgelegt.\\
-Die Länge des Arrays ist parametrisiert, so dass die Anzahl der gewünschten Event-Trigger bei der Synthese angegeben werden kann. Bei einfacher Lese- und Zugriffs-Logik wird das Array als BRAM synthetisiert wird, und es werdem damit keine zusätzlichen `Logic Slices' in Anspruch genommen.\\  
+Die Länge des Arrays ist parametrisiert, so dass die Anzahl der gewünschten Event-Trigger bei der Synthese angegeben werden kann. Bei einfacher Lese- und Schreib-Logik auf das Array wird dieses als BRAM synthetisiert, und es werden somit keine zusätzlichen `Logic Slices' in Anspruch genommen.\\  
 Im Trigger-Array werden die 64 Bit langen Event-Definitionen jeweils in zwei aufeinander-folgende 32-Bit Werte aufgeteilt, da dies die Bus-Logik etwas vereinfacht.  
 Bei der Bus-Kommunikation wird die angeforderte Adresse ({\tt ctrl\_addr}) mit einem Offset\footnote{Die Adresse hat um der Bitbreite der Registerelemente zu entsprechen einen ``Multiplikator'' und wird deswegen zusätzlich per Rechts-Shift verkleinert bevor der Index generiert werden kann} in den Index des Event-Registers-Arrays umgesetzt, so dass alle Array-Elemente direkt vom Bus ansprechbar sind. 
 
@@ -191,14 +191,14 @@ Es ist anzumerken, dass die Erkennung von Signaländerungen das Datenvolumens be
 \subsection{Cross-Clock BRAM-Puffer}
 
 Da die Event-Erkennung im Verilog-Teil noch nicht abgeschlossen ist, aber auch um schnell aufeinander-folgende Signale ohne Verlust erfassen zu können, macht es Sinn bereits direkt auf dem FPGA ein Puffer für die Aufnahmedaten zu implementieren. Der Puffer soll wiederum als BRAM synthetisiert werden, da es sich um größere Datenmengen handelt und keine kombinatorische Logik verbraucht werden soll.\\
-Bei FPGA-Implementierungen werden derartige Puffer häufig benötigt -- und dabei oft mit der zusätzlichen Funktionalität, dass Daten zwischen unterschiedlich schnell getakteten Komponenten ausgetauscht werden. Der Austausch von Daten zwischen verschiedenen Taktdomänen ist dabei kein triviales Problem. Das {\tt IcoSoc}-Projekt enthält in der Datei {\tt icosoc\_crossclockfifo.v} allerdings bereits eine Implementierung eines solchen Cross-Clock-Puffers, die für das {\tt raspif}-Modul verwendet wird. Da keine weitere Dokumentation zum Puffer-Modul vorhanden ist, wurde zuerst eine {\tt iverilog}-Testbench geschrieben, die die erwartete Funktionsweise bestätigt hat. Das {\tt crossclockfifo}-Modul konnte so erfolgreich als BRAM-Puffer in das Event-Recorder-Modul eingebunden werden.\\
+Bei FPGA-Implementierungen werden derartige Puffer häufig benötigt -- und dabei oft mit der zusätzlichen Funktionalität, dass Daten zwischen unterschiedlich schnell getakteten Komponenten ausgetauscht werden. Der Austausch von Daten zwischen verschiedenen Taktdomänen ist dabei kein triviales Problem. Das {\tt IcoSoc}-Projekt enthält in der Datei {\tt icosoc\_crossclockfifo.v} allerdings bereits eine Implementierung eines solchen Cross-Clock-Puffers, der für das {\tt raspif}-Modul verwendet wird. Da keine weitere Dokumentation zum Puffer-Modul vorhanden war, wurde zuerst eine {\tt iverilog}-Testbench geschrieben, die die erwartete Funktionsweise bestätigt hat. Das {\tt crossclockfifo}-Modul konnte so erfolgreich als BRAM-Puffer in das Event-Recorder-Modul eingebunden werden.\\
 IcoSoc-Module laufen im Normalfall mit dem Systemtakt des IcoSocs. Dieser wird durch eine PLL-Konfiguration generiert und liegt bei (circa) 20 Mhz.\\
 Zusammen mit der bei der Portierung des {\tt IcoSoc}-Projekts durchgeführten Anpassung, dass IcoSoc-Module auch andere Ein- und Ausgänge als die Pmod-Pins haben können, konnte so das 100 Mhz schnelle CLKIN-Signal an das Event-Recorder-Modul weitergereicht werden und damit eine Steigerung der Erfassungsgeschwindkeit auf 100 Mhz erreicht werden.  
 
 \subsection{Simulation des Event-Recorder-Moduls mit iverilog}
 
 Das Verhalten des Event-Recorder-Moduls lässt sich mit einer {\tt iverilog}-Testbench simulieren.\\
-Durch die Bus-Schnittstelle kann dabei die erwartete Funktionalität geprüft werden ohne die anderen Komponenten des {\tt IcoSoc}-Systems mitsimuliert werden  müssen.
+Durch die Bus-Schnittstelle kann dabei die erwartete Funktionalität geprüft werden ohne dass die anderen Komponenten des {\tt IcoSoc}-Systems mitsimuliert werden  müssen.
 
 In der Testbench werden zwei ``tasks'' für den schreibenden und lesenden Bus-Zugriff erstellt, deren Verhalten einem tatsächlichen Bus-Zugriffs entspricht:
 
@@ -304,7 +304,7 @@ Das {\tt Makefile} kann aus einem anderen Projekt übernommen werden und benöti
 
 Der SRAM-Puffer und der gewünschte Programmablauf werden dann in der Datei {\tt main.c} umgesetzt.
 Für den SRAM-Puffer wurde eine existierende FIFO-Implementierung von {\tt mikrocontroller.net}(siehe \cite{web:mikro_fifo}) verwendet und für 64-Bit-Inhalte angepasst.\\
-{\tt IcoSoc} führt den Code des {\tt appimages} im Normalfall direkt vom Flash-Speicher aus, wodurch keine SRAM-Kapazitäten verbraucht werden, was aber auch mit einer verhältnismäßig schlechten Performance einhergeht. Performance-kritische Sektion sollten aus dem SRAM-Speicher ausgeführt werden, weswegen dem SRAM-Puffer eine eigene Linker-Sektion zugewiesen wird, die dann im Linker-Skript in den SRAM platziert wird.
+{\tt IcoSoc} führt den Code des {\tt appimages} im Normalfall direkt vom Flash-Speicher aus, wodurch keine SRAM-Kapazitäten verbraucht werden, was aber auch mit einer verhältnismäßig schlechten Performance einhergeht. Performance-kritische Sektionen sollten aus dem SRAM-Speicher ausgeführt werden, weswegen dem SRAM-Puffer eine eigene Linker-Sektion zugewiesen wird, die dann im Linker-Skript in den SRAM platziert wird.
 \begin{minted}{c}
 #define BUFFER_SIZE 8192 
 __attribute__ ((section (".text.buffer"))) struct Buffer {
@@ -358,7 +358,7 @@ __attribute__ ((section (".text.sram"))) int main(void)
 		{
 			case 1-5:
 				// receive new event configuration
-				// reset counter, start/start stop 
+				// reset counter, start/start  
 				// recording / dump, etc
 				[...]
 		
@@ -408,7 +408,7 @@ Aus der Text-Definition des Event-Triggers wird nun ein binär-kodierter Trigger
 \label{my-label}
 \end{table}
  
-Für die ``Don't care''-Maske werden alle ``x'' mit einer `0' eingetragen, alle anderen Werte mit einer `1'. Beim vorherigen und aktuellen Wert werden ``Don't care''-Bits mit einer 0 eingetragen, alle anderen Trigger-Optionen mit dem jeweilig erwarteten Wert -- für ein ``u'' (up) also beim vorherigen Wert eine `0' und beim aktuellen Wert eine `1'.
+Für die ``Don't care''-Maske werden alle ``x'' mit einer `0' eingetragen, alle anderen Werte mit einer `1'. Beim vorherigen und aktuellen Wert werden ``Don't care''-Bits ebenfalls mit einer `0' eingetragen, alle anderen Trigger-Optionen mit dem jeweilig erwarteten Wert -- für ein ``u'' (up) also beim vorherigen Wert eine `0' und beim aktuellen Wert eine `1'.
 
 Die Event-Erkennung kann dann, wie im folgenden für zwei Beispiele veranschaulicht, duchgeführt werden:
 
@@ -428,10 +428,57 @@ Die Event-Erkennung kann dann, wie im folgenden für zwei Beispiele veranschauli
 \label{my-label}
 \end{table}
 
-Ein Event liegt genau dann vor, wenn beide Werte gleich Null sind.\\
+Ein Event liegt genau dann vor, wenn beide Werte nach der XOR-Operation gleich Null sind.\\
 Das beschriebene Vorgehen entspricht der Trigger-Erkennung beim SUMP2-Logikanalysator (vgl. zum Beispiel \cite{web:sump2_trigger}).
-Die Implementierung der Event-Erkennung konnte aus zeitlichen Gründen leider nicht mehr ausreichend getestet werden.
+Die Implementierung der Event-Erkennung konnte aus zeitlichen Gründen nur exemplarisch getestet werden.
 
 
 \section{Implementierung des textbasierten Benutzerinterfaces}
 \label{ch:Implementierung:sec:Benutzerinterface}
+
+Abschließend werden noch Methoden zur Programmsteuerung und zum Datenaustausch mit dem Raspberry Pi benötigt.\\
+Diese wurden in das Kommandozeilen-Tool {\tt icozctl} integriert.\\
+Das Einlesen der Konfigurationsdatei wurde mit der C++-Bibliothek {\tt yaml-cpp} realisiert. Es wird für jedes definierte Event der Event-Trigger und (falls vorhanden) die Funktion ausgelesen, und eine entsprechende Binärkodierung erzeugt. Die so erzeugten Event-Konfigurationen können dann mit dem SPI-Befehl ``1'' zum FPGA übertragen werden.\\ 
+Für die SPI-Kommunikation kann hier direkt das vom Linux-Kernel zur Verfügung gestellte {\tt spidev}-Interface verwendet werden. Die benötigten Funktionen wurden ähnlich wie in dem in der Kernel-Dokumentation bereitgestellten {\tt spidev\_test}-Programm implementiert (siehe \cite{web:spidev_test}).\\
+Der SPI-Transfer ist auf eine Geschwindigkeit von 2 Mhz eingestellt, allerdings muss die Programmausführung zwischen den Transferfunktionen immer wieder pausiert werden, um dem C-Code des IcoSocs ausreichend Zeit zu geben die SPI-Daten zu verarbeiten (Insbesondere wenn Debug-Ausgaben auf den UART ausgeführt werden).\\
+Ein einfacher ``Start''-Befehl kann dann zum Beispiel folgendermaßen implementiert sein:
+\begin{minted}{c}
+	// send start command (0x04)
+	uint8_t rx[4], tx[4] = {0,0,0,4};
+	spi_xfer(tx,rx);
+\end{minted}
+Die Byte-Reihenfolge muss hierbei im ``Little-Endian''-Format angegeben werden, damit sie vom IcoSoc richtig interpretiert wird.\\
+Für die Übertragung der aufgenommen Events wurde eine Funktion implementiert, die in einem Loop neue Daten vom Event-Recorder abholt und diese abspeichert. 
+Das Speichern wird im Moment auf zweierlei Arten parallel ausgeführt. Zum einen werden die Daten im \acrshort{CSV}-Format direkt auf die Standardausgabe geschrieben. (Alle anderen Ausgaben des {\tt icozctl}-Tools werden wie im ursprünglichen {\tt icoprog}-Tool auf die Fehlerausgabe weitergeleitet, so dass die Standardausgabe direkt in eine Datei geschrieben werden kann). Das Format der Ausgabe sieht dann folgendermaßen aus:
+\begin{minted}[breaklines]{text}
+time_in_ns,pin_15,pin_14,pin_13,pin_12,pin_11,pin_10,pin_9,pin_8, pin_7,pin_6,pin_5,pin_4,pin_3,pin_2,pin_1,pin_0
+206490,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+[...]
+\end{minted}
+Der Zeitstempel wird dabei in Nanosekunden angegeben.\\
+Gleichzeitig erfolgt die Ausgabe zusätzlich im \acrshort{VCD}-Format\footnote{Die Angabe einer VCD-Ausgabedatei ist im Moment obligatorisch}. Die Ausgabedatei wird mit der Option {\tt -o <Dateiname.vcd>} angegeben. Die Implementierung der VCD-Ausgabe orientiert sich an einem Konverter-Projekt auf Github (siehe \cite{web:la2vcd2}). Im VCD-Format wird jedem Pin ein Symbol als Abkürzung zugewiesen (vgl. \cite{wiki:VCD}). Die entsprechende Zuordnung findet sich im Anhang unter ``\nameref{tbl:Pmod-Pins}''.  
+
+Die zusätzlichen Funktionen von {\tt icozctl} werden auch in der Programmhilfe kurz beschrieben:
+\begin{minted}[breaklines]{bash}
+# icozctl -h
+[...]
+
+Start recording in event detection mode:
+    icozctl -s [-o events.vcd]
+
+Start recording in dump mode:
+    icozctl -S [-o events.vcd]
+
+Read a event configuration file and send it to the FPGA:
+    icozctl -c config.yaml
+
+Write the recorded events to a VCD file:
+    icozctl -o events.vcd
+
+Additional options:
+    -v      verbose output
+    -x      don't check flash contents after writing them
+            (slightly faster operation with -f)
+    -O n    offset (in 64 kB pages) for -f, -F and -e
+    -N n    number of events to record for -o
+\end{minted}

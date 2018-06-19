@@ -15,7 +15,11 @@
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{8}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{38}\delimN 
-		\glsseeformat[Glossary:]{gls-CPLD}{Z}}}\glsgroupskip
+		\glsseeformat[Glossary:]{gls-CPLD}{Z}}}%
+\glossentry{CSV}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{38}\delimN 
+		\glsseeformat[Glossary:]{gls-CSV}{Z}}}\glsgroupskip
 \glsgroupheading{F}\relax \glsresetentrylist %
 \glossentry{FPGA}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
@@ -52,6 +56,7 @@
 		\glsseeformat[Glossary:]{gls-UART}{Z}}}\glsgroupskip
 \glsgroupheading{V}\relax \glsresetentrylist %
 \glossentry{VCD}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{26}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{30}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{38}\delimN 
 		\glsseeformat[Glossary:]{gls-VCD}{Z}}}%

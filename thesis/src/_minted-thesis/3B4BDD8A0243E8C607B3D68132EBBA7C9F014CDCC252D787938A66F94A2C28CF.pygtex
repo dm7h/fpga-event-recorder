@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+icozctl \PYGZhy{}\PYGZhy{}help
+\PYG{o}{[}...\PYG{o}{]}
+
+Start recording in event detection mode:
+    icozctl \PYGZhy{}s \PYG{o}{[}\PYGZhy{}o events.vcd\PYG{o}{]}
+
+Start recording in dump mode:
+    icozctl \PYGZhy{}S \PYG{o}{[}\PYGZhy{}o events.vcd\PYG{o}{]}
+
+Read a event configuration file and send it to the FPGA:
+    icozctl \PYGZhy{}c config.yaml
+
+Write the recorded events to a VCD file:
+    icozctl \PYGZhy{}o events.vcd
+
+Additional options:
+    \PYGZhy{}v      verbose output
+    \PYGZhy{}x      don\PYG{err}{\PYGZsq{}}t check flash contents after writing them
+            \PYG{o}{(}slightly faster operation with \PYGZhy{}f\PYG{o}{)}
+    \PYGZhy{}O n    offset \PYG{o}{(}in \PYG{l+m}{64} kB pages\PYG{o}{)} \PYG{k}{for} \PYGZhy{}f, \PYGZhy{}F and \PYGZhy{}e
+    \PYGZhy{}N n    number of events to record \PYG{k}{for} \PYGZhy{}o
+\end{Verbatim}

@@ -1,13 +1,23 @@
 \chapter{Fazit}
 \label{ch:Fazit}
-%% ==============================
-Bla fasel\ldots
-
-
+In der vorliegenden Arbeit wurde das IcoSoc-Projekt auf das IceZero-FPGA-Shield portiert, und somit eine flexible Plattform für die Entwicklung von Open-Source FPGA-Projekten zur Verfügung gestellt.\\
+Auf Basis der IcoSoc-Komponenten wurde ein System zur Logikanalyse entworfen, mit dem benutzerdefinierte Events in hoher zeitlicher Auflösung aufgenommen werden können.\\
+Die zeitkritischeren Komponenten wurden dabei als Verilog-Module implementiert, wohingegen die Steuerung des Programmablaufs mithilfe der RISC-V CPU ``PicoRV32'' als C-Code  auf dem FPGA umgesetzt wurde.
+Die Event-Erkennung wurde dabei im langsameren C-Code umgesetzt, da die Verilog-Implementierung zu viel FPGA-Ressourcen verbraucht hat und aus zeitlichen Gründen keine Optimierung mehr durchgeführt werden konnte.
+Am Beispiel von verschiedenen MIDI-Clock-Signalen wurde der Ablauf einer Event-Messung erläutert und eine beispielhafte Analyse der aufgenommenen Daten durchgeführt.
+Bei der Event-Erkennung und beim Datendurchsatz des Event-Recorders besteht noch Optimierungspotential.
+ 
 \chapter{Aussicht}
 \label{ch:Aussicht}
-%% ==============================
-Bla fasel\ldots
+
+Die Implementierung der Event-Erkennung im Verilog-Teil sollte beim weiteren Vorgehen mit Priorität behandelt werden. Dies ist insbesondere für die Verwendung der eingeführten Event-Funktionen (Starten und Stoppen der Aufnahme und des Dump-Modus) von Bedeutung, da diese Funktionen im C-Teil mit deutlicher Verzögerung ausgeführt werden. Wenn zum Beispiel ein bestimmtes Event den Dump-Modus auslösen soll, um direkt darauf eine Folge von relevanten Signaländerungen zu untersuchen, werden diese Signale unter Umständen noch gar nicht erfasst, da die Funktion im C-Teil nicht rechtzeitig ausgeführt wurde.\\
+Davon abgesehen würde aber auch der Gesamt-Datendurchsatz des Event-Recorders stark von einer Verilog-Implementierung profitieren.\\
+Ähnliches gilt auch für den SRAM-Puffer und die Ablaufsteuerung des SPI-Transfers. Es wurden keine detaillierteren Performance-Analysen durchgeführt, es ist aber davon auszugehen, dass die Verwendung des Soft-Cores den Datendurchsatz um ein Vielfaches verringert. Es wäre also zu überlegen, ob die Funktionalität des C-Codes nicht komplett in Verilog umgesetzt wird.\\
+Eine weitere Optimierung bietet sich bei der der Erfassungsgeschwindigkeit der Eingangsdaten an:
+das {\tt SB\_IO}-Primitiv der Lattice Technology Library bietet eine Funktion um Eingänge sowohl bei steigender als auch bei fallender Taktflanke abzufragen und jeweils in einem eigenen Register abzulegen (siehe \cite{doc:tec_lib}). Die Erfassungsgeschwindigkeit könnte so ohne größere Code-Änderungen auf 200 Mhz verdoppelt werden.\\  
+Einen Ansatz für die Optimierung der Event-Erkennung bietet das Trigger-Modul des SUMP2-Analysators (in der ``Demon core''-Version). Dabei werden die Bit-Operationen der Trigger-Logik in Blöcke von je 4 Bits Breite aufgeteilt, die dann bei der Synthese direkt als Lookup-Tabellen umgesetzt werden können (Die Optimierung ist ausführlich im Quellcode dokumentiert, siehe \cite{web:sump2_trigger}). Dieses Vorgehen sollte ohne größere Modifikationen auf die Event-Trigger angewandt werden können. \\
+Davon abgesehen bietet die ``Demon core''-Version eine interessante Erweiterung für komplexere Trigger-Bedingungen. Es können mehrere Trigger-Bedingungen mit logischen Funktionen verknüpft werden und Sequenzen von Trigger-Bedingungen definiert werden (vgl. \cite{web:demon_doc}). Dies würde es zum Beispiel ermöglichen ein serielles Midi-Clock-Signal ohne einen zusätzlichen Mikrocontroller als Event zu erkennen und damit auch ohne eine mögliche zeitliche Verfälschung durch den Mikrocontroller.\\
+Auch die erweiterten Trigger-Bedingungen sollten sich in den Event-Recorder integrieren lassen, und würden damit eine wertvolle Ergänzung zum bestehenden Funktionsumfang liefern. 
 
 
 
