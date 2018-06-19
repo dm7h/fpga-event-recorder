@@ -19,7 +19,7 @@ make -j$(nproc) build-tools
 ```
 (can take a while)
 
-* download the IcoSoc port for IceZero
+* download the IcoSoc port for IceZero (on your local machine)
 ```bash
 cd ..
 git clone https://github.com/dm7h/icozsoc.git
