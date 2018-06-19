@@ -637,27 +637,27 @@ void run_config(char* config_file)
 				enc |= ((uint64_t) ev_flag) << 48;	
 				
 				for (unsigned int i = 0; i < 16; i++) {
-					uint8_t trigger_flag[3] = {1,1,1}; // don't care
+					uint8_t trigger_flag[3] = {0,0,0}; // don't care
 					if (i <= ev_trigger.size() - 1) {
 					       switch(ev_trigger[i]) {
 						       case '0': 
-							       trigger_flag[0] = 0; 
+							       trigger_flag[0] = 1; 
 							       trigger_flag[1] = 0; 
 							       trigger_flag[2] = 0; 
 							       break;
 						       case '1': 
-					       		       trigger_flag[0] = 0; 
+					       		       trigger_flag[0] = 1; 
 							       trigger_flag[1] = 1; 
 							       trigger_flag[2] = 1; 
 							       break;
 							case 'u':
-							       trigger_flag[0] = 0; 
+							       trigger_flag[0] = 1; 
 							       trigger_flag[1] = 0; 
 							       trigger_flag[2] = 1; 
 							       break;
 						 
 						       case 'd': 
-					       		       trigger_flag[0] = 0; 
+					       		       trigger_flag[0] = 1; 
 							       trigger_flag[1] = 1; 
 							       trigger_flag[2] = 0; 
 							       break;
@@ -811,7 +811,7 @@ void spi_start_rec(void)
 
 void spi_start_dump(void)
 {
-	if (verbose) fprintf(stderr, "start dump (event filter disabled) ..");	
+	if (verbose) fprintf(stderr, "start dump (event filter disabled) ..\n");	
 	
 	// send start command
 	uint8_t rx[4], tx[4] = {0,0,0,5};
@@ -836,7 +836,7 @@ void intHandler(int d)
 }
 
 
-void spi_record(char* out_file, int number_samples)
+void spi_record(char* out_file, int number_samples = 0)
 {
 	
 	FILE* fout = fopen(out_file, "w");
@@ -919,9 +919,9 @@ void spi_record(char* out_file, int number_samples)
 			for (int i = 0; i < 16; i++)
 				fprintf(fout, "%d%c\n", (((rx[0] << 8) + rx[1]) & (1 << i))? 1 : 0, (char) i + 33);
 			//fprintf(fout, "%s #\n", std::bitset<16>((rx[0] << 8) + rx[1]).to_string().c_str()); 
+			recorded_samples++;
 
 		}
-		recorded_samples++;
 		usleep(80000);	
 	}
 
@@ -962,9 +962,24 @@ void help(const char *progname)
 	fprintf(stderr, "Reading serial flash (first N bytes):\n");
 	fprintf(stderr, "    %s -F N > data.bin\n", progname);
 	fprintf(stderr, "\n");
+	fprintf(stderr, "Start recording in event detection mode:\n");
+	fprintf(stderr, "    %s -s [-o events.vcd]\n", progname);
+	fprintf(stderr, "\n");
+	fprintf(stderr, "Start recording in dump mode:\n");
+	fprintf(stderr, "    %s -S [-o events.vcd]\n", progname);
+	fprintf(stderr, "\n");
+	fprintf(stderr, "Read a event configuration file and send it to the FPGA:\n");
+	fprintf(stderr, "    %s -c config.yaml\n", progname);
+	fprintf(stderr, "\n");
+	fprintf(stderr, "Write the recorded events to a VCD file:\n");
+	fprintf(stderr, "    %s -o events.vcd\n", progname);
+	fprintf(stderr, "\n");
 	fprintf(stderr, "Additional options:\n");
 	fprintf(stderr, "    -v      verbose output\n");
-	fprintf(stderr, "    -O N    offset (in 64 kB pages) for -f and -e\n");
+	fprintf(stderr, "    -x      don't check flash contents after writing them\n");
+	fprintf(stderr, "            (slightly faster operation with -f)\n");
+	fprintf(stderr, "    -O n    offset (in 64 kB pages) for -f, -F and -e\n");
+	fprintf(stderr, "    -N n    number of events to record for -o\n");
 	fprintf(stderr, "\n");
 	exit(1);
 }
@@ -989,7 +1004,7 @@ int main(int argc, char **argv)
 	char *out_file = NULL;
 
 
-	while ((opt = getopt(argc, argv, "RbErpfevsSNF:c:o:O:")) != -1)
+	while ((opt = getopt(argc, argv, "RbErpfevsSF:c:o:O:N:")) != -1)
 	{
 		switch (opt)
 		{

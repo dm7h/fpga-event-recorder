@@ -106,7 +106,7 @@ void prog_bitstream(bool reset_only = false)
 	assert(enable_prog_port);
 
 	pinMode(RPI_ICE_CLK,     OUTPUT);
-	pinMode(RPI_ICE_MOSI,    OUTPUT);
+	pinMode(RPI_ICE_MISO,    OUTPUT);
 	pinMode(RPI_ICE_CRESET,  OUTPUT);
 	pinMode(RPI_ICE_CS,      OUTPUT);
 
@@ -114,19 +114,29 @@ void prog_bitstream(bool reset_only = false)
 
 	// enable reset
 	digitalWrite(RPI_ICE_CRESET, LOW);
+	digitalWrite(RPI_ICE_MISO, LOW);
 
 	// start clock high
 	digitalWrite(RPI_ICE_CLK, HIGH);
 
 	// select SRAM programming mode
-	digitalWrite(RPI_ICE_CS, HIGH);
-	digitalSync(100);
+	digitalWrite(RPI_ICE_CS, LOW);
+	digitalSync(2000);
 
 	// release reset
 	digitalWrite(RPI_ICE_CRESET, HIGH);
-	digitalSync(2000);
+	
+	//digitalSync(100);
+
+	for (int i = 100; digitalRead(RPI_ICE_CDONE) == HIGH; i--) {
+		if (i==0) {
+			fprintf(stderr, "CDONE took too long\n");
+			break;
+		}
+	}
 
 	fprintf(stderr, "cdone: %s\n", digitalRead(RPI_ICE_CDONE) == HIGH ? "high" : "low");
+	//digitalSync(2000);
 
 	if (reset_only)
 		return;
@@ -141,10 +151,12 @@ void prog_bitstream(bool reset_only = false)
 	for (int k = 0;; k++)
 	{
 		int byte = getchar();
-		if (byte < 0)
+		if (byte < 0) {
+			//fprintf(stderr, "got 0 at byte %d\n", k);
 			break;
+		}
 		for (int i = 7; i >= 0; i--) {
-			digitalWrite(RPI_ICE_MOSI, ((byte >> i) & 1) ? HIGH : LOW);
+			digitalWrite(RPI_ICE_MISO, ((byte >> i) & 1) ? HIGH : LOW);
 			digitalWrite(RPI_ICE_CLK, LOW);
 			digitalWrite(RPI_ICE_CLK, HIGH);
 		}
@@ -153,9 +165,13 @@ void prog_bitstream(bool reset_only = false)
 			printf("%3d kB written.\n", k / 1024);
 	}
 
-	for (int i = 0; i < 49; i++) {
+	for (int i = 0; digitalRead(RPI_ICE_CDONE) != HIGH; i++) {
 		digitalWrite(RPI_ICE_CLK, LOW);
 		digitalWrite(RPI_ICE_CLK, HIGH);
+		if (i==100) {
+			fprintf(stderr, "Error: CDONE not high after configuration\n");
+			break;
+		}
 	}
 
 
@@ -298,7 +314,7 @@ void prog_flasherase()
 	spi_end();
 }
 
-void prog_flashmem(int pageoffset, bool erase_first_block)
+void prog_flashmem(int pageoffset, bool erase_first_block, int no_check = 0)
 {
 	assert(enable_prog_port);
 
@@ -379,8 +395,12 @@ void prog_flashmem(int pageoffset, bool erase_first_block)
 			flash_write(addr + pageoffset * 0x10000, &prog_data[addr], n);
 			ms_timer += flash_wait();
 
-			// short cut (TODO: remove!)
-			goto written_ok;
+		
+			// don't check flash
+			if (no_check) {
+				fprintf(stderr, ".");
+				goto written_ok;
+			}
 
 			flash_read(addr + pageoffset * 0x10000, buffer, n);
 

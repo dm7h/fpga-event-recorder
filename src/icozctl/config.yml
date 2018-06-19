@@ -22,23 +22,23 @@ version: 0.1
 # event configuration
 events: 
   - start:
-          trigger: xxu
+          trigger: u
           function: start
 
   - stop:
-          trigger: xxd
+          trigger: d
           function: stop
 
   - dump_s:
-          trigger: xx1u
+          trigger: 1u
           function: dump_begin 
 
   - dump_e:
-          trigger: xx1d
+          trigger: 1d
           function: dump_end
 
-  - event_1:
-          trigger: xx0u
-
   - clk_up:
-          trigger: xx0d
+          trigger: xxu
+
+  - clk_down:
+          trigger: xxd
